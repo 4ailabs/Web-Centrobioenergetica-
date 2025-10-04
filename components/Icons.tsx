@@ -84,23 +84,11 @@ export const TwitterIcon: React.FC<IconProps> = ({ className }) => (
 
 // Logo personalizado para el Instituto Centrobioenergetica
 export const LogoIcon: React.FC<IconProps> = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    {/* Círculo exterior */}
-    <circle cx="20" cy="20" r="18" stroke="#10B981" strokeWidth="2" fill="none"/>
-    
-    {/* Símbolo de energía/bioenergía */}
-    <path d="M20 6L26 14H22V20H18V14H14L20 6Z" fill="#10B981"/>
-    
-    {/* Ondas de energía */}
-    <path d="M8 20C8 20 10 18 12 20C14 22 16 20 16 20" stroke="#10B981" strokeWidth="2" fill="none"/>
-    <path d="M24 20C24 20 26 18 28 20C30 22 32 20 32 20" stroke="#10B981" strokeWidth="2" fill="none"/>
-    
-    {/* Punto central */}
-    <circle cx="20" cy="20" r="3" fill="#10B981"/>
-    
-    {/* Líneas de conexión */}
-    <path d="M20 17V23M17 20H23" stroke="#10B981" strokeWidth="1.5"/>
-  </svg>
+  <img 
+    src="https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/4fc95aaa-7c07-4d87-b0f7-70d1a13dbb63/LOGO+new.png?format=300w" 
+    alt="Instituto Centrobioenergetica Logo" 
+    className={className}
+  />
 );
 
 // Iconos para aplicaciones - manteniendo los originales
