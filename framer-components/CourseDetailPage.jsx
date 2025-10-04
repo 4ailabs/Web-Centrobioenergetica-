@@ -24,6 +24,7 @@ export default function CourseDetailPage(props) {
         buyNowText = "ACCESAR",
         nextCourseText = "SIGUIENTE CURSO",
         backToCoursesUrl = "#",
+        buyNowUrl = "#",
         nextCourseUrl = "#",
     } = props
 
@@ -384,25 +385,50 @@ export default function CourseDetailPage(props) {
                         </div>
 
                         {/* Buy Now Button */}
-                        <button
-                            onClick={handleBuyNowClick}
-                            style={{
-                                width: "100%",
-                                backgroundColor: accentColor,
-                                color: "#ffffff",
-                                border: "none",
-                                borderRadius: "8px",
-                                padding: "16px 24px",
-                                fontSize: "16px",
-                                fontWeight: "700",
-                                textTransform: "uppercase",
-                                cursor: "pointer",
-                                transition: "all 0.2s ease",
-                                marginBottom: "16px",
-                            }}
-                        >
-                            {buyNowText}
-                        </button>
+                        {buyNowUrl && buyNowUrl !== "#" ? (
+                            <a
+                                href={buyNowUrl}
+                                style={{
+                                    width: "100%",
+                                    backgroundColor: accentColor,
+                                    color: "#ffffff",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "16px 24px",
+                                    fontSize: "16px",
+                                    fontWeight: "700",
+                                    textTransform: "uppercase",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease",
+                                    marginBottom: "16px",
+                                    textDecoration: "none",
+                                    display: "block",
+                                    textAlign: "center",
+                                }}
+                            >
+                                {buyNowText}
+                            </a>
+                        ) : (
+                            <button
+                                onClick={handleBuyNowClick}
+                                style={{
+                                    width: "100%",
+                                    backgroundColor: accentColor,
+                                    color: "#ffffff",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "16px 24px",
+                                    fontSize: "16px",
+                                    fontWeight: "700",
+                                    textTransform: "uppercase",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease",
+                                    marginBottom: "16px",
+                                }}
+                            >
+                                {buyNowText}
+                            </button>
+                        )}
 
                         <div style={{
                             textAlign: "center",
@@ -568,6 +594,11 @@ addPropertyControls(CourseDetailPage, {
     backToCoursesUrl: {
         type: ControlType.String,
         title: "URL Volver a Cursos",
+        defaultValue: "#",
+    },
+    buyNowUrl: {
+        type: ControlType.String,
+        title: "URL Accesar",
         defaultValue: "#",
     },
     nextCourseUrl: {
