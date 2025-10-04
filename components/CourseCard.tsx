@@ -8,7 +8,7 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   return (
-    <div className="bg-gray-50 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group">
+    <div className="bg-gray-50 hover:bg-gray-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group">
       <div className="overflow-hidden">
         <img src={course.imageUrl} alt={course.title} className="w-full h-48 lg:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
       </div>
