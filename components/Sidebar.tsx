@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <LogoIcon className="h-8 w-auto" />
-            <span className="text-lg font-bold">ICB</span>
+            <span className="text-xs sm:text-sm font-bold">Instituto Centrobioenergética</span>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -87,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
         <div className="p-8 pt-20 flex flex-col space-y-12 h-full">
           <div className="flex items-center space-x-3 pb-4">
             <LogoIcon className="h-8 w-auto" />
-            <span className="text-lg font-bold">ICB</span>
+            <span className="text-xs sm:text-sm font-bold">Instituto Centrobioenergética</span>
           </div>
 
           <nav className="flex-grow">
@@ -120,7 +120,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       <aside className="hidden lg:flex lg:relative top-0 left-0 h-full bg-[#F7F8FA] p-8 flex flex-col space-y-12">
         <div className="flex items-center space-x-3">
           <LogoIcon className="h-8 w-auto" />
-          <span className="text-lg font-bold">ICB</span>
+          <span className="text-lg font-bold">Instituto Centrobioenergética</span>
         </div>
 
         <nav className="flex-grow">

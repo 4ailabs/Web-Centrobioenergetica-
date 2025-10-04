@@ -9,7 +9,7 @@ export default function CourseDetailPage(props) {
         courseImage = "https://images.unsplash.com/photo-1592478411213-6153e4c4c8f1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         author = "María González",
         level = "Principiante",
-        lessons = 22,
+        lessonsCount = 22,
         language = "Español",
         subtitles = "Español, Inglés, Portugués, Alemán, Francés, Italiano, Polaco, Holandés",
         price = "$99.99",
@@ -373,7 +373,7 @@ export default function CourseDetailPage(props) {
                                     fontSize: "14px",
                                     fontWeight: "600",
                                     color: textColor,
-                                }}>{lessons}</span>
+                                }}>{lessonsCount}</span>
                             </div>
 
                             <div style={{
@@ -786,9 +786,9 @@ addPropertyControls(CourseDetailPage, {
         options: ["Principiante", "Intermedio", "Avanzado"],
         defaultValue: "Principiante",
     },
-    lessons: {
+    lessonsCount: {
         type: ControlType.Number,
-        title: "Lecciones",
+        title: "Número de Lecciones",
         defaultValue: 22,
         min: 1,
         max: 100,
