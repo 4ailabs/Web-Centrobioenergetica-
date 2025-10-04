@@ -87,7 +87,8 @@ export const LogoIcon: React.FC<IconProps> = ({ className }) => (
   <img 
     src="https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/4fc95aaa-7c07-4d87-b0f7-70d1a13dbb63/LOGO+new.png?format=300w" 
     alt="Instituto Centrobioenergetica Logo" 
-    className={className}
+    className={`${className} object-contain`}
+    style={{ aspectRatio: 'auto' }}
   />
 );
 

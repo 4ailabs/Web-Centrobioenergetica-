@@ -50,8 +50,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
       <div className="lg:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <LogoIcon className="h-6 w-6" />
-            <span className="text-lg font-bold">Instituto</span>
+            <LogoIcon className="h-8 w-auto" />
+            <span className="text-lg font-bold">ICB</span>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -76,8 +76,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
       }`}>
         <div className="p-8 pt-20 flex flex-col space-y-12 h-full">
           <div className="flex items-center space-x-3 pb-4">
-            <LogoIcon className="h-6 w-6" />
-            <span className="text-lg font-bold">Instituto Centrobioenergetica</span>
+            <LogoIcon className="h-8 w-auto" />
+            <span className="text-lg font-bold">ICB</span>
           </div>
 
           <nav className="flex-grow">
@@ -105,9 +105,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
 
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:relative top-0 left-0 h-full bg-[#F7F8FA] p-8 flex flex-col space-y-12">
-        <div className="flex items-start space-x-3">
-          <LogoIcon className="h-6 w-6" />
-          <span className="text-lg font-bold leading-tight">Instituto<br />Centrobioenergetica</span>
+        <div className="flex items-center space-x-3">
+          <LogoIcon className="h-8 w-auto" />
+          <span className="text-lg font-bold">ICB</span>
         </div>
 
         <nav className="flex-grow">
