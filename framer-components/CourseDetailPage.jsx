@@ -54,6 +54,68 @@ export default function CourseDetailPage(props) {
             padding: "0",
             margin: "0",
         }}>
+            <style>{`
+                @media (max-width: 768px) {
+                    .course-detail-container {
+                        padding: 16px !important;
+                    }
+                    .course-image {
+                        height: 250px !important;
+                        margin-bottom: 24px !important;
+                    }
+                    .content-layout {
+                        flex-direction: column !important;
+                        gap: 24px !important;
+                    }
+                    .sidebar {
+                        width: 100% !important;
+                        min-width: auto !important;
+                        position: static !important;
+                        order: 1 !important;
+                    }
+                    .main-content {
+                        order: 2 !important;
+                    }
+                    .course-title {
+                        font-size: 24px !important;
+                    }
+                    .course-description {
+                        font-size: 16px !important;
+                    }
+                    .course-content {
+                        font-size: 14px !important;
+                    }
+                    .sidebar-title {
+                        font-size: 18px !important;
+                    }
+                    .detail-item {
+                        padding: 10px 0 !important;
+                    }
+                    .buy-button {
+                        padding: 14px 20px !important;
+                        font-size: 15px !important;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .course-detail-container {
+                        padding: 12px !important;
+                    }
+                    .course-image {
+                        height: 200px !important;
+                        border-radius: 8px !important;
+                    }
+                    .course-title {
+                        font-size: 22px !important;
+                    }
+                    .sidebar {
+                        padding: 16px !important;
+                    }
+                    .buy-button {
+                        padding: 12px 16px !important;
+                        font-size: 14px !important;
+                    }
+                }
+            `}</style>
             {/* Header */}
             <div style={{
                 padding: "24px 32px",
@@ -85,13 +147,13 @@ export default function CourseDetailPage(props) {
                 flexDirection: "column",
                 maxWidth: "1200px",
                 margin: "0 auto",
-                padding: "32px",
+                padding: "16px 20px",
             }}>
                 {/* Course Image */}
                 <div style={{
                     width: "100%",
                     height: "400px",
-                    borderRadius: "16px",
+                    borderRadius: "12px",
                     overflow: "hidden",
                     marginBottom: "32px",
                     position: "relative",
@@ -126,6 +188,7 @@ export default function CourseDetailPage(props) {
                 {/* Content Layout */}
                 <div style={{
                     display: "flex",
+                    flexDirection: "row",
                     gap: "48px",
                     alignItems: "flex-start",
                 }}>
@@ -171,6 +234,7 @@ export default function CourseDetailPage(props) {
                     {/* Course Details Sidebar */}
                     <div style={{
                         width: "320px",
+                        minWidth: "280px",
                         backgroundColor: "#ffffff",
                         borderRadius: "12px",
                         border: "1px solid #e5e7eb",
