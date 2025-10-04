@@ -19,6 +19,12 @@ export default function CourseDetailPage(props) {
         onBackToCourses,
         onBuyNow,
         onNextCourse,
+        // Configurable links
+        backToCoursesText = "VOLVER A CURSOS",
+        buyNowText = "ACCESAR",
+        nextCourseText = "SIGUIENTE CURSO",
+        backToCoursesUrl = "#",
+        nextCourseUrl = "#",
     } = props
 
     const [isImageLoaded, setIsImageLoaded] = useState(false)
@@ -121,24 +127,46 @@ export default function CourseDetailPage(props) {
                 padding: "24px 32px",
                 borderBottom: "1px solid #e5e7eb",
             }}>
-                <button
-                    onClick={handleBackClick}
-                    style={{
-                        background: "none",
-                        border: "none",
-                        color: textColor,
-                        fontSize: "16px",
-                        fontWeight: "500",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        padding: "8px 0",
-                        transition: "opacity 0.2s ease",
-                    }}
-                >
-                    ← VOLVER A CURSOS
-                </button>
+                {backToCoursesUrl && backToCoursesUrl !== "#" ? (
+                    <a
+                        href={backToCoursesUrl}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            color: textColor,
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            padding: "8px 0",
+                            transition: "opacity 0.2s ease",
+                            textDecoration: "none",
+                        }}
+                    >
+                        ← {backToCoursesText}
+                    </a>
+                ) : (
+                    <button
+                        onClick={handleBackClick}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            color: textColor,
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            padding: "8px 0",
+                            transition: "opacity 0.2s ease",
+                        }}
+                    >
+                        ← {backToCoursesText}
+                    </button>
+                )}
             </div>
 
             {/* Main Content */}
@@ -373,7 +401,7 @@ export default function CourseDetailPage(props) {
                                 marginBottom: "16px",
                             }}
                         >
-                            ACCESAR
+                            {buyNowText}
                         </button>
 
                         <div style={{
@@ -392,23 +420,45 @@ export default function CourseDetailPage(props) {
                     justifyContent: "flex-end",
                     marginTop: "48px",
                 }}>
-                    <button
-                        onClick={handleNextCourseClick}
-                        style={{
-                            backgroundColor: "#ffffff",
-                            color: textColor,
-                            border: "1px solid #d1d5db",
-                            borderRadius: "8px",
-                            padding: "12px 24px",
-                            fontSize: "14px",
-                            fontWeight: "600",
-                            textTransform: "uppercase",
-                            cursor: "pointer",
-                            transition: "all 0.2s ease",
-                        }}
-                    >
-                        SIGUIENTE CURSO
-                    </button>
+                    {nextCourseUrl && nextCourseUrl !== "#" ? (
+                        <a
+                            href={nextCourseUrl}
+                            style={{
+                                backgroundColor: "#ffffff",
+                                color: textColor,
+                                border: "1px solid #d1d5db",
+                                borderRadius: "8px",
+                                padding: "12px 24px",
+                                fontSize: "14px",
+                                fontWeight: "600",
+                                textTransform: "uppercase",
+                                cursor: "pointer",
+                                transition: "all 0.2s ease",
+                                textDecoration: "none",
+                                display: "inline-block",
+                            }}
+                        >
+                            {nextCourseText}
+                        </a>
+                    ) : (
+                        <button
+                            onClick={handleNextCourseClick}
+                            style={{
+                                backgroundColor: "#ffffff",
+                                color: textColor,
+                                border: "1px solid #d1d5db",
+                                borderRadius: "8px",
+                                padding: "12px 24px",
+                                fontSize: "14px",
+                                fontWeight: "600",
+                                textTransform: "uppercase",
+                                cursor: "pointer",
+                                transition: "all 0.2s ease",
+                            }}
+                        >
+                            {nextCourseText}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
@@ -499,5 +549,30 @@ addPropertyControls(CourseDetailPage, {
     onNextCourse: {
         type: ControlType.EventHandler,
         title: "Siguiente Curso",
+    },
+    backToCoursesText: {
+        type: ControlType.String,
+        title: "Texto Volver a Cursos",
+        defaultValue: "VOLVER A CURSOS",
+    },
+    buyNowText: {
+        type: ControlType.String,
+        title: "Texto Accesar",
+        defaultValue: "ACCESAR",
+    },
+    nextCourseText: {
+        type: ControlType.String,
+        title: "Texto Siguiente Curso",
+        defaultValue: "SIGUIENTE CURSO",
+    },
+    backToCoursesUrl: {
+        type: ControlType.String,
+        title: "URL Volver a Cursos",
+        defaultValue: "#",
+    },
+    nextCourseUrl: {
+        type: ControlType.String,
+        title: "URL Siguiente Curso",
+        defaultValue: "#",
     },
 })
