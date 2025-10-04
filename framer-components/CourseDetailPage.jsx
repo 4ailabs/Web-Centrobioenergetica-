@@ -26,9 +26,15 @@ export default function CourseDetailPage(props) {
         backToCoursesUrl = "#",
         buyNowUrl = "#",
         nextCourseUrl = "#",
+        // Course lessons data
+        showLessons = false,
+        lessons = [],
+        onStartLessons,
     } = props
 
     const [isImageLoaded, setIsImageLoaded] = useState(false)
+    const [currentLesson, setCurrentLesson] = useState(0)
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
     const handleImageLoad = () => {
         setIsImageLoaded(true)
@@ -49,6 +55,35 @@ export default function CourseDetailPage(props) {
     const handleNextCourseClick = () => {
         if (onNextCourse) {
             onNextCourse()
+        }
+    }
+
+    const handleStartLessons = () => {
+        if (onStartLessons) {
+            onStartLessons()
+        }
+    }
+
+    const handleLessonClick = (lessonIndex) => {
+        setCurrentLesson(lessonIndex)
+        setIsVideoLoaded(false)
+    }
+
+    const handleVideoLoad = () => {
+        setIsVideoLoaded(true)
+    }
+
+    const handleNextLesson = () => {
+        if (currentLesson < lessons.length - 1) {
+            setCurrentLesson(currentLesson + 1)
+            setIsVideoLoaded(false)
+        }
+    }
+
+    const handlePrevLesson = () => {
+        if (currentLesson > 0) {
+            setCurrentLesson(currentLesson - 1)
+            setIsVideoLoaded(false)
         }
     }
 
@@ -385,7 +420,27 @@ export default function CourseDetailPage(props) {
                         </div>
 
                         {/* Buy Now Button */}
-                        {buyNowUrl && buyNowUrl !== "#" ? (
+                        {showLessons ? (
+                            <button
+                                onClick={handleStartLessons}
+                                style={{
+                                    width: "100%",
+                                    backgroundColor: accentColor,
+                                    color: "#ffffff",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "16px 24px",
+                                    fontSize: "16px",
+                                    fontWeight: "700",
+                                    textTransform: "uppercase",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease",
+                                    marginBottom: "16px",
+                                }}
+                            >
+                                {buyNowText}
+                            </button>
+                        ) : buyNowUrl && buyNowUrl !== "#" ? (
                             <a
                                 href={buyNowUrl}
                                 style={{
@@ -439,6 +494,211 @@ export default function CourseDetailPage(props) {
                         </div>
                     </div>
                 </div>
+
+                {/* Lessons Section */}
+                {showLessons && lessons.length > 0 && (
+                    <div style={{
+                        marginTop: "48px",
+                        padding: "24px",
+                        backgroundColor: "#f9fafb",
+                        borderRadius: "12px",
+                        border: "1px solid #e5e7eb",
+                    }}>
+                        <h3 style={{
+                            fontSize: "20px",
+                            fontWeight: "700",
+                            marginBottom: "24px",
+                            color: textColor,
+                        }}>
+                            Lecciones del Curso
+                        </h3>
+
+                        {/* Video Player */}
+                        {lessons[currentLesson] && (
+                            <div style={{
+                                width: "100%",
+                                height: "400px",
+                                borderRadius: "12px",
+                                overflow: "hidden",
+                                backgroundColor: "#000000",
+                                marginBottom: "24px",
+                                position: "relative",
+                            }}>
+                                <iframe
+                                    src={`https://player.vimeo.com/video/${lessons[currentLesson].vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+                                    width="100%"
+                                    height="100%"
+                                    frameBorder="0"
+                                    allow="autoplay; fullscreen; picture-in-picture"
+                                    allowFullScreen
+                                    onLoad={handleVideoLoad}
+                                    style={{
+                                        borderRadius: "12px",
+                                    }}
+                                />
+                                {!isVideoLoaded && (
+                                    <div style={{
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        color: "#ffffff",
+                                        fontSize: "16px",
+                                    }}>
+                                        Cargando video...
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Lesson Info */}
+                        {lessons[currentLesson] && (
+                            <div style={{
+                                backgroundColor: "#ffffff",
+                                borderRadius: "8px",
+                                padding: "20px",
+                                marginBottom: "20px",
+                                border: "1px solid #e5e7eb",
+                            }}>
+                                <h4 style={{
+                                    fontSize: "18px",
+                                    fontWeight: "600",
+                                    marginBottom: "8px",
+                                    color: textColor,
+                                }}>
+                                    Lección {currentLesson + 1}: {lessons[currentLesson].title}
+                                </h4>
+                                
+                                <p style={{
+                                    fontSize: "14px",
+                                    color: "#6b7280",
+                                    marginBottom: "12px",
+                                }}>
+                                    {lessons[currentLesson].description}
+                                </p>
+
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    fontSize: "12px",
+                                    color: "#9ca3af",
+                                }}>
+                                    <span>Duración: {lessons[currentLesson].duration}</span>
+                                    <span>{currentLesson + 1} de {lessons.length}</span>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Lessons List */}
+                        <div style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                            gap: "12px",
+                            marginBottom: "20px",
+                        }}>
+                            {lessons.map((lesson, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => handleLessonClick(index)}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        padding: "12px 16px",
+                                        backgroundColor: currentLesson === index ? accentColor : "#ffffff",
+                                        color: currentLesson === index ? "#ffffff" : textColor,
+                                        borderRadius: "8px",
+                                        border: `1px solid ${currentLesson === index ? accentColor : "#e5e7eb"}`,
+                                        cursor: "pointer",
+                                        transition: "all 0.2s ease",
+                                        textAlign: "left",
+                                        width: "100%",
+                                    }}
+                                >
+                                    <div style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        borderRadius: "50%",
+                                        backgroundColor: currentLesson === index ? "rgba(255,255,255,0.2)" : "#f3f4f6",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        marginRight: "12px",
+                                        fontSize: "14px",
+                                        fontWeight: "600",
+                                    }}>
+                                        {index + 1}
+                                    </div>
+                                    <div style={{
+                                        flex: 1,
+                                    }}>
+                                        <div style={{
+                                            fontSize: "14px",
+                                            fontWeight: "500",
+                                            marginBottom: "4px",
+                                        }}>
+                                            {lesson.title}
+                                        </div>
+                                        <div style={{
+                                            fontSize: "12px",
+                                            opacity: 0.7,
+                                        }}>
+                                            {lesson.duration}
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Navigation Controls */}
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                        }}>
+                            <button
+                                onClick={handlePrevLesson}
+                                disabled={currentLesson === 0}
+                                style={{
+                                    padding: "8px 16px",
+                                    backgroundColor: currentLesson === 0 ? "#f3f4f6" : "#ffffff",
+                                    color: currentLesson === 0 ? "#9ca3af" : textColor,
+                                    border: "1px solid #e5e7eb",
+                                    borderRadius: "6px",
+                                    cursor: currentLesson === 0 ? "not-allowed" : "pointer",
+                                    fontSize: "14px",
+                                    fontWeight: "500",
+                                }}
+                            >
+                                ← Anterior
+                            </button>
+
+                            <span style={{
+                                fontSize: "14px",
+                                color: "#6b7280",
+                            }}>
+                                {currentLesson + 1} de {lessons.length}
+                            </span>
+
+                            <button
+                                onClick={handleNextLesson}
+                                disabled={currentLesson === lessons.length - 1}
+                                style={{
+                                    padding: "8px 16px",
+                                    backgroundColor: currentLesson === lessons.length - 1 ? "#f3f4f6" : "#ffffff",
+                                    color: currentLesson === lessons.length - 1 ? "#9ca3af" : textColor,
+                                    border: "1px solid #e5e7eb",
+                                    borderRadius: "6px",
+                                    cursor: currentLesson === lessons.length - 1 ? "not-allowed" : "pointer",
+                                    fontSize: "14px",
+                                    fontWeight: "500",
+                                }}
+                            >
+                                Siguiente →
+                            </button>
+                        </div>
+                    </div>
+                )}
 
                 {/* Next Course Button */}
                 <div style={{
@@ -605,5 +865,69 @@ addPropertyControls(CourseDetailPage, {
         type: ControlType.String,
         title: "URL Siguiente Curso",
         defaultValue: "#",
+    },
+    showLessons: {
+        type: ControlType.Boolean,
+        title: "Mostrar Lecciones",
+        defaultValue: false,
+    },
+    lessons: {
+        type: ControlType.Array,
+        title: "Lecciones",
+        control: {
+            type: ControlType.Object,
+            controls: {
+                title: {
+                    type: ControlType.String,
+                    title: "Título",
+                    defaultValue: "Introducción",
+                },
+                description: {
+                    type: ControlType.String,
+                    title: "Descripción",
+                    defaultValue: "Descripción de la lección",
+                },
+                vimeoId: {
+                    type: ControlType.String,
+                    title: "ID de Vimeo",
+                    defaultValue: "123456789",
+                },
+                duration: {
+                    type: ControlType.String,
+                    title: "Duración",
+                    defaultValue: "15 min",
+                },
+            },
+        },
+        defaultValue: [
+            {
+                title: "Introducción al Biomagnetismo",
+                description: "Conceptos básicos y fundamentos del biomagnetismo",
+                vimeoId: "123456789",
+                duration: "15 min",
+            },
+            {
+                title: "Técnicas Básicas",
+                description: "Aprende las técnicas fundamentales paso a paso",
+                vimeoId: "987654321",
+                duration: "20 min",
+            },
+            {
+                title: "Práctica Guiada",
+                description: "Ejercicios prácticos con supervisión",
+                vimeoId: "456789123",
+                duration: "25 min",
+            },
+            {
+                title: "Evaluación Final",
+                description: "Test de conocimientos y certificación",
+                vimeoId: "789123456",
+                duration: "10 min",
+            },
+        ],
+    },
+    onStartLessons: {
+        type: ControlType.EventHandler,
+        title: "Iniciar Lecciones",
     },
 })
