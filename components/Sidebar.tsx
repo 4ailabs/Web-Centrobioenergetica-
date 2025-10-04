@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon } from './Icons';
+import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon } from './Icons';
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -34,14 +34,23 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick, mobile 
 interface SidebarProps {
     activeItem: string;
     setActiveItem: (item: string) => void;
+    onSearch?: (query: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
+const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleMobileNavigation = (item: string) => {
     setActiveItem(item);
     setIsMobileMenuOpen(false);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery.trim());
+    }
   };
 
   return (
@@ -98,6 +107,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
               <div className="space-y-2">
                 <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones'} onClick={() => handleMobileNavigation('Aplicaciones')} mobile={true} />
                 <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte'} onClick={() => handleMobileNavigation('Ayuda y Soporte')} mobile={true} />
+                <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={activeItem === 'Búsqueda'} onClick={() => handleMobileNavigation('Búsqueda')} mobile={true} />
               </div>
             </div>
           </nav>
@@ -130,6 +140,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
             <div className="space-y-2">
               <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones'} onClick={() => setActiveItem('Aplicaciones')} />
               <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte'} onClick={() => setActiveItem('Ayuda y Soporte')} />
+              <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={activeItem === 'Búsqueda'} onClick={() => setActiveItem('Búsqueda')} />
             </div>
           </div>
         </nav>
