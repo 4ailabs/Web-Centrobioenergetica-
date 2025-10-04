@@ -5,9 +5,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#F7F8FA] border-t border-gray-200 mt-auto">
       <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           {/* Left Section - Legal Links */}
-          <div className="flex flex-wrap justify-center md:justify-start space-x-4 text-xs text-gray-600">
+          <div className="flex flex-wrap justify-center sm:justify-start space-x-4 text-xs text-gray-600">
             <a href="#" className="hover:text-black transition-colors">Política de Cookies</a>
             <span className="text-gray-400">|</span>
             <a href="#" className="hover:text-black transition-colors">Términos Legales</a>

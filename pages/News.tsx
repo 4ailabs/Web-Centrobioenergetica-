@@ -36,12 +36,12 @@ const articles: NewsArticle[] = [
 
 const News: React.FC = () => {
   return (
-    <div className="w-full bg-white p-8 rounded-3xl">
-      <header className="mb-12">
-        <h1 className="text-4xl font-bold text-black">Noticias</h1>
+    <div className="w-full bg-white p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16">
+      <header className="mb-8 lg:mb-12">
+        <h1 className="text-2xl lg:text-4xl font-bold text-black">Noticias</h1>
       </header>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10">
         {articles.map((article, index) => (
           <div key={article.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 150}ms`, opacity: 0 }}>
             <NewsCard article={article} />

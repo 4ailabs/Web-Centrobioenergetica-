@@ -246,7 +246,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
             </div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
             {/* Información Principal */}
             <div className="lg:col-span-2">
               <div className="bg-white bg-opacity-20 rounded-2xl p-4 lg:p-6 mb-4 shadow-lg border border-white border-opacity-20">
@@ -254,7 +254,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
                 <p className="text-green-100 text-sm lg:text-base mb-4">
                   <strong>5 sesiones transformadoras:</strong> 3 presenciales (5-7 dic) + 2 online (ene-feb 2026)
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center">
                     <svg className="w-4 h-4 mr-2 text-green-200" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -353,7 +353,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10 mb-8">
           {courses.slice(0, 4).map((course, index) => (
             <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 150}ms`, opacity: 0 }}>
                 <CourseCard course={course} />
@@ -372,7 +372,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
       </div>
 
       {/* Secciones Minimizadas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
         {/* Noticias */}
         <div 
           onClick={onNavigateToNews}

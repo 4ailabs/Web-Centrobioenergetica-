@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, HelpIcon, LogoIcon, MenuIcon, XIcon } from './Icons';
+import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon } from './Icons';
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -86,6 +86,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
               <div className="space-y-2">
                 <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel'} onClick={() => handleMobileNavigation('Panel')} mobile={true} />
                 <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos'} onClick={() => handleMobileNavigation('Cursos')} mobile={true} />
+                <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos'} onClick={() => handleMobileNavigation('Servicios Clínicos')} mobile={true} />
+                <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={activeItem === 'Wellkitt'} onClick={() => handleMobileNavigation('Wellkitt')} mobile={true} />
                 <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias'} onClick={() => handleMobileNavigation('Noticias')} mobile={true} />
                 <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros'} onClick={() => handleMobileNavigation('Sobre Nosotros')} mobile={true} />
               </div>
@@ -116,6 +118,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem }) => {
             <div className="space-y-2">
               <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel'} onClick={() => setActiveItem('Panel')} />
               <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos'} onClick={() => setActiveItem('Cursos')} />
+              <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos'} onClick={() => setActiveItem('Servicios Clínicos')} />
+              <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={activeItem === 'Wellkitt'} onClick={() => setActiveItem('Wellkitt')} />
               <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias'} onClick={() => setActiveItem('Noticias')} />
               <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros'} onClick={() => setActiveItem('Sobre Nosotros')} />
             </div>

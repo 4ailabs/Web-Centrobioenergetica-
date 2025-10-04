@@ -14,7 +14,9 @@ import {
   Phone,
   Instagram,
   Linkedin,
-  Twitter
+  Twitter,
+  Stethoscope,
+  ShoppingBag
 } from 'lucide-react';
 
 interface IconProps {
@@ -40,6 +42,14 @@ export const AboutUsIcon: React.FC<IconProps> = ({ className }) => (
 
 export const AppsIcon: React.FC<IconProps> = ({ className }) => (
   <Grid3X3 className={className} />
+);
+
+export const ClinicalServicesIcon: React.FC<IconProps> = ({ className }) => (
+  <Stethoscope className={className} />
+);
+
+export const WellkittIcon: React.FC<IconProps> = ({ className }) => (
+  <ShoppingBag className={className} />
 );
 
 export const HelpIcon: React.FC<IconProps> = ({ className }) => (

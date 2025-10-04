@@ -58,13 +58,13 @@ const apps: AppInfo[] = [
 
 const Apps: React.FC = () => {
   return (
-    <div className="w-full bg-white p-8 rounded-3xl">
-      <header className="mb-12">
-        <h1 className="text-4xl font-bold text-black">Aplicaciones</h1>
-        <p className="text-lg text-gray-500 mt-2">Todo lo que necesitas para alcanzar el éxito</p>
+    <div className="w-full bg-white p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16">
+      <header className="mb-8 lg:mb-12">
+        <h1 className="text-2xl lg:text-4xl font-bold text-black">Aplicaciones</h1>
+        <p className="text-base lg:text-lg text-gray-500 mt-2">Todo lo que necesitas para alcanzar el éxito</p>
       </header>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10">
         {apps.map((app, index) => (
            <div key={app.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 100}ms`, opacity: 0 }}>
              <AppCard app={app} />

@@ -33,7 +33,7 @@ const AboutUs: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-12 lg:mt-16 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 mt-12 lg:mt-16 max-w-5xl mx-auto">
         <div className="bg-gray-50 p-6 lg:p-8 rounded-2xl lg:rounded-3xl text-center hover:bg-gray-100 transition-colors cursor-pointer group">
             <div className="inline-block bg-gray-200 p-3 rounded-full">
                 <CoursesIcon className="w-6 h-6 text-gray-500 group-hover:text-green-500 transition-colors" />

@@ -165,7 +165,7 @@ const AllCourses: React.FC = () => {
         </p>
       </header>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10">
         {courses.map((course, index) => (
           <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 150}ms`, opacity: 0 }}>
               <CourseCard course={course} />

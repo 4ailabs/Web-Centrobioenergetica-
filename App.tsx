@@ -4,6 +4,8 @@ import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard';
 import AllCourses from './pages/AllCourses';
+import ClinicalServices from './pages/ClinicalServices';
+import Wellkitt from './pages/Wellkitt';
 import News from './pages/News';
 import AboutUs from './pages/AboutUs';
 import Apps from './pages/Apps';
@@ -24,6 +26,10 @@ const App: React.FC = () => {
         );
       case 'Cursos':
         return <AllCourses />;
+      case 'Servicios Clínicos':
+        return <ClinicalServices />;
+      case 'Wellkitt':
+        return <Wellkitt />;
       case 'Noticias':
         return <News />;
       case 'Sobre Nosotros':
