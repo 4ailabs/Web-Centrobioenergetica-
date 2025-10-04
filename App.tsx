@@ -15,6 +15,7 @@ import Search from './pages/Search';
 const App: React.FC = () => {
   const [activePage, setActivePage] = useState('Panel');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchResults, setSearchResults] = useState({
     courses: [],
     services: [],
@@ -69,6 +70,7 @@ const App: React.FC = () => {
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     setActivePage('Resultados de Búsqueda');
+    setIsSearchOpen(false);
     
     // Búsqueda simple por texto
     const filteredCourses = allCourses.filter(course => 
@@ -122,8 +124,6 @@ const App: React.FC = () => {
         return <AboutUs />;
       case 'Aplicaciones':
         return <Apps />;
-      case 'Búsqueda':
-        return <Search onSearch={handleSearch} />;
       case 'Resultados de Búsqueda':
         return <SearchResults query={searchQuery} results={searchResults} />;
       default:
@@ -143,12 +143,12 @@ const App: React.FC = () => {
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
         <div className="hidden lg:block lg:w-80">
-          <Sidebar activeItem={activePage} setActiveItem={setActivePage} onSearch={handleSearch} />
+          <Sidebar activeItem={activePage} setActiveItem={setActivePage} onSearch={handleSearch} onOpenSearch={() => setIsSearchOpen(true)} />
         </div>
         
         {/* Mobile Sidebar (floating) */}
         <div className="lg:hidden">
-          <Sidebar activeItem={activePage} setActiveItem={setActivePage} onSearch={handleSearch} />
+          <Sidebar activeItem={activePage} setActiveItem={setActivePage} onSearch={handleSearch} onOpenSearch={() => setIsSearchOpen(true)} />
         </div>
         
         {/* Main Content */}
@@ -161,6 +161,13 @@ const App: React.FC = () => {
       
       {/* Footer */}
       <Footer />
+      
+      {/* Search Modal */}
+      <Search 
+        onSearch={handleSearch} 
+        onClose={() => setIsSearchOpen(false)} 
+        isOpen={isSearchOpen} 
+      />
     </div>
   );
 };

@@ -35,9 +35,10 @@ interface SidebarProps {
     activeItem: string;
     setActiveItem: (item: string) => void;
     onSearch?: (query: string) => void;
+    onOpenSearch?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch }) => {
+const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, onOpenSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -107,7 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch }
               <div className="space-y-2">
                 <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones'} onClick={() => handleMobileNavigation('Aplicaciones')} mobile={true} />
                 <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte'} onClick={() => handleMobileNavigation('Ayuda y Soporte')} mobile={true} />
-                <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={activeItem === 'Búsqueda'} onClick={() => handleMobileNavigation('Búsqueda')} mobile={true} />
+                <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
               </div>
             </div>
           </nav>
@@ -140,7 +141,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch }
             <div className="space-y-2">
               <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones'} onClick={() => setActiveItem('Aplicaciones')} />
               <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte'} onClick={() => setActiveItem('Ayuda y Soporte')} />
-              <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={activeItem === 'Búsqueda'} onClick={() => setActiveItem('Búsqueda')} />
+              <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
             </div>
           </div>
         </nav>
