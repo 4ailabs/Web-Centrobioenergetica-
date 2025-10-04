@@ -1,0 +1,5 @@
+{
+  "name": "Instituto Centrobioenergetica",
+  "description": "Una aplicación web para que el Instituto Centrobioenergetica navegue y encuentre cursos en línea, basada en un diseño de interfaz de usuario moderno. Cuenta con un diseño de panel con una barra lateral de navegación y un área de contenido principal que muestra los últimos cursos.",
+  "requestFramePermissions": []
+}
