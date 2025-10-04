@@ -1,8 +1,12 @@
 import React from 'react';
-import type { Course } from '../types';
+import { useCourses } from '../contexts/AppContext';
 import CourseCard from '../components/CourseCard';
 
-const courses: Course[] = [
+const AllCourses: React.FC = () => {
+  const courses = useCourses();
+
+  // Cursos hardcodeados (se pueden eliminar después)
+  const coursesHardcoded: Course[] = [
   {
     id: 1,
     title: 'Biomagnetismo Kids',
@@ -155,7 +159,6 @@ const courses: Course[] = [
   },
 ];
 
-const AllCourses: React.FC = () => {
   return (
     <div className="w-full bg-white p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16">
       <header className="mb-8 lg:mb-12">

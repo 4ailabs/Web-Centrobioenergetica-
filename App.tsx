@@ -1,5 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
+import { getUrlParams, isInIframe } from './utils/framerIntegration';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard';
@@ -12,93 +14,48 @@ import Apps from './pages/Apps';
 import SearchResults from './pages/SearchResults';
 import Search from './pages/Search';
 
-const App: React.FC = () => {
-  const [activePage, setActivePage] = useState('Panel');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchResults, setSearchResults] = useState({
-    courses: [],
-    services: [],
-    products: [],
-    news: []
-  });
+// Componente interno que usa el contexto
+const AppContent: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { activePage, isSearchOpen, searchQuery } = useUIState();
 
-  // Datos de ejemplo para búsqueda
-  const allCourses = [
-    {
-      id: 1,
-      title: 'Biomagnetismo Kids',
-      description: 'Técnicas especializadas de biomagnetismo adaptadas para el bienestar de los niños y su desarrollo energético.',
-      author: '',
-      price: 0,
-      lessons: 12,
-      level: 'Principiante',
-      imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    // ... más cursos
-  ];
-
-  const allServices = [
-    {
-      title: 'Biomagnetismo',
-      description: 'Técnica terapéutica que utiliza imanes para equilibrar el pH del organismo y restaurar la salud.',
-      duration: '60-90 min',
-      price: 'Consultar',
-    },
-    // ... más servicios
-  ];
-
-  const allProducts = [
-    {
-      name: 'Kit de Biomagnetismo',
-      description: 'Set completo con imanes terapéuticos para sesiones de biomagnetismo en casa.',
-      price: '$299 MXN',
-      category: 'Terapéutico',
-    },
-    // ... más productos
-  ];
-
-  const allNews = [
-    {
-      title: 'El Poder de la Respiración Consciente en el Día a Día',
-      description: 'Nuevos estudios revelan cómo la respiración puede impactar positivamente tu salud física y mental.',
-      author: 'Henry Carter',
-    },
-    // ... más noticias
-  ];
+  // Manejar parámetros de URL para navegación directa
+  useEffect(() => {
+    const params = getUrlParams();
+    const page = params.page;
+    
+    if (page) {
+      const pageMap: Record<string, string> = {
+        'cursos': 'Cursos',
+        'servicios': 'Servicios Clínicos',
+        'wellkitt': 'Wellkitt',
+        'noticias': 'Noticias',
+        'sobre-nosotros': 'Sobre Nosotros',
+        'aplicaciones': 'Aplicaciones',
+        'panel': 'Panel'
+      };
+      
+      const mappedPage = pageMap[page];
+      if (mappedPage) {
+        dispatch({ type: 'SET_ACTIVE_PAGE', payload: mappedPage });
+      }
+    }
+  }, [dispatch]);
 
   const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    setActivePage('Resultados de Búsqueda');
-    setIsSearchOpen(false);
-    
-    // Búsqueda simple por texto
-    const filteredCourses = allCourses.filter(course => 
-      course.title.toLowerCase().includes(query.toLowerCase()) ||
-      course.description.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    const filteredServices = allServices.filter(service => 
-      service.title.toLowerCase().includes(query.toLowerCase()) ||
-      service.description.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    const filteredProducts = allProducts.filter(product => 
-      product.name.toLowerCase().includes(query.toLowerCase()) ||
-      product.description.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    const filteredNews = allNews.filter(article => 
-      article.title.toLowerCase().includes(query.toLowerCase()) ||
-      article.description.toLowerCase().includes(query.toLowerCase())
-    );
-    
-    setSearchResults({
-      courses: filteredCourses,
-      services: filteredServices,
-      products: filteredProducts,
-      news: filteredNews
-    });
+    dispatch({ type: 'PERFORM_SEARCH', payload: query });
+  };
+
+  const handleOpenSearch = () => {
+    dispatch({ type: 'TOGGLE_SEARCH_MODAL' });
+  };
+
+  const handleCloseSearch = () => {
+    dispatch({ type: 'CLOSE_SEARCH_MODAL' });
+  };
+
+  const handleSetActivePage = (page: string) => {
+    dispatch({ type: 'SET_ACTIVE_PAGE', payload: page });
   };
 
   const renderPage = () => {
@@ -106,10 +63,10 @@ const App: React.FC = () => {
       case 'Panel':
         return (
           <Dashboard 
-            onNavigateToCourses={() => setActivePage('Cursos')}
-            onNavigateToNews={() => setActivePage('Noticias')}
-            onNavigateToAbout={() => setActivePage('Sobre Nosotros')}
-            onNavigateToApps={() => setActivePage('Aplicaciones')}
+            onNavigateToCourses={() => handleSetActivePage('Cursos')}
+            onNavigateToNews={() => handleSetActivePage('Noticias')}
+            onNavigateToAbout={() => handleSetActivePage('Sobre Nosotros')}
+            onNavigateToApps={() => handleSetActivePage('Aplicaciones')}
           />
         );
       case 'Cursos':
@@ -125,14 +82,14 @@ const App: React.FC = () => {
       case 'Aplicaciones':
         return <Apps />;
       case 'Resultados de Búsqueda':
-        return <SearchResults query={searchQuery} results={searchResults} />;
+        return <SearchResults query={searchQuery} />;
       default:
         return (
           <Dashboard 
-            onNavigateToCourses={() => setActivePage('Cursos')}
-            onNavigateToNews={() => setActivePage('Noticias')}
-            onNavigateToAbout={() => setActivePage('Sobre Nosotros')}
-            onNavigateToApps={() => setActivePage('Aplicaciones')}
+            onNavigateToCourses={() => handleSetActivePage('Cursos')}
+            onNavigateToNews={() => handleSetActivePage('Noticias')}
+            onNavigateToAbout={() => handleSetActivePage('Sobre Nosotros')}
+            onNavigateToApps={() => handleSetActivePage('Aplicaciones')}
           />
         );
     }
@@ -143,12 +100,22 @@ const App: React.FC = () => {
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
         <div className="hidden lg:block lg:w-80">
-          <Sidebar activeItem={activePage} setActiveItem={setActivePage} onSearch={handleSearch} onOpenSearch={() => setIsSearchOpen(true)} />
+          <Sidebar 
+            activeItem={activePage} 
+            setActiveItem={handleSetActivePage} 
+            onSearch={handleSearch} 
+            onOpenSearch={handleOpenSearch} 
+          />
         </div>
         
         {/* Mobile Sidebar (floating) */}
         <div className="lg:hidden">
-          <Sidebar activeItem={activePage} setActiveItem={setActivePage} onSearch={handleSearch} onOpenSearch={() => setIsSearchOpen(true)} />
+          <Sidebar 
+            activeItem={activePage} 
+            setActiveItem={handleSetActivePage} 
+            onSearch={handleSearch} 
+            onOpenSearch={handleOpenSearch} 
+          />
         </div>
         
         {/* Main Content */}
@@ -165,10 +132,19 @@ const App: React.FC = () => {
       {/* Search Modal */}
       <Search 
         onSearch={handleSearch} 
-        onClose={() => setIsSearchOpen(false)} 
+        onClose={handleCloseSearch} 
         isOpen={isSearchOpen} 
       />
     </div>
+  );
+};
+
+// Componente principal con Provider
+const App: React.FC = () => {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
   );
 };
 

@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import type { Course } from '../types';
 import { ArrowRightIcon } from './Icons';
+import LazyImage from './LazyImage';
+import { handleCourseClick } from '../utils/framerIntegration';
 
 interface CourseCardProps {
   course: Course;
+  onCourseClick?: (course: Course) => void;
 }
 
-const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) => {
+  const handleClick = useCallback(() => {
+    // Primero llamar al callback local si existe
+    onCourseClick?.(course);
+    
+    // Luego enviar a Framer
+    handleCourseClick(course.id, course.title);
+  }, [course, onCourseClick]);
   return (
     <div className="bg-gray-50 hover:bg-gray-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group">
       <div className="overflow-hidden">
-        <img src={course.imageUrl} alt={course.title} className="w-full h-48 lg:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+        <LazyImage 
+          src={course.imageUrl} 
+          alt={course.title} 
+          className="h-48 lg:h-64 transition-transform duration-300 ease-in-out group-hover:scale-105" 
+        />
       </div>
       <div className="p-4 lg:p-8 flex flex-col flex-grow">
         <h3 className="text-base lg:text-xl font-bold mb-2 lg:mb-3">{course.title}</h3>
@@ -21,13 +35,19 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             <p className="text-gray-500">Lecciones: <span className="text-black font-bold">{course.lessons}</span></p>
             <p className="text-gray-500">Nivel: <span className="text-black font-bold">{course.level}</span></p>
           </div>
-          <a href="#" className="text-black hover:text-gray-600 transition-transform duration-300 group-hover:translate-x-1">
+          <button 
+            onClick={handleClick}
+            className="text-black hover:text-gray-600 transition-transform duration-300 group-hover:translate-x-1"
+            aria-label={`Ver detalles de ${course.title}`}
+          >
             <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
-};
+});
+
+CourseCard.displayName = 'CourseCard';
 
 export default CourseCard;

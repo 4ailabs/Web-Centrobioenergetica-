@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
-import type { Course } from '../types';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useCourses } from '../contexts/AppContext';
 import CourseCard from '../components/CourseCard';
+import ExternalLink from '../components/ExternalLink';
 import { NewsIcon, AboutUsIcon, AppsIcon } from '../components/Icons';
 
 interface DashboardProps {
@@ -69,7 +70,14 @@ const CountdownTimer: React.FC<{ targetDate: string }> = ({ targetDate }) => {
   );
 };
 
-const courses: Course[] = [
+const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateToNews, onNavigateToAbout, onNavigateToApps }) => {
+  const courses = useCourses();
+  
+  // Memoizar los primeros 4 cursos para evitar re-renders innecesarios
+  const featuredCourses = useMemo(() => courses.slice(0, 4), [courses]);
+
+  // Cursos hardcodeados para el dashboard (se pueden eliminar después)
+  const coursesHardcoded: Course[] = [
   {
     id: 1,
     title: 'Biomagnetismo Kids',
@@ -222,7 +230,6 @@ const courses: Course[] = [
   },
 ];
 
-const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateToNews, onNavigateToAbout, onNavigateToApps }) => {
   return (
     <div className="w-full bg-white p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16">
       <header className="mb-8 lg:mb-12">
@@ -322,14 +329,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
               </div>
               
               <div className="space-y-3">
-                <a 
-                  href="https://inteligencia-energetica.com/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <ExternalLink
+                  href="https://inteligencia-energetica.com/"
                   className="block w-full bg-white text-green-700 px-6 py-3 rounded-full font-bold text-sm lg:text-base hover:bg-green-50 transition-colors shadow-xl hover:shadow-2xl text-center border-2 border-green-200"
                 >
                   Inscribirse Ahora →
-                </a>
+                </ExternalLink>
                 
                 <div className="text-xs text-green-200 text-center">
                   Plazas limitadas • Se llena rápidamente
@@ -354,7 +359,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10 mb-8">
-          {courses.slice(0, 4).map((course, index) => (
+          {featuredCourses.map((course, index) => (
             <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 150}ms`, opacity: 0 }}>
                 <CourseCard course={course} />
             </div>

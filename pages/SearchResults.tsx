@@ -1,19 +1,14 @@
 import React from 'react';
-import type { Course } from '../types';
+import { useSearchResults } from '../contexts/AppContext';
 import CourseCard from '../components/CourseCard';
 import { SearchIcon } from '../components/Icons';
 
 interface SearchResultsProps {
   query: string;
-  results: {
-    courses: Course[];
-    services: any[];
-    products: any[];
-    news: any[];
-  };
 }
 
-const SearchResults: React.FC<SearchResultsProps> = ({ query, results }) => {
+const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
+  const results = useSearchResults();
   const totalResults = results.courses.length + results.services.length + results.products.length + results.news.length;
 
   return (
