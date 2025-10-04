@@ -8,7 +8,7 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   return (
-    <div className="bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group">
+    <div className="bg-gray-50 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group">
       <div className="overflow-hidden">
         <img src={course.imageUrl} alt={course.title} className="w-full h-48 lg:h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
       </div>
@@ -16,7 +16,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         <h3 className="text-base lg:text-xl font-bold mb-2 lg:mb-3">{course.title}</h3>
         <p className="text-gray-500 text-xs lg:text-sm mb-4 lg:mb-6 flex-grow line-clamp-3">{course.description}</p>
         
-        <div className="border-t border-gray-200 pt-4 lg:pt-6 flex justify-between items-center">
+        <div className="border-t border-gray-300 pt-4 lg:pt-6 flex justify-between items-center">
           <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-6 text-xs lg:text-sm">
             <p className="text-gray-500">Lecciones: <span className="text-black font-bold">{course.lessons}</span></p>
             <p className="text-gray-500">Nivel: <span className="text-black font-bold">{course.level}</span></p>
