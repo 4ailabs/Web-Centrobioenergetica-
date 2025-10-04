@@ -16,9 +16,9 @@ export default function CourseDetailPage(props) {
         backgroundColor = "#ffffff",
         textColor = "#1f2937",
         accentColor = "#000000",
-        onBackToCourses,
-        onBuyNow,
-        onNextCourse,
+        onBackToCourses = () => {},
+        onBuyNow = () => {},
+        onNextCourse = () => {},
     } = props
 
     const [isImageLoaded, setIsImageLoaded] = useState(false)
@@ -28,21 +28,15 @@ export default function CourseDetailPage(props) {
     }
 
     const handleBackClick = () => {
-        if (onBackToCourses) {
-            onBackToCourses()
-        }
+        onBackToCourses()
     }
 
     const handleBuyNowClick = () => {
-        if (onBuyNow) {
-            onBuyNow()
-        }
+        onBuyNow()
     }
 
     const handleNextCourseClick = () => {
-        if (onNextCourse) {
-            onNextCourse()
-        }
+        onNextCourse()
     }
 
     return (
@@ -74,6 +68,8 @@ export default function CourseDetailPage(props) {
                         padding: "8px 0",
                         transition: "opacity 0.2s ease",
                     }}
+                    onMouseEnter={(e) => e.target.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.target.style.opacity = "1"}
                 >
                     ← VOLVER A CURSOS
                 </button>
@@ -308,6 +304,14 @@ export default function CourseDetailPage(props) {
                                 transition: "all 0.2s ease",
                                 marginBottom: "16px",
                             }}
+                            onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = "#374151"
+                                e.target.style.transform = "translateY(-1px)"
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = accentColor
+                                e.target.style.transform = "translateY(0)"
+                            }}
                         >
                             ACCESAR
                         </button>
@@ -342,6 +346,14 @@ export default function CourseDetailPage(props) {
                             cursor: "pointer",
                             transition: "all 0.2s ease",
                         }}
+                        onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = "#f9fafb"
+                            e.target.style.borderColor = "#9ca3af"
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = "#ffffff"
+                            e.target.style.borderColor = "#d1d5db"
+                        }}
                     >
                         SIGUIENTE CURSO
                     </button>
@@ -355,85 +367,85 @@ export default function CourseDetailPage(props) {
 addPropertyControls(CourseDetailPage, {
     courseTitle: {
         type: ControlType.String,
-        title: "Título del Curso",
-        defaultValue: "Integración de Elementos 3D",
+        title: "Course Title",
+        defaultValue: "Integration of 3D Elements",
     },
     courseDescription: {
         type: ControlType.String,
-        title: "Descripción del Curso",
-        defaultValue: "La integración de elementos tridimensionales (3D) en el diseño web está ganando popularidad, ofreciendo una experiencia visualmente atractiva e inmersiva.",
+        title: "Course Description",
+        defaultValue: "The integration of three-dimensional (3D) elements in web design is gaining popularity, offering a visually engaging and immersive experience.",
         multiline: true,
     },
     courseContent: {
         type: ControlType.String,
-        title: "Contenido del Curso",
-        defaultValue: "La integración de elementos tridimensionales (3D) en el diseño web está ganando popularidad, ofreciendo una experiencia visualmente atractiva e inmersiva. Este enfoque permite a los diseñadores crear interfaces más dinámicas e interactivas que pueden capturar mejor la atención del usuario y proporcionar una experiencia de usuario más atractiva.\n\nLos elementos 3D se pueden implementar a través de varias tecnologías como WebGL, Three.js y transformaciones CSS 3D. Estas tecnologías permiten la creación de modelos 3D realistas, animaciones y elementos interactivos que se pueden integrar perfectamente en aplicaciones web.",
+        title: "Course Content",
+        defaultValue: "The integration of three-dimensional (3D) elements in web design is gaining popularity, offering a visually engaging and immersive experience. This approach allows designers to create more dynamic and interactive interfaces that can better capture user attention and provide a more engaging user experience.\n\n3D elements can be implemented through various technologies such as WebGL, Three.js, and CSS 3D transforms. These technologies enable the creation of realistic 3D models, animations, and interactive elements that can be seamlessly integrated into web applications.",
         multiline: true,
     },
     courseImage: {
         type: ControlType.Image,
-        title: "Imagen del Curso",
+        title: "Course Image",
         defaultValue: "https://images.unsplash.com/photo-1592478411213-6153e4c4c8f1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     author: {
         type: ControlType.String,
-        title: "Instructora",
-        defaultValue: "María González",
+        title: "Author",
+        defaultValue: "Emily Johnson",
     },
     level: {
         type: ControlType.Enum,
-        title: "Nivel",
-        options: ["Principiante", "Intermedio", "Avanzado"],
-        defaultValue: "Principiante",
+        title: "Level",
+        options: ["Beginner", "Intermediate", "Advanced"],
+        defaultValue: "Beginner",
     },
     lessons: {
         type: ControlType.Number,
-        title: "Lecciones",
+        title: "Lessons",
         defaultValue: 22,
         min: 1,
         max: 100,
     },
     language: {
         type: ControlType.String,
-        title: "Idioma",
-        defaultValue: "Español",
+        title: "Language",
+        defaultValue: "English",
     },
     subtitles: {
         type: ControlType.String,
-        title: "Subtítulos",
-        defaultValue: "Español, Inglés, Portugués, Alemán, Francés, Italiano, Polaco, Holandés",
+        title: "Subtitles",
+        defaultValue: "English, Spanish, Portuguese, German, French, Italian, Polish, Dutch",
         multiline: true,
     },
     price: {
         type: ControlType.String,
-        title: "Precio",
+        title: "Price",
         defaultValue: "$99.99",
     },
     backgroundColor: {
         type: ControlType.Color,
-        title: "Color de Fondo",
+        title: "Background Color",
         defaultValue: "#ffffff",
     },
     textColor: {
         type: ControlType.Color,
-        title: "Color del Texto",
+        title: "Text Color",
         defaultValue: "#1f2937",
     },
     accentColor: {
         type: ControlType.Color,
-        title: "Color de Acento",
+        title: "Accent Color",
         defaultValue: "#000000",
     },
     onBackToCourses: {
         type: ControlType.EventHandler,
-        title: "Volver a Cursos",
+        title: "Back to Courses",
     },
     onBuyNow: {
         type: ControlType.EventHandler,
-        title: "Accesar",
+        title: "Buy Now",
     },
     onNextCourse: {
         type: ControlType.EventHandler,
-        title: "Siguiente Curso",
+        title: "Next Course",
     },
 })

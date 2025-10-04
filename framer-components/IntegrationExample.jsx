@@ -310,7 +310,7 @@ export default function CourseDetailIntegration(props) {
                                 marginBottom: "16px",
                             }}
                         >
-                            COMPRAR AHORA
+                            ACCESAR
                         </button>
 
                         <div style={{
