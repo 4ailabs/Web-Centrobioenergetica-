@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCourses } from '../contexts/AppContext';
 import CourseCard from '../components/CourseCard';
+import type { Course } from '../types';
 
 const AllCourses: React.FC = () => {
   const courses = useCourses();
@@ -168,7 +169,7 @@ const AllCourses: React.FC = () => {
         </p>
       </header>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-6 lg:gap-10">
         {courses.map((course, index) => (
           <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 150}ms`, opacity: 0 }}>
               <CourseCard course={course} />

@@ -4,6 +4,7 @@ import { useCourses } from '../contexts/AppContext';
 import CourseCard from '../components/CourseCard';
 import ExternalLink from '../components/ExternalLink';
 import { NewsIcon, AboutUsIcon, AppsIcon } from '../components/Icons';
+import type { Course } from '../types';
 
 interface DashboardProps {
   onNavigateToCourses?: () => void;
@@ -358,7 +359,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-6 lg:gap-10 mb-8">
           {featuredCourses.map((course, index) => (
             <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 150}ms`, opacity: 0 }}>
                 <CourseCard course={course} />

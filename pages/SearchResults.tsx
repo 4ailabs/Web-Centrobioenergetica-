@@ -51,7 +51,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <h2 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">
                 Cursos ({results.courses.length})
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-6 lg:gap-6">
                 {results.courses.map((course) => (
                   <CourseCard key={course.id} course={course} />
                 ))}
@@ -65,7 +65,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <h2 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">
                 Servicios Clínicos ({results.services.length})
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-6 lg:gap-6">
                 {results.services.map((service, index) => (
                   <div key={index} className="bg-gray-50 border border-gray-200 rounded-2xl p-4 lg:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{service.title}</h3>
@@ -86,7 +86,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <h2 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">
                 Productos ({results.products.length})
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-6">
                 {results.products.map((product, index) => (
                   <div key={index} className="bg-gray-50 border border-gray-200 rounded-2xl p-4 lg:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
@@ -109,7 +109,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <h2 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">
                 Noticias ({results.news.length})
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-6 lg:gap-6">
                 {results.news.map((article, index) => (
                   <div key={index} className="bg-gray-50 border border-gray-200 rounded-2xl p-4 lg:p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{article.title}</h3>
