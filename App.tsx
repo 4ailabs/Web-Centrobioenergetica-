@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
 import { getUrlParams, isInIframe } from './utils/framerIntegration';
 import Sidebar from './components/Sidebar';
@@ -8,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import AllCourses from './pages/AllCourses';
 import ClinicalServices from './pages/ClinicalServices';
 import Wellkitt from './pages/Wellkitt';
+import WellkittCategory from './pages/WellkittCategory';
 import News from './pages/News';
 import AboutUs from './pages/AboutUs';
 import Apps from './pages/Apps';
@@ -120,8 +122,13 @@ const AppContent: React.FC = () => {
         
         {/* Main Content */}
         <main className="flex-1 lg:ml-0 p-2 lg:p-8">
-           <div key={activePage} className="animate-fade-in">
-            {renderPage()}
+          <div key={activePage} className="animate-fade-in">
+            <Routes>
+              <Route path="/" element={renderPage()} />
+              <Route path="/wellkitt" element={<Wellkitt />} />
+              <Route path="/wellkitt/category/:category" element={<WellkittCategory />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
           </div>
         </main>
       </div>
@@ -139,12 +146,14 @@ const AppContent: React.FC = () => {
   );
 };
 
-// Componente principal con Provider
+// Componente principal con Provider y Router
 const App: React.FC = () => {
   return (
-    <AppProvider>
-      <AppContent />
-    </AppProvider>
+    <Router>
+      <AppProvider>
+        <AppContent />
+      </AppProvider>
+    </Router>
   );
 };
 

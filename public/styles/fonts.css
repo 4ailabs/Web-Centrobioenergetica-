@@ -1,0 +1,200 @@
+/* Fuentes para Instituto Centrobioenergética */
+
+/* Importar solo Inter de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Configuración de fuentes principales */
+:root {
+  /* Fuente principal - Inter para todo */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Fuente monoespaciada para código o datos técnicos */
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* Aplicar fuentes por defecto */
+* {
+  font-family: var(--font-primary);
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Asegurar que todos los elementos usen Inter */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer,
+header, hgroup, menu, nav, output, ruby, section,
+summary, time, mark, audio, video {
+  font-family: var(--font-primary);
+}
+
+/* Clases de utilidad para fuentes */
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Configuración específica para diferentes elementos */
+
+/* Títulos principales */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+/* Títulos grandes */
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+/* Botones y elementos interactivos */
+button, .btn {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* Navegación */
+nav, .nav {
+  font-family: var(--font-primary);
+  font-weight: 500;
+}
+
+/* Cards y componentes */
+.card-title {
+  font-family: var(--font-primary);
+  font-weight: 600;
+}
+
+.card-text {
+  font-family: var(--font-primary);
+  font-weight: 400;
+}
+
+/* Formularios */
+input, textarea, select {
+  font-family: var(--font-primary);
+  font-weight: 400;
+}
+
+/* Texto pequeño y badges */
+.text-sm, .badge, .tag {
+  font-family: var(--font-primary);
+  font-weight: 500;
+}
+
+/* Texto de productos y servicios médicos */
+.product-name {
+  font-family: var(--font-primary);
+  font-weight: 600;
+}
+
+.product-description {
+  font-family: var(--font-primary);
+  font-weight: 400;
+}
+
+/* Texto de precios y datos importantes */
+.price, .data-value {
+  font-family: var(--font-primary);
+  font-weight: 600;
+}
+
+/* Texto de navegación específico para Wellkitt */
+.wellkitt-nav {
+  font-family: var(--font-primary);
+  font-weight: 500;
+}
+
+/* Texto de información médica */
+.medical-info {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Texto de instrucciones y dosificación */
+.dosage-info {
+  font-family: var(--font-primary);
+  font-weight: 500;
+}
+
+/* Texto de advertencias y precauciones */
+.warning-text {
+  font-family: var(--font-primary);
+  font-weight: 500;
+}
+
+/* Asegurar que Tailwind CSS use Inter */
+.font-sans {
+  font-family: var(--font-primary) !important;
+}
+
+/* Override para elementos específicos de Tailwind */
+.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl {
+  font-family: var(--font-primary) !important;
+}
+
+.font-light, .font-normal, .font-medium, .font-semibold, .font-bold, .font-extrabold {
+  font-family: var(--font-primary) !important;
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  body {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 769px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  body {
+    font-size: 1rem;
+  }
+}

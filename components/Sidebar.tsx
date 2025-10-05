@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon } from './Icons';
 
 interface NavItemProps {
@@ -39,11 +40,21 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, onOpenSearch }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleMobileNavigation = (item: string) => {
-    setActiveItem(item);
+    if (item === 'Wellkitt') {
+      navigate('/wellkitt');
+    } else {
+      setActiveItem(item);
+      // Si estamos en una ruta de Wellkitt y navegamos a otra página, redirigir a home
+      if (location.pathname.startsWith('/wellkitt')) {
+        navigate('/');
+      }
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -94,20 +105,20 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             <div className="space-y-4">
               <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">MENÚ</h3>
               <div className="space-y-2">
-                <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel'} onClick={() => handleMobileNavigation('Panel')} mobile={true} />
-                <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos'} onClick={() => handleMobileNavigation('Cursos')} mobile={true} />
-                <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos'} onClick={() => handleMobileNavigation('Servicios Clínicos')} mobile={true} />
-                <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={activeItem === 'Wellkitt'} onClick={() => handleMobileNavigation('Wellkitt')} mobile={true} />
-                <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias'} onClick={() => handleMobileNavigation('Noticias')} mobile={true} />
-                <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros'} onClick={() => handleMobileNavigation('Sobre Nosotros')} mobile={true} />
+                <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Panel')} mobile={true} />
+                <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Cursos')} mobile={true} />
+                <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Servicios Clínicos')} mobile={true} />
+                <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Wellkitt')} mobile={true} />
+                <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Noticias')} mobile={true} />
+                <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Sobre Nosotros')} mobile={true} />
               </div>
             </div>
 
             <div className="mt-12 space-y-4">
               <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">USUARIO</h3>
               <div className="space-y-2">
-                <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones'} onClick={() => handleMobileNavigation('Aplicaciones')} mobile={true} />
-                <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte'} onClick={() => handleMobileNavigation('Ayuda y Soporte')} mobile={true} />
+                <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Aplicaciones')} mobile={true} />
+                <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Ayuda y Soporte')} mobile={true} />
                 <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
               </div>
             </div>
@@ -127,20 +138,41 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           <div className="space-y-4">
             <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">MENÚ</h3>
             <div className="space-y-2">
-              <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel'} onClick={() => setActiveItem('Panel')} />
-              <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos'} onClick={() => setActiveItem('Cursos')} />
-              <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos'} onClick={() => setActiveItem('Servicios Clínicos')} />
-              <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={activeItem === 'Wellkitt'} onClick={() => setActiveItem('Wellkitt')} />
-              <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias'} onClick={() => setActiveItem('Noticias')} />
-              <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros'} onClick={() => setActiveItem('Sobre Nosotros')} />
+              <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Panel');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
+              <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Cursos');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
+              <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Servicios Clínicos');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
+              <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => navigate('/wellkitt')} />
+              <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Noticias');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
+              <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Sobre Nosotros');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
             </div>
           </div>
 
           <div className="mt-12 space-y-4">
             <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">USUARIO</h3>
             <div className="space-y-2">
-              <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones'} onClick={() => setActiveItem('Aplicaciones')} />
-              <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte'} onClick={() => setActiveItem('Ayuda y Soporte')} />
+              <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Aplicaciones');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
+              <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
+                setActiveItem('Ayuda y Soporte');
+                if (location.pathname.startsWith('/wellkitt')) navigate('/');
+              }} />
               <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
             </div>
           </div>
