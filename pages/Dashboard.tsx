@@ -13,63 +13,63 @@ interface DashboardProps {
   onNavigateToApps?: () => void;
 }
 
-// Componente del Contador
-const CountdownTimer: React.FC<{ targetDate: string }> = ({ targetDate }) => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+// Componente del Contador - Temporalmente deshabilitado (solo usado para el seminario)
+// const CountdownTimer: React.FC<{ targetDate: string }> = ({ targetDate }) => {
+//   const [timeLeft, setTimeLeft] = useState({
+//     days: 0,
+//     hours: 0,
+//     minutes: 0,
+//     seconds: 0
+//   });
 
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = new Date(targetDate).getTime() - new Date().getTime();
+//   useEffect(() => {
+//     const calculateTimeLeft = () => {
+//       const difference = new Date(targetDate).getTime() - new Date().getTime();
       
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
+//       if (difference > 0) {
+//         setTimeLeft({
+//           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+//           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+//           minutes: Math.floor((difference / 1000 / 60) % 60),
+//           seconds: Math.floor((difference / 1000) % 60)
+//         });
+//       } else {
+//         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+//       }
+//     };
 
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+//     calculateTimeLeft();
+//     const timer = setInterval(calculateTimeLeft, 1000);
 
-    return () => clearInterval(timer);
-  }, [targetDate]);
+//     return () => clearInterval(timer);
+//   }, [targetDate]);
 
-  const TimeUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
-    <div className="text-center">
-      <div className="bg-white bg-opacity-20 text-white text-xs font-bold rounded p-1.5 min-w-[30px] flex items-center justify-center">
-        {value.toString().padStart(2, '0')}
-      </div>
-      <div className="text-green-200 text-[10px] mt-0.5 font-medium">
-        {label}
-      </div>
-    </div>
-  );
+//   const TimeUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
+//     <div className="text-center">
+//       <div className="bg-white bg-opacity-20 text-white text-xs font-bold rounded p-1.5 min-w-[30px] flex items-center justify-center">
+//         {value.toString().padStart(2, '0')}
+//       </div>
+//       <div className="text-green-200 text-[10px] mt-0.5 font-medium">
+//         {label}
+//       </div>
+//     </div>
+//   );
 
-  return (
-    <div className="flex items-center justify-center gap-1 flex-wrap">
-      <svg className="w-3 h-3 text-yellow-300 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <TimeUnit value={timeLeft.days} label="Días" />
-      <span className="text-green-200 text-xs mx-0.5">:</span>
-      <TimeUnit value={timeLeft.hours} label="Horas" />
-      <span className="text-green-200 text-xs mx-0.5">:</span>
-      <TimeUnit value={timeLeft.minutes} label="Min" />
-      <span className="text-green-200 text-xs mx-0.5">:</span>
-      <TimeUnit value={timeLeft.seconds} label="Seg" />
-    </div>
-  );
-};
+//   return (
+//     <div className="flex items-center justify-center gap-1 flex-wrap">
+//       <svg className="w-3 h-3 text-yellow-300 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+//       </svg>
+//       <TimeUnit value={timeLeft.days} label="Días" />
+//       <span className="text-green-200 text-xs mx-0.5">:</span>
+//       <TimeUnit value={timeLeft.hours} label="Horas" />
+//       <span className="text-green-200 text-xs mx-0.5">:</span>
+//       <TimeUnit value={timeLeft.minutes} label="Min" />
+//       <span className="text-green-200 text-xs mx-0.5">:</span>
+//       <TimeUnit value={timeLeft.seconds} label="Seg" />
+//     </div>
+//   );
+// };
 
 const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateToNews, onNavigateToAbout, onNavigateToApps }) => {
   const courses = useCourses();
@@ -185,7 +185,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
     description: 'Técnica básica y explorando los caminos de la vida a través del juego terapéutico con muñecos.',
     author: '',
     price: 0,
-    lessons: 12,
+    lessons: 5, // 2 módulos: Módulo 1 (2 videos) + Módulo 2 (3 videos) = 5 videos total
     level: 'Principiante',
     imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
@@ -238,8 +238,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
         <p className="text-base lg:text-lg text-gray-500 mt-2">Tu Guía para el Crecimiento y Bienestar</p>
       </header>
 
-      {/* Banner del Seminario Internacional */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-3xl p-6 lg:p-8 mb-8 lg:mb-12 text-white relative overflow-hidden shadow-2xl border border-green-500">
+      {/* Banner del Seminario Internacional - Temporalmente deshabilitado */}
+      {/* <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-3xl p-6 lg:p-8 mb-8 lg:mb-12 text-white relative overflow-hidden shadow-2xl border border-green-500">
         <div className="relative z-10">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-white bg-opacity-30 rounded-full flex items-center justify-center mr-4 shadow-lg">
@@ -255,7 +255,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-            {/* Información Principal */}
             <div className="lg:col-span-2">
               <div className="bg-white bg-opacity-20 rounded-2xl p-4 lg:p-6 mb-4 shadow-lg border border-white border-opacity-20">
                 <h3 className="text-lg lg:text-xl font-semibold mb-3">Ciudad de México • Diciembre 2025</h3>
@@ -300,12 +299,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
               </div>
             </div>
             
-            {/* Información de Inscripción */}
             <div className="flex flex-col justify-center">
               <div className="bg-white bg-opacity-20 rounded-2xl p-4 lg:p-6 mb-4 shadow-lg border border-white border-opacity-20">
                 <h4 className="font-semibold text-lg mb-3">Inversión</h4>
                 
-                {/* Contador de tiempo */}
                 <div className="mb-3 p-2 bg-yellow-400 bg-opacity-20 rounded-lg border border-yellow-300 shadow-md">
                   <p className="text-center text-yellow-300 text-[10px] font-semibold mb-1.5">Oferta Early Bird termina en</p>
                   <CountdownTimer targetDate="2025-10-16T23:59:59" />
@@ -345,11 +342,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToCourses, onNavigateTo
           </div>
         </div>
         
-        {/* Elementos decorativos de fondo */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-15 rounded-full -translate-y-16 translate-x-16 shadow-lg"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full translate-y-12 -translate-x-12 shadow-md"></div>
         <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-white bg-opacity-10 rounded-full shadow-md"></div>
-      </div>
+      </div> */}
 
       <div className="border-t border-gray-200 pt-6 lg:pt-8">
         <div className="mb-6 lg:mb-8">

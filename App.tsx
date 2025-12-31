@@ -2,14 +2,18 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { getUrlParams, isInIframe } from './utils/framerIntegration';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard';
 import AllCourses from './pages/AllCourses';
+import CourseDetail from './pages/CourseDetail';
 import ClinicalServices from './pages/ClinicalServices';
-import Wellkitt from './pages/Wellkitt';
-import WellkittCategory from './pages/WellkittCategory';
+import Login from './pages/Login';
+import Register from './pages/Register';
+// import Wellkitt from './pages/Wellkitt'; // Temporalmente deshabilitado
+// import WellkittCategory from './pages/WellkittCategory'; // Temporalmente deshabilitado
 import News from './pages/News';
 import AboutUs from './pages/AboutUs';
 import Apps from './pages/Apps';
@@ -30,7 +34,7 @@ const AppContent: React.FC = () => {
       const pageMap: Record<string, string> = {
         'cursos': 'Cursos',
         'servicios': 'Servicios Clínicos',
-        'wellkitt': 'Wellkitt',
+        // 'wellkitt': 'Wellkitt', // Temporalmente deshabilitado
         'noticias': 'Noticias',
         'sobre-nosotros': 'Sobre Nosotros',
         'aplicaciones': 'Aplicaciones',
@@ -75,8 +79,8 @@ const AppContent: React.FC = () => {
         return <AllCourses />;
       case 'Servicios Clínicos':
         return <ClinicalServices />;
-      case 'Wellkitt':
-        return <Wellkitt />;
+      // case 'Wellkitt': // Temporalmente deshabilitado
+      //   return <Wellkitt />;
       case 'Noticias':
         return <News />;
       case 'Sobre Nosotros':
@@ -125,8 +129,12 @@ const AppContent: React.FC = () => {
           <div key={activePage} className="animate-fade-in">
             <Routes>
               <Route path="/" element={renderPage()} />
-              <Route path="/wellkitt" element={<Wellkitt />} />
-              <Route path="/wellkitt/category/:category" element={<WellkittCategory />} />
+              <Route path="/course/:courseId" element={<CourseDetail />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              {/* Rutas de Wellkitt temporalmente deshabilitadas */}
+              {/* <Route path="/wellkitt" element={<Wellkitt />} /> */}
+              {/* <Route path="/wellkitt/category/:category" element={<WellkittCategory />} /> */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
@@ -150,9 +158,11 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <AppProvider>
-        <AppContent />
-      </AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <AppContent />
+        </AppProvider>
+      </AuthProvider>
     </Router>
   );
 };

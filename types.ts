@@ -1,3 +1,50 @@
+// Tipos para Cursos
+export interface CourseVideo {
+  id: number;
+  title: string;
+  description?: string;
+  vimeoId?: string;
+  cloudflareStreamId?: string; // UID de Cloudflare Stream
+  duration?: string;
+  order: number;
+}
+
+export interface CourseModule {
+  id: number;
+  title: string;
+  description?: string;
+  videos: CourseVideo[];
+  order: number;
+}
+
+export interface Course {
+  id: number;
+  title: string;
+  description: string;
+  author: string;
+  price: number;
+  lessons: number;
+  level: 'Principiante' | 'Intermedio' | 'Avanzado';
+  imageUrl: string;
+  modules?: CourseModule[]; // Opcional para cursos que aún no tienen módulos definidos
+}
+
+export interface NewsArticle {
+  id: number;
+  title: string;
+  description: string;
+  author: string;
+  imageUrl: string;
+}
+
+export interface AppInfo {
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  logo: string | null;
+  website: string;
+}
 
 export interface Product {
   id: string;

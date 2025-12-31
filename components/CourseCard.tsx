@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Course } from '../types';
 import { ArrowRightIcon } from './Icons';
 import LazyImage from './LazyImage';
@@ -10,15 +11,23 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) => {
+  const navigate = useNavigate();
+  
   const handleClick = useCallback(() => {
     // Primero llamar al callback local si existe
     onCourseClick?.(course);
     
+    // Navegar a la página de detalle del curso
+    navigate(`/course/${course.id}`);
+    
     // Luego enviar a Framer
     handleCourseClick(course.id, course.title);
-  }, [course, onCourseClick]);
+  }, [course, onCourseClick, navigate]);
   return (
-    <div className="bg-gray-50 hover:bg-gray-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group">
+    <div 
+      onClick={handleClick}
+      className="bg-gray-50 hover:bg-gray-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group cursor-pointer"
+    >
       <div className="overflow-hidden">
         <LazyImage 
           src={course.imageUrl} 
@@ -35,13 +44,12 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
             <p className="text-gray-500">Lecciones: <span className="text-black font-bold">{course.lessons}</span></p>
             <p className="text-gray-500">Nivel: <span className="text-black font-bold">{course.level}</span></p>
           </div>
-          <button 
-            onClick={handleClick}
-            className="text-black hover:text-gray-600 transition-transform duration-300 group-hover:translate-x-1"
+          <div 
+            className="text-black group-hover:text-gray-600 transition-transform duration-300 group-hover:translate-x-1"
             aria-label={`Ver detalles de ${course.title}`}
           >
             <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
-          </button>
+          </div>
         </div>
       </div>
     </div>

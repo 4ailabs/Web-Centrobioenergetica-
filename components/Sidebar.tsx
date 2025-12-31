@@ -46,15 +46,16 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleMobileNavigation = (item: string) => {
-    if (item === 'Wellkitt') {
-      navigate('/wellkitt');
-    } else {
+    // Wellkitt temporalmente deshabilitado
+    // if (item === 'Wellkitt') {
+    //   navigate('/wellkitt');
+    // } else {
       setActiveItem(item);
       // Si estamos en una ruta de Wellkitt y navegamos a otra página, redirigir a home
       if (location.pathname.startsWith('/wellkitt')) {
         navigate('/');
       }
-    }
+    // }
     setIsMobileMenuOpen(false);
   };
 
@@ -108,7 +109,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
                 <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Panel')} mobile={true} />
                 <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Cursos')} mobile={true} />
                 <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Servicios Clínicos')} mobile={true} />
-                <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Wellkitt')} mobile={true} />
+                {/* Wellkitt temporalmente deshabilitado */}
+                {/* <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Wellkitt')} mobile={true} /> */}
                 <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Noticias')} mobile={true} />
                 <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Sobre Nosotros')} mobile={true} />
               </div>
@@ -150,7 +152,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
                 setActiveItem('Servicios Clínicos');
                 if (location.pathname.startsWith('/wellkitt')) navigate('/');
               }} />
-              <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => navigate('/wellkitt')} />
+              {/* Wellkitt temporalmente deshabilitado */}
+              {/* <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => navigate('/wellkitt')} /> */}
               <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
                 setActiveItem('Noticias');
                 if (location.pathname.startsWith('/wellkitt')) navigate('/');

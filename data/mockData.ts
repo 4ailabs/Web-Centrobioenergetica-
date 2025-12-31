@@ -137,9 +137,57 @@ export const MOCK_DATA = {
       description: 'Técnica básica y explorando los caminos de la vida a través del juego terapéutico con muñecos.',
       author: '',
       price: 0,
-      lessons: 12,
+      lessons: 5, // Total de videos: 2 + 3 = 5
       level: 'Principiante' as const,
       imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      modules: [
+        {
+          id: 1,
+          title: 'Módulo 1: Fundamentos',
+          description: 'Introducción a la técnica terapéutica con muñecos',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'Video 1: Introducción a la Terapia de Muñecos',
+              description: 'Conoce los fundamentos básicos de esta técnica terapéutica',
+              order: 1,
+            },
+            {
+              id: 2,
+              title: 'Video 2: Principios Básicos',
+              description: 'Aprende los principios esenciales para trabajar con muñecos',
+              order: 2,
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: 'Módulo 2: Aplicación Práctica',
+          description: 'Desarrolla habilidades prácticas en la aplicación de la técnica',
+          order: 2,
+          videos: [
+            {
+              id: 3,
+              title: 'Video 3: Técnicas de Aplicación',
+              description: 'Aprende las técnicas prácticas para aplicar la terapia',
+              order: 1,
+            },
+            {
+              id: 4,
+              title: 'Video 4: Casos Prácticos',
+              description: 'Observa casos prácticos reales de aplicación',
+              order: 2,
+            },
+            {
+              id: 5,
+              title: 'Video 5: Integración y Cierre',
+              description: 'Integra todo lo aprendido y cierra el proceso terapéutico',
+              order: 3,
+            },
+          ],
+        },
+      ],
     },
     {
       id: 12,

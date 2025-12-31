@@ -8,6 +8,7 @@ import {
   HelpCircle, 
   Search, 
   ArrowRight, 
+  ArrowLeft,
   Menu, 
   X,
   Mail,
@@ -62,6 +63,10 @@ export const SearchIcon: React.FC<IconProps> = ({ className }) => (
 
 export const ArrowRightIcon: React.FC<IconProps> = ({ className }) => (
   <ArrowRight className={className} />
+);
+
+export const ArrowLeftIcon: React.FC<IconProps> = ({ className }) => (
+  <ArrowLeft className={className} />
 );
 
 export const MenuIcon: React.FC<IconProps> = ({ className }) => (
