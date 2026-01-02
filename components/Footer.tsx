@@ -1,5 +1,5 @@
 import React from 'react';
-import { MailIcon, PhoneIcon, InstagramIcon, LinkedinIcon, TwitterIcon } from './Icons';
+import { MailIcon, PhoneIcon, InstagramIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from './Icons';
 
 const Footer: React.FC = () => {
   return (
@@ -36,6 +36,11 @@ const Footer: React.FC = () => {
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors flex items-center space-x-1">
               <TwitterIcon className="w-3 h-3" />
               <span>Twitter</span>
+            </a>
+            <span className="opacity-30">|</span>
+            <a href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors flex items-center space-x-1">
+              <YoutubeIcon className="w-3 h-3" />
+              <span>YouTube</span>
             </a>
           </div>
         </div>

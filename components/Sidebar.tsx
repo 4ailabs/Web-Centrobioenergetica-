@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon } from './Icons';
+import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon, YoutubeIcon } from './Icons';
 import { useUIState, useAppDispatch } from '../contexts/AppContext';
 
 interface NavItemProps {
@@ -20,15 +20,15 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick, mobile 
         e.preventDefault();
         onClick();
       }}
-      className={`flex items-center space-x-4 px-6 py-3 rounded-full text-sm lg:text-base transition-all duration-300 transform ${active
-        ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20'
-        : 'text-[var(--text-muted)] hover:bg-[var(--text-main)]/5 shadow-sm hover:shadow-xl hover:-translate-y-1'
+      className={`flex items-center space-x-4 px-4 py-2.5 rounded-xl transition-all duration-300 ${active
+        ? 'text-primary-600 bg-primary-600/5 font-black'
+        : 'text-[var(--text-muted)] hover:text-primary-600 hover:bg-primary-600/5'
         } ${mobile ? 'mobile-nav-item' : ''}`}
     >
-      <div className={active ? 'text-white' : 'text-primary-600'}>
+      <div className={active ? 'text-primary-600' : 'text-[var(--text-muted)] group-hover:text-primary-600'}>
         {icon}
       </div>
-      <span>{label}</span>
+      <span className="uppercase tracking-widest text-[11px] font-black">{label}</span>
     </a>
   );
 };
@@ -94,12 +94,12 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
   const ThemeToggle = ({ mobile = false }) => (
     <button
       onClick={toggleTheme}
-      className={`flex items-center space-x-4 px-6 py-3 rounded-full text-sm lg:text-base transition-all duration-300 transform bg-[var(--bg-main)] border border-[var(--border-color)] hover:border-primary-600 hover:shadow-xl ${mobile ? 'w-full' : ''}`}
+      className={`flex items-center space-x-4 px-4 py-2.5 rounded-xl transition-all duration-300 text-[var(--text-muted)] hover:text-primary-600 hover:bg-primary-600/5 ${mobile ? 'w-full' : ''}`}
     >
-      <div className="text-primary-600">
+      <div className="text-[var(--text-muted)]">
         {isDarkMode ? <SunIcon className="w-6 h-6" /> : <MoonIcon className="w-6 h-6" />}
       </div>
-      <span className="font-black uppercase tracking-widest text-[10px]">{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
+      <span className="font-black uppercase tracking-widest text-[11px]">{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
     </button>
   );
 
@@ -152,10 +152,17 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             </div>
 
             <div className="space-y-4">
+              <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">CONTENIDO</h3>
+              <div className="space-y-2">
+                <NavItem icon={<YoutubeIcon className="w-6 h-6" />} label="Wellvibe Media" active={location.pathname === '/wellvibe-media'} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} mobile={true} />
+              </div>
+            </div>
+
+            <div className="space-y-4">
               <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">USUARIO</h3>
               <div className="space-y-2">
                 <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} />
-                <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:info@centrobioenergetica.com'} mobile={true} />
+                <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:contacto@institutocentrobioenergetica.com'} mobile={true} />
                 <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
                 <ThemeToggle mobile={true} />
               </div>
@@ -187,10 +194,17 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           </div>
 
           <div className="space-y-4">
+            <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">CONTENIDO</h3>
+            <div className="space-y-2">
+              <NavItem icon={<YoutubeIcon className="w-6 h-6" />} label="Wellvibe Media" active={location.pathname === '/wellvibe-media'} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} />
+            </div>
+          </div>
+
+          <div className="space-y-4">
             <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">USUARIO</h3>
             <div className="space-y-2">
               <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} />
-              <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:info@centrobioenergetica.com'} />
+              <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:contacto@institutocentrobioenergetica.com'} />
               <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
               <ThemeToggle />
             </div>

@@ -31,7 +31,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_ITEM': {
       const existingItem = state.items.find(item => item.product.id === action.payload.id);
-      
+
       if (existingItem) {
         return {
           ...state,
@@ -50,7 +50,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         };
       }
     }
-    
+
     case 'REMOVE_ITEM': {
       const itemToRemove = state.items.find(item => item.product.id === action.payload);
       return {
@@ -59,13 +59,13 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         totalItems: state.totalItems - (itemToRemove?.quantity || 0)
       };
     }
-    
+
     case 'UPDATE_QUANTITY': {
       const { productId, quantity } = action.payload;
       const currentItem = state.items.find(item => item.product.id === productId);
-      
+
       if (!currentItem) return state;
-      
+
       if (quantity <= 0) {
         return {
           ...state,
@@ -73,7 +73,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
           totalItems: state.totalItems - currentItem.quantity
         };
       }
-      
+
       return {
         ...state,
         items: state.items.map(item =>
@@ -84,19 +84,19 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         totalItems: state.totalItems - currentItem.quantity + quantity
       };
     }
-    
+
     case 'CLEAR_CART':
       return {
         items: [],
         totalItems: 0
       };
-    
+
     case 'LOAD_CART':
       return {
         items: action.payload,
         totalItems: action.payload.reduce((sum, item) => sum + item.quantity, 0)
       };
-    
+
     default:
       return state;
   }
@@ -149,12 +149,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 ¡Hola! Me gustaría hacer un pedido con los productos de mi carrito:
 
-${state.items.map((item, index) => 
-  `${index + 1}. *${item.product.name}* (${item.product.brand})
+${state.items.map((item, index) =>
+      `${index + 1}. *${item.product.name}* (${item.product.brand})
    • Cantidad: ${item.quantity}
    • Categoría: ${item.product.category}
    • Beneficios: ${item.product.benefits.slice(0, 2).join(', ')}`
-).join('\n\n')}
+    ).join('\n\n')}
 
 📊 *RESUMEN DEL PEDIDO:*
 • Total de productos: ${state.items.length}

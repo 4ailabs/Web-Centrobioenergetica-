@@ -19,6 +19,7 @@ import Apps from './pages/Apps';
 import SearchResults from './pages/SearchResults';
 import Search from './pages/Search';
 import CalendarPage from './pages/CalendarPage';
+import WellvibeMedia from './pages/WellvibeMedia';
 
 
 // Componente interno que usa el contexto
@@ -41,6 +42,7 @@ const AppContent: React.FC = () => {
         'sobre-nosotros': 'Sobre Nosotros',
         'aplicaciones': 'Aplicaciones',
         'calendario': 'Calendario',
+        'wellvibe-media': 'Wellvibe Media',
         'panel': 'Panel'
       };
 
@@ -120,6 +122,7 @@ const AppContent: React.FC = () => {
               <Route path="/sobre-nosotros" element={<AboutUs />} />
               <Route path="/aplicaciones" element={<Apps />} />
               <Route path="/calendario" element={<CalendarPage />} />
+              <Route path="/wellvibe-media" element={<WellvibeMedia />} />
               <Route path="/course/:courseId" element={<CourseDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

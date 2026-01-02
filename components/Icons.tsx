@@ -22,7 +22,8 @@ import {
   Filter,
   Calendar,
   Sun,
-  Moon
+  Moon,
+  Youtube
 } from 'lucide-react';
 
 interface IconProps {
@@ -100,6 +101,10 @@ export const LinkedinIcon: React.FC<IconProps> = ({ className }) => (
 
 export const TwitterIcon: React.FC<IconProps> = ({ className }) => (
   <Twitter className={className} />
+);
+
+export const YoutubeIcon: React.FC<IconProps> = ({ className }) => (
+  <Youtube className={className} />
 );
 
 // Logo personalizado para el Instituto Centrobioenergetica

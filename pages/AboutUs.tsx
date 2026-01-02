@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoursesIcon, NewsIcon, MailIcon, PhoneIcon } from '../components/Icons';
+import { CoursesIcon, NewsIcon, MailIcon, PhoneIcon, YoutubeIcon } from '../components/Icons';
 
 const AboutUs: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const AboutUs: React.FC = () => {
         <div className="flex flex-wrap gap-3">
           <button className="px-6 py-2 bg-primary-600 text-white rounded-full font-bold text-sm shadow-lg shadow-primary-600/20">Instituto</button>
           <button
-            onClick={() => window.location.href = 'mailto:info@centrobioenergetica.com'}
+            onClick={() => window.location.href = 'mailto:contacto@institutocentrobioenergetica.com'}
             className="px-6 py-2 bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] rounded-full font-bold text-sm flex items-center space-x-2 hover:bg-primary-600 hover:text-white transition-all"
           >
             <MailIcon className="w-4 h-4 text-primary-600" />
@@ -65,7 +65,7 @@ const AboutUs: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Email</span>
-              <span className="text-[var(--text-main)] font-bold">info@centrobioenergetica.org</span>
+              <span className="text-[var(--text-main)] font-bold">contacto@institutocentrobioenergetica.com</span>
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -74,7 +74,16 @@ const AboutUs: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Teléfono</span>
-              <span className="text-[var(--text-main)] font-bold">+52 (555) 123-4567</span>
+              <span className="text-[var(--text-main)] font-bold">+52 55 7907 6626</span>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-[var(--bg-main)] rounded-2xl flex items-center justify-center shadow-lg border border-[var(--border-color)]">
+              <YoutubeIcon className="w-6 h-6 text-primary-600" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">YouTube</span>
+              <a href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u" target="_blank" rel="noopener noreferrer" className="text-[var(--text-main)] font-bold hover:text-primary-600 transition-colors">wellvibe</a>
             </div>
           </div>
         </div>

@@ -7,12 +7,14 @@
     * {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
+
     .clinica-container {
         background-color: #f8fafc;
         color: #334155;
         margin: 0;
         padding: 0;
     }
+
     .clinica-card {
         background-color: #ffffff;
         border-radius: 20px;
@@ -25,10 +27,12 @@
         border: 1px solid #e2e8f0;
         padding: 2rem;
     }
+
     .clinica-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     }
+
     .clinica-header {
         background: linear-gradient(to right, #10b981, #34d399);
         color: #ffffff;
@@ -37,6 +41,7 @@
         margin: -2rem -2rem 3rem -2rem;
         border-radius: 20px 20px 0 0;
     }
+
     .clinica-button {
         background-color: #10b981;
         color: white;
@@ -51,11 +56,13 @@
         justify-content: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
     .clinica-button:hover {
         background-color: #059669;
         transform: translateY(-2px);
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
+
     .clinica-icon-large {
         width: 3rem;
         height: 3rem;
@@ -63,6 +70,7 @@
         color: #065f46;
         flex-shrink: 0;
     }
+
     .clinica-check-icon {
         width: 1.25rem;
         height: 1.25rem;
@@ -70,11 +78,13 @@
         color: #10b981;
         flex-shrink: 0;
     }
+
     .clinica-list-item {
         display: flex;
         align-items: flex-start;
         margin-bottom: 0.5rem;
     }
+
     .clinica-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -83,27 +93,33 @@
         margin: 0 auto;
         padding: 1.5rem;
     }
+
     @media (min-width: 768px) {
         .clinica-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
+
     @media (min-width: 1024px) {
         .clinica-grid {
             grid-template-columns: repeat(3, 1fr);
         }
     }
+
     @media (max-width: 768px) {
         .clinica-header {
             padding: 2.5rem 1rem;
         }
+
         .clinica-card {
             padding: 1.5rem;
         }
+
         .clinica-icon-large {
             width: 2.25rem;
             height: 2.25rem;
         }
+
         .clinica-button {
             padding: 0.75rem 1.8rem;
             font-size: 0.9rem;
@@ -113,32 +129,47 @@
 
 <div class="clinica-container">
     <div class="clinica-header">
-        <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1;">CLÍNICA CENTROBIOENERGÉTICA</h1>
+        <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1;">CLÍNICA
+            CENTROBIOENERGÉTICA</h1>
         <p style="font-size: 1.5rem; font-weight: 300; opacity: 0.9;">Nuestros Servicios, Tu Bienestar Integral</p>
     </div>
 
     <div class="clinica-grid">
         <!-- Servicio 1: Consulta médica presencial y online -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="stethoscope" class="clinica-icon-large"></i>
                 Consulta médica presencial y online
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Atención personalizada para evaluar y tratar problemas de salud a través de un enfoque integrativo, ya sea de forma presencial o mediante videollamada.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Atención personalizada para evaluar y
+                tratar problemas de salud a través de un enfoque integrativo, ya sea de forma presencial o mediante
+                videollamada.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Evaluación y tratamiento integral de problemas de salud.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Atención personalizada y adaptada.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Máxima comodidad (presencial o videollamada).</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Diagnóstico preciso y receta de tratamiento.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Evaluación y tratamiento integral de problemas de
+                            salud.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Atención personalizada y adaptada.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Máxima comodidad (presencial o videollamada).</span>
+                    </li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Diagnóstico preciso y receta de tratamiento.</span>
+                    </li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 30 min</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Costo:</strong> $600 mxn</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Incluye:</strong> Diagnóstico y receta del tratamiento.</li>
@@ -148,24 +179,36 @@
 
         <!-- Servicio 2: Neuroaprendizaje y brain gym en niños -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="brain" class="clinica-icon-large"></i>
                 Neuroaprendizaje y brain gym en niños
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Técnicas que estimulan el cerebro infantil para mejorar la memoria, la concentración y el aprendizaje, utilizando ejercicios físicos y estrategias de desarrollo cognitivo.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Técnicas que estimulan el cerebro
+                infantil para mejorar la memoria, la concentración y el aprendizaje, utilizando ejercicios físicos y
+                estrategias de desarrollo cognitivo.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Mejora significativa de memoria y concentración.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Optimización del proceso de aprendizaje.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Estimula el desarrollo cognitivo integral infantil.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Mejora significativa de memoria y
+                            concentración.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Optimización del proceso de aprendizaje.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Estimula el desarrollo cognitivo integral
+                            infantil.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 1 hr</li>
                 <li><strong>Costo:</strong> $1,200 mxn</li>
             </ul>
@@ -173,24 +216,37 @@
 
         <!-- Servicio 3: Terapia de metaposiciones -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="infinity" class="clinica-icon-large"></i>
                 Terapia de metaposiciones
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Explora la conexión energética entre seres vivos a través de patrones invisibles de información que influyen en la conducta, las emociones y la salud.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Explora la conexión energética entre
+                seres vivos a través de patrones invisibles de información que influyen en la conducta, las emociones y
+                la salud.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Profunda comprensión de la conexión energética.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Mejora sustancial de la conducta y las emociones.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Impacto positivo y duradero en la salud general.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Profunda comprensión de la conexión
+                            energética.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Mejora sustancial de la conducta y las
+                            emociones.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Impacto positivo y duradero en la salud
+                            general.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 1 hr 30 min</li>
                 <li><strong>Costo:</strong> $1,500 mxn</li>
             </ul>
@@ -198,24 +254,35 @@
 
         <!-- Servicio 4: Consulta de Flores de Bach -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="flower" class="clinica-icon-large"></i>
                 Consulta de Flores de Bach
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Consulta que utiliza esencias florales para equilibrar emociones, reducir el estrés y promover un estado de bienestar general a nivel físico y mental.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Consulta que utiliza esencias florales
+                para equilibrar emociones, reducir el estrés y promover un estado de bienestar general a nivel físico y
+                mental.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Equilibrio emocional profundo y duradero.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Efectiva reducción del estrés diario.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Promoción activa del bienestar físico y mental.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Equilibrio emocional profundo y duradero.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Efectiva reducción del estrés diario.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Promoción activa del bienestar físico y
+                            mental.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 30 min</li>
                 <li><strong>Costo:</strong> $500 mxn</li>
             </ul>
@@ -223,48 +290,72 @@
 
         <!-- Servicio 5: Consulta Online de Productos Nutricionales -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="package" class="clinica-icon-large"></i>
                 Consulta Online Nutricional
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Consulta a través de un Formulario y supervisado por el médico, con receta online personalizada.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Consulta a través de un Formulario y
+                supervisado por el médico, con receta online personalizada.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Supervisión médica especializada y profesional.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Total conveniencia de la consulta desde casa.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Receta de productos nutricionales altamente personalizada.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Supervisión médica especializada y
+                            profesional.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Total conveniencia de la consulta desde casa.</span>
+                    </li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Receta de productos nutricionales altamente
+                            personalizada.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li><strong>Costo:</strong> $200 mxn</li>
             </ul>
         </div>
 
         <!-- Servicio 6: Control de peso con auriculoterapia -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="scale" class="clinica-icon-large"></i>
                 Control de peso con auriculoterapia
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Uso de técnicas como la estimulación de puntos específicos en la oreja para regular el apetito, mejorar la digestión y apoyar el proceso de control y pérdida de peso.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Uso de técnicas como la estimulación de
+                puntos específicos en la oreja para regular el apetito, mejorar la digestión y apoyar el proceso de
+                control y pérdida de peso.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Regulación natural y efectiva del apetito.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Mejora notable de la función digestiva.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Apoyo integral en el proceso de control y pérdida de peso.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Regulación natural y efectiva del apetito.</span>
+                    </li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Mejora notable de la función digestiva.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Apoyo integral en el proceso de control y pérdida de
+                            peso.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 30 min</li>
                 <li><strong>Costo:</strong> $200 mxn</li>
             </ul>
@@ -272,25 +363,39 @@
 
         <!-- Servicio 7: Plan de Alimentación personalizada -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="apple" class="clinica-icon-large"></i>
                 Plan de Alimentación personalizada
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Plan de Alimentación personalizada en la que se analizan las características biológicas y genéticas del paciente para una nutrición adecuada.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Plan de Alimentación personalizada en la
+                que se analizan las características biológicas y genéticas del paciente para una nutrición adecuada.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Plan adaptado a tus características únicas.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Guía individualizada para una nutrición óptima.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Promueve una mejor salud y bienestar general.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Incluye lista de compras y opciones de snacks.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Plan adaptado a tus características únicas.</span>
+                    </li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Guía individualizada para una nutrición
+                            óptima.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Promueve una mejor salud y bienestar general.</span>
+                    </li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Incluye lista de compras y opciones de snacks.</span>
+                    </li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 30 min</li>
                 <li><strong>Costo:</strong> $700 mxn</li>
             </ul>
@@ -298,24 +403,37 @@
 
         <!-- Servicio 8: Terapia de conflictología biológica -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="messages-square" class="clinica-icon-large"></i>
                 Terapia de conflictología biológica
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Aborda conflictos emocionales desde una perspectiva biológica, ayudando a identificar su origen, su impacto en la salud y facilitando su procesamiento para una resolución efectiva.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Aborda conflictos emocionales desde una
+                perspectiva biológica, ayudando a identificar su origen, su impacto en la salud y facilitando su
+                procesamiento para una resolución efectiva.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Identificación profunda del origen emocional.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Procesamiento y resolución efectiva de traumas.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Mejora significativa del impacto emocional en la salud.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Identificación profunda del origen emocional.</span>
+                    </li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Procesamiento y resolución efectiva de
+                            traumas.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Mejora significativa del impacto emocional en la
+                            salud.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 1 hr</li>
                 <li><strong>Costo:</strong> $1,200 mxn</li>
             </ul>
@@ -323,24 +441,37 @@
 
         <!-- Servicio 9: Terapia Sand Play -->
         <div class="clinica-card">
-            <h2 style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i data-lucide="box" class="clinica-icon-large"></i>
                 Terapia Sand Play (Caja de Arena)
             </h2>
-            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Terapia expresiva en la que el paciente representa su mundo interno mediante figuras y arena, facilitando el procesamiento de emociones y la resolución de traumas de manera simbólica.</p>
-            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 1.5rem;">Terapia expresiva en la que el paciente
+                representa su mundo interno mediante figuras y arena, facilitando el procesamiento de emociones y la
+                resolución de traumas de manera simbólica.</p>
+
             <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
-                    <i data-lucide="award" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios clave:
+                <h3
+                    style="font-size: 1.25rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; display: flex; align-items: center;">
+                    <i data-lucide="award"
+                        style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #059669;"></i> Beneficios
+                    clave:
                 </h3>
                 <ul style="color: #374151; list-style: none; padding: 0;">
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Representación y exploración del mundo interno.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Facilita el procesamiento de emociones complejas.</span></li>
-                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon" style="margin-top: 0.25rem;"></i><span>Resolución de traumas de manera simbólica y segura.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Representación y exploración del mundo
+                            interno.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Facilita el procesamiento de emociones
+                            complejas.</span></li>
+                    <li class="clinica-list-item"><i data-lucide="check" class="clinica-check-icon"
+                            style="margin-top: 0.25rem;"></i><span>Resolución de traumas de manera simbólica y
+                            segura.</span></li>
                 </ul>
             </div>
-            
-            <ul style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
+
+            <ul
+                style="color: #374151; font-size: 0.875rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #f3f4f6; list-style: none; padding-left: 0;">
                 <li style="margin-bottom: 0.5rem;"><strong>Duración:</strong> 1 hr</li>
                 <li><strong>Costo:</strong> $1,200 mxn</li>
             </ul>
@@ -353,7 +484,8 @@
             <i data-lucide="phone" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem;"></i>
             Agenda tu cita
         </a>
-        <p style="font-size: 1.125rem; color: #4b5563; margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+        <p
+            style="font-size: 1.125rem; color: #4b5563; margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
             <i data-lucide="map-pin" style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; color: #6b7280;"></i>
             Acapulco 36, int. 104 Col. Roma Norte, CDMX
         </p>
@@ -362,22 +494,22 @@
 
 <script>
     // Wait for page to load and then initialize Lucide icons
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         } else {
             // Fallback: try to load and initialize after a short delay
-            setTimeout(function() {
+            setTimeout(function () {
                 if (typeof lucide !== 'undefined') {
                     lucide.createIcons();
                 }
             }, 1000);
         }
     });
-    
+
     // Also try immediate initialization for dynamic content
-    setTimeout(function() {
+    setTimeout(function () {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
