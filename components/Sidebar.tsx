@@ -163,7 +163,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
               <h3 className="px-4 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">PERSONAL</h3>
               <div className="space-y-1">
                 <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} />
-                <NavItem icon={<HelpIcon className="w-5 h-5" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:contacto@institutocentrobioenergetica.com'} mobile={true} />
                 <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
                 <ThemeToggle mobile />
                 {user ? (
@@ -236,7 +235,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             <h3 className="px-4 text-[10px] font-bold text-zinc-400 uppercase tracking-widest select-none">PERSONAL</h3>
             <div className="space-y-1">
               <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} />
-              <NavItem icon={<HelpIcon className="w-5 h-5" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:contacto@institutocentrobioenergetica.com'} />
               <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
               <ThemeToggle />
               {user ? (

@@ -8,7 +8,7 @@ interface AppCardProps {
 
 const AppCard: React.FC<AppCardProps> = ({ app }) => {
   return (
-    <div className="bg-[var(--panel-bg)] rounded-3xl p-8 flex flex-col h-full hover:bg-primary-500/5 transition-all duration-300 border border-[var(--border-color)] hover:border-primary-500/50 group">
+    <div className="bg-[var(--panel-bg)] rounded-3xl p-8 flex flex-col h-full hover:bg-primary-500/5 transition-all duration-300 border border-zinc-200/80 dark:border-white/10 hover:border-primary-500/30 group shadow-sm hover:shadow-lg hover:shadow-primary-500/5">
       <div className="flex items-center space-x-4 mb-4">
         <div className="bg-[var(--bg-main)] p-2 rounded-lg shadow-sm border border-[var(--border-color)]">
           {app.logo}
