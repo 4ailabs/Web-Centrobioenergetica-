@@ -3,68 +3,79 @@ import { CoursesIcon, NewsIcon, MailIcon, PhoneIcon } from '../components/Icons'
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="w-full bg-white p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16">
-      <header className="mb-8">
-        <h1 className="text-xl lg:text-3xl font-bold text-black">Sobre Nosotros</h1>
-        <div className="flex space-x-2 mt-6">
-            <button className="px-4 py-2 bg-gray-100 rounded-full font-semibold text-sm">Instituto</button>
-            <button className="px-4 py-2 bg-gray-100 text-gray-900 rounded-full font-semibold text-sm flex items-center space-x-2">
-              <MailIcon className="w-4 h-4 text-green-500" />
-              <span>Correo</span>
-            </button>
+    <div className="w-full bg-[var(--panel-bg)] p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16 border border-[var(--border-color)]">
+      <header className="mb-8 p-4">
+        <h1 className="text-3xl lg:text-5xl font-black text-[var(--text-main)] tracking-tight mb-6">
+          Sobre <span className="text-primary-600">Nosotros</span>
+        </h1>
+        <div className="flex flex-wrap gap-3">
+          <button className="px-6 py-2 bg-primary-600 text-white rounded-full font-bold text-sm shadow-lg shadow-primary-600/20">Instituto</button>
+          <button
+            onClick={() => window.location.href = 'mailto:info@centrobioenergetica.com'}
+            className="px-6 py-2 bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] rounded-full font-bold text-sm flex items-center space-x-2 hover:bg-primary-600 hover:text-white transition-all"
+          >
+            <MailIcon className="w-4 h-4 text-primary-600" />
+            <span>Correo</span>
+          </button>
         </div>
       </header>
 
       <div className="my-8 lg:my-12">
-        <img 
-            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-            alt="Team working on laptops" 
-            className="w-full h-48 lg:h-[400px] object-cover rounded-2xl lg:rounded-3xl"
+        <img
+          src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Team working on laptops"
+          className="w-full h-48 lg:h-[400px] object-cover rounded-2xl lg:rounded-3xl"
         />
       </div>
 
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-lg lg:text-2xl font-bold mb-4">Bienvenido al Instituto Centrobioenergetica</h2>
-        <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
-            En el Instituto Centrobioenergetica, brindamos una experiencia de aprendizaje unificada y cautivadora diseñada para adaptarse a tus necesidades. Nos dedicamos a llevar la educación a tu alcance, ofreciendo una diversa gama de cursos para potenciar tu viaje de aprendizaje. Nuestra plataforma combina tecnología de punta con enfoques personalizados, asegurando que tengas las herramientas y recursos para tener éxito en tus esfuerzos educativos.
+      <div className="max-w-4xl mx-auto text-center px-4">
+        <h2 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] mb-6">Bienvenido al Instituto <span className="text-primary-600">Centrobioenergética</span></h2>
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed">
+          En el Instituto Centrobioenergetica, brindamos una experiencia de aprendizaje unificada y cautivadora diseñada para adaptarse a tus necesidades. Nos dedicamos a llevar la educación a tu alcance, ofreciendo una diversa gama de cursos para potenciar tu viaje de aprendizaje. Nuestra plataforma combina tecnología de punta con enfoques personalizados, asegurando que tengas las herramientas y recursos para tener éxito en tus esfuerzos educativos.
         </p>
-         <p className="text-sm lg:text-base text-gray-600 leading-relaxed mt-4">
-            Explora un mundo de conocimiento con nuestra interfaz fácil de usar, funciones de seguimiento de progreso y materiales de aprendizaje interactivos. Ya seas estudiante, profesional o aprendiz de por vida, el Instituto Centrobioenergetica es tu destino central para una educación de calidad. Únete a nosotros en esta aventura educativa, donde el aprendizaje no conoce límites, y deja que el Instituto Centrobioenergetica sea tu guía hacia un futuro más brillante.
+        <p className="text-lg text-[var(--text-muted)] leading-relaxed mt-6">
+          Explora un mundo de conocimiento con nuestra interfaz fácil de usar, funciones de seguimiento de progreso y materiales de aprendizaje interactivos. Ya seas estudiante, profesional o aprendiz de por vida, el Instituto Centrobioenergetica es tu destino central para una educación de calidad. Únete a nosotros en esta aventura educativa, donde el aprendizaje no conoce límites, y deja que el Instituto Centrobioenergetica sea tu guía hacia un futuro más brillante.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 mt-12 lg:mt-16 max-w-5xl mx-auto">
-        <div className="bg-gray-50 p-6 lg:p-8 rounded-2xl lg:rounded-3xl text-center hover:bg-gray-100 transition-colors cursor-pointer group">
-            <div className="inline-block bg-gray-200 p-3 rounded-full">
-                <CoursesIcon className="w-6 h-6 text-gray-500 group-hover:text-green-500 transition-colors" />
-            </div>
-            <h3 className="text-lg lg:text-xl font-bold mt-4">CURSOS</h3>
-            <p className="text-gray-600 mt-2 text-sm">Explora nuestros cursos en línea</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 mt-16 lg:mt-24 max-w-5xl mx-auto px-4">
+        <div className="bg-[var(--bg-main)] p-8 lg:p-12 rounded-[2.5rem] text-center border border-[var(--border-color)] hover:border-primary-500 transition-all cursor-pointer group shadow-sm">
+          <div className="inline-block bg-primary-600/10 p-4 rounded-2xl mb-6">
+            <CoursesIcon className="w-8 h-8 text-primary-600" />
+          </div>
+          <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] group-hover:text-primary-600 transition-colors">CURSOS</h3>
+          <p className="text-[var(--text-muted)] mt-4">Explora nuestros cursos en línea</p>
         </div>
-        <div className="bg-gray-50 p-6 lg:p-8 rounded-2xl lg:rounded-3xl text-center hover:bg-gray-100 transition-colors cursor-pointer group">
-             <div className="inline-block bg-gray-200 p-3 rounded-full">
-                <NewsIcon className="w-6 h-6 text-gray-500 group-hover:text-green-500 transition-colors" />
-            </div>
-            <h3 className="text-lg lg:text-xl font-bold mt-4">NOTICIAS</h3>
-            <p className="text-gray-600 mt-2 text-sm">Lee las últimas noticias</p>
+        <div className="bg-[var(--bg-main)] p-8 lg:p-12 rounded-[2.5rem] text-center border border-[var(--border-color)] hover:border-primary-500 transition-all cursor-pointer group shadow-sm">
+          <div className="inline-block bg-primary-600/10 p-4 rounded-2xl mb-6">
+            <NewsIcon className="w-8 h-8 text-primary-600" />
+          </div>
+          <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] group-hover:text-primary-600 transition-colors">NOTICIAS</h3>
+          <p className="text-[var(--text-muted)] mt-4">Lee las últimas noticias</p>
         </div>
       </div>
 
       {/* Contact Section */}
-      <div className="mt-12 bg-gray-50 p-6 lg:p-8 rounded-2xl lg:rounded-3xl">
-        <h3 className="text-lg lg:text-xl font-bold text-black text-center mb-6">Contáctanos</h3>
-        <div className="flex flex-col md:flex-row md:justify-center md:space-x-8 space-y-4 md:space-y-0">
-          <div className="flex items-center justify-center md:justify-start space-x-3">
-            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-              <MailIcon className="w-4 h-4 text-green-500" />
+      <div className="mt-20 bg-primary-600/5 p-10 lg:p-16 rounded-[3rem] border border-primary-600/10 mx-4">
+        <h3 className="text-2xl lg:text-3xl font-black text-[var(--text-main)] text-center mb-10">¿Alguna pregunta?</h3>
+        <div className="flex flex-col md:flex-row md:justify-center items-center gap-10">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-[var(--bg-main)] rounded-2xl flex items-center justify-center shadow-lg border border-[var(--border-color)]">
+              <MailIcon className="w-6 h-6 text-primary-600" />
             </div>
-            <span className="text-gray-700 text-sm">info@centrobioenergetica.org</span>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Email</span>
+              <span className="text-[var(--text-main)] font-bold">info@centrobioenergetica.org</span>
+            </div>
           </div>
-          <div className="flex items-center justify-center md:justify-start space-x-3">
-            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-              <PhoneIcon className="w-4 h-4 text-green-500" />
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-[var(--bg-main)] rounded-2xl flex items-center justify-center shadow-lg border border-[var(--border-color)]">
+              <PhoneIcon className="w-6 h-6 text-primary-600" />
             </div>
-            <span className="text-gray-700 text-sm">+1 (555) 123-4567</span>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Teléfono</span>
+              <span className="text-[var(--text-main)] font-bold">+52 (555) 123-4567</span>
+            </div>
           </div>
         </div>
       </div>

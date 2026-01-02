@@ -11,7 +11,7 @@ const apps: AppInfo[] = [
     category: 'Plataforma de Diseño Web',
     description: 'Pasa fácilmente del diseño a un sitio de primera clase con Framer, el constructor web para profesionales creativos. Optimiza para cada punto de interrupción, sin necesidad de código y publica de forma gratuita.',
     logo: <FramerIcon className="w-10 h-10" />,
-    website: '#',
+    website: 'https://framer.com',
   },
   {
     id: 2,
@@ -19,15 +19,15 @@ const apps: AppInfo[] = [
     category: 'Espacio de Trabajo',
     description: 'Una nueva herramienta que combina tus aplicaciones de trabajo diarias en una sola. Es el espacio de trabajo todo en uno para ti y tu equipo.',
     logo: <NotionIcon className="w-10 h-10" />,
-    website: '#',
+    website: 'https://notion.so',
   },
-   {
+  {
     id: 3,
     name: 'Lemon Squeezy',
     category: 'Plataforma de Pagos',
     description: 'Lemon Squeezy es la plataforma todo en uno para gestionar tu negocio SaaS. Pagos, suscripciones, cumplimiento fiscal global, prevención de fraudes, multidivisa.',
     logo: <LemonSqueezyIcon className="w-10 h-10" />,
-    website: '#',
+    website: 'https://lemonsqueezy.com',
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const apps: AppInfo[] = [
     category: 'Plataforma de Pagos',
     description: 'Gumroad: hacemos que sea fácil ganar tu primer dólar en línea vendiendo productos digitales y membresías. Gumroad fue creado para ayudarte a experimentar con todo tipo de ideas y formatos.',
     logo: <GumroadIcon className="w-10 h-10" />,
-    website: '#',
+    website: 'https://gumroad.com',
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ const apps: AppInfo[] = [
     category: 'Gestión de Proyectos',
     description: 'Mantén a todos y todo organizado. Con Asana, puedes asignar tareas, establecer plazos y seguir el progreso. Mantén a los equipos remotos y distribuidos enfocados en sus metas.',
     logo: <AsanaIcon className="w-10 h-10" />,
-    website: '#',
+    website: 'https://asana.com',
   },
   {
     id: 6,
@@ -51,24 +51,24 @@ const apps: AppInfo[] = [
     category: 'Herramienta de Diseño IA',
     description: 'Un diagrama es una representación simbólica de información usando técnicas de visualización. Los diagramas se han utilizado desde tiempos prehistóricos, pero se hicieron más frecuentes durante la Ilustración.',
     logo: <DiagramIcon className="w-10 h-10" />,
-    website: '#',
+    website: 'https://diagram.com',
   },
 ];
 
 
 const Apps: React.FC = () => {
   return (
-    <div className="w-full bg-white p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16">
+    <div className="w-full bg-[var(--panel-bg)] p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16 border border-[var(--border-color)]">
       <header className="mb-8 lg:mb-12">
-        <h1 className="text-2xl lg:text-4xl font-bold text-black">Aplicaciones</h1>
-        <p className="text-base lg:text-lg text-gray-500 mt-2">Todo lo que necesitas para alcanzar el éxito</p>
+        <h1 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] uppercase tracking-tight">Aplicaciones</h1>
+        <p className="text-base lg:text-lg text-[var(--text-muted)] mt-2">Todo lo que necesitas para alcanzar el éxito</p>
       </header>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10">
         {apps.map((app, index) => (
-           <div key={app.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 100}ms`, opacity: 0 }}>
-             <AppCard app={app} />
-           </div>
+          <div key={app.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 100}ms`, opacity: 0 }}>
+            <AppCard app={app} />
+          </div>
         ))}
       </div>
     </div>

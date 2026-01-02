@@ -17,10 +17,10 @@ const Wellkitt: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedKit, setSelectedKit] = useState<Kit | null>(null);
-  
+
   // Filtrar productos por categoría
-  const filteredProducts = activeCategory === 'All' 
-    ? baseProducts 
+  const filteredProducts = activeCategory === 'All'
+    ? baseProducts
     : baseProducts.filter(p => p.category === activeCategory);
 
   const categories = ['All', ...Object.keys(categoryConfig)];
@@ -56,48 +56,51 @@ const Wellkitt: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-white p-3 sm:p-6 lg:p-8 rounded-2xl lg:rounded-3xl lg:mt-20 mt-12 sm:mt-16">
+    <div className="w-full bg-[var(--panel-bg)] p-3 sm:p-6 lg:p-8 rounded-[2.5rem] lg:mt-20 mt-12 sm:mt-16 border border-[var(--border-color)]">
       <header className="mb-6 sm:mb-8 lg:mb-12">
         <div className="flex items-center mb-3 sm:mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-            <WellkittIcon className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mr-4 border border-primary-600/20">
+            <WellkittIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
           </div>
-          <h1 className="text-lg sm:text-xl lg:text-3xl font-bold text-black">Wellkitt</h1>
+          <h1 className="text-lg sm:text-xl lg:text-3xl font-black text-[var(--text-main)] uppercase tracking-tight">Wellkitt</h1>
         </div>
-        <p className="text-sm sm:text-base lg:text-lg text-gray-500 leading-relaxed">
+        <p className="text-sm sm:text-base lg:text-lg text-[var(--text-muted)] leading-relaxed font-medium">
           Tu Navegador de Salud Natural - Productos especializados para el bienestar energético
         </p>
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-6 lg:p-8 mb-8 border border-green-200">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="flex justify-center mb-4">
-            <Heart className="w-12 h-12 text-green-600" />
+      <section className="bg-gradient-to-br from-primary-600/5 to-primary-600/10 rounded-[2.5rem] p-6 lg:p-12 mb-12 border border-primary-600/10 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-600/10 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-600/10 rounded-full blur-[100px] -ml-32 -mb-32"></div>
+
+        <div className="text-center max-w-4xl mx-auto relative z-10">
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-[var(--panel-bg)] rounded-3xl shadow-xl border border-[var(--border-color)]">
+              <Heart className="w-10 h-10 text-primary-600" />
+            </div>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Wellkitt:</span> Tu Salud,<br />
-            <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Ciencia Personalizada</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-6 uppercase tracking-tight leading-none">
+            <span className="text-primary-600">Wellkitt:</span> Tu Salud,<br />
+            <span className="bg-gradient-to-r from-primary-600 to-indigo-600 bg-clip-text text-transparent">Ciencia Personalizada</span>
           </h2>
-          <p className="text-base lg:text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            Revoluciona tu bienestar con productos especializados. Tests genéticos, sueroterapia premium 
+          <p className="text-base lg:text-xl text-[var(--text-muted)] mb-8 max-w-2xl mx-auto font-medium leading-relaxed">
+            Revoluciona tu bienestar con productos especializados. Tests genéticos, sueroterapia premium
             y recomendaciones personalizadas para tu perfil único.
           </p>
-          
+
           {/* Badges de características */}
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <span className="bg-white/80 text-green-700 px-4 py-2 rounded-full text-sm font-semibold border border-green-200 shadow-sm flex items-center gap-2">
-              <Dna className="w-4 h-4" />
-              Tests Genéticos
-            </span>
-            <span className="bg-white/80 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold border border-blue-200 shadow-sm flex items-center gap-2">
-              <Droplets className="w-4 h-4" />
-              Sueroterapia IV
-            </span>
-            <span className="bg-white/80 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold border border-purple-200 shadow-sm flex items-center gap-2">
-              <Activity className="w-4 h-4" />
-              Análisis Especializado
-            </span>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { icon: Dna, label: 'Tests Genéticos' },
+              { icon: Droplets, label: 'Sueroterapia IV' },
+              { icon: Activity, label: 'Análisis Especializado' }
+            ].map((badge, i) => (
+              <span key={i} className="bg-[var(--panel-bg)] text-primary-600 px-5 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest border border-[var(--border-color)] shadow-sm flex items-center gap-3">
+                <badge.icon className="w-4 h-4" />
+                {badge.label}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -105,17 +108,17 @@ const Wellkitt: React.FC = () => {
       {/* Kits Estratégicos */}
       <section className="mb-20">
         <div className="text-center mb-6">
-          <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">Kits Estratégicos</h3>
-          <p className="text-sm lg:text-base text-gray-600">
+          <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-main)] group-hover:text-primary-600 transition-colors uppercase tracking-tight">Kits Estratégicos</h3>
+          <p className="text-sm lg:text-base text-[var(--text-muted)] font-medium leading-relaxed">
             Soluciones expertas diseñadas para los objetivos de salud más comunes.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           {kits.map(kit => (
-            <KitCard 
-              key={kit.id} 
-              kit={kit} 
-              allProducts={baseProducts} 
+            <KitCard
+              key={kit.id}
+              kit={kit}
+              allProducts={baseProducts}
               onShowDetails={() => handleShowDetails(kit)}
             />
           ))}
@@ -125,12 +128,12 @@ const Wellkitt: React.FC = () => {
       {/* Sección de Tests y IA */}
       <section className="mb-20">
         <div className="text-center mb-6">
-          <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">Descubre tu Perfil de Salud</h3>
-          <p className="text-sm lg:text-base text-gray-600">
+          <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-main)] group-hover:text-primary-600 transition-colors uppercase tracking-tight">Descubre tu Perfil de Salud</h3>
+          <p className="text-sm lg:text-base text-[var(--text-muted)] font-medium leading-relaxed">
             Realiza nuestros tests especializados y obtén recomendaciones personalizadas con IA
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-6">
           {/* Test de Endotelio */}
           <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 border border-red-200">
@@ -140,10 +143,10 @@ const Wellkitt: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-gray-900">Test de Salud Endotelial</h4>
-                <p className="text-sm text-gray-600">20 preguntas • 6 áreas clave</p>
+                <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">20 preguntas • 6 áreas clave</p>
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed mb-4">
               Evalúa el estado de tu endotelio y obtén recomendaciones personalizadas para tu salud cardiovascular.
             </p>
             <button className="w-full bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors">
@@ -159,10 +162,10 @@ const Wellkitt: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-gray-900">Test Nutrigenómico</h4>
-                <p className="text-sm text-gray-600">20 preguntas • 7 áreas genéticas</p>
+                <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">20 preguntas • 7 áreas genéticas</p>
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed mb-4">
               Descubre cómo tus genes responden a los alimentos y optimiza tu nutrición personalizada.
             </p>
             <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors">
@@ -179,7 +182,7 @@ const Wellkitt: React.FC = () => {
             </div>
             <div>
               <h4 className="text-lg font-bold text-gray-900">Recomendación Personalizada con IA</h4>
-              <p className="text-sm text-gray-600">Describe tu objetivo de salud</p>
+              <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">Describe tu objetivo de salud</p>
             </div>
           </div>
           <div className="flex gap-3">
@@ -202,15 +205,15 @@ const Wellkitt: React.FC = () => {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
           {kits.slice(0, 6).map(kit => (
-            <KitCardCompact 
-              key={kit.id} 
-              kit={kit} 
-              allProducts={baseProducts} 
+            <KitCardCompact
+              key={kit.id}
+              kit={kit}
+              allProducts={baseProducts}
               onShowDetails={() => handleShowDetails(kit)}
             />
           ))}
         </div>
-        
+
         {/* Mostrar más kits si hay más de 6 */}
         {kits.length > 6 && (
           <div className="text-center mt-6">
@@ -232,31 +235,34 @@ const Wellkitt: React.FC = () => {
 
       {/* Filtros de Categorías */}
       <div className="mb-16">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg lg:text-xl font-bold text-gray-900">Productos por Categoría</h3>
+        <div className="flex items-center justify-between mb-8 px-1">
+          <h3 className="text-xs font-black text-primary-600 uppercase tracking-widest flex items-center gap-2">
+            <span className="w-8 h-px bg-primary-600/20"></span>
+            Productos por Categoría
+          </h3>
           <button
             onClick={handleViewAllProducts}
-            className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 font-medium"
+            className="flex items-center gap-2 text-xs font-black text-primary-600 hover:text-primary-700 uppercase tracking-widest transition-colors"
           >
-            Ver todos los productos
+            Ver todos
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
           {categories.slice(0, 8).map((category) => (
             <button
               key={category}
               onClick={() => handleViewCategory(category === 'All' ? 'all' : category)}
-              className="p-3 bg-white border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-all duration-300 text-center"
+              className="p-6 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-3xl hover:border-primary-600 hover:shadow-xl transition-all group text-center"
             >
-              <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-12 h-12 bg-[var(--panel-bg)] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[var(--border-color)] group-hover:border-primary-600 transition-colors">
                 {categoryConfig[category]?.icon ? (
-                  React.createElement(categoryConfig[category].icon, { className: "w-4 h-4 text-gray-600" })
+                  React.createElement(categoryConfig[category].icon, { className: "w-5 h-5 text-[var(--text-muted)] group-hover:text-primary-600 transition-colors" })
                 ) : (
-                  <List className="w-4 h-4 text-gray-600" />
+                  <List className="w-5 h-5 text-[var(--text-muted)] group-hover:text-primary-600 transition-colors" />
                 )}
               </div>
-              <span className="text-xs font-medium text-gray-700">
+              <span className="text-[10px] font-black text-[var(--text-muted)] group-hover:text-[var(--text-main)] uppercase tracking-widest">
                 {category === 'All' ? 'Todos' : category}
               </span>
             </button>
@@ -276,14 +282,14 @@ const Wellkitt: React.FC = () => {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
           {filteredProducts.slice(0, 12).map(product => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
+            <ProductCard
+              key={product.id}
+              product={product}
               onShowDetails={() => handleShowDetails(product)}
             />
           ))}
         </div>
-        
+
         {/* Botón para ver más productos */}
         <div className="text-center mt-8">
           <button
@@ -297,29 +303,30 @@ const Wellkitt: React.FC = () => {
       </div>
 
       {/* Sección de Información */}
-      <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 border border-green-100">
-        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-4 sm:mb-6 text-center">¿Necesitas Ayuda Personalizada?</h3>
+      <div className="bg-[var(--bg-main)] rounded-[2.5rem] p-8 lg:p-12 border border-[var(--border-color)] shadow-xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-600/5 blur-3xl rounded-full -mr-32 -mt-32"></div>
+        <h3 className="text-xl lg:text-3xl font-black text-[var(--text-main)] mb-10 text-center uppercase tracking-tight relative z-10">¿Necesitas Ayuda Personalizada?</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-          <div className="text-center p-4 bg-white/50 rounded-xl">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <div className="text-center p-8 bg-[var(--panel-bg)] rounded-3xl border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all relative z-10">
+            <div className="w-14 h-14 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary-600/20 border border-primary-600/10">
+              <Brain className="w-7 h-7 text-primary-600" />
             </div>
-            <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Consultoría IA</h4>
-            <p className="text-xs sm:text-sm text-gray-600">Recomendaciones personalizadas con inteligencia artificial</p>
+            <h4 className="text-lg font-black text-[var(--text-main)] mb-3 uppercase tracking-tight">Consultoría IA</h4>
+            <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">Recomendaciones personalizadas con inteligencia artificial</p>
           </div>
-          <div className="text-center p-4 bg-white/50 rounded-xl">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <div className="text-center p-8 bg-[var(--panel-bg)] rounded-3xl border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all relative z-10">
+            <div className="w-14 h-14 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary-600/20 border border-primary-600/10">
+              <Shield className="w-7 h-7 text-primary-600" />
             </div>
-            <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Calidad Premium</h4>
-            <p className="text-xs sm:text-sm text-gray-600">Productos certificados y de la más alta calidad</p>
+            <h4 className="text-lg font-black text-[var(--text-main)] mb-3 uppercase tracking-tight">Calidad Premium</h4>
+            <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">Productos certificados y de la más alta calidad</p>
           </div>
-          <div className="text-center p-4 bg-white/50 rounded-xl">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-              <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <div className="text-center p-8 bg-[var(--panel-bg)] rounded-3xl border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all relative z-10">
+            <div className="w-14 h-14 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary-600/20 border border-primary-600/10">
+              <Zap className="w-7 h-7 text-primary-600" />
             </div>
-            <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Entrega Rápida</h4>
-            <p className="text-xs sm:text-sm text-gray-600">Envío rápido y seguro a todo el país</p>
+            <h4 className="text-lg font-black text-[var(--text-main)] mb-3 uppercase tracking-tight">Entrega Rápida</h4>
+            <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">Envío rápido y seguro a todo el país</p>
           </div>
         </div>
       </div>
@@ -327,56 +334,58 @@ const Wellkitt: React.FC = () => {
       {/* Información Adicional */}
       <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Información de Envíos */}
-        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-              <Truck className="w-5 h-5 text-green-600" />
+        <div className="bg-[var(--panel-bg)] rounded-[2.5rem] p-8 lg:p-10 border border-[var(--border-color)] shadow-xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary-600/10 transition-colors"></div>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-14 h-14 bg-primary-600/10 rounded-2xl flex items-center justify-center shadow-inner border border-primary-600/10">
+              <Truck className="w-7 h-7 text-primary-600" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900">Envíos y Entrega</h3>
+            <h3 className="text-2xl font-black text-[var(--text-main)] uppercase tracking-tight">Envíos y Entrega</h3>
           </div>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+          <ul className="space-y-4 text-sm text-[var(--text-muted)] font-medium">
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Envío gratis en compras mayores a $1,500</span>
             </li>
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Entrega en 24-48 horas en Ciudad de México</span>
             </li>
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>3-5 días hábiles al resto del país</span>
             </li>
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Rastreo en tiempo real de tu pedido</span>
             </li>
           </ul>
         </div>
 
         {/* Información de Garantías */}
-        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              <Shield className="w-5 h-5 text-blue-600" />
+        <div className="bg-[var(--panel-bg)] rounded-[2.5rem] p-8 lg:p-10 border border-[var(--border-color)] shadow-xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary-600/10 transition-colors"></div>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-14 h-14 bg-primary-600/10 rounded-2xl flex items-center justify-center shadow-inner border border-primary-600/10">
+              <Shield className="w-7 h-7 text-primary-600" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900">Garantías y Soporte</h3>
+            <h3 className="text-2xl font-black text-[var(--text-main)] uppercase tracking-tight">Garantías y Soporte</h3>
           </div>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+          <ul className="space-y-4 text-sm text-[var(--text-muted)] font-medium">
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Garantía de 30 días en todos los productos</span>
             </li>
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Soporte especializado de lunes a viernes</span>
             </li>
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Productos 100% originales y certificados</span>
             </li>
-            <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <li className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-primary-600 rounded-full shadow-[0_0_8px_rgba(22,163,74,0.5)]"></div>
               <span>Asesoría nutricional personalizada</span>
             </li>
           </ul>
@@ -388,17 +397,17 @@ const Wellkitt: React.FC = () => {
         <h3 className="text-lg font-bold mb-2">¿Tienes dudas sobre algún producto?</h3>
         <p className="text-sm mb-4 opacity-90">Nuestros especialistas están listos para ayudarte</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a 
-            href="tel:+525579076626" 
-            className="bg-white text-green-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+          <a
+            href="tel:+525579076626"
+            className="bg-[var(--text-main)] text-[var(--bg-main)] px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-primary-600 hover:text-white transition-all shadow-xl shadow-slate-900/10 active:scale-95"
           >
-            📞 Llamar: +52 55 7907 6626
+            📞 Llamar Ahora
           </a>
-          <a 
-            href="https://wa.me/525579076626" 
-            target="_blank" 
+          <a
+            href="https://wa.me/525579076626"
+            target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-green-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="bg-[var(--text-main)] text-[var(--bg-main)] px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-primary-600 hover:text-white transition-all shadow-xl shadow-slate-900/10 active:scale-95 flex items-center justify-center gap-2"
           >
             💬 WhatsApp
           </a>
@@ -406,13 +415,13 @@ const Wellkitt: React.FC = () => {
       </div>
 
       {/* Modal de detalles de producto */}
-      <ProductDetailModal 
+      <ProductDetailModal
         product={selectedProduct}
         onClose={handleCloseProductModal}
       />
 
       {/* Modal de detalles de kit */}
-      <KitDetailModal 
+      <KitDetailModal
         kit={selectedKit}
         allProducts={baseProducts}
         onClose={handleCloseKitModal}

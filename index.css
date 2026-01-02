@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@config "./tailwind.config.js";
+
+:root {
+  --primary-green: #16a34a;
+  --bg-main: #F7F8FA;
+  --panel-bg: rgba(255, 255, 255, 0.7);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+.dark {
+  --bg-main: #020617;
+  --panel-bg: rgba(15, 23, 42, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #1e293b;
+}
+
+body {
+  @apply bg-[var(--bg-main)] text-[var(--text-main)] font-sans transition-colors duration-300;
+}
+
+/* Custom Utilities or Global Styles */
+.glass-panel {
+  @apply bg-[var(--panel-bg)] backdrop-blur-md border border-[var(--border-color)] shadow-xl;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mobile-nav-item {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .mobile-nav-item:hover {
+    transform: none;
+  }
+}

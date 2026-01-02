@@ -28,58 +28,58 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[#F7F8FA]">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg-main)]">
+      <div className="w-full max-w-md bg-[var(--panel-bg)] rounded-[2.5rem] shadow-2xl p-8 border border-[var(--border-color)]">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-black mb-2">Bienvenido</h1>
-          <p className="text-gray-600">Inicia sesión en tu cuenta</p>
+          <h1 className="text-3xl font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Bienvenido</h1>
+          <p className="text-[var(--text-muted)]">Inicia sesión en tu cuenta</p>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center space-x-2 text-red-700">
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center space-x-2 text-red-600">
             <AlertCircle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-sm">{error}</span>
+            <span className="text-sm font-medium">{error}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-xs font-black text-primary-600 uppercase tracking-widest mb-2 px-1">
               Email
             </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <div className="relative group">
+              <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[var(--text-muted)] group-focus-within:text-primary-600 transition-colors" />
               <input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                className="w-full pl-12 pr-4 py-4 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none text-[var(--text-main)] placeholder:text-[var(--text-muted)] transition-all"
                 placeholder="tu@email.com"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-xs font-black text-primary-600 uppercase tracking-widest mb-2 px-1">
               Contraseña
             </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <div className="relative group">
+              <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[var(--text-muted)] group-focus-within:text-primary-600 transition-colors" />
               <input
                 id="password"
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                className="w-full pl-12 pr-12 py-4 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none text-[var(--text-main)] placeholder:text-[var(--text-muted)] transition-all"
                 placeholder="••••••••"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[var(--text-muted)] hover:text-primary-600 transition-colors"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -89,16 +89,16 @@ const Login: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-black text-white py-3 rounded-xl font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-[var(--text-main)] text-[var(--bg-main)] py-4 rounded-2xl font-black text-lg hover:bg-primary-600 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 shadow-xl shadow-slate-900/10 uppercase"
           >
             {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+        <div className="mt-8 text-center">
+          <p className="text-sm text-[var(--text-muted)]">
             ¿No tienes una cuenta?{' '}
-            <Link to="/register" className="text-black font-semibold hover:underline">
+            <Link to="/register" className="text-primary-600 font-bold hover:underline">
               Regístrate aquí
             </Link>
           </p>

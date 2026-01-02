@@ -1,28 +1,53 @@
-import React from 'react';
-import { ClinicalServicesIcon, PhoneIcon } from '../components/Icons';
-import { Stethoscope, Brain, Infinity, Flower, Package, Scale, Apple, MessageSquare, Box } from 'lucide-react';
+import React, { useState } from 'react';
+import { ClinicalServicesIcon, PhoneIcon, SparklesIcon, FilterIcon } from '../components/Icons';
+import {
+  Stethoscope,
+  Brain,
+  Infinity,
+  Flower,
+  Package,
+  Scale,
+  Apple,
+  MessageSquare,
+  Box,
+  CheckCircle2,
+  HelpCircle,
+  ChevronDown,
+  ChevronUp,
+  Zap,
+  Clock,
+  Target,
+  ArrowRight,
+  MapPin
+} from 'lucide-react';
 
 const ClinicalServices: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('Todas');
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   const getIcon = (iconName: string) => {
     const iconProps = { className: "w-8 h-8", strokeWidth: 1.5 };
     switch (iconName) {
-      case 'medical': return <Stethoscope {...iconProps} className="w-8 h-8 text-blue-600" strokeWidth={1.5} />;
-      case 'brain': return <Brain {...iconProps} className="w-8 h-8 text-purple-600" strokeWidth={1.5} />;
-      case 'infinity': return <Infinity {...iconProps} className="w-8 h-8 text-indigo-600" strokeWidth={1.5} />;
-      case 'flower': return <Flower {...iconProps} className="w-8 h-8 text-pink-600" strokeWidth={1.5} />;
-      case 'package': return <Package {...iconProps} className="w-8 h-8 text-orange-600" strokeWidth={1.5} />;
-      case 'scale': return <Scale {...iconProps} className="w-8 h-8 text-teal-600" strokeWidth={1.5} />;
-      case 'apple': return <Apple {...iconProps} className="w-8 h-8 text-red-600" strokeWidth={1.5} />;
-      case 'message': return <MessageSquare {...iconProps} className="w-8 h-8 text-emerald-600" strokeWidth={1.5} />;
-      case 'box': return <Box {...iconProps} className="w-8 h-8 text-amber-600" strokeWidth={1.5} />;
-      default: return <Package {...iconProps} className="w-8 h-8 text-gray-600" strokeWidth={1.5} />;
+      case 'medical': return <Stethoscope {...iconProps} className="text-blue-600" />;
+      case 'brain': return <Brain {...iconProps} className="text-purple-600" />;
+      case 'infinity': return <Infinity {...iconProps} className="text-indigo-600" />;
+      case 'flower': return <Flower {...iconProps} className="text-pink-600" />;
+      case 'package': return <Package {...iconProps} className="text-orange-600" />;
+      case 'scale': return <Scale {...iconProps} className="text-teal-600" />;
+      case 'apple': return <Apple {...iconProps} className="text-red-600" />;
+      case 'message': return <MessageSquare {...iconProps} className="text-emerald-600" />;
+      case 'box': return <Box {...iconProps} className="text-amber-600" />;
+      default: return <Package {...iconProps} className="text-gray-600" />;
     }
   };
+
+  const categories = ['Todas', 'Salud Emocional', 'Nutrición y Metabolismo', 'Niños y Aprendizaje'];
 
   const services = [
     {
       id: 1,
       title: 'Consulta médica presencial y online',
+      category: 'Nutrición y Metabolismo',
       description: 'Atención personalizada para evaluar y tratar problemas de salud a través de un enfoque integrativo, ya sea de forma presencial o mediante videollamada.',
       benefits: [
         'Evaluación y tratamiento integral de problemas de salud.',
@@ -33,11 +58,12 @@ const ClinicalServices: React.FC = () => {
       includes: 'Diagnóstico y receta del tratamiento.',
       notIncludes: 'Terapia de Biomagnetismo.',
       icon: 'medical',
-      imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 2,
       title: 'Neuroaprendizaje y brain gym en niños',
+      category: 'Niños y Aprendizaje',
       description: 'Técnicas que estimulan el cerebro infantil para mejorar la memoria, la concentración y el aprendizaje, utilizando ejercicios físicos y estrategias de desarrollo cognitivo.',
       benefits: [
         'Mejora significativa de memoria y concentración.',
@@ -45,11 +71,12 @@ const ClinicalServices: React.FC = () => {
         'Estimula el desarrollo cognitivo integral infantil.'
       ],
       icon: 'brain',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 3,
       title: 'Terapia de metaposiciones',
+      category: 'Salud Emocional',
       description: 'Explora la conexión energética entre seres vivos a través de patrones invisibles de información que influyen en la conducta, las emociones y la salud.',
       benefits: [
         'Profunda comprensión de la conexión energética.',
@@ -57,11 +84,12 @@ const ClinicalServices: React.FC = () => {
         'Impacto positivo y duradero en la salud general.'
       ],
       icon: 'infinity',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 4,
       title: 'Consulta de Flores de Bach',
+      category: 'Salud Emocional',
       description: 'Consulta que utiliza esencias florales para equilibrar emociones, reducir el estrés y promover un estado de bienestar general a nivel físico y mental.',
       benefits: [
         'Equilibrio emocional profundo y duradero.',
@@ -69,11 +97,12 @@ const ClinicalServices: React.FC = () => {
         'Promoción activa del bienestar físico y mental.'
       ],
       icon: 'flower',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1490237014491-8aa29811ea56?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 5,
       title: 'Consulta Online Nutricional',
+      category: 'Nutrición y Metabolismo',
       description: 'Consulta a través de un Formulario y supervisado por el médico, con receta online personalizada.',
       benefits: [
         'Supervisión médica especializada y profesional.',
@@ -81,11 +110,12 @@ const ClinicalServices: React.FC = () => {
         'Receta de productos nutricionales altamente personalizada.'
       ],
       icon: 'package',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 6,
       title: 'Control de peso con auriculoterapia',
+      category: 'Nutrición y Metabolismo',
       description: 'Uso de técnicas como la estimulación de puntos específicos en la oreja para regular el apetito, mejorar la digestión y apoyar el proceso de control y pérdida de peso.',
       benefits: [
         'Regulación natural y efectiva del apetito.',
@@ -93,11 +123,12 @@ const ClinicalServices: React.FC = () => {
         'Apoyo integral en el proceso de control y pérdida de peso.'
       ],
       icon: 'scale',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 7,
       title: 'Plan de Alimentación personalizada',
+      category: 'Nutrición y Metabolismo',
       description: 'Plan de Alimentación personalizada en la que se analizan las características biológicas y genéticas del paciente para una nutrición adecuada.',
       benefits: [
         'Plan adaptado a tus características únicas.',
@@ -106,11 +137,12 @@ const ClinicalServices: React.FC = () => {
         'Incluye lista de compras y opciones de snacks.'
       ],
       icon: 'apple',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1494390248081-4e521a5940db?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 8,
       title: 'Terapia de conflictología biológica',
+      category: 'Salud Emocional',
       description: 'Aborda conflictos emocionales desde una perspectiva biológica, ayudando a identificar su origen, su impacto en la salud y facilitando su procesamiento para una resolución efectiva.',
       benefits: [
         'Identificación profunda del origen emocional.',
@@ -118,133 +150,265 @@ const ClinicalServices: React.FC = () => {
         'Mejora significativa del impacto emocional en la salud.'
       ],
       icon: 'message',
-      imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: 'https://images.unsplash.com/photo-1527137342181-19aab11a8ee1?q=80&w=2940&auto=format&fit=crop',
     },
     {
       id: 9,
       title: 'Terapia Sand Play (Caja de Arena)',
+      category: 'Salud Emocional',
       description: 'Terapia expresiva en la que el paciente representa su mundo interno mediante figuras y arena, facilitando el procesamiento de emociones y la resolución de traumas de manera simbólica.',
       benefits: [
         'Representación y exploración del mundo interno.',
         'Facilita el procesamiento de emociones complejas.',
         'Resolución de traumas de manera simbólica y segura.'
       ],
-      icon: 'package',
-      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      icon: 'box',
+      imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2940&auto=format&fit=crop',
     },
   ];
 
+  const filteredServices = activeCategory === 'Todas'
+    ? services
+    : services.filter(s => s.category === activeCategory);
+
+  const faqs = [
+    {
+      q: '¿Cómo agendo una cita?',
+      a: 'Puedes agendar tu cita llamando directamente a nuestro número de contacto o enviando un mensaje por WhatsApp. Nuestro equipo te ayudará a encontrar el mejor horario para ti.'
+    },
+    {
+      q: '¿Las consultas online son efectivas?',
+      a: 'Sí, las consultas online permiten realizar una evaluación exhaustiva y seguimiento continuo. Son ideales para asesoría nutricional, revisión de estudios y seguimiento de tratamientos.'
+    },
+    {
+      q: '¿Qué formas de pago aceptan?',
+      a: 'Aceptamos transferencias bancarias, tarjetas de crédito/débito y pagos en efectivo para las consultas presenciales.'
+    }
+  ];
+
+  const steps = [
+    { icon: <Clock className="w-6 h-6" />, title: 'Agenda', desc: 'Reserva tu espacio fácilmente por WhatsApp o teléfono.' },
+    { icon: <Target className="w-6 h-6" />, title: 'Evaluación', desc: 'Primera sesión para entender tus necesidades y objetivos.' },
+    { icon: <Zap className="w-6 h-6" />, title: 'Tratamiento', desc: 'Inicio de tu plan personalizado con seguimiento constante.' }
+  ];
+
   return (
-    <div className="w-full bg-white p-3 sm:p-6 lg:p-8 rounded-2xl lg:rounded-3xl lg:mt-20 mt-12 sm:mt-16">
-      <header className="mb-6 sm:mb-8 lg:mb-12">
-        <div className="flex items-center mb-3 sm:mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-            <ClinicalServicesIcon className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+    <div className="w-full lg:mt-20 mt-16 space-y-12 pb-20">
+      {/* Header Section */}
+      <header className="px-4 relative overflow-hidden bg-[var(--panel-bg)] rounded-[2.5rem] py-12 border border-[var(--border-color)] shadow-sm">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-600/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary-600/20">
+              <ClinicalServicesIcon className="w-6 h-6" />
+            </div>
+            <span className="text-primary-600 font-black uppercase tracking-widest text-[10px]">Cuidado Profesional</span>
           </div>
-          <h1 className="text-lg sm:text-xl lg:text-3xl font-bold text-black">Servicios Clínicos</h1>
+          <h1 className="text-3xl lg:text-6xl font-black text-[var(--text-main)] tracking-tight mb-4 uppercase">
+            Servicios <span className="text-primary-600">Clínicos</span>
+          </h1>
+          <p className="text-base lg:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed font-medium">
+            Terapias especializadas diseñadas para tu bienestar integral, combinando medicina tradicional, nutrición y sanación energética.
+          </p>
         </div>
-        <p className="text-sm sm:text-base lg:text-lg text-gray-500 leading-relaxed">
-          Terapias especializadas para el bienestar integral y la sanación energética
-        </p>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-10 mb-8 sm:mb-12 lg:mb-16">
-        {services.map((service, index) => (
-          <div key={service.id} className="group bg-white border border-gray-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 lg:hover:-translate-y-2 hover:border-green-200">
-            <div className="relative h-40 sm:h-48 lg:h-56 overflow-hidden">
-              <img 
-                src={service.imageUrl} 
-                alt={service.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                {getIcon(service.icon)}
-              </div>
-              <div className="absolute bottom-5 right-5 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </div>
-            <div className="p-4 sm:p-6">
-              <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 mb-2 sm:mb-3 leading-tight">{service.title}</h3>
-              <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">{service.description}</p>
-              
-              {/* Beneficios */}
-              <div className="mb-3 sm:mb-4">
-                <h4 className="text-xs sm:text-sm font-semibold text-green-600 mb-1 sm:mb-2 flex items-center">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full mr-1.5 sm:mr-2"></span>
-                  Beneficios clave:
-                </h4>
-                <ul className="space-y-1">
-                  {service.benefits.map((benefit, idx) => (
-                    <li key={idx} className="text-xs sm:text-sm text-gray-600 flex items-start">
-                      <span className="text-green-500 mr-1.5 sm:mr-2 mt-0.5 sm:mt-1 text-xs">✓</span>
-                      <span className="leading-relaxed">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* Categories Filter */}
+      <section className="px-4 overflow-x-auto pb-4 hide-scrollbar">
+        <div className="flex items-center space-x-3 min-w-max">
+          <div className="p-2.5 bg-[var(--panel-bg)] rounded-xl border border-[var(--border-color)] shadow-sm">
+            <FilterIcon className="w-5 h-5 text-primary-600" />
+          </div>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 border ${activeCategory === cat
+                ? 'bg-primary-600 text-white shadow-xl shadow-primary-600/20 border-primary-500'
+                : 'bg-[var(--panel-bg)] text-[var(--text-muted)] border-[var(--border-color)] hover:border-primary-400 hover:text-primary-600'
+                }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Grid of Services */}
+      <section className="px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {filteredServices.map((service, index) => (
+            <div
+              key={service.id}
+              className="group bg-[var(--panel-bg)] rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={service.imageUrl}
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/80 via-transparent to-transparent opacity-60"></div>
+
+                {/* Glass Icon Box */}
+                <div className="absolute top-6 left-6 w-14 h-14 bg-[var(--bg-main)]/80 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-[var(--border-color)]">
+                  {getIcon(service.icon)}
+                </div>
+
+                <div className="absolute bottom-6 left-6 right-6">
+                  <span className="px-3 py-1 bg-primary-600/90 backdrop-blur rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
+                    {service.category}
+                  </span>
+                </div>
               </div>
 
-              {/* Información adicional */}
-              {(service.includes || service.notIncludes) && (
-                <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-gray-50 rounded-lg">
-                  {service.includes && (
-                    <p className="text-xs text-gray-600 mb-1 leading-relaxed">
-                      <span className="font-medium">Incluye:</span> {service.includes}
-                    </p>
-                  )}
-                  {service.notIncludes && (
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      <span className="font-medium">No incluye:</span> {service.notIncludes}
-                    </p>
-                  )}
+              <div className="p-8">
+                <h3 className="text-xl font-bold text-[var(--text-main)] mb-4 group-hover:text-primary-600 transition-colors leading-tight uppercase">
+                  {service.title}
+                </h3>
+                <p className="text-[var(--text-muted)] text-sm mb-6 leading-relaxed line-clamp-3">
+                  {service.description}
+                </p>
+
+                <div className="space-y-3 mb-8">
+                  {service.benefits.slice(0, 3).map((benefit, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="mt-1 w-5 h-5 bg-primary-600/10 rounded-full flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-3 h-3 text-primary-600" />
+                      </div>
+                      <span className="text-sm text-[var(--text-muted)] leading-tight font-medium">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <button className="w-full group/btn relative flex items-center justify-center gap-2 py-4 bg-[var(--bg-main)] hover:bg-primary-600 text-[var(--text-main)] hover:text-white rounded-2xl font-bold transition-all overflow-hidden border border-[var(--border-color)] shadow-sm">
+                  <span className="relative z-10">Saber más</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform relative z-10" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How it Works Section */}
+      <section className="px-4 py-12">
+        <div className="bg-[var(--panel-bg)] rounded-[3rem] p-10 lg:p-16 text-[var(--text-main)] relative overflow-hidden border border-[var(--border-color)]">
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-600/5 blur-[100px] rounded-full"></div>
+          <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-primary-600 font-black uppercase tracking-widest text-[10px] mb-4 block">Proceso de Atención</span>
+              <h2 className="text-3xl lg:text-5xl font-black mb-6 uppercase tracking-tight leading-none">Tu camino hacia el <br /><span className="text-primary-600">bienestar</span> paso a paso</h2>
+              <p className="text-[var(--text-muted)] text-base lg:text-lg leading-relaxed mb-8 font-medium">
+                Nos enfocamos en un trato humano y personalizado desde el primer contacto, asegurando que cada etapa de tu terapia sea clara y efectiva.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center gap-3 px-5 py-3 bg-[var(--bg-main)] rounded-2xl border border-[var(--border-color)] shadow-sm">
+                  <SparklesIcon className="w-4 h-4 text-primary-600" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Sin esperas largas</span>
+                </div>
+                <div className="flex items-center gap-3 px-5 py-3 bg-[var(--bg-main)] rounded-2xl border border-[var(--border-color)] shadow-sm">
+                  <SparklesIcon className="w-4 h-4 text-primary-600" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Privacidad total</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-6">
+              {steps.map((step, i) => (
+                <div key={i} className="flex gap-6 p-6 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-[2.5rem] hover:border-primary-600 transition-all group shadow-sm hover:shadow-xl">
+                  <div className="w-16 h-16 bg-primary-600/10 rounded-2xl flex items-center justify-center text-primary-600 shrink-0 group-hover:scale-110 transition-transform border border-primary-600/10">
+                    {step.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-black mb-1 uppercase tracking-tight text-[var(--text-main)] group-hover:text-primary-600 transition-colors">{step.title}</h4>
+                    <p className="text-[var(--text-muted)] text-sm leading-relaxed font-medium">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="px-4 max-w-4xl mx-auto py-12">
+        <div className="text-center mb-12">
+          <HelpCircle className="w-12 h-12 text-primary-600 mx-auto mb-6" />
+          <h2 className="text-3xl lg:text-4xl font-black text-[var(--text-main)] mb-4 uppercase tracking-tight">Preguntas Frecuentes</h2>
+          <p className="text-[var(--text-muted)]">Todo lo que necesitas saber antes de tu primera consulta.</p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className={`border rounded-[2rem] transition-all duration-300 ${openFaq === i ? 'border-primary-500 bg-primary-600/5' : 'border-[var(--border-color)] bg-[var(--bg-main)]'}`}
+            >
+              <button
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full px-8 py-6 flex items-center justify-between text-left group"
+              >
+                <span className="font-bold text-[var(--text-main)] group-hover:text-primary-600 lg:text-lg transition-colors">{faq.q}</span>
+                {openFaq === i ? <ChevronUp className="w-5 h-5 text-primary-600" /> : <ChevronDown className="w-5 h-5 text-[var(--text-muted)]" />}
+              </button>
+              {openFaq === i && (
+                <div className="px-8 pb-8 text-[var(--text-muted)] leading-relaxed animate-fade-in">
+                  {faq.a}
                 </div>
               )}
-
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
 
-      {/* Sección de Contacto */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 border border-green-100">
-        <h2 className="text-base sm:text-lg lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Agenda tu Cita</h2>
-        <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-          Para más información sobre nuestros servicios clínicos o para agendar una cita, contáctanos:
-        </p>
-        
-        {/* Información de ubicación */}
-        <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-white rounded-lg border border-gray-200">
-          <div className="flex items-start">
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mr-2 sm:mr-3 mt-0.5 sm:mt-1">
-              <span className="text-green-600 text-xs sm:text-sm">📍</span>
+      {/* Final CTA SECTION */}
+      <section className="px-4">
+        <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-[3rem] p-8 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-primary-200">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+          <div className="relative z-10 shrink-0">
+            <h2 className="text-3xl lg:text-5xl font-black mb-6">¿Listo para comenzar tu sanación?</h2>
+            <p className="text-primary-100 text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+              Agenda tu cita hoy mismo y descubre cómo la bionergética y el enfoque integral pueden transformar tu vida.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href="tel:+525579076626"
+                className="px-10 py-5 bg-[var(--text-main)] text-[var(--bg-main)] rounded-2xl font-black text-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95 border border-[var(--border-color)] shadow-slate-900/10"
+              >
+                <PhoneIcon className="w-6 h-6" />
+                Llamar Ahora
+              </a>
+              <a
+                href="https://wa.me/525579076626"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-10 py-5 bg-[var(--text-main)] text-[var(--bg-main)] rounded-2xl font-black text-lg hover:bg-primary-600 hover:text-white transition-all flex items-center justify-center gap-3 active:scale-95 shadow-xl shadow-slate-900/10"
+              >
+                <svg className="w-6 h-6 fill-current text-green-500" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
+                WhatsApp
+              </a>
             </div>
-            <div>
-              <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1">Ubicación</h3>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Acapulco 36, int. 104<br />
-                Col. Roma Norte, CDMX
-              </p>
+            <div className="mt-12 pt-12 border-t border-white/10 flex flex-col lg:flex-row items-center justify-center gap-8 text-sm text-primary-200">
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-primary-400">
+                  <MapPin className="w-4 h-4" />
+                </span>
+                <span>Acapulco 36, Roma Norte, CDMX</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-primary-400">
+                  <Clock className="w-4 h-4" />
+                </span>
+                <span>Lun - Vie: 9:00 - 18:00</span>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="flex justify-center">
-          <a 
-            href="tel:+525579076626"
-            className="flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-green-500 text-white rounded-full font-semibold text-sm sm:text-base lg:text-lg hover:bg-green-600 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 w-full sm:w-auto"
-          >
-            <PhoneIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
-            <span className="text-center">
-              <span className="hidden sm:inline">Agendar Cita: </span>
-              <span className="sm:hidden">Llamar: </span>
-              +52 55 7907 6626
-            </span>
-          </a>
-        </div>
-      </div>
+      </section>
     </div>
   );
 };

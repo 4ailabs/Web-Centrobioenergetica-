@@ -11,10 +11,10 @@ const WellkittCategory: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const navigate = useNavigate();
   const [sortBy, setSortBy] = useState<'name' | 'brand'>('name');
-  
+
   // Obtener productos de la categoría
-  const categoryProducts = category === 'all' 
-    ? baseProducts 
+  const categoryProducts = category === 'all'
+    ? baseProducts
     : baseProducts.filter(p => p.category === category);
 
   // Ordenar productos
@@ -38,65 +38,65 @@ const WellkittCategory: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-white p-3 sm:p-6 lg:p-8 rounded-2xl lg:rounded-3xl lg:mt-20 mt-12 sm:mt-16">
+    <div className="w-full bg-[var(--panel-bg)] p-3 sm:p-6 lg:p-8 rounded-[2.5rem] lg:mt-20 mt-12 sm:mt-16 border border-[var(--border-color)]">
       {/* Header con navegación */}
-      <div className="flex items-center justify-between mb-6 sm:mb-8">
+      <div className="flex items-center justify-between mb-10">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+          className="flex items-center gap-3 px-5 py-3 bg-[var(--bg-main)] hover:bg-primary-600 hover:text-white rounded-2xl transition-all border border-[var(--border-color)] shadow-sm font-black text-[10px] uppercase tracking-widest active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Volver a Wellkitt</span>
+          Volver a Wellkitt
         </button>
-        
-        <div className="flex items-center gap-2">
-          <ShoppingCart className="w-5 h-5 text-gray-600" />
-          <span className="text-sm text-gray-600">Carrito</span>
+
+        <div className="flex items-center gap-3 bg-[var(--bg-main)] px-5 py-3 rounded-2xl border border-[var(--border-color)]">
+          <ShoppingCart className="w-4 h-4 text-primary-600" />
+          <span className="text-[10px] font-black text-[var(--text-main)] uppercase tracking-widest">Carrito</span>
         </div>
       </div>
 
       {/* Título de la categoría */}
-      <div className="text-center mb-8">
-        <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-            {React.createElement(categoryInfo.icon, { 
-              className: "w-8 h-8 text-blue-600"
+      <div className="text-center mb-12">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 bg-primary-600/10 rounded-3xl flex items-center justify-center border border-primary-600/20 shadow-xl">
+            {React.createElement(categoryInfo.icon, {
+              className: "w-10 h-10 text-primary-600"
             })}
           </div>
         </div>
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight">
           {category === 'all' ? 'Todos los Productos' : (categoryInfo as any).name || category}
         </h1>
-        <p className="text-sm lg:text-base text-gray-600">
-          {sortedProducts.length} productos disponibles
+        <p className="text-sm lg:text-lg text-[var(--text-muted)] font-medium">
+          {sortedProducts.length} productos disponibles en esta sección
         </p>
       </div>
 
       {/* Filtros y ordenamiento */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-        <div className="flex items-center gap-4">
-          <span className="text-sm font-medium text-gray-700">Ordenar por:</span>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 px-1">
+        <div className="flex items-center gap-4 bg-[var(--bg-main)] p-2 rounded-2xl border border-[var(--border-color)]">
+          <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest ml-3">Ordenar por:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as 'name' | 'brand')}
-            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 bg-[var(--panel-bg)] text-[var(--text-main)] border border-[var(--border-color)] rounded-xl text-xs font-bold outline-none focus:ring-2 focus:ring-primary-600 transition-all cursor-pointer"
           >
             <option value="name">Nombre</option>
             <option value="brand">Marca</option>
           </select>
         </div>
-        
-        <div className="text-sm text-gray-600">
+
+        <div className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest bg-[var(--bg-main)] px-4 py-2 rounded-xl border border-[var(--border-color)]">
           Mostrando {sortedProducts.length} de {baseProducts.length} productos
         </div>
       </div>
 
       {/* Grid de productos */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-8">
         {sortedProducts.map(product => (
-          <ProductCard 
-            key={product.id} 
-            product={product} 
+          <ProductCard
+            key={product.id}
+            product={product}
             onShowDetails={() => handleShowDetails(product)}
           />
         ))}
@@ -104,17 +104,17 @@ const WellkittCategory: React.FC = () => {
 
       {/* Mensaje si no hay productos */}
       {sortedProducts.length === 0 && (
-        <div className="text-center py-12">
-          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Filter className="w-8 h-8 text-gray-400" />
+        <div className="text-center py-20 bg-[var(--bg-main)] rounded-[2.5rem] border border-[var(--border-color)] border-dashed">
+          <div className="w-20 h-20 bg-[var(--panel-bg)] rounded-3xl flex items-center justify-center mx-auto mb-6 border border-[var(--border-color)] shadow-xl">
+            <Filter className="w-10 h-10 text-[var(--text-muted)]" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">No hay productos disponibles</h3>
-          <p className="text-gray-600 mb-4">No se encontraron productos en esta categoría.</p>
+          <h3 className="text-xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight">No hay productos</h3>
+          <p className="text-[var(--text-muted)] mb-8 font-medium">No se encontraron productos en esta categoría actualmente.</p>
           <button
             onClick={handleBack}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-8 py-4 bg-primary-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20 active:scale-95"
           >
-            Ver Todos los Productos
+            Ver catálogo completo
           </button>
         </div>
       )}

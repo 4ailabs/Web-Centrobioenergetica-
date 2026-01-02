@@ -12,43 +12,84 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) => {
   const navigate = useNavigate();
-  
+
   const handleClick = useCallback(() => {
-    // Primero llamar al callback local si existe
     onCourseClick?.(course);
-    
-    // Navegar a la página de detalle del curso
     navigate(`/course/${course.id}`);
-    
-    // Luego enviar a Framer
     handleCourseClick(course.id, course.title);
   }, [course, onCourseClick, navigate]);
+
+  // Predefined aesthetic gradients
+  const gradients = [
+    'from-blue-400 to-indigo-600',
+    'from-emerald-400 to-cyan-600',
+    'from-violet-400 to-purple-600',
+    'from-rose-400 to-pink-600',
+    'from-amber-400 to-orange-600',
+    'from-slate-400 to-slate-600',
+  ];
+
+  const getGradient = (id: number) => gradients[id % gradients.length];
+
   return (
-    <div 
+    <div
       onClick={handleClick}
-      className="bg-gray-50 hover:bg-gray-100 rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:translate-y-2 group cursor-pointer"
+      className="group relative bg-[var(--panel-bg)] rounded-[2rem] overflow-hidden border border-[var(--border-color)] shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col h-full"
     >
-      <div className="overflow-hidden">
-        <LazyImage 
-          src={course.imageUrl} 
-          alt={course.title} 
-          className="h-48 lg:h-64 transition-transform duration-300 ease-in-out group-hover:scale-105" 
-        />
-      </div>
-      <div className="p-4 lg:p-8 flex flex-col flex-grow">
-        <h3 className="text-base lg:text-xl font-bold mb-2 lg:mb-3">{course.title}</h3>
-        <p className="text-gray-500 text-xs lg:text-sm mb-4 lg:mb-6 flex-grow line-clamp-3">{course.description}</p>
-        
-        <div className="border-t border-gray-300 pt-4 lg:pt-6 flex justify-between items-center">
-          <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-6 text-xs lg:text-sm">
-            <p className="text-gray-500">Lecciones: <span className="text-black font-bold">{course.lessons}</span></p>
-            <p className="text-gray-500">Nivel: <span className="text-black font-bold">{course.level}</span></p>
+      {/* Image Container */}
+      <div className="relative h-56 lg:h-64 overflow-hidden bg-[var(--bg-main)]">
+        {course.imageUrl ? (
+          <LazyImage
+            src={course.imageUrl}
+            alt={course.title}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          />
+        ) : (
+          <div className={`w-full h-full bg-gradient-to-br ${getGradient(course.id)} flex items-center justify-center p-12 transition-transform duration-700 ease-out group-hover:scale-110`}>
+            <div className="text-white/20">
+              {/* Icon placeholder could go here if needed */}
+            </div>
           </div>
-          <div 
-            className="text-black group-hover:text-gray-600 transition-transform duration-300 group-hover:translate-x-1"
-            aria-label={`Ver detalles de ${course.title}`}
-          >
-            <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* Level Badge */}
+        <div className="absolute top-4 left-4">
+          <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest backdrop-blur-md shadow-lg border 
+            ${course.level === 'Avanzado' ? 'bg-amber-500/80 text-white border-amber-400' :
+              course.level === 'Intermedio' ? 'bg-primary-500/80 text-white border-primary-400' :
+                'bg-blue-500/80 text-white border-blue-400'}`}>
+            {course.level}
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-6 lg:p-8 flex flex-col flex-grow relative">
+        <div className="flex-grow">
+          <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] mb-3 group-hover:text-primary-600 transition-colors duration-300 uppercase">
+            {course.title}
+          </h3>
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-6 line-clamp-3 font-medium">
+            {course.description}
+          </p>
+        </div>
+
+        <div className="pt-6 border-t border-[var(--border-color)] flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-black">Lecciones</span>
+              <span className="text-sm font-black text-[var(--text-main)]">{course.lessons}</span>
+            </div>
+            <div className="w-px h-8 bg-[var(--border-color)]" />
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-black">Certificado</span>
+              <span className="text-sm font-black text-[var(--text-main)]">Incluido</span>
+            </div>
+          </div>
+
+          <div className="w-12 h-12 bg-[var(--bg-main)] group-hover:bg-primary-600 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:shadow-xl group-hover:shadow-primary-600/20 border border-[var(--border-color)] group-hover:border-primary-500">
+            <ArrowRightIcon className="w-5 h-5 text-[var(--text-muted)] group-hover:text-white transition-all group-hover:translate-x-0.5" />
           </div>
         </div>
       </div>

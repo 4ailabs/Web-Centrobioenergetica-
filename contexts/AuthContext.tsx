@@ -5,6 +5,7 @@ interface User {
   email: string;
   name?: string | null;
   isAdmin: boolean;
+  totalXP?: number;
 }
 
 interface AuthContextType {

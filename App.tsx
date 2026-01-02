@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { getUrlParams, isInIframe } from './utils/framerIntegration';
@@ -19,17 +18,20 @@ import AboutUs from './pages/AboutUs';
 import Apps from './pages/Apps';
 import SearchResults from './pages/SearchResults';
 import Search from './pages/Search';
+import CalendarPage from './pages/CalendarPage';
+
 
 // Componente interno que usa el contexto
 const AppContent: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { activePage, isSearchOpen, searchQuery } = useUIState();
+  const navigate = useNavigate();
+  const { activePage, isSearchOpen, searchQuery, isDarkMode } = useUIState();
 
   // Manejar parámetros de URL para navegación directa
   useEffect(() => {
     const params = getUrlParams();
     const page = params.page;
-    
+
     if (page) {
       const pageMap: Record<string, string> = {
         'cursos': 'Cursos',
@@ -38,9 +40,10 @@ const AppContent: React.FC = () => {
         'noticias': 'Noticias',
         'sobre-nosotros': 'Sobre Nosotros',
         'aplicaciones': 'Aplicaciones',
+        'calendario': 'Calendario',
         'panel': 'Panel'
       };
-      
+
       const mappedPage = pageMap[page];
       if (mappedPage) {
         dispatch({ type: 'SET_ACTIVE_PAGE', payload: mappedPage });
@@ -64,91 +67,77 @@ const AppContent: React.FC = () => {
     dispatch({ type: 'SET_ACTIVE_PAGE', payload: page });
   };
 
-  const renderPage = () => {
-    switch (activePage) {
-      case 'Panel':
-        return (
-          <Dashboard 
-            onNavigateToCourses={() => handleSetActivePage('Cursos')}
-            onNavigateToNews={() => handleSetActivePage('Noticias')}
-            onNavigateToAbout={() => handleSetActivePage('Sobre Nosotros')}
-            onNavigateToApps={() => handleSetActivePage('Aplicaciones')}
-          />
-        );
-      case 'Cursos':
-        return <AllCourses />;
-      case 'Servicios Clínicos':
-        return <ClinicalServices />;
-      // case 'Wellkitt': // Temporalmente deshabilitado
-      //   return <Wellkitt />;
-      case 'Noticias':
-        return <News />;
-      case 'Sobre Nosotros':
-        return <AboutUs />;
-      case 'Aplicaciones':
-        return <Apps />;
-      case 'Resultados de Búsqueda':
-        return <SearchResults query={searchQuery} />;
-      default:
-        return (
-          <Dashboard 
-            onNavigateToCourses={() => handleSetActivePage('Cursos')}
-            onNavigateToNews={() => handleSetActivePage('Noticias')}
-            onNavigateToAbout={() => handleSetActivePage('Sobre Nosotros')}
-            onNavigateToApps={() => handleSetActivePage('Aplicaciones')}
-          />
-        );
-    }
-  };
-
   return (
-    <div className="bg-[#F7F8FA] min-h-screen font-sans text-gray-900 flex flex-col">
+    <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] min-h-screen font-sans text-[var(--text-main)] transition-colors duration-300 flex flex-col`}>
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
         <div className="hidden lg:block lg:w-80">
-          <Sidebar 
-            activeItem={activePage} 
-            setActiveItem={handleSetActivePage} 
-            onSearch={handleSearch} 
-            onOpenSearch={handleOpenSearch} 
+          <Sidebar
+            activeItem={activePage}
+            setActiveItem={handleSetActivePage}
+            onSearch={handleSearch}
+            onOpenSearch={handleOpenSearch}
           />
         </div>
-        
+
         {/* Mobile Sidebar (floating) */}
         <div className="lg:hidden">
-          <Sidebar 
-            activeItem={activePage} 
-            setActiveItem={handleSetActivePage} 
-            onSearch={handleSearch} 
-            onOpenSearch={handleOpenSearch} 
+          <Sidebar
+            activeItem={activePage}
+            setActiveItem={handleSetActivePage}
+            onSearch={handleSearch}
+            onOpenSearch={handleOpenSearch}
           />
         </div>
-        
+
         {/* Main Content */}
         <main className="flex-1 lg:ml-0 p-2 lg:p-8">
           <div key={activePage} className="animate-fade-in">
             <Routes>
-              <Route path="/" element={renderPage()} />
+              <Route path="/" element={
+                <Dashboard
+                  onNavigateToCourses={() => {
+                    handleSetActivePage('Cursos');
+                    navigate('/cursos');
+                  }}
+                  onNavigateToNews={() => {
+                    handleSetActivePage('Noticias');
+                    navigate('/noticias');
+                  }}
+                  onNavigateToAbout={() => {
+                    handleSetActivePage('Sobre Nosotros');
+                    navigate('/sobre-nosotros');
+                  }}
+                  onNavigateToApps={() => {
+                    handleSetActivePage('Aplicaciones');
+                    navigate('/aplicaciones');
+                  }}
+                />
+              } />
+              <Route path="/cursos" element={<AllCourses />} />
+              <Route path="/servicios" element={<ClinicalServices />} />
+              <Route path="/noticias" element={<News />} />
+              <Route path="/sobre-nosotros" element={<AboutUs />} />
+              <Route path="/aplicaciones" element={<Apps />} />
+              <Route path="/calendario" element={<CalendarPage />} />
               <Route path="/course/:courseId" element={<CourseDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {/* Rutas de Wellkitt temporalmente deshabilitadas */}
-              {/* <Route path="/wellkitt" element={<Wellkitt />} /> */}
-              {/* <Route path="/wellkitt/category/:category" element={<WellkittCategory />} /> */}
+              <Route path="/search" element={<SearchResults query={searchQuery} />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
         </main>
       </div>
-      
+
       {/* Footer */}
       <Footer />
-      
+
       {/* Search Modal */}
-      <Search 
-        onSearch={handleSearch} 
-        onClose={handleCloseSearch} 
-        isOpen={isSearchOpen} 
+      <Search
+        onSearch={handleSearch}
+        onClose={handleCloseSearch}
+        isOpen={isSearchOpen}
       />
     </div>
   );

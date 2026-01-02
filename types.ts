@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Tipos para Cursos
 export interface CourseVideo {
   id: number;
@@ -33,8 +35,23 @@ export interface NewsArticle {
   id: number;
   title: string;
   description: string;
+  content?: string;
+  category: string;
   author: string;
   imageUrl: string;
+  createdAt?: string;
+  relatedCourseIds?: number[];
+  reactions?: Record<string, number>;
+}
+
+export interface CalendarEvent {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  type: 'live' | 'workshop' | 'support' | 'other';
+  location?: string;
+  link?: string;
 }
 
 export interface AppInfo {
@@ -42,7 +59,7 @@ export interface AppInfo {
   name: string;
   category: string;
   description: string;
-  logo: string | null;
+  logo: React.ReactNode;
   website: string;
 }
 

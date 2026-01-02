@@ -1,59 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Instituto Centrobioenergetica</title>
-    <link rel="stylesheet" href="/styles/fonts.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/font-check.js"></script>
-    <style>
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      @keyframes slideInUp {
-        from { transform: translateY(20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
-      @keyframes slideInLeft {
-        from { transform: translateX(-20px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-      }
-      .animate-fade-in {
-        animation: fadeIn 0.6s ease-out forwards;
-      }
-      .animate-slide-in-up {
-        animation: slideInUp 0.6s ease-out forwards;
-        opacity: 0; /* Start hidden */
-      }
-       .animate-slide-in-left {
-        animation: slideInLeft 0.6s ease-out forwards;
-      }
 
-      /* Mobile optimizations */
-      .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      
-      .mobile-nav-item {
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-      }
-      
-      @media (max-width: 1024px) {
-        .mobile-nav-item:hover {
-          transform: none;
-        }
-      }
-    </style>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Instituto Centrobioenergetica</title>
+  <link rel="stylesheet" href="/styles/fonts.css">
   <script type="importmap">
 {
   "imports": {
@@ -64,8 +19,10 @@
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
 </html>

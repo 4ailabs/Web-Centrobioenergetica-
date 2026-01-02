@@ -11,15 +11,18 @@ interface AppState {
   products: Product[];
   news: NewsArticle[];
   apps: AppInfo[];
-  
+
   // UI State
   activePage: string;
   isSearchOpen: boolean;
   searchQuery: string;
   searchResults: SearchResults;
-  
+
   // Mobile
   isMobileMenuOpen: boolean;
+
+  // Theme
+  isDarkMode: boolean;
 }
 
 // Acciones
@@ -30,7 +33,8 @@ type AppAction =
   | { type: 'SET_SEARCH_QUERY'; payload: string }
   | { type: 'PERFORM_SEARCH'; payload: string }
   | { type: 'TOGGLE_MOBILE_MENU' }
-  | { type: 'CLOSE_MOBILE_MENU' };
+  | { type: 'CLOSE_MOBILE_MENU' }
+  | { type: 'TOGGLE_DARK_MODE' };
 
 // Estado inicial
 const initialState: AppState = {
@@ -47,8 +51,10 @@ const initialState: AppState = {
     services: [],
     products: [],
     news: [],
+    events: [],
   },
   isMobileMenuOpen: false,
+  isDarkMode: localStorage.getItem('theme') === 'dark',
 };
 
 // Reducer
@@ -60,25 +66,25 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
         activePage: action.payload,
         isMobileMenuOpen: false, // Cerrar menú móvil al navegar
       };
-    
+
     case 'TOGGLE_SEARCH_MODAL':
       return {
         ...state,
         isSearchOpen: !state.isSearchOpen,
       };
-    
+
     case 'CLOSE_SEARCH_MODAL':
       return {
         ...state,
         isSearchOpen: false,
       };
-    
+
     case 'SET_SEARCH_QUERY':
       return {
         ...state,
         searchQuery: action.payload,
       };
-    
+
     case 'PERFORM_SEARCH':
       const searchResults = searchData(action.payload);
       return {
@@ -88,19 +94,27 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
         activePage: 'Resultados de Búsqueda',
         isSearchOpen: false,
       };
-    
+
     case 'TOGGLE_MOBILE_MENU':
       return {
         ...state,
         isMobileMenuOpen: !state.isMobileMenuOpen,
       };
-    
+
     case 'CLOSE_MOBILE_MENU':
       return {
         ...state,
         isMobileMenuOpen: false,
       };
-    
+
+    case 'TOGGLE_DARK_MODE':
+      const newDarkMode = !state.isDarkMode;
+      localStorage.setItem('theme', newDarkMode ? 'dark' : 'light');
+      return {
+        ...state,
+        isDarkMode: newDarkMode,
+      };
+
     default:
       return state;
   }
@@ -183,5 +197,6 @@ export const useUIState = () => {
     isSearchOpen: state.isSearchOpen,
     searchQuery: state.searchQuery,
     isMobileMenuOpen: state.isMobileMenuOpen,
-  }), [state.activePage, state.isSearchOpen, state.searchQuery, state.isMobileMenuOpen]);
+    isDarkMode: state.isDarkMode,
+  }), [state.activePage, state.isSearchOpen, state.searchQuery, state.isMobileMenuOpen, state.isDarkMode]);
 };

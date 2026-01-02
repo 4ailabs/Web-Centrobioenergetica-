@@ -77,3 +77,71 @@ model Progress {
   @@unique([userId, courseId, moduleId, videoId])
   @@index([userId, courseId])
 }
+
+model Course {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  author      String?
+  price       Float      @default(0)
+  lessons     Int        @default(0)
+  level       String     // Principiante, Intermedio, Avanzado
+  imageUrl    String
+  modules     Module[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Module {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  order       Int
+  courseId    Int
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  videos      Video[]
+}
+
+model Video {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  order       Int
+  moduleId    Int
+  module      Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  videoUrl    String?
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  duration    String
+  price       String
+  imageUrl    String
+}
+
+model NewsArticle {
+  id               Int      @id @default(autoincrement())
+  title            String
+  description      String
+  content          String?  @db.Text
+  category         String   @default("General")
+  author           String
+  imageUrl         String
+  relatedCourseIds Int[]    @default([])
+  reactions        Json?    @default("{}")
+  createdAt        DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  type        String   @default("other") // live, workshop, support, other
+  location    String?
+  link        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

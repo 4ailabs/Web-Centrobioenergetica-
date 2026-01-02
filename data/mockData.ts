@@ -1,4 +1,4 @@
-import type { Course, NewsArticle, AppInfo } from '../types';
+import type { Course, NewsArticle, AppInfo, CalendarEvent } from '../types';
 
 // Servicios clínicos
 export interface Service {
@@ -26,6 +26,7 @@ export interface SearchResults {
   services: Service[];
   products: Product[];
   news: NewsArticle[];
+  events: CalendarEvent[];
 }
 
 // Datos centralizados
@@ -38,8 +39,8 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 12,
-      level: 'Principiante' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/kids.png',
     },
     {
       id: 2,
@@ -48,8 +49,8 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 8,
-      level: 'Principiante' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/oh_cards.png',
     },
     {
       id: 3,
@@ -59,7 +60,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 15,
       level: 'Intermedio' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: '/images/courses/morphic.png',
     },
     {
       id: 4,
@@ -68,7 +69,7 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 20,
-      level: 'Principiante' as const,
+      level: 'Intermedio' as const,
       imageUrl: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2853&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
@@ -88,7 +89,7 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 16,
-      level: 'Principiante' as const,
+      level: 'Intermedio' as const,
       imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
@@ -99,7 +100,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 18,
       level: 'Intermedio' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: '/images/courses/despertar.png',
     },
     {
       id: 8,
@@ -108,7 +109,7 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 22,
-      level: 'Avanzado' as const,
+      level: 'Intermedio' as const,
       imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
@@ -118,7 +119,7 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 10,
-      level: 'Principiante' as const,
+      level: 'Intermedio' as const,
       imageUrl: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
@@ -128,8 +129,8 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 25,
-      level: 'Avanzado' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/nutrigenomica.png',
     },
     {
       id: 11,
@@ -139,7 +140,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 5, // Total de videos: 2 + 3 = 5
       level: 'Principiante' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: '',
       modules: [
         {
           id: 1,
@@ -197,7 +198,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 14,
       level: 'Intermedio' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: '',
     },
     {
       id: 13,
@@ -207,7 +208,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 16,
       level: 'Intermedio' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imageUrl: '',
     },
     {
       id: 14,
@@ -216,8 +217,8 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 18,
-      level: 'Avanzado' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      level: 'Intermedio' as const,
+      imageUrl: '',
     },
     {
       id: 15,
@@ -226,8 +227,8 @@ export const MOCK_DATA = {
       author: '',
       price: 0,
       lessons: 22,
-      level: 'Avanzado' as const,
-      imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      level: 'Intermedio' as const,
+      imageUrl: '',
     },
   ] as Course[],
 
@@ -338,6 +339,8 @@ export const MOCK_DATA = {
       id: 1,
       title: 'El Poder de la Respiración Consciente en el Día a Día',
       description: 'Nuevos estudios revelan cómo la respiración puede impactar positivamente tu salud física y mental.',
+      category: 'Salud Integral',
+      content: 'La respiración consciente no es solo una técnica de relajación; es una herramienta poderosa que influye en nuestro sistema nervioso autónomo. Al practicarla regularmente, podemos reducir el cortisol y mejorar nuestra claridad mental.',
       author: 'Henry Carter',
       imageUrl: 'https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -345,6 +348,8 @@ export const MOCK_DATA = {
       id: 2,
       title: 'Revolución del Bienestar en la Educación para Adultos',
       description: 'Plataformas pioneras de e-learning ofrecen extensos programas de formación en bienestar.',
+      category: 'E-Learning',
+      content: 'La educación para adultos está experimentando un cambio de paradigma, donde el bienestar emocional se considera tan importante como las habilidades técnicas. Nuevos programas integran meditación y gestión del estrés en su currículo.',
       author: 'Elisabeth Brooks',
       imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -352,6 +357,8 @@ export const MOCK_DATA = {
       id: 3,
       title: 'Aplicaciones Innovadoras para el Crecimiento Personal',
       description: 'Una plataforma particular utiliza inteligencia artificial para guiarte en tu desarrollo personal.',
+      category: 'Tecnología',
+      content: 'La inteligencia artificial está permitiendo una personalización sin precedentes en el crecimiento personal. Estas aplicaciones analizan patrones de comportamiento para ofrecer consejos personalizados en tiempo real.',
       author: 'Steve Mills',
       imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -359,6 +366,8 @@ export const MOCK_DATA = {
       id: 4,
       title: 'Tendencias en Bienestar y E-Learning para 2024',
       description: 'El aprendizaje en línea continúa evolucionando, con tendencias de bienestar actualizadas para 2024.',
+      category: 'Tendencias',
+      content: 'Para el 2024, esperamos ver una mayor integración de la realidad virtual en las sesiones de bienestar, permitiendo entornos inmersivos para la meditación y el entrenamiento bionergético.',
       author: 'Jessica Hayes',
       imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -414,18 +423,48 @@ export const MOCK_DATA = {
       website: '#',
     },
   ] as AppInfo[],
+
+  events: [
+    {
+      id: 1,
+      title: 'Workshop: Biomagnetismo Avanzado',
+      description: 'Sesión intensiva sobre nuevas técnicas de rastreo y protocolos complejos.',
+      date: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString(),
+      type: 'workshop',
+      location: 'Ciudad de México / Online',
+      link: 'https://zoom.us/j/example1',
+    },
+    {
+      id: 2,
+      title: 'Webinar: El Futuro de la Bionergética',
+      description: 'Charla gratuita sobre las tendencias de salud para el 2026.',
+      date: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString(),
+      type: 'live',
+      location: 'Online (YouTube Live)',
+      link: 'https://youtube.com/live/example2',
+    },
+    {
+      id: 3,
+      title: 'Sesión de Soporte Semanal',
+      description: 'Resolución de dudas para alumnos de la plataforma.',
+      date: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString(),
+      type: 'support',
+      location: 'Online (Discord)',
+    }
+  ] as CalendarEvent[],
 };
 
 // Función de búsqueda optimizada
 export const searchData = (query: string): SearchResults => {
   const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
-  
+
   if (searchTerms.length === 0) {
     return {
       courses: [],
       services: [],
       products: [],
       news: [],
+      events: [],
     };
   }
 
@@ -445,5 +484,6 @@ export const searchData = (query: string): SearchResults => {
     services: filterByTerms(MOCK_DATA.services, ['title', 'description']),
     products: filterByTerms(MOCK_DATA.products, ['name', 'description', 'category']),
     news: filterByTerms(MOCK_DATA.news, ['title', 'description', 'author']),
+    events: filterByTerms(MOCK_DATA.events, ['title', 'description', 'location']),
   };
 };

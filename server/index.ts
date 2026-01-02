@@ -177,6 +177,107 @@ app.get('/api/auth/me', authenticateToken, async (req, res) => {
   return res.json({ user: (req as any).user });
 });
 
+// --- Rutas de Contenido ---
+
+// Obtener todos los cursos
+app.get('/api/courses', async (req, res) => {
+  try {
+    const courses = await prisma.course.findMany({
+      include: {
+        modules: {
+          include: {
+            videos: true
+          }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener cursos' });
+  }
+});
+
+// Obtener un curso por ID
+app.get('/api/courses/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const course = await prisma.course.findUnique({
+      where: { id: parseInt(id) },
+      include: {
+        modules: {
+          include: {
+            videos: true
+          }
+        }
+      }
+    });
+    if (!course) return res.status(404).json({ error: 'Curso no encontrado' });
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener el curso' });
+  }
+});
+
+// Obtener servicios
+app.get('/api/services', async (req, res) => {
+  try {
+    const services = await prisma.service.findMany();
+    res.json(services);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener servicios' });
+  }
+});
+
+// Obtener noticias
+app.get('/api/news', async (req, res) => {
+  try {
+    const news = await prisma.newsArticle.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(news);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener noticias' });
+  }
+});
+
+// Reaccionar a una noticia
+app.post('/api/news/:id/react', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { reaction } = req.body; // ej: "love", "useful", "wow"
+
+    if (!reaction) return res.status(400).json({ error: 'Reacción requerida' });
+
+    const article = await prisma.newsArticle.findUnique({ where: { id: parseInt(id) } });
+    if (!article) return res.status(404).json({ error: 'Noticia no encontrada' });
+
+    const reactions = (article.reactions as Record<string, number>) || {};
+    reactions[reaction] = (reactions[reaction] || 0) + 1;
+
+    const updated = await prisma.newsArticle.update({
+      where: { id: parseInt(id) },
+      data: { reactions }
+    });
+
+    res.json(updated);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al procesar reacción' });
+  }
+});
+
+// Obtener eventos del calendario
+app.get('/api/events', async (req, res) => {
+  try {
+    const events = await prisma.event.findMany({
+      orderBy: { date: 'asc' }
+    });
+    res.json(events);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener eventos' });
+  }
+});
+
 // Ruta para diagnóstico (similar a app-ei)
 app.post('/api/auth/diagnose', async (req, res) => {
   try {

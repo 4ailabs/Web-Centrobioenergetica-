@@ -1,15 +1,15 @@
 import React from 'react';
-import { 
-  Layout, 
-  BookOpen, 
-  FileText, 
-  Users, 
-  Grid3X3, 
-  HelpCircle, 
-  Search, 
-  ArrowRight, 
+import {
+  Layout,
+  BookOpen,
+  FileText,
+  Users,
+  Grid3X3,
+  HelpCircle,
+  Search,
+  ArrowRight,
   ArrowLeft,
-  Menu, 
+  Menu,
   X,
   Mail,
   Phone,
@@ -17,7 +17,12 @@ import {
   Linkedin,
   Twitter,
   Stethoscope,
-  ShoppingBag
+  ShoppingBag,
+  Sparkles,
+  Filter,
+  Calendar,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 interface IconProps {
@@ -99,9 +104,9 @@ export const TwitterIcon: React.FC<IconProps> = ({ className }) => (
 
 // Logo personalizado para el Instituto Centrobioenergetica
 export const LogoIcon: React.FC<IconProps> = ({ className }) => (
-  <img 
-    src="https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/4fc95aaa-7c07-4d87-b0f7-70d1a13dbb63/LOGO+new.png?format=300w" 
-    alt="Instituto Centrobioenergetica Logo" 
+  <img
+    src="https://images.squarespace-cdn.com/content/v1/63937c55c3c2e84a13a3ede9/4fc95aaa-7c07-4d87-b0f7-70d1a13dbb63/LOGO+new.png?format=300w"
+    alt="Instituto Centrobioenergetica Logo"
     className={`${className} object-contain`}
     style={{ aspectRatio: 'auto' }}
   />
@@ -148,4 +153,24 @@ export const DiagramIcon: React.FC<IconProps> = ({ className }) => (
     <rect x="9" y="11" width="6" height="2" fill="#2196F3"></rect>
     <rect x="9" y="15" width="6" height="2" fill="#2196F3"></rect>
   </svg>
+);
+
+export const SparklesIcon: React.FC<IconProps> = ({ className }) => (
+  <Sparkles className={className} />
+);
+
+export const FilterIcon: React.FC<IconProps> = ({ className }) => (
+  <Filter className={className} />
+);
+
+export const CalendarIcon: React.FC<IconProps> = ({ className }) => (
+  <Calendar className={className} />
+);
+
+export const SunIcon: React.FC<IconProps> = ({ className }) => (
+  <Sun className={className} />
+);
+
+export const MoonIcon: React.FC<IconProps> = ({ className }) => (
+  <Moon className={className} />
 );

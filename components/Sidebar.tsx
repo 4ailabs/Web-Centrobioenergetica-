@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon } from './Icons';
+import { useAuth } from '../contexts/AuthContext';
+import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon } from './Icons';
+import { useUIState, useAppDispatch } from '../contexts/AppContext';
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -18,13 +20,12 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick, mobile 
         e.preventDefault();
         onClick();
       }}
-      className={`flex items-center space-x-4 px-6 py-3 rounded-full text-sm lg:text-base transition-all duration-300 transform ${
-        active
-          ? 'bg-black text-white shadow-md'
-          : 'text-gray-500 hover:bg-gray-200 hover:-translate-y-1'
-      } ${mobile ? 'mobile-nav-item' : ''}`}
+      className={`flex items-center space-x-4 px-6 py-3 rounded-full text-sm lg:text-base transition-all duration-300 transform ${active
+        ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20'
+        : 'text-[var(--text-muted)] hover:bg-[var(--text-main)]/5 shadow-sm hover:shadow-xl hover:-translate-y-1'
+        } ${mobile ? 'mobile-nav-item' : ''}`}
     >
-      <div className={active ? 'text-green-500' : ''}>
+      <div className={active ? 'text-white' : 'text-primary-600'}>
         {icon}
       </div>
       <span>{label}</span>
@@ -33,43 +34,79 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick, mobile 
 };
 
 interface SidebarProps {
-    activeItem: string;
-    setActiveItem: (item: string) => void;
-    onSearch?: (query: string) => void;
-    onOpenSearch?: () => void;
+  activeItem: string;
+  setActiveItem: (item: string) => void;
+  onSearch?: (query: string) => void;
+  onOpenSearch?: () => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, onOpenSearch }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isDarkMode } = useUIState();
+  const dispatch = useAppDispatch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleMobileNavigation = (item: string) => {
-    // Wellkitt temporalmente deshabilitado
-    // if (item === 'Wellkitt') {
-    //   navigate('/wellkitt');
-    // } else {
-      setActiveItem(item);
-      // Si estamos en una ruta de Wellkitt y navegamos a otra página, redirigir a home
-      if (location.pathname.startsWith('/wellkitt')) {
-        navigate('/');
-      }
-    // }
+  const toggleTheme = () => {
+    dispatch({ type: 'TOGGLE_DARK_MODE' });
+  };
+
+  const handleNavigation = (item: string, path: string) => {
+    setActiveItem(item);
+    navigate(path);
     setIsMobileMenuOpen(false);
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (onSearch && searchQuery.trim()) {
-      onSearch(searchQuery.trim());
-    }
-  };
+  const { user } = useAuth();
+  const xp = user?.totalXP || 0;
+  const level = Math.floor(xp / 500) + 1;
+  const nextLevelXP = level * 500;
+  const currentLevelXP = (level - 1) * 500;
+  const progress = ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
+
+  const UserProfile = ({ mobile = false }) => (user ? (
+    <div className={`mt-auto pt-8 border-t border-[var(--border-color)] ${mobile ? 'px-6' : ''}`}>
+      <div className="flex items-center space-x-3 mb-6 p-2 rounded-2xl bg-[var(--bg-main)] border border-[var(--border-color)]">
+        <div className="w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-primary-600/20">
+          {user.name?.[0] || user.email[0].toUpperCase()}
+        </div>
+        <div className="flex flex-col overflow-hidden">
+          <span className="text-sm font-black text-[var(--text-main)] uppercase tracking-tight line-clamp-1">{user.name || 'Usuario'}</span>
+          <span className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Nivel {level}</span>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex justify-between items-end">
+          <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">Energía {xp} XP</span>
+          <span className="text-[10px] font-black text-primary-600 uppercase tracking-widest">{Math.round(progress)}%</span>
+        </div>
+        <div className="h-2 w-full bg-[var(--bg-main)] rounded-full overflow-hidden shadow-inner border border-[var(--border-color)]">
+          <div
+            className="h-full bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(34,197,94,0.3)]"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+    </div>
+  ) : null);
+
+  const ThemeToggle = ({ mobile = false }) => (
+    <button
+      onClick={toggleTheme}
+      className={`flex items-center space-x-4 px-6 py-3 rounded-full text-sm lg:text-base transition-all duration-300 transform bg-[var(--bg-main)] border border-[var(--border-color)] hover:border-primary-600 hover:shadow-xl ${mobile ? 'w-full' : ''}`}
+    >
+      <div className="text-primary-600">
+        {isDarkMode ? <SunIcon className="w-6 h-6" /> : <MoonIcon className="w-6 h-6" />}
+      </div>
+      <span className="font-black uppercase tracking-widest text-[10px]">{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
+    </button>
+  );
 
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 p-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 bg-[var(--bg-main)] border-b border-[var(--border-color)] z-50 p-4 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <LogoIcon className="h-8 w-auto" />
@@ -77,110 +114,90 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] hover:border-primary-600 transition-colors"
           >
-            {isMobileMenuOpen ? <XIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
+            {isMobileMenuOpen ? <XIcon className="w-6 h-6 text-primary-600" /> : <MenuIcon className="w-6 h-6 text-[var(--text-muted)]" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setIsMobileMenuOpen(false)}
         ></div>
       )}
 
       {/* Mobile Sidebar Drawer */}
-      <aside className={`lg:hidden fixed top-0 left-0 h-full bg-[#F7F8FA] w-80 z-50 transition-transform duration-300 ${
-        isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}>
-        <div className="p-8 pt-20 flex flex-col space-y-12 h-full">
-          <div className="flex items-center space-x-3 pb-4">
+      <aside className={`lg:hidden fixed top-0 left-0 h-full bg-[var(--bg-main)] border-r border-[var(--border-color)] w-80 z-50 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
+        <div className="p-8 pt-20 flex flex-col h-full">
+          <div className="flex items-center space-x-3 pb-8">
             <LogoIcon className="h-8 w-auto" />
             <span className="text-xs sm:text-sm font-bold">Instituto Centrobioenergética</span>
           </div>
 
-          <nav className="flex-grow">
+          <nav className="flex-grow overflow-y-auto space-y-12">
             <div className="space-y-4">
-              <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">MENÚ</h3>
+              <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">MENÚ</h3>
               <div className="space-y-2">
-                <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Panel')} mobile={true} />
-                <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Cursos')} mobile={true} />
-                <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Servicios Clínicos')} mobile={true} />
-                {/* Wellkitt temporalmente deshabilitado */}
-                {/* <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Wellkitt')} mobile={true} /> */}
-                <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Noticias')} mobile={true} />
-                <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Sobre Nosotros')} mobile={true} />
+                <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={location.pathname === '/'} onClick={() => handleNavigation('Panel', '/')} mobile={true} />
+                <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={location.pathname === '/cursos'} onClick={() => handleNavigation('Cursos', '/cursos')} mobile={true} />
+                <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={location.pathname === '/servicios'} onClick={() => handleNavigation('Servicios Clínicos', '/servicios')} mobile={true} />
+                <NavItem icon={<CalendarIcon className="w-6 h-6" />} label="Calendario" active={location.pathname === '/calendario'} onClick={() => handleNavigation('Calendario', '/calendario')} mobile={true} />
+                <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={location.pathname === '/noticias'} onClick={() => handleNavigation('Noticias', '/noticias')} mobile={true} />
+                <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={location.pathname === '/sobre-nosotros'} onClick={() => handleNavigation('Sobre Nosotros', '/sobre-nosotros')} mobile={true} />
               </div>
             </div>
 
-            <div className="mt-12 space-y-4">
-              <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">USUARIO</h3>
+            <div className="space-y-4">
+              <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">USUARIO</h3>
               <div className="space-y-2">
-                <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Aplicaciones')} mobile={true} />
-                <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte' && !location.pathname.startsWith('/wellkitt')} onClick={() => handleMobileNavigation('Ayuda y Soporte')} mobile={true} />
+                <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} />
+                <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:info@centrobioenergetica.com'} mobile={true} />
                 <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
+                <ThemeToggle mobile={true} />
               </div>
             </div>
           </nav>
 
+          <UserProfile mobile={true} />
         </div>
       </aside>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:relative top-0 left-0 h-full bg-[#F7F8FA] p-8 flex flex-col space-y-12">
-        <div className="flex items-center space-x-3">
+      <aside className="hidden lg:flex lg:sticky top-0 h-screen bg-[var(--bg-main)] border-r border-[var(--border-color)] p-8 flex-col w-80 shrink-0">
+        <div className="flex items-center space-x-3 mb-12">
           <LogoIcon className="h-8 w-auto" />
           <span className="text-lg font-bold">Instituto Centrobioenergética</span>
         </div>
 
-        <nav className="flex-grow">
+        <nav className="flex-grow space-y-12">
           <div className="space-y-4">
-            <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">MENÚ</h3>
+            <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">MENÚ</h3>
             <div className="space-y-2">
-              <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={activeItem === 'Panel' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Panel');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
-              <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={activeItem === 'Cursos' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Cursos');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
-              <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={activeItem === 'Servicios Clínicos' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Servicios Clínicos');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
-              {/* Wellkitt temporalmente deshabilitado */}
-              {/* <NavItem icon={<WellkittIcon className="w-6 h-6" />} label="Wellkitt" active={location.pathname.startsWith('/wellkitt')} onClick={() => navigate('/wellkitt')} /> */}
-              <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={activeItem === 'Noticias' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Noticias');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
-              <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={activeItem === 'Sobre Nosotros' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Sobre Nosotros');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
+              <NavItem icon={<DashboardIcon className="w-6 h-6" />} label="Panel" active={location.pathname === '/'} onClick={() => handleNavigation('Panel', '/')} />
+              <NavItem icon={<CoursesIcon className="w-6 h-6" />} label="Cursos" active={location.pathname === '/cursos'} onClick={() => handleNavigation('Cursos', '/cursos')} />
+              <NavItem icon={<ClinicalServicesIcon className="w-6 h-6" />} label="Servicios Clínicos" active={location.pathname === '/servicios'} onClick={() => handleNavigation('Servicios Clínicos', '/servicios')} />
+              <NavItem icon={<CalendarIcon className="w-6 h-6" />} label="Calendario" active={location.pathname === '/calendario'} onClick={() => handleNavigation('Calendario', '/calendario')} />
+              <NavItem icon={<NewsIcon className="w-6 h-6" />} label="Noticias" active={location.pathname === '/noticias'} onClick={() => handleNavigation('Noticias', '/noticias')} />
+              <NavItem icon={<AboutUsIcon className="w-6 h-6" />} label="Sobre Nosotros" active={location.pathname === '/sobre-nosotros'} onClick={() => handleNavigation('Sobre Nosotros', '/sobre-nosotros')} />
             </div>
           </div>
 
-          <div className="mt-12 space-y-4">
-            <h3 className="px-6 text-sm font-semibold text-gray-400 uppercase tracking-wider">USUARIO</h3>
+          <div className="space-y-4">
+            <h3 className="px-6 text-xs font-black text-primary-600 uppercase tracking-widest opacity-50">USUARIO</h3>
             <div className="space-y-2">
-              <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={activeItem === 'Aplicaciones' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Aplicaciones');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
-              <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={activeItem === 'Ayuda y Soporte' && !location.pathname.startsWith('/wellkitt')} onClick={() => {
-                setActiveItem('Ayuda y Soporte');
-                if (location.pathname.startsWith('/wellkitt')) navigate('/');
-              }} />
+              <NavItem icon={<AppsIcon className="w-6 h-6" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} />
+              <NavItem icon={<HelpIcon className="w-6 h-6" />} label="Ayuda y Soporte" active={false} onClick={() => window.location.href = 'mailto:info@centrobioenergetica.com'} />
               <NavItem icon={<SearchIcon className="w-6 h-6" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
+              <ThemeToggle />
             </div>
           </div>
         </nav>
 
+        <UserProfile />
       </aside>
     </>
   );
