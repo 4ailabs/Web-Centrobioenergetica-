@@ -195,7 +195,7 @@ const ClinicalServices: React.FC = () => {
   return (
     <div className="w-full lg:mt-20 mt-16 space-y-12 pb-20">
       {/* Header Section */}
-      <header className="px-4 relative overflow-hidden bg-[var(--panel-bg)] rounded-[2.5rem] py-12 border border-[var(--border-color)] shadow-sm">
+      <header className="px-4 relative overflow-hidden py-12">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-600/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
@@ -294,7 +294,7 @@ const ClinicalServices: React.FC = () => {
 
       {/* How it Works Section */}
       <section className="px-4 py-12">
-        <div className="bg-[var(--panel-bg)] rounded-[3rem] p-10 lg:p-16 text-[var(--text-main)] relative overflow-hidden border border-[var(--border-color)]">
+        <div className="text-[var(--text-main)] relative overflow-hidden">
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-600/5 blur-[100px] rounded-full"></div>
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>

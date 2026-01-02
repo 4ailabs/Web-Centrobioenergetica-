@@ -71,7 +71,7 @@ const WellvibeMedia: React.FC = () => {
     return (
         <div className="w-full lg:mt-20 mt-16 space-y-12 pb-20">
             {/* Header Section */}
-            <header className="px-4 relative overflow-hidden bg-[var(--panel-bg)] rounded-3xl py-12 border border-[var(--border-color)] shadow-sm">
+            <header className="px-4 relative overflow-hidden py-12">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-6">

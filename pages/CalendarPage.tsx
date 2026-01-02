@@ -140,11 +140,11 @@ const CalendarPage: React.FC = () => {
                         })}
                     </div>
                 ) : (
-                    <div className="bg-[var(--panel-bg)] rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] shadow-sm">
+                    <div className="space-y-4">
                         {events.map((event, index) => {
                             const dateInfo = formatDate(event.date);
                             return (
-                                <div key={event.id} className={`p-6 lg:p-8 flex flex-col md:flex-row items-center gap-6 ${index !== events.length - 1 ? 'border-b border-[var(--border-color)]' : ''} hover:bg-[var(--bg-main)] transition-colors group`}>
+                                <div key={event.id} className={`p-6 lg:p-8 flex flex-col md:flex-row items-center gap-6 rounded-[2.5rem] bg-[var(--panel-bg)] border border-[var(--border-color)] hover:border-primary-500 transition-all group shadow-sm hover:shadow-lg`}>
                                     <div className="w-20 h-20 bg-[var(--bg-main)] rounded-2xl flex flex-col items-center justify-center border border-[var(--border-color)] shadow-sm shrink-0">
                                         <span className="text-primary-600 font-black text-2xl leading-none">{dateInfo.day}</span>
                                         <span className="text-[var(--text-muted)] font-bold text-xs mt-1 tracking-widest">{dateInfo.month}</span>

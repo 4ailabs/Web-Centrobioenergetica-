@@ -34,7 +34,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
   return (
     <div
       onClick={handleClick}
-      className="group relative bg-[var(--panel-bg)] rounded-[2rem] overflow-hidden border border-zinc-200/80 dark:border-white/10 shadow-sm hover:shadow-xl hover:shadow-primary-600/5 dark:hover:shadow-primary-600/10 transition-all duration-500 cursor-pointer flex flex-col h-full hover:border-primary-500/20"
+      className="group relative bg-[var(--panel-bg)] rounded-[2rem] overflow-hidden border border-zinc-200/80 dark:border-white/10 shadow-sm hover:shadow-xl hover:shadow-primary-600/5 dark:hover:shadow-primary-600/10 transition-all duration-300 cursor-pointer flex flex-col h-full hover:border-primary-500/20"
     >
       {/* Image Container */}
       <div className="relative h-56 lg:h-64 overflow-hidden bg-[var(--bg-main)]">
@@ -42,10 +42,10 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
           <LazyImage
             src={course.imageUrl}
             alt={course.title}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${getGradient(course.id)} flex items-center justify-center p-12 transition-transform duration-700 ease-out group-hover:scale-110`}>
+          <div className={`w-full h-full bg-gradient-to-br ${getGradient(course.id)} flex items-center justify-center p-12 transition-transform duration-500 ease-out group-hover:scale-105`}>
             <div className="text-white/20">
               {/* Icon placeholder could go here if needed */}
             </div>

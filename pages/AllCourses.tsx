@@ -161,7 +161,7 @@ const AllCourses: React.FC = () => {
   ];
 
   return (
-    <div className="w-full bg-[var(--panel-bg)] p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16 border border-[var(--border-color)]">
+    <div className="w-full lg:mt-20 mt-16 px-4">
       <header className="mb-8 lg:mb-12">
         <h1 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] uppercase tracking-tight">Nuestros <span className="text-primary-600">Cursos</span></h1>
         <p className="text-base lg:text-lg text-[var(--text-muted)] mt-4 max-w-4xl">

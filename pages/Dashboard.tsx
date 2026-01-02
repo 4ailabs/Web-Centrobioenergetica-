@@ -102,9 +102,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
 
       {/* Featured Programs Section */}
       <section className="animate-slide-in-up px-4">
-        <div className="bg-[var(--panel-bg)] border border-[var(--border-color)] p-8 lg:p-14 rounded-[3rem] shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-primary-600/5 blur-[100px] rounded-full -mr-40 -mt-40"></div>
-
+        <div className="relative">
+          {/* Header */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 gap-8 relative z-10">
             <div className="max-w-xl">
               <h2 className="text-xs font-black text-primary-600 uppercase tracking-[0.3em] mb-4 flex items-center gap-3">
@@ -124,6 +123,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
             </button>
           </div>
 
+          {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-14 relative z-10">
             {featuredCourses.map((course, index) => (
               <div key={course.id} className="animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>

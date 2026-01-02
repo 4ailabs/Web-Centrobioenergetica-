@@ -3,7 +3,7 @@ import { CoursesIcon, NewsIcon, MailIcon, PhoneIcon, YoutubeIcon } from '../comp
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="w-full bg-[var(--panel-bg)] p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16 border border-[var(--border-color)]">
+    <div className="w-full lg:mt-20 mt-16 px-4">
       <header className="mb-8 p-4">
         <h1 className="text-3xl lg:text-5xl font-black text-[var(--text-main)] tracking-tight mb-6">
           Sobre <span className="text-primary-600">Nosotros</span>

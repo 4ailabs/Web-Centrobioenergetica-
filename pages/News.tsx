@@ -157,9 +157,9 @@ const News: React.FC = () => {
 
       {featuredArticle && activeCategory === 'Todas' && !searchQuery && (
         <section className="px-4 animate-fade-in">
-          <div className="group relative bg-[var(--panel-bg)] rounded-[3.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-[var(--border-color)]">
+          <div className="group relative rounded-[3.5rem] overflow-hidden transition-all duration-700">
             <div className="flex flex-col lg:flex-row min-h-[550px]">
-              <div className="lg:w-3/5 relative overflow-hidden">
+              <div className="lg:w-3/5 relative overflow-hidden rounded-[3rem]">
                 <img
                   src={featuredArticle.imageUrl}
                   alt={featuredArticle.title}
@@ -173,7 +173,7 @@ const News: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="lg:w-2/5 p-10 lg:p-16 flex flex-col justify-center bg-[var(--panel-bg)] relative">
+              <div className="lg:w-2/5 p-10 lg:p-16 flex flex-col justify-center relative">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-primary-600/5 blur-3xl rounded-full"></div>
                 <span className="text-primary-600 text-[10px] font-black uppercase tracking-[0.3em] mb-6 flex items-center gap-2">
                   <span className="w-8 h-px bg-primary-600/30"></span>

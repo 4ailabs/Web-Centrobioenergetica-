@@ -31,7 +31,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick, mobile 
         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary-600 rounded-r-full" />
       )}
 
-      <div className={`relative z-10 transition-transform duration-300 group-hover:scale-110 ${active ? 'text-primary-600' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-primary-600 dark:group-hover:text-primary-400'
+      <div className={`relative z-10 transition-colors duration-200 ${active ? 'text-primary-600' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-primary-600 dark:group-hover:text-primary-400'
         }`}>
         {icon}
       </div>
@@ -103,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       onClick={toggleTheme}
       className={`group flex items-center space-x-3 px-4 py-3 rounded-2xl transition-all duration-300 relative overflow-hidden ${mobile ? 'w-full' : ''} text-zinc-500 dark:text-zinc-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 font-medium`}
     >
-      <div className="relative z-10 transition-transform duration-300 group-hover:rotate-12 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+      <div className="relative z-10 transition-colors duration-200 group-hover:text-primary-600 dark:group-hover:text-primary-400">
         {isDarkMode ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
       </div>
       <span className="relative z-10 text-[13px] tracking-wide">{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
