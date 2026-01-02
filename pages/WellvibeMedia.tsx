@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { YoutubeIcon, ArrowRightIcon, SparklesIcon } from '../components/Icons';
-import { Play, Share2, Info, ExternalLink } from 'lucide-react';
+import { Play, Share2, Info, ExternalLink, X } from 'lucide-react';
 
 const WellvibeMedia: React.FC = () => {
+    const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
     const featuredVideo = {
         id: 'fGV8kZdrHXk',
         title: 'La emoción detrás de todas tus emociones | Método del Estado Central',
@@ -56,6 +58,16 @@ const WellvibeMedia: React.FC = () => {
         },
     ];
 
+    const openVideo = (id: string) => {
+        setActiveVideoId(id);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeVideo = () => {
+        setActiveVideoId(null);
+        document.body.style.overflow = 'auto';
+    };
+
     return (
         <div className="w-full lg:mt-20 mt-16 space-y-12 pb-20">
             {/* Header Section */}
@@ -82,7 +94,7 @@ const WellvibeMedia: React.FC = () => {
                 <div className="bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-xl relative group">
                     <div className="grid lg:grid-cols-2">
                         <div className="aspect-video bg-black relative">
-                            {/* YouTube Embed Placeholder */}
+                            {/* YouTube Embed */}
                             <iframe
                                 className="w-full h-full"
                                 src={`https://www.youtube.com/embed/${featuredVideo.id}?rel=0&showinfo=0&autoplay=0`}
@@ -104,7 +116,9 @@ const WellvibeMedia: React.FC = () => {
                                 {featuredVideo.description}
                             </p>
                             <div className="flex flex-wrap gap-4">
-                                <button className="flex items-center gap-2 px-8 py-4 bg-red-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-red-700 transition-all shadow-xl shadow-red-600/20 active:scale-95">
+                                <button
+                                    onClick={() => openVideo(featuredVideo.id)}
+                                    className="flex items-center gap-2 px-8 py-4 bg-red-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-red-700 transition-all shadow-xl shadow-red-600/20 active:scale-95">
                                     <Play className="w-4 h-4 fill-current" /> Ver ahora
                                 </button>
                                 <button className="flex items-center gap-2 px-8 py-4 bg-[var(--bg-main)] text-[var(--text-main)] rounded-2xl font-black uppercase tracking-widest text-xs border border-[var(--border-color)] hover:border-red-600 transition-all active:scale-95">
@@ -132,8 +146,9 @@ const WellvibeMedia: React.FC = () => {
                     {videos.map((video, index) => (
                         <div
                             key={video.id}
-                            className="group bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
+                            className="group bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in cursor-pointer"
                             style={{ animationDelay: `${index * 50}ms` }}
+                            onClick={() => openVideo(video.id)}
                         >
                             <div className="relative h-56 overflow-hidden">
                                 <img
@@ -193,6 +208,29 @@ const WellvibeMedia: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Video Player Modal */}
+            {activeVideoId && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8 animate-fade-in">
+                    <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={closeVideo}></div>
+                    <div className="relative w-full max-w-6xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                        <button
+                            onClick={closeVideo}
+                            className="absolute top-4 right-4 z-50 w-10 h-10 bg-white/10 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all active:scale-90"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                        <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&rel=0`}
+                            title="YouTube Video Player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
