@@ -3,123 +3,177 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 interface User {
   id: string;
   email: string;
-  name?: string | null;
+  name: string;
   isAdmin: boolean;
-  totalXP?: number;
+  totalXP: number;
+  enrolledCourses: string[];
+  registeredAt: string;
 }
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name?: string) => Promise<void>;
+  register: (email: string, password: string, name: string) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// En Vercel, las APIs están en la misma URL que el frontend
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:3001');
+// Mock users database (localStorage)
+const MOCK_USERS_KEY = 'mock_users_db';
+const AUTH_TOKEN_KEY = 'auth_token';
+const CURRENT_USER_KEY = 'current_user';
+
+// Initialize with demo users
+const initializeMockUsers = () => {
+  const existingUsers = localStorage.getItem(MOCK_USERS_KEY);
+  if (!existingUsers) {
+    const demoUsers = [
+      {
+        id: '1',
+        email: 'alumno@instituto.com',
+        password: 'alumno123',
+        name: 'María González',
+        isAdmin: false,
+        totalXP: 2450,
+        enrolledCourses: ['1', '2', '3'],
+        registeredAt: new Date('2025-01-15').toISOString(),
+      },
+      {
+        id: '2',
+        email: 'admin@instituto.com',
+        password: 'admin123',
+        name: 'Dr. Carlos Ruiz',
+        isAdmin: true,
+        totalXP: 5000,
+        enrolledCourses: ['1', '2', '3', '4', '5'],
+        registeredAt: new Date('2024-06-01').toISOString(),
+      },
+      {
+        id: '3',
+        email: 'estudiante@instituto.com',
+        password: 'estudiante123',
+        name: 'Juan Pérez',
+        isAdmin: false,
+        totalXP: 1200,
+        enrolledCourses: ['1', '4'],
+        registeredAt: new Date('2025-11-20').toISOString(),
+      },
+    ];
+    localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(demoUsers));
+  }
+};
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verificar si hay un token guardado
-    const token = localStorage.getItem('auth_token');
-    if (token) {
-      verifyToken(token);
-    } else {
-      setLoading(false);
+    initializeMockUsers();
+
+    // Check for existing session
+    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+    const savedUser = localStorage.getItem(CURRENT_USER_KEY);
+
+    if (token && savedUser) {
+      try {
+        const userData = JSON.parse(savedUser);
+        setUser(userData);
+      } catch (error) {
+        console.error('Error loading user session:', error);
+        localStorage.removeItem(AUTH_TOKEN_KEY);
+        localStorage.removeItem(CURRENT_USER_KEY);
+      }
     }
+
+    setLoading(false);
   }, []);
 
-  const verifyToken = async (token: string) => {
-    try {
-      const response = await fetch(`${API_URL}/api/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-      } else {
-        localStorage.removeItem('auth_token');
-        setUser(null);
-      }
-    } catch (error) {
-      console.error('Error verifying token:', error);
-      localStorage.removeItem('auth_token');
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const login = async (email: string, password: string) => {
-    try {
-      const response = await fetch(`${API_URL}/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        // Intentar diagnosticar el problema
+  const login = async (email: string, password: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
         try {
-          const diagnoseResponse = await fetch(`${API_URL}/api/auth/diagnose`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-          });
-
-          if (diagnoseResponse.ok) {
-            const diagnosis = await diagnoseResponse.json();
-            throw new Error(diagnosis.message || data.error || 'Error al iniciar sesión');
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
           }
-        } catch (diagnoseError: any) {
-          throw new Error(diagnoseError.message || data.error || 'Error al iniciar sesión');
-        }
-        throw new Error(data.error || 'Error al iniciar sesión');
-      }
 
-      localStorage.setItem('auth_token', data.token);
-      setUser(data.user);
-    } catch (error: any) {
-      throw error;
-    }
+          const users = JSON.parse(usersData);
+          const foundUser = users.find(
+            (u: any) => u.email === email && u.password === password
+          );
+
+          if (!foundUser) {
+            reject(new Error('Email o contraseña incorrectos'));
+            return;
+          }
+
+          // Remove password from user object
+          const { password: _, ...userWithoutPassword } = foundUser;
+
+          // Create mock token
+          const token = `mock_token_${Date.now()}_${foundUser.id}`;
+
+          // Save session
+          localStorage.setItem(AUTH_TOKEN_KEY, token);
+          localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(userWithoutPassword));
+
+          setUser(userWithoutPassword);
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al procesar el inicio de sesión'));
+        }
+      }, 500); // Simulate network delay
+    });
   };
 
-  const register = async (email: string, password: string, name?: string) => {
-    const response = await fetch(`${API_URL}/api/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, name }),
+  const register = async (email: string, password: string, name: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
+          }
+
+          const users = JSON.parse(usersData);
+
+          // Check if email already exists
+          if (users.some((u: any) => u.email === email)) {
+            reject(new Error('Este email ya está registrado'));
+            return;
+          }
+
+          // Create new user
+          const newUser = {
+            id: `${Date.now()}`,
+            email,
+            password,
+            name,
+            isAdmin: false,
+            totalXP: 0,
+            enrolledCourses: [],
+            registeredAt: new Date().toISOString(),
+          };
+
+          users.push(newUser);
+          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al registrar usuario'));
+        }
+      }, 500);
     });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || 'Error al registrar usuario');
-    }
-
-    return data;
   };
 
   const logout = () => {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    localStorage.removeItem(CURRENT_USER_KEY);
     setUser(null);
   };
 
@@ -146,4 +200,3 @@ export const useAuth = () => {
   }
   return context;
 };
-

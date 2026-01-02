@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 @config "./tailwind.config.js";
 
@@ -11,15 +12,28 @@
 }
 
 .dark {
-  --bg-main: #020617;
-  --panel-bg: rgba(15, 23, 42, 0.7);
+  --bg-main: #09090b;
+  --panel-bg: rgba(24, 24, 27, 0.7);
   --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-color: #1e293b;
+  --text-muted: #a1a1aa;
+  --border-color: rgba(63, 63, 70, 0.3);
 }
 
 body {
-  @apply bg-[var(--bg-main)] text-[var(--text-main)] font-sans transition-colors duration-300;
+  @apply bg-[var(--bg-main)] text-[var(--text-main)] font-sans antialiased transition-colors duration-300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-display tracking-tight;
+}
+
+.tracking-premium {
+  @apply tracking-widest uppercase font-black;
 }
 
 /* Custom Utilities or Global Styles */
