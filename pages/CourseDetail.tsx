@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
+import { useAuth } from '../contexts/AuthContext';
 import type { CourseVideo } from '../types';
 import { ArrowLeftIcon } from '../components/Icons';
 import LazyImage from '../components/LazyImage';
 import { getStreamEmbedUrl } from '../lib/cloudflare-stream';
-import { Play, CheckCircle2, Clock, X, Lock } from 'lucide-react';
+import { Play, CheckCircle2, Clock, X, Lock, AlertCircle } from 'lucide-react';
 
 const CourseDetail: React.FC = () => {
   const navigate = useNavigate();
   const { courseId } = useParams<{ courseId: string }>();
   const courses = useCourses();
+  const { user, isAuthenticated } = useAuth();
 
   const course = courses.find(c => c.id === parseInt(courseId || '0'));
 
@@ -31,7 +33,23 @@ const CourseDetail: React.FC = () => {
   const [activeVideo, setActiveVideo] = useState<CourseVideo | null>(null);
   const [completedVideos, setCompletedVideos] = useState<Set<number>>(new Set());
 
+  // Verificar si el usuario tiene acceso al curso
+  const hasAccess = isAuthenticated && (
+    user?.enrolledCourses?.includes(courseId || '') ||
+    user?.subscriptionStatus === 'active'
+  );
+
   const openVideo = (video: CourseVideo) => {
+    // Verificar acceso antes de abrir el video
+    if (!hasAccess) {
+      if (!isAuthenticated) {
+        alert('Debes iniciar sesión para ver los videos');
+        navigate('/login');
+      } else {
+        alert('No tienes acceso a este curso. Contacta al administrador.');
+      }
+      return;
+    }
     setActiveVideo(video);
     document.body.style.overflow = 'hidden';
   };
@@ -125,6 +143,7 @@ const CourseDetail: React.FC = () => {
                   {module.videos.map((video, index) => {
                       const isCompleted = completedVideos.has(video.id);
                       const hasVideo = video.cloudflareStreamId || video.vimeoId;
+                      const isLocked = !hasAccess && hasVideo;
                       const thumbnailUrl = video.cloudflareStreamId
                         ? `https://customer-${import.meta.env.VITE_CLOUDFLARE_ACCOUNT_ID || 'placeholder'}.cloudflarestream.com/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
                         : null;
@@ -133,9 +152,13 @@ const CourseDetail: React.FC = () => {
                         <div
                           key={video.id}
                           onClick={() => hasVideo && openVideo(video)}
-                          className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] hover:border-primary-600 transition-colors ${
-                            hasVideo ? 'cursor-pointer' : 'cursor-default'
-                          }`}
+                          className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] ${
+                            isLocked
+                              ? 'opacity-60 cursor-not-allowed'
+                              : hasVideo
+                                ? 'cursor-pointer hover:border-primary-600'
+                                : 'cursor-default'
+                          } transition-colors`}
                         >
                           {/* Thumbnail / Placeholder */}
                           <div className="relative h-48 lg:h-56 overflow-hidden bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent">
@@ -163,11 +186,15 @@ const CourseDetail: React.FC = () => {
                               </div>
                             )}
 
-                            {/* Overlay con botón de play */}
+                            {/* Overlay con botón de play o candado */}
                             {hasVideo && (
                               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center">
-                                  <Play className="w-8 h-8 fill-current ml-1" />
+                                <div className={`w-16 h-16 ${isLocked ? 'bg-red-600' : 'bg-primary-600'} text-white rounded-full flex items-center justify-center`}>
+                                  {isLocked ? (
+                                    <Lock className="w-8 h-8" />
+                                  ) : (
+                                    <Play className="w-8 h-8 fill-current ml-1" />
+                                  )}
                                 </div>
                               </div>
                             )}
@@ -206,7 +233,12 @@ const CourseDetail: React.FC = () => {
 
                             {/* Footer */}
                             <div className="flex items-center justify-between pt-4 border-t border-[var(--border-color)]/30">
-                              {hasVideo ? (
+                              {isLocked ? (
+                                <div className="w-full flex items-center justify-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest">
+                                  <Lock className="w-3 h-3" />
+                                  Bloqueado
+                                </div>
+                              ) : hasVideo ? (
                                 <>
                                   <button
                                     onClick={(e) => {
@@ -253,17 +285,63 @@ const CourseDetail: React.FC = () => {
         </div>
       )}
 
-      {/* Botón de acceso */}
+      {/* Información de acceso al curso */}
       <div className="mt-8 pt-6 border-t border-[var(--border-color)]">
-        <button
-          onClick={() => {
-            // Aquí puedes agregar lógica para acceder al curso
-            alert('Funcionalidad de acceso al curso próximamente');
-          }}
-          className="w-full lg:w-auto px-10 py-5 bg-[var(--text-main)] text-[var(--bg-main)] rounded-2xl font-black text-lg hover:bg-primary-600 hover:text-white transition-all active:scale-95 shadow-xl shadow-slate-900/10 uppercase"
-        >
-          Acceder al Curso
-        </button>
+        {!isAuthenticated ? (
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center">
+                <AlertCircle className="w-6 h-6 text-amber-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Inicia sesión para acceder</h3>
+                <p className="text-sm text-[var(--text-muted)] font-medium">
+                  Necesitas iniciar sesión para acceder al contenido completo del curso.
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => navigate('/login')}
+              className="px-8 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-xl font-black text-sm hover:bg-primary-600 hover:text-white transition-colors uppercase tracking-wide"
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+        ) : !user?.enrolledCourses?.includes(courseId || '') && user?.subscriptionStatus !== 'active' ? (
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-red-500/10 border border-red-500/20 rounded-2xl">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center">
+                <Lock className="w-6 h-6 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Acceso restringido</h3>
+                <p className="text-sm text-[var(--text-muted)] font-medium">
+                  No tienes acceso a este curso. Contacta al administrador para solicitar acceso o activa tu suscripción.
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="px-8 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-xl font-black text-sm hover:bg-primary-600 hover:text-white transition-colors uppercase tracking-wide"
+            >
+              Ir al Dashboard
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-green-500/10 border border-green-500/20 rounded-2xl">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6 text-green-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Tienes acceso completo</h3>
+                <p className="text-sm text-[var(--text-muted)] font-medium">
+                  Puedes ver todos los videos del curso. Haz clic en cualquier video para comenzar.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Video Player Modal */}
