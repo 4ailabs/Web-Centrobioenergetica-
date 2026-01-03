@@ -242,8 +242,9 @@ const CourseDetail: React.FC = () => {
                       const hasVideo = video.cloudflareStreamId || video.vimeoId;
                       const isLocked = !hasAccess && hasVideo;
                       const isPlaying = activeVideo?.id === video.id;
+                      // Usar videodelivery.net para thumbnails (funciona sin Account ID)
                       const thumbnailUrl = video.cloudflareStreamId
-                        ? `https://customer-${import.meta.env.VITE_CLOUDFLARE_ACCOUNT_ID || 'placeholder'}.cloudflarestream.com/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
+                        ? `https://videodelivery.net/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
                         : null;
 
                       return (

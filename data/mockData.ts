@@ -162,7 +162,6 @@ export const MOCK_DATA = {
               description: 'Aprende los principios esenciales para trabajar con muñecos y establecer un espacio terapéutico seguro',
               duration: '22:45',
               order: 2,
-              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
           ],
         },
@@ -178,7 +177,6 @@ export const MOCK_DATA = {
               description: 'Aprende las técnicas prácticas para aplicar la terapia y preparar el entorno terapéutico',
               duration: '28:15',
               order: 1,
-              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
             {
               id: 4,
@@ -186,7 +184,6 @@ export const MOCK_DATA = {
               description: 'Observa casos prácticos reales de aplicación con diferentes perfiles de pacientes',
               duration: '35:20',
               order: 2,
-              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
             {
               id: 5,
@@ -194,7 +191,6 @@ export const MOCK_DATA = {
               description: 'Integra todo lo aprendido y cierra el proceso terapéutico de manera efectiva',
               duration: '18:50',
               order: 3,
-              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
           ],
         },

@@ -71,8 +71,8 @@ const CLOUDFLARE_STREAM_BASE_URL = `https://api.cloudflare.com/client/v4/account
  * Can be used on client side
  */
 export function getStreamEmbedUrl(
-  uid: string, 
-  accountId?: string, 
+  uid: string,
+  accountId?: string,
   options?: {
     autoplay?: boolean
     controls?: boolean
@@ -82,21 +82,7 @@ export function getStreamEmbedUrl(
     poster?: string
   }
 ): string {
-  const account = accountId || CLOUDFLARE_ACCOUNT_ID || import.meta.env.VITE_CLOUDFLARE_ACCOUNT_ID
-  
-  if (!account) {
-    console.warn("Cloudflare Account ID not configured. Using fallback URL format.")
-    // Devolver URL alternativa que no requiere Account ID
-    const params = new URLSearchParams()
-    if (options?.autoplay) params.append("autoplay", "true")
-    if (options?.controls !== undefined) params.append("controls", options.controls.toString())
-    if (options?.loop) params.append("loop", "true")
-    if (options?.muted) params.append("muted", "true")
-    if (options?.preload) params.append("preload", options.preload)
-    const queryString = params.toString()
-    return `https://iframe.videodelivery.net/${uid}${queryString ? `?${queryString}` : ""}`
-  }
-
+  // Usar siempre iframe.videodelivery.net (funciona sin Account ID)
   const params = new URLSearchParams()
   if (options?.autoplay) params.append("autoplay", "true")
   if (options?.controls !== undefined) params.append("controls", options.controls.toString())
@@ -106,6 +92,6 @@ export function getStreamEmbedUrl(
   if (options?.poster) params.append("poster", options.poster)
 
   const queryString = params.toString()
-  return `https://customer-${account}.cloudflarestream.com/${uid}/iframe${queryString ? `?${queryString}` : ""}`
+  return `https://iframe.videodelivery.net/${uid}${queryString ? `?${queryString}` : ""}`
 }
 
