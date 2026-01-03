@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { DashboardIcon, CoursesIcon, NewsIcon, AboutUsIcon, AppsIcon, ClinicalServicesIcon, WellkittIcon, HelpIcon, LogoIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon, YoutubeIcon } from './Icons';
-import { LogIn, LogOut } from 'lucide-react';
+import { LogIn, LogOut, Shield } from 'lucide-react';
 import { useUIState, useAppDispatch } from '../contexts/AppContext';
 
 interface NavItemProps {
@@ -234,6 +234,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           <div className="space-y-3">
             <h3 className="px-4 text-[10px] font-bold text-zinc-400 uppercase tracking-widest select-none">PERSONAL</h3>
             <div className="space-y-1">
+              {user?.isAdmin && (
+                <NavItem icon={<Shield className="w-5 h-5" />} label="Panel Admin" active={location.pathname === '/admin'} onClick={() => handleNavigation('Panel Admin', '/admin')} />
+              )}
               <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} />
               <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
               <ThemeToggle />

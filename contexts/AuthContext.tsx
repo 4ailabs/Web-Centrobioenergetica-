@@ -8,6 +8,7 @@ interface User {
   totalXP: number;
   enrolledCourses: string[];
   registeredAt: string;
+  subscriptionStatus: 'active' | 'inactive';
 }
 
 interface AuthContextType {
@@ -16,6 +17,11 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
   logout: () => void;
+  getAllUsers: () => Promise<User[]>;
+  updateUserSubscription: (userId: string, status: 'active' | 'inactive') => Promise<void>;
+  updateUserCourses: (userId: string, courseIds: string[]) => Promise<void>;
+  adminCreateUser: (userData: any) => Promise<void>;
+  adminUpdateUser: (userId: string, userData: any) => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -40,6 +46,7 @@ const initializeMockUsers = () => {
         totalXP: 2450,
         enrolledCourses: ['1', '2', '3'],
         registeredAt: new Date('2025-01-15').toISOString(),
+        subscriptionStatus: 'active',
       },
       {
         id: '2',
@@ -50,6 +57,7 @@ const initializeMockUsers = () => {
         totalXP: 5000,
         enrolledCourses: ['1', '2', '3', '4', '5'],
         registeredAt: new Date('2024-06-01').toISOString(),
+        subscriptionStatus: 'active',
       },
       {
         id: '3',
@@ -60,6 +68,7 @@ const initializeMockUsers = () => {
         totalXP: 1200,
         enrolledCourses: ['1', '4'],
         registeredAt: new Date('2025-11-20').toISOString(),
+        subscriptionStatus: 'inactive',
       },
     ];
     localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(demoUsers));
@@ -158,6 +167,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             totalXP: 0,
             enrolledCourses: [],
             registeredAt: new Date().toISOString(),
+            subscriptionStatus: 'inactive',
           };
 
           users.push(newUser);
@@ -177,6 +187,178 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setUser(null);
   };
 
+  const getAllUsers = async (): Promise<User[]> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const usersData = localStorage.getItem(MOCK_USERS_KEY);
+        if (!usersData) {
+          resolve([]);
+          return;
+        }
+        const users = JSON.parse(usersData);
+        // Remove passwords
+        const usersWithoutPasswords = users.map((u: any) => {
+          const { password, ...rest } = u;
+          return rest;
+        });
+        resolve(usersWithoutPasswords);
+      }, 300);
+    });
+  };
+
+  const updateUserSubscription = async (userId: string, status: 'active' | 'inactive'): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
+          }
+
+          const users = JSON.parse(usersData);
+          const userIndex = users.findIndex((u: any) => u.id === userId);
+
+          if (userIndex === -1) {
+            reject(new Error('Usuario no encontrado'));
+            return;
+          }
+
+          users[userIndex].subscriptionStatus = status;
+          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+
+          // Update current user session if it matches and is active
+          if (user && user.id === userId) {
+            const updatedUser = { ...user, subscriptionStatus: status };
+            setUser(updatedUser);
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedUser));
+          }
+
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al actualizar suscripción'));
+        }
+      }, 300);
+    });
+  };
+
+  const updateUserCourses = async (userId: string, courseIds: string[]): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
+          }
+
+          const users = JSON.parse(usersData);
+          const userIndex = users.findIndex((u: any) => u.id === userId);
+
+          if (userIndex === -1) {
+            reject(new Error('Usuario no encontrado'));
+            return;
+          }
+
+          users[userIndex].enrolledCourses = courseIds;
+          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+
+          // Update current user session if it matches
+          if (user && user.id === userId) {
+            const updatedUser = { ...user, enrolledCourses: courseIds };
+            setUser(updatedUser);
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedUser));
+          }
+
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al actualizar cursos'));
+        }
+      }, 300);
+    });
+  };
+
+  const adminCreateUser = async (userData: any): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
+          }
+
+          const users = JSON.parse(usersData);
+
+          if (users.some((u: any) => u.email === userData.email)) {
+            reject(new Error('Este email ya está registrado'));
+            return;
+          }
+
+          const newUser = {
+            id: `${Date.now()}`,
+            email: userData.email,
+            password: userData.password, // In a real app, hash this!
+            name: userData.name,
+            isAdmin: userData.isAdmin || false,
+            totalXP: 0,
+            enrolledCourses: [],
+            registeredAt: new Date().toISOString(),
+            subscriptionStatus: userData.subscriptionStatus || 'inactive',
+          };
+
+          users.push(newUser);
+          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al crear usuario'));
+        }
+      }, 500);
+    });
+  };
+
+  const adminUpdateUser = async (userId: string, userData: any): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
+          }
+
+          const users = JSON.parse(usersData);
+          const userIndex = users.findIndex((u: any) => u.id === userId);
+
+          if (userIndex === -1) {
+            reject(new Error('Usuario no encontrado'));
+            return;
+          }
+
+          // Update fields
+          users[userIndex] = { ...users[userIndex], ...userData };
+
+          // Don't update ID or enrolledCourses (handled separately) unless specifically needed, 
+          // generally we just merge what is passed. 
+          // Note: If updating email, should technically check for duplicates but skipping for mock simplicity unless requested.
+
+          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+
+          // If updating current user
+          if (user && user.id === userId) {
+            const updatedUser = { ...user, ...userData };
+            setUser(updatedUser);
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedUser));
+          }
+
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al actualizar usuario'));
+        }
+      }, 300);
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -185,6 +367,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         login,
         register,
         logout,
+        getAllUsers,
+        updateUserSubscription,
+        updateUserCourses,
+        adminCreateUser,
+        adminUpdateUser,
         isAuthenticated: !!user,
       }}
     >

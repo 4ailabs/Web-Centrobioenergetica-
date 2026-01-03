@@ -56,7 +56,7 @@ const Wellkitt: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--panel-bg)] p-3 sm:p-6 lg:p-8 rounded-[2.5rem] lg:mt-20 mt-12 sm:mt-16 border border-[var(--border-color)]">
+    <div className="w-full lg:mt-20 mt-12 sm:mt-16 px-4">
       <header className="mb-6 sm:mb-8 lg:mb-12">
         <div className="flex items-center mb-3 sm:mb-4">
           <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mr-4 border border-primary-600/20">

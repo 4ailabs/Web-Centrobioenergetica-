@@ -153,6 +153,7 @@ export const MOCK_DATA = {
               title: 'Video 1: Introducción a la Terapia de Muñecos',
               description: 'Conoce los fundamentos básicos de esta técnica terapéutica',
               order: 1,
+              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0',
             },
             {
               id: 2,

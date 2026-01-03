@@ -15,7 +15,7 @@ const CourseDetail: React.FC = () => {
 
   if (!course) {
     return (
-      <div className="w-full bg-[var(--panel-bg)] p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16 border border-[var(--border-color)]">
+      <div className="w-full lg:mt-20 mt-16 px-4">
         <p className="text-[var(--text-muted)]">Curso no encontrado</p>
         <button
           onClick={() => navigate('/')}
@@ -34,7 +34,7 @@ const CourseDetail: React.FC = () => {
   const currentModule = course.modules?.find(m => m.id === selectedModule);
 
   return (
-    <div className="w-full bg-[var(--panel-bg)] p-4 lg:p-8 rounded-3xl lg:mt-20 mt-16 border border-[var(--border-color)]">
+    <div className="w-full lg:mt-20 mt-16 px-4">
       {/* Header con botón de volver */}
       <button
         onClick={() => navigate('/')}

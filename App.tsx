@@ -21,6 +21,8 @@ import Search from './pages/Search';
 import CalendarPage from './pages/CalendarPage';
 import WellvibeMedia from './pages/WellvibeMedia';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
+import AdminDashboard from './pages/AdminDashboard';
 
 
 // Componente interno que usa el contexto
@@ -132,6 +134,13 @@ const AppContent: React.FC = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/search" element={<SearchResults query={searchQuery} />} />
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                </ProtectedRoute>
+              } />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
