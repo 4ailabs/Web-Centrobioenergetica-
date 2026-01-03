@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onShowDetails }) => 
 
   return (
     <motion.div
-      className={`${cardColor} rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full min-h-[280px] md:min-h-[420px]`}
+      className={`${cardColor} rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full min-h-[280px] md:min-h-[420px]`}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02, boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }}

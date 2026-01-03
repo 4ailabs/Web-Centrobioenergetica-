@@ -9,6 +9,12 @@
   --text-main: #0f172a;
   --text-muted: #64748b;
   --border-color: #e2e8f0;
+
+  /* Safe Area Insets para iPhone 16 */
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-right: env(safe-area-inset-right);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  --safe-area-inset-left: env(safe-area-inset-left);
 }
 
 .dark {
@@ -21,6 +27,10 @@
 
 body {
   @apply bg-[var(--bg-main)] text-[var(--text-main)] font-sans antialiased transition-colors duration-300;
+  padding-top: var(--safe-area-inset-top);
+  padding-right: var(--safe-area-inset-right);
+  padding-bottom: var(--safe-area-inset-bottom);
+  padding-left: var(--safe-area-inset-left);
 }
 
 h1,
@@ -54,8 +64,58 @@ h6 {
   align-items: center;
 }
 
+/* Optimizaciones específicas para iPhone 16 */
+@media (max-width: 430px) and (-webkit-device-pixel-ratio: 3) {
+  /* iPhone 16 y iPhone 16 Pro tienen ancho de 393px y 402px respectivamente */
+
+  /* Mejorar legibilidad en pantalla más pequeña */
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Optimizar áreas táctiles - mínimo 44x44px según Apple HIG */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Evitar transformaciones en hover en móvil */
+  .mobile-nav-item:hover {
+    transform: none;
+  }
+
+  /* Optimizar scrolling suave */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mejorar rendimiento de animaciones */
+  .animate-fade-in,
+  .animate-slide-in-up,
+  .animate-slide-in-left {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Optimizaciones para todas las pantallas móviles */
 @media (max-width: 1024px) {
   .mobile-nav-item:hover {
     transform: none;
+  }
+
+  /* Mejorar rendimiento en móviles */
+  img {
+    will-change: auto;
+    transform: translateZ(0);
+  }
+
+  /* Desactivar efectos hover costosos en móvil */
+  .group:hover .group-hover\:scale-105,
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1);
   }
 }

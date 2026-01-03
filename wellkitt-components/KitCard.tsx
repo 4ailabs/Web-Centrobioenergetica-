@@ -48,7 +48,7 @@ const KitCard: React.FC<KitCardProps> = ({ kit, allProducts, onShowDetails }) =>
 
   return (
     <motion.div
-      className={`${color.bg} border border-gray-200 rounded-3xl shadow-lg hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[320px] md:min-h-[480px]`}
+      className={`${color.bg} border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[320px] md:min-h-[480px]`}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03, boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}

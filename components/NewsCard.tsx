@@ -14,7 +14,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
     : 'Reciente';
 
   return (
-    <div className="bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-zinc-200/80 dark:border-white/10 shadow-sm hover:shadow-xl hover:shadow-primary-600/5 dark:hover:shadow-primary-600/10 transition-all duration-300 flex flex-col group h-full hover:border-primary-500/20">
+    <div className="bg-[var(--panel-bg)] rounded-xl overflow-hidden border border-zinc-200/80 dark:border-white/10 shadow-sm hover:shadow-xl hover:shadow-primary-600/5 dark:hover:shadow-primary-600/10 transition-all duration-300 flex flex-col group h-full hover:border-primary-500/20">
       <div className="relative overflow-hidden h-64 lg:h-72">
         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" />
         <div className="absolute top-6 left-6">

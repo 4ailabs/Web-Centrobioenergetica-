@@ -77,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
         <div className="p-6 pt-20 flex flex-col h-full bg-gradient-to-b from-transparent to-zinc-50/50 dark:to-zinc-900/20">
           <nav className="flex-grow overflow-y-auto space-y-8 pr-2 custom-scrollbar">
             <div className="space-y-3">
-              <h3 className="px-4 text-[8px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.2em] opacity-50">MENÚ PRINCIPAL</h3>
+              <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Menú Principal</h3>
               <div className="space-y-1">
                 <NavItem icon={<DashboardIcon className="w-5 h-5" />} label="Panel" active={location.pathname === '/'} onClick={() => handleNavigation('Panel', '/')} mobile={true} />
                 <NavItem icon={<CoursesIcon className="w-5 h-5" />} label="Cursos" active={location.pathname === '/cursos'} onClick={() => handleNavigation('Cursos', '/cursos')} mobile={true} />
@@ -89,14 +89,14 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             </div>
 
             <div className="space-y-3">
-              <h3 className="px-4 text-[8px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.2em] opacity-50">CONTENIDO</h3>
+              <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Contenido</h3>
               <div className="space-y-1">
                 <NavItem icon={<YoutubeIcon className="w-5 h-5" />} label="Wellvibe Media" active={location.pathname === '/wellvibe-media'} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} mobile={true} />
               </div>
             </div>
 
             <div className="space-y-3">
-              <h3 className="px-4 text-[8px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.2em] opacity-50">PERSONAL</h3>
+              <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Personal</h3>
               <div className="space-y-1">
                 <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} />
                 <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
@@ -149,8 +149,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
 
         <nav className="flex-grow space-y-6 pr-1 custom-scrollbar relative z-10 overflow-y-auto">
           <div className="space-y-2">
-            <h3 className="px-3 text-[8px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.2em] select-none flex items-center gap-2 opacity-50">
-              <span className="w-8 h-px bg-gradient-to-r from-emerald-500/30 to-transparent"></span>
+            <h3 className="px-3 text-[7px] font-normal text-zinc-400 dark:text-zinc-500 uppercase tracking-wider select-none flex items-center gap-2 opacity-30">
+              <span className="w-4 h-px bg-gradient-to-r from-emerald-500/20 to-transparent"></span>
               MENÚ
             </h3>
             <div className="space-y-1">
@@ -164,8 +164,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           </div>
 
           <div className="space-y-2">
-            <h3 className="px-3 text-[8px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.2em] select-none flex items-center gap-2 opacity-50">
-              <span className="w-8 h-px bg-gradient-to-r from-teal-500/30 to-transparent"></span>
+            <h3 className="px-3 text-[7px] font-normal text-zinc-400 dark:text-zinc-500 uppercase tracking-wider select-none flex items-center gap-2 opacity-30">
+              <span className="w-4 h-px bg-gradient-to-r from-teal-500/20 to-transparent"></span>
               CONTENIDO
             </h3>
             <div className="space-y-1">
@@ -174,8 +174,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           </div>
 
           <div className="space-y-2">
-            <h3 className="px-3 text-[8px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-[0.2em] select-none flex items-center gap-2 opacity-50">
-              <span className="w-8 h-px bg-gradient-to-r from-cyan-500/30 to-transparent"></span>
+            <h3 className="px-3 text-[7px] font-normal text-zinc-400 dark:text-zinc-500 uppercase tracking-wider select-none flex items-center gap-2 opacity-30">
+              <span className="w-4 h-px bg-gradient-to-r from-cyan-500/20 to-transparent"></span>
               PERSONAL
             </h3>
             <div className="space-y-1">
