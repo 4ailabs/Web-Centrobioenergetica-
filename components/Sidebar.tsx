@@ -203,12 +203,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
         <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-emerald-500/10 to-transparent pointer-events-none rounded-full blur-3xl" />
 
         <div className="flex items-center space-x-3 mb-8 pl-1 relative z-10">
-          <div className="bg-gradient-to-br from-emerald-500 to-teal-600 p-2.5 rounded-xl shadow-lg shadow-emerald-500/20">
-            <LogoIcon className="h-7 w-auto text-white" />
-          </div>
+          <LogoIcon className="h-10 w-auto" />
           <div className="flex flex-col">
             <span className="text-sm font-bold text-zinc-800 dark:text-zinc-100">Instituto</span>
-            <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Centrobioenergética</span>
+            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Centrobioenergética</span>
           </div>
         </div>
 
