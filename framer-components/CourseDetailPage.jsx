@@ -97,6 +97,21 @@ export default function CourseDetailPage(props) {
             margin: "0",
         }}>
             <style>{`
+                .video-player-container {
+                    aspect-ratio: 16/9;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                .video-player-container iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                }
+
                 @media (max-width: 768px) {
                     .course-detail-container {
                         padding: 16px !important;
@@ -515,9 +530,7 @@ export default function CourseDetailPage(props) {
 
                         {/* Video Player */}
                         {lessons[currentLesson] && (
-                            <div style={{
-                                width: "100%",
-                                height: "400px",
+                            <div className="video-player-container" style={{
                                 borderRadius: "12px",
                                 overflow: "hidden",
                                 backgroundColor: "#000000",
@@ -526,9 +539,6 @@ export default function CourseDetailPage(props) {
                             }}>
                                 <iframe
                                     src={`https://player.vimeo.com/video/${lessons[currentLesson].vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
-                                    width="100%"
-                                    height="100%"
-                                    frameBorder="0"
                                     allow="autoplay; fullscreen; picture-in-picture"
                                     allowFullScreen
                                     onLoad={handleVideoLoad}
@@ -544,6 +554,7 @@ export default function CourseDetailPage(props) {
                                         transform: "translate(-50%, -50%)",
                                         color: "#ffffff",
                                         fontSize: "16px",
+                                        zIndex: 10,
                                     }}>
                                         Cargando video...
                                     </div>

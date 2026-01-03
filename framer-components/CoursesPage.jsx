@@ -118,10 +118,22 @@ export default function CoursesPage(props) {
                 color: textColor,
             }}>
                 <style>{`
+                    .video-container {
+                        aspect-ratio: 16/9;
+                        width: 100%;
+                        max-width: 100%;
+                    }
+
+                    .video-container iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: 0;
+                    }
+
                     @media (max-width: 768px) {
-                        .video-container {
-                            height: 250px !important;
-                        }
                         .course-header {
                             padding: 16px !important;
                         }
@@ -129,6 +141,9 @@ export default function CoursesPage(props) {
                             font-size: 24px !important;
                         }
                         .course-details {
+                            padding: 16px !important;
+                        }
+                        .video-wrapper {
                             padding: 16px !important;
                         }
                     }
@@ -161,14 +176,12 @@ export default function CoursesPage(props) {
                 </div>
 
                 {/* Video Player */}
-                <div style={{
+                <div className="video-wrapper" style={{
                     padding: "32px",
                     maxWidth: "1200px",
                     margin: "0 auto",
                 }}>
                     <div className="video-container" style={{
-                        width: "100%",
-                        height: "500px",
                         borderRadius: "12px",
                         overflow: "hidden",
                         backgroundColor: "#000000",
@@ -177,9 +190,6 @@ export default function CoursesPage(props) {
                     }}>
                         <iframe
                             src={`https://player.vimeo.com/video/${selectedCourse.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
-                            width="100%"
-                            height="100%"
-                            frameBorder="0"
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
                             onLoad={handleVideoLoad}

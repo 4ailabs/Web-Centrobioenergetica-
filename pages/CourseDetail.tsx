@@ -346,56 +346,58 @@ const CourseDetail: React.FC = () => {
 
       {/* Video Player Modal */}
       {activeVideo && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 lg:p-8">
           <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={closeVideo}></div>
-          <div className="relative w-full max-w-6xl bg-[var(--panel-bg)] rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)]">
+          <div className="relative w-full max-w-6xl bg-[var(--panel-bg)] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)]">
             {/* Header del modal */}
-            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-b border-[var(--border-color)] p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex-1 pr-4">
-                  <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] uppercase tracking-tight mb-2">
+            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-b border-[var(--border-color)] p-3 sm:p-4 lg:p-6">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-xl lg:text-2xl font-black text-[var(--text-main)] uppercase tracking-tight mb-1 sm:mb-2 line-clamp-2">
                     {activeVideo.title}
                   </h3>
                   {activeVideo.description && (
-                    <p className="text-sm text-[var(--text-muted)] font-medium">
+                    <p className="text-xs sm:text-sm text-[var(--text-muted)] font-medium line-clamp-2">
                       {activeVideo.description}
                     </p>
                   )}
                 </div>
                 <button
                   onClick={closeVideo}
-                  className="flex-shrink-0 w-10 h-10 bg-[var(--bg-main)] hover:bg-red-600 text-[var(--text-main)] hover:text-white rounded-xl flex items-center justify-center transition-colors border border-[var(--border-color)]"
+                  className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-[var(--bg-main)] hover:bg-red-600 text-[var(--text-main)] hover:text-white rounded-lg sm:rounded-xl flex items-center justify-center transition-colors border border-[var(--border-color)]"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
               </div>
             </div>
 
-            {/* Video player */}
-            <div className="relative aspect-video bg-black">
+            {/* Video player - Optimizado para móviles */}
+            <div className="relative w-full bg-black" style={{ aspectRatio: '16/9' }}>
               {activeVideo.cloudflareStreamId ? (
                 <iframe
                   src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, {
                     controls: true,
                     autoplay: true,
                   })}
-                  className="w-full h-full"
+                  className="absolute inset-0 w-full h-full border-0"
                   allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
                   allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 />
               ) : activeVideo.vimeoId ? (
                 <iframe
                   src={`https://player.vimeo.com/video/${activeVideo.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
-                  className="w-full h-full"
+                  className="absolute inset-0 w-full h-full border-0"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 />
               ) : null}
             </div>
 
             {/* Footer con acciones */}
-            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-t border-[var(--border-color)] p-6">
-              <div className="flex items-center justify-between">
+            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-t border-[var(--border-color)] p-3 sm:p-4 lg:p-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-4">
                   {activeVideo.duration && (
                     <div className="flex items-center gap-2 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest">
@@ -406,14 +408,14 @@ const CourseDetail: React.FC = () => {
                 </div>
                 <button
                   onClick={() => toggleVideoCompletion(activeVideo.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors ${
+                  className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors min-h-[44px] ${
                     completedVideos.has(activeVideo.id)
                       ? 'bg-green-500 text-white'
                       : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
                   }`}
                 >
                   <CheckCircle2 className="w-4 h-4" />
-                  {completedVideos.has(activeVideo.id) ? 'Completado' : 'Marcar como visto'}
+                  <span className="whitespace-nowrap">{completedVideos.has(activeVideo.id) ? 'Completado' : 'Marcar como visto'}</span>
                 </button>
               </div>
             </div>
