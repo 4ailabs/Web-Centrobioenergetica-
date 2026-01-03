@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
-import type { Course } from '../types';
+import type { CourseVideo } from '../types';
 import { ArrowLeftIcon } from '../components/Icons';
 import LazyImage from '../components/LazyImage';
 import { getStreamEmbedUrl } from '../lib/cloudflare-stream';
+import { Play, CheckCircle2, Clock, X, Lock } from 'lucide-react';
 
 const CourseDetail: React.FC = () => {
   const navigate = useNavigate();
@@ -27,11 +28,30 @@ const CourseDetail: React.FC = () => {
     );
   }
 
-  const [selectedModule, setSelectedModule] = useState<number | null>(
-    course.modules && course.modules.length > 0 ? course.modules[0].id : null
-  );
+  const [activeVideo, setActiveVideo] = useState<CourseVideo | null>(null);
+  const [completedVideos, setCompletedVideos] = useState<Set<number>>(new Set());
 
-  const currentModule = course.modules?.find(m => m.id === selectedModule);
+  const openVideo = (video: CourseVideo) => {
+    setActiveVideo(video);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeVideo = () => {
+    setActiveVideo(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  const toggleVideoCompletion = (videoId: number) => {
+    setCompletedVideos(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(videoId)) {
+        newSet.delete(videoId);
+      } else {
+        newSet.add(videoId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div className="w-full lg:mt-20 mt-16 px-4">
@@ -79,106 +99,155 @@ const CourseDetail: React.FC = () => {
       {/* Módulos y Videos */}
       {course.modules && course.modules.length > 0 ? (
         <div className="mt-8">
-          <h2 className="text-xl lg:text-2xl font-black text-[var(--text-main)] mb-6 uppercase tracking-tight">Contenido del Curso</h2>
+          <h2 className="text-xl lg:text-2xl font-black text-[var(--text-main)] mb-8 uppercase tracking-tight">Contenido del Curso</h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Lista de módulos */}
-            <div className="lg:col-span-1">
-              <div className="bg-slate-500/5 rounded-2xl p-4 lg:p-6 space-y-3 border border-[var(--border-color)]">
-                <h3 className="text-lg font-bold text-[var(--text-main)] mb-4 uppercase tracking-tight">Módulos</h3>
-                {course.modules.map((module) => (
-                  <button
-                    key={module.id}
-                    onClick={() => setSelectedModule(module.id)}
-                    className={`w-full text-left p-4 rounded-xl transition-all duration-200 border ${selectedModule === module.id
-                      ? 'bg-primary-600 text-white shadow-lg border-primary-500'
-                      : 'bg-[var(--bg-main)] text-[var(--text-muted)] border-[var(--border-color)] hover:border-primary-400'
-                      }`}
-                  >
-                    <div className="font-bold mb-1 uppercase text-xs tracking-wider">{module.title}</div>
-                    <div className={`text-[10px] uppercase font-black ${selectedModule === module.id ? 'text-primary-100' : 'text-[var(--text-muted)] opacity-60'
-                      }`}>
-                      {module.videos.length} {module.videos.length === 1 ? 'video' : 'videos'}
+          {/* Renderizar todos los módulos secuencialmente */}
+          <div className="space-y-12">
+            {course.modules.map((module) => (
+              <div key={module.id}>
+                {/* Header del módulo */}
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center font-black text-sm">
+                      {module.order}
                     </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Videos del módulo seleccionado */}
-            <div className="lg:col-span-2">
-              {currentModule ? (
-                <div>
-                  <h3 className="text-xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight">{currentModule.title}</h3>
-                  {currentModule.description && (
-                    <p className="text-sm text-[var(--text-muted)] mb-8 font-medium leading-relaxed">{currentModule.description}</p>
+                    <h3 className="text-2xl lg:text-3xl font-black text-[var(--text-main)] uppercase tracking-tight">{module.title}</h3>
+                  </div>
+                  {module.description && (
+                    <p className="text-sm lg:text-base text-[var(--text-muted)] font-medium leading-relaxed ml-11">
+                      {module.description}
+                    </p>
                   )}
+                </div>
 
-                  <div className="space-y-4">
-                    {currentModule.videos.map((video, index) => (
-                      <div
-                        key={video.id}
-                        className="bg-[var(--bg-main)] rounded-2xl p-5 lg:p-7 border border-[var(--border-color)] hover:border-primary-600 transition-all group/video shadow-sm hover:shadow-xl"
-                      >
-                        <div className="flex items-start space-x-5">
-                          <div className="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-2xl flex items-center justify-center font-black text-lg shadow-lg shadow-primary-600/20 group-hover/video:scale-110 transition-transform">
-                            {index + 1}
-                          </div>
-                          <div className="flex-grow">
-                            <h4 className="font-black text-[var(--text-main)] mb-2 uppercase tracking-tight text-lg group-hover/video:text-primary-600 transition-colors">{video.title}</h4>
-                            {video.description && (
-                              <p className="text-sm text-[var(--text-muted)] mb-4 font-medium leading-relaxed">{video.description}</p>
-                            )}
-                            {video.duration && (
-                              <div className="flex items-center gap-2 text-[10px] font-black text-primary-600 uppercase tracking-widest bg-primary-600/10 w-fit px-3 py-1 rounded-full border border-primary-600/10">
-                                <span>Duración: {video.duration}</span>
-                              </div>
-                            )}
-                            {video.cloudflareStreamId ? (
-                              <div className="mt-4">
-                                <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                                  <iframe
-                                    src={getStreamEmbedUrl(video.cloudflareStreamId, undefined, {
-                                      controls: true,
-                                      autoplay: false,
-                                    })}
-                                    className="w-full h-full"
-                                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                                    allowFullScreen
-                                  />
-                                </div>
-                              </div>
-                            ) : video.vimeoId ? (
-                              <div className="mt-4">
-                                <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                                  <iframe
-                                    src={`https://player.vimeo.com/video/${video.vimeoId}?title=0&byline=0&portrait=0`}
-                                    className="w-full h-full"
-                                    allow="autoplay; fullscreen; picture-in-picture"
-                                    allowFullScreen
-                                  />
-                                </div>
-                              </div>
+                {/* Grid de videos del módulo */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {module.videos.map((video, index) => {
+                      const isCompleted = completedVideos.has(video.id);
+                      const hasVideo = video.cloudflareStreamId || video.vimeoId;
+                      const thumbnailUrl = video.cloudflareStreamId
+                        ? `https://customer-${import.meta.env.VITE_CLOUDFLARE_ACCOUNT_ID || 'placeholder'}.cloudflarestream.com/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
+                        : null;
+
+                      return (
+                        <div
+                          key={video.id}
+                          onClick={() => hasVideo && openVideo(video)}
+                          className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] hover:border-primary-600 transition-colors ${
+                            hasVideo ? 'cursor-pointer' : 'cursor-default'
+                          }`}
+                        >
+                          {/* Thumbnail / Placeholder */}
+                          <div className="relative h-48 lg:h-56 overflow-hidden bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent">
+                            {thumbnailUrl && hasVideo ? (
+                              <img
+                                src={thumbnailUrl}
+                                alt={video.title}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  // Fallback to gradient if thumbnail fails
+                                  e.currentTarget.style.display = 'none';
+                                }}
+                              />
                             ) : (
-                              <div className="mt-6 p-6 bg-[var(--bg-main)] rounded-2xl text-center text-[var(--text-muted)] text-sm font-bold uppercase tracking-widest border border-[var(--border-color)] border-dashed">
-                                Video próximamente disponible
+                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/10 via-primary-600/5 to-transparent">
+                                <div className="text-center">
+                                  <div className="w-20 h-20 mx-auto mb-3 bg-primary-600/20 rounded-2xl flex items-center justify-center">
+                                    {hasVideo ? (
+                                      <Play className="w-10 h-10 text-primary-600" />
+                                    ) : (
+                                      <Lock className="w-10 h-10 text-[var(--text-muted)]" />
+                                    )}
+                                  </div>
+                                </div>
                               </div>
                             )}
+
+                            {/* Overlay con botón de play */}
+                            {hasVideo && (
+                              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center">
+                                  <Play className="w-8 h-8 fill-current ml-1" />
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Badge de número */}
+                            <div className="absolute top-4 left-4 w-10 h-10 bg-primary-600 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg z-10">
+                              {index + 1}
+                            </div>
+
+                            {/* Badge de duración */}
+                            {video.duration && (
+                              <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-black/80 backdrop-blur-sm rounded-lg text-[10px] font-black text-white uppercase tracking-widest z-10 flex items-center gap-1.5">
+                                <Clock className="w-3 h-3" />
+                                {video.duration}
+                              </div>
+                            )}
+
+                            {/* Badge de completado */}
+                            {isCompleted && (
+                              <div className="absolute top-4 right-4 w-10 h-10 bg-green-500 text-white rounded-xl flex items-center justify-center shadow-lg z-10">
+                                <CheckCircle2 className="w-6 h-6" />
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Contenido */}
+                          <div className="p-6">
+                            <h4 className="text-lg lg:text-xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight line-clamp-2 leading-tight min-h-[3rem]">
+                              {video.title}
+                            </h4>
+                            {video.description && (
+                              <p className="text-sm text-[var(--text-muted)] mb-4 font-medium leading-relaxed line-clamp-2">
+                                {video.description}
+                              </p>
+                            )}
+
+                            {/* Footer */}
+                            <div className="flex items-center justify-between pt-4 border-t border-[var(--border-color)]/30">
+                              {hasVideo ? (
+                                <>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      openVideo(video);
+                                    }}
+                                    className="text-[10px] font-black text-primary-600 uppercase tracking-widest flex items-center gap-2"
+                                  >
+                                    Ver ahora
+                                    <Play className="w-3 h-3" />
+                                  </button>
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      toggleVideoCompletion(video.id);
+                                    }}
+                                    className={`text-[10px] font-black uppercase tracking-widest ${
+                                      isCompleted
+                                        ? 'text-green-500'
+                                        : 'text-[var(--text-muted)] opacity-60 hover:opacity-100'
+                                    }`}
+                                  >
+                                    {isCompleted ? 'Completado' : 'Marcar'}
+                                  </button>
+                                </>
+                              ) : (
+                                <div className="w-full text-center text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest opacity-60">
+                                  Próximamente
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center py-20 bg-[var(--bg-main)] rounded-[2.5rem] border border-[var(--border-color)] border-dashed">
-                  <p className="text-[var(--text-muted)] font-black uppercase tracking-widest">Selecciona un módulo para comenzar</p>
-                </div>
-              )}
+              ))}
             </div>
           </div>
-        </div>
-      ) : (
+        ) : (
         <div className="mt-12 p-10 bg-[var(--bg-main)] rounded-[2.5rem] text-center border border-[var(--border-color)] border-dashed">
           <p className="text-[var(--text-muted)] font-black uppercase tracking-widest">El contenido del curso estará disponible pronto.</p>
         </div>
@@ -196,6 +265,83 @@ const CourseDetail: React.FC = () => {
           Acceder al Curso
         </button>
       </div>
+
+      {/* Video Player Modal */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8">
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={closeVideo}></div>
+          <div className="relative w-full max-w-6xl bg-[var(--panel-bg)] rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)]">
+            {/* Header del modal */}
+            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-b border-[var(--border-color)] p-6">
+              <div className="flex items-start justify-between">
+                <div className="flex-1 pr-4">
+                  <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] uppercase tracking-tight mb-2">
+                    {activeVideo.title}
+                  </h3>
+                  {activeVideo.description && (
+                    <p className="text-sm text-[var(--text-muted)] font-medium">
+                      {activeVideo.description}
+                    </p>
+                  )}
+                </div>
+                <button
+                  onClick={closeVideo}
+                  className="flex-shrink-0 w-10 h-10 bg-[var(--bg-main)] hover:bg-red-600 text-[var(--text-main)] hover:text-white rounded-xl flex items-center justify-center transition-colors border border-[var(--border-color)]"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Video player */}
+            <div className="relative aspect-video bg-black">
+              {activeVideo.cloudflareStreamId ? (
+                <iframe
+                  src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, {
+                    controls: true,
+                    autoplay: true,
+                  })}
+                  className="w-full h-full"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : activeVideo.vimeoId ? (
+                <iframe
+                  src={`https://player.vimeo.com/video/${activeVideo.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+                  className="w-full h-full"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : null}
+            </div>
+
+            {/* Footer con acciones */}
+            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-t border-[var(--border-color)] p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  {activeVideo.duration && (
+                    <div className="flex items-center gap-2 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest">
+                      <Clock className="w-4 h-4" />
+                      {activeVideo.duration}
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={() => toggleVideoCompletion(activeVideo.id)}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors ${
+                    completedVideos.has(activeVideo.id)
+                      ? 'bg-green-500 text-white'
+                      : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
+                  }`}
+                >
+                  <CheckCircle2 className="w-4 h-4" />
+                  {completedVideos.has(activeVideo.id) ? 'Completado' : 'Marcar como visto'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

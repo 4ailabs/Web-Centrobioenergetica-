@@ -6,11 +6,10 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "destination": "/api/index.ts"
     }
   ],
   "env": {
     "PRISMA_GENERATE_DATAPROXY": "true"
   }
 }
-

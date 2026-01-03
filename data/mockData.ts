@@ -136,56 +136,65 @@ export const MOCK_DATA = {
       id: 11,
       title: 'Terapia de Muñecos y Playmobil',
       description: 'Técnica básica y explorando los caminos de la vida a través del juego terapéutico con muñecos.',
-      author: '',
+      author: 'Centro Bioenergética',
       price: 0,
       lessons: 5, // Total de videos: 2 + 3 = 5
       level: 'Principiante' as const,
-      imageUrl: '',
+      imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       modules: [
         {
           id: 1,
           title: 'Módulo 1: Fundamentos',
-          description: 'Introducción a la técnica terapéutica con muñecos',
+          description: 'Introducción a la técnica terapéutica con muñecos y sus aplicaciones básicas',
           order: 1,
           videos: [
             {
               id: 1,
-              title: 'Video 1: Introducción a la Terapia de Muñecos',
-              description: 'Conoce los fundamentos básicos de esta técnica terapéutica',
+              title: 'Introducción a la Terapia de Muñecos',
+              description: 'Conoce los fundamentos básicos de esta técnica terapéutica y su impacto en el desarrollo emocional',
+              duration: '15:30',
               order: 1,
               cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0',
             },
             {
               id: 2,
-              title: 'Video 2: Principios Básicos',
-              description: 'Aprende los principios esenciales para trabajar con muñecos',
+              title: 'Principios Básicos y Metodología',
+              description: 'Aprende los principios esenciales para trabajar con muñecos y establecer un espacio terapéutico seguro',
+              duration: '22:45',
               order: 2,
+              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
           ],
         },
         {
           id: 2,
           title: 'Módulo 2: Aplicación Práctica',
-          description: 'Desarrolla habilidades prácticas en la aplicación de la técnica',
+          description: 'Desarrolla habilidades prácticas en la aplicación de la técnica con casos reales',
           order: 2,
           videos: [
             {
               id: 3,
-              title: 'Video 3: Técnicas de Aplicación',
-              description: 'Aprende las técnicas prácticas para aplicar la terapia',
+              title: 'Técnicas de Aplicación y Setup',
+              description: 'Aprende las técnicas prácticas para aplicar la terapia y preparar el entorno terapéutico',
+              duration: '28:15',
               order: 1,
+              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
             {
               id: 4,
-              title: 'Video 4: Casos Prácticos',
-              description: 'Observa casos prácticos reales de aplicación',
+              title: 'Casos Prácticos y Dinámicas',
+              description: 'Observa casos prácticos reales de aplicación con diferentes perfiles de pacientes',
+              duration: '35:20',
               order: 2,
+              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
             {
               id: 5,
-              title: 'Video 5: Integración y Cierre',
-              description: 'Integra todo lo aprendido y cierra el proceso terapéutico',
+              title: 'Integración y Cierre del Proceso',
+              description: 'Integra todo lo aprendido y cierra el proceso terapéutico de manera efectiva',
+              duration: '18:50',
               order: 3,
+              cloudflareStreamId: '80a5f636ba2271b3338f0e587c9d9ca0', // Reemplazar con el ID real cuando esté disponible
             },
           ],
         },

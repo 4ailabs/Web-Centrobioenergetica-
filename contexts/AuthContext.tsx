@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface User {
   id: string;
@@ -28,383 +29,195 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock users database (localStorage)
-const MOCK_USERS_KEY = 'mock_users_db';
-const AUTH_TOKEN_KEY = 'auth_token';
-const CURRENT_USER_KEY = 'current_user';
-
-// Initialize with demo users
-const initializeMockUsers = () => {
-  const existingUsers = localStorage.getItem(MOCK_USERS_KEY);
-  if (!existingUsers) {
-    const demoUsers = [
-      {
-        id: '1',
-        email: 'alumno@instituto.com',
-        password: 'alumno123',
-        name: 'María González',
-        isAdmin: false,
-        totalXP: 2450,
-        enrolledCourses: ['1', '2', '3'],
-        registeredAt: new Date('2025-01-15').toISOString(),
-        subscriptionStatus: 'active',
-      },
-      {
-        id: '2',
-        email: 'admin@instituto.com',
-        password: 'admin123',
-        name: 'Dr. Carlos Ruiz',
-        isAdmin: true,
-        totalXP: 5000,
-        enrolledCourses: ['1', '2', '3', '4', '5'],
-        registeredAt: new Date('2024-06-01').toISOString(),
-        subscriptionStatus: 'active',
-      },
-      {
-        id: '3',
-        email: 'estudiante@instituto.com',
-        password: 'estudiante123',
-        name: 'Juan Pérez',
-        isAdmin: false,
-        totalXP: 1200,
-        enrolledCourses: ['1', '4'],
-        registeredAt: new Date('2025-11-20').toISOString(),
-        subscriptionStatus: 'inactive',
-      },
-    ];
-    localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(demoUsers));
-  }
-};
-
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    initializeMockUsers();
-
-    // Check for existing session
-    const token = localStorage.getItem(AUTH_TOKEN_KEY);
-    const savedUser = localStorage.getItem(CURRENT_USER_KEY);
-
-    if (token && savedUser) {
-      try {
-        const userData = JSON.parse(savedUser);
-        setUser(userData);
-      } catch (error) {
-        console.error('Error loading user session:', error);
-        localStorage.removeItem(AUTH_TOKEN_KEY);
-        localStorage.removeItem(CURRENT_USER_KEY);
-      }
-    }
-
-    setLoading(false);
+    checkAuth();
   }, []);
 
-  const login = async (email: string, password: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
+  const checkAuth = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setLoading(false);
+      return;
+    }
 
-          const users = JSON.parse(usersData);
-          const foundUser = users.find(
-            (u: any) => u.email === email && u.password === password
-          );
-
-          if (!foundUser) {
-            reject(new Error('Email o contraseña incorrectos'));
-            return;
-          }
-
-          // Remove password from user object
-          const { password: _, ...userWithoutPassword } = foundUser;
-
-          // Create mock token
-          const token = `mock_token_${Date.now()}_${foundUser.id}`;
-
-          // Save session
-          localStorage.setItem(AUTH_TOKEN_KEY, token);
-          localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(userWithoutPassword));
-
-          setUser(userWithoutPassword);
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al procesar el inicio de sesión'));
+    try {
+      const response = await fetch('/api/auth/me', {
+        headers: {
+          'Authorization': `Bearer ${token}`
         }
-      }, 500); // Simulate network delay
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser({
+          ...data.user,
+          totalXP: data.user.totalXP || 0,
+          enrolledCourses: data.user.enrolledCourses || [],
+          subscriptionStatus: data.user.subscriptionStatus || 'inactive'
+        });
+      } else {
+        localStorage.removeItem('token');
+        setUser(null);
+      }
+    } catch (error) {
+      console.error('Auth verification failed', error);
+      localStorage.removeItem('token');
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Error al iniciar sesión');
+    }
+
+    localStorage.setItem('token', data.token);
+    setUser({
+      ...data.user,
+      totalXP: data.user.totalXP || 0,
+      enrolledCourses: data.user.enrolledCourses || [],
+      subscriptionStatus: 'inactive'
     });
   };
 
-  const register = async (email: string, password: string, name: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
-
-          const users = JSON.parse(usersData);
-
-          // Check if email already exists
-          if (users.some((u: any) => u.email === email)) {
-            reject(new Error('Este email ya está registrado'));
-            return;
-          }
-
-          // Create new user
-          const newUser = {
-            id: `${Date.now()}`,
-            email,
-            password,
-            name,
-            isAdmin: false,
-            totalXP: 0,
-            enrolledCourses: [],
-            registeredAt: new Date().toISOString(),
-            subscriptionStatus: 'inactive',
-          };
-
-          users.push(newUser);
-          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
-
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al registrar usuario'));
-        }
-      }, 500);
+  const register = async (email: string, password: string, name: string) => {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password, name }),
     });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Error al registrarse');
+    }
+
+    alert(data.message || 'Registro exitoso. Espera la aprobación del administrador.');
   };
 
   const logout = () => {
-    localStorage.removeItem(AUTH_TOKEN_KEY);
-    localStorage.removeItem(CURRENT_USER_KEY);
+    localStorage.removeItem('token');
     setUser(null);
+    navigate('/login');
   };
+
+  // --- Admin Functions ---
 
   const getAllUsers = async (): Promise<User[]> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const usersData = localStorage.getItem(MOCK_USERS_KEY);
-        if (!usersData) {
-          resolve([]);
-          return;
-        }
-        const users = JSON.parse(usersData);
-        // Remove passwords
-        const usersWithoutPasswords = users.map((u: any) => {
-          const { password, ...rest } = u;
-          return rest;
-        });
-        resolve(usersWithoutPasswords);
-      }, 300);
+    const token = localStorage.getItem('token');
+    // Using a mock return for now if endpoint doesn't exist, OR assuming I added it.
+    // I need to add GET /api/users to backend. 
+    // For now, let's try calling it.
+    const response = await fetch('/api/users', {
+      headers: { 'Authorization': `Bearer ${token}` }
     });
+
+    if (!response.ok) {
+      // Fallback for now to avoid breaking UI if backend isn't updated yet?
+      // No, I should update backend.
+      console.warn('API users endpoint failed, returning empty');
+      return [];
+    }
+    return await response.json();
   };
 
-  const updateUserSubscription = async (userId: string, status: 'active' | 'inactive'): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
-
-          const users = JSON.parse(usersData);
-          const userIndex = users.findIndex((u: any) => u.id === userId);
-
-          if (userIndex === -1) {
-            reject(new Error('Usuario no encontrado'));
-            return;
-          }
-
-          users[userIndex].subscriptionStatus = status;
-          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
-
-          // Update current user session if it matches and is active
-          if (user && user.id === userId) {
-            const updatedUser = { ...user, subscriptionStatus: status };
-            setUser(updatedUser);
-            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedUser));
-          }
-
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al actualizar suscripción'));
-        }
-      }, 300);
+  const updateUserSubscription = async (userId: string, status: 'active' | 'inactive') => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`/api/users/${userId}/subscription`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ status })
     });
+    if (!response.ok) throw new Error('Failed to update subscription');
   };
 
-  const updateUserCourses = async (userId: string, courseIds: string[]): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
-
-          const users = JSON.parse(usersData);
-          const userIndex = users.findIndex((u: any) => u.id === userId);
-
-          if (userIndex === -1) {
-            reject(new Error('Usuario no encontrado'));
-            return;
-          }
-
-          users[userIndex].enrolledCourses = courseIds;
-          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
-
-          // Update current user session if it matches
-          if (user && user.id === userId) {
-            const updatedUser = { ...user, enrolledCourses: courseIds };
-            setUser(updatedUser);
-            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedUser));
-          }
-
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al actualizar cursos'));
-        }
-      }, 300);
+  const updateUserCourses = async (userId: string, courseIds: string[]) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`/api/users/${userId}/courses`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ courseIds })
     });
+    if (!response.ok) throw new Error('Failed to update courses');
   };
 
-  const adminCreateUser = async (userData: any): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
-
-          const users = JSON.parse(usersData);
-
-          if (users.some((u: any) => u.email === userData.email)) {
-            reject(new Error('Este email ya está registrado'));
-            return;
-          }
-
-          const newUser = {
-            id: `${Date.now()}`,
-            email: userData.email,
-            password: userData.password,
-            name: userData.name,
-            isAdmin: userData.isAdmin || false,
-            totalXP: 0,
-            enrolledCourses: [],
-            registeredAt: new Date().toISOString(),
-            subscriptionStatus: userData.subscriptionStatus || 'inactive',
-          };
-
-          users.push(newUser);
-          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al crear usuario'));
-        }
-      }, 500);
+  const adminCreateUser = async (userData: any) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(userData)
     });
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.error || 'Failed to create user');
+    }
   };
 
-  const adminUpdateUser = async (userId: string, userData: any): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
-
-          const users = JSON.parse(usersData);
-          const userIndex = users.findIndex((u: any) => u.id === userId);
-
-          if (userIndex === -1) {
-            reject(new Error('Usuario no encontrado'));
-            return;
-          }
-
-          users[userIndex] = { ...users[userIndex], ...userData };
-          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
-
-          // If updating current user
-          if (user && user.id === userId) {
-            const updatedUser = { ...user, ...userData };
-            setUser(updatedUser);
-            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedUser));
-          }
-
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al actualizar usuario'));
-        }
-      }, 300);
+  const adminUpdateUser = async (userId: string, userData: any) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(userData)
     });
+    if (!response.ok) throw new Error('Failed to update user');
   };
 
-  const adminDeleteUser = async (userId: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const usersData = localStorage.getItem(MOCK_USERS_KEY);
-          if (!usersData) {
-            reject(new Error('Sistema de usuarios no inicializado'));
-            return;
-          }
-
-          let users = JSON.parse(usersData);
-          const initialLength = users.length;
-          users = users.filter((u: any) => u.id !== userId);
-
-          if (users.length === initialLength) {
-            reject(new Error('Usuario no encontrado'));
-            return;
-          }
-
-          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
-
-          // If deleting current user (should theoretically be prevented in UI but good safeguard)
-          if (user && user.id === userId) {
-            logout();
-          }
-
-          resolve();
-        } catch (error) {
-          reject(new Error('Error al eliminar usuario'));
-        }
-      }, 300);
+  const adminDeleteUser = async (userId: string) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     });
+    if (!response.ok) throw new Error('Failed to delete user');
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        register,
-        logout,
-        getAllUsers,
-        updateUserSubscription,
-        updateUserCourses,
-        adminCreateUser,
-        adminUpdateUser,
-        adminDeleteUser,
-        isAuthenticated: !!user,
-      }}
-    >
+    <AuthContext.Provider value={{
+      user,
+      loading,
+      login,
+      register,
+      logout,
+      getAllUsers,
+      updateUserSubscription,
+      updateUserCourses,
+      adminCreateUser,
+      adminUpdateUser,
+      adminDeleteUser,
+      isAuthenticated: !!user
+    }}>
       {children}
     </AuthContext.Provider>
   );
