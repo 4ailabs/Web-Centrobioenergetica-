@@ -67,8 +67,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           name: true,
           isAdmin: true,
           approved: true,
-          subscriptionStatus: true,
-          enrolledCourses: true,
           createdAt: true,
         },
       });
@@ -82,15 +80,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // PUT - Actualizar usuario
     if (req.method === 'PUT') {
-      const { email, password, name, isAdmin, approved, subscriptionStatus, enrolledCourses } = req.body;
+      const { email, password, name, isAdmin, approved } = req.body;
 
       const updateData: any = {};
       if (email !== undefined) updateData.email = email;
       if (name !== undefined) updateData.name = name;
       if (isAdmin !== undefined) updateData.isAdmin = isAdmin;
       if (approved !== undefined) updateData.approved = approved;
-      if (subscriptionStatus !== undefined) updateData.subscriptionStatus = subscriptionStatus;
-      if (enrolledCourses !== undefined) updateData.enrolledCourses = enrolledCourses;
       if (password) {
         updateData.password = await bcrypt.hash(password, 10);
       }
@@ -104,8 +100,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           name: true,
           isAdmin: true,
           approved: true,
-          subscriptionStatus: true,
-          enrolledCourses: true,
         },
       });
 

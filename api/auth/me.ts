@@ -39,8 +39,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         name: true,
         isAdmin: true,
         approved: true,
-        subscriptionStatus: true,
-        enrolledCourses: true,
       },
     });
 

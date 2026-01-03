@@ -59,8 +59,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           name: true,
           isAdmin: true,
           approved: true,
-          subscriptionStatus: true,
-          enrolledCourses: true,
           createdAt: true,
         },
         orderBy: { createdAt: 'desc' },
@@ -70,7 +68,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // POST - Crear nuevo usuario
     if (req.method === 'POST') {
-      const { email, password, name, isAdmin, approved, subscriptionStatus, enrolledCourses } = req.body;
+      const { email, password, name, isAdmin, approved } = req.body;
 
       if (!email || !password) {
         return res.status(400).json({ error: 'Email y contraseña son requeridos' });
@@ -93,8 +91,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           name: name || null,
           isAdmin: isAdmin || false,
           approved: approved !== undefined ? approved : true,
-          subscriptionStatus: subscriptionStatus || 'inactive',
-          enrolledCourses: enrolledCourses || [],
         },
         select: {
           id: true,
@@ -102,8 +98,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           name: true,
           isAdmin: true,
           approved: true,
-          subscriptionStatus: true,
-          enrolledCourses: true,
         },
       });
 
