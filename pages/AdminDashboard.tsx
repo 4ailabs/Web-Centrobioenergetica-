@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Shield, CheckCircle, XCircle, Search, BookOpen, X, Plus, Pencil, Save, Trash2 } from 'lucide-react';
+import { Shield, CheckCircle, XCircle, Search, BookOpen, X, Plus, Pencil, Save, Trash2, Eye, EyeOff } from 'lucide-react';
 import { MOCK_DATA } from '../data/mockData';
 
 const AdminDashboard: React.FC = () => {
@@ -17,6 +17,7 @@ const AdminDashboard: React.FC = () => {
     // User Management (Create/Edit) Modal State
     const [isUserModalOpen, setIsUserModalOpen] = useState(false);
     const [editingUser, setEditingUser] = useState<any>(null);
+    const [showPassword, setShowPassword] = useState(false);
     const [userForm, setUserForm] = useState({
         name: '',
         email: '',
@@ -410,13 +411,22 @@ const AdminDashboard: React.FC = () => {
                             {!editingUser && (
                                 <div>
                                     <label className="block text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest mb-2">Contraseña</label>
-                                    <input
-                                        type="password"
-                                        value={userForm.password}
-                                        onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-600 outline-none"
-                                        placeholder="Min. 6 caracteres"
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            value={userForm.password}
+                                            onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
+                                            className="w-full px-4 py-3 pr-12 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-600 outline-none"
+                                            placeholder="Min. 6 caracteres"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
+                                        >
+                                            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                        </button>
+                                    </div>
                                 </div>
                             )}
 
