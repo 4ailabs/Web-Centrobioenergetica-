@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { authService } from '../server/services/auth.service';
+import { authService } from '../server/services/auth.service.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS headers

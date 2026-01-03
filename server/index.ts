@@ -1,16 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { authenticateToken } from './middleware/auth';
-import { errorHandler } from './middleware/errorHandler';
+import { authenticateToken } from './middleware/auth.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 // Import routes
-import authRoutes from './routes/auth.routes';
-import usersRoutes from './routes/users.routes';
-import coursesRoutes from './routes/courses.routes';
-import newsRoutes from './routes/news.routes';
-import servicesRoutes from './routes/services.routes';
-import eventsRoutes from './routes/events.routes';
+import authRoutes from './routes/auth.routes.js';
+import usersRoutes from './routes/users.routes.js';
+import coursesRoutes from './routes/courses.routes.js';
+import newsRoutes from './routes/news.routes.js';
+import servicesRoutes from './routes/services.routes.js';
+import eventsRoutes from './routes/events.routes.js';
 
 dotenv.config();
 

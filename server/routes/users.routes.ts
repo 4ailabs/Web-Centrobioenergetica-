@@ -1,7 +1,7 @@
 import express from 'express';
-import { usersService } from '../services/users.service';
-import { enrollmentService } from '../services/enrollment.service';
-import { authenticateToken, requireAdmin } from '../middleware/auth';
+import { usersService } from '../services/users.service.js';
+import { enrollmentService } from '../services/enrollment.service.js';
+import { authenticateToken, requireAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
 
