@@ -53,7 +53,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                             type="text"
                             value={userForm.name}
                             onChange={(e) => onFormChange('name', e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-600 outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-primary-600 outline-none"
                             placeholder="Ej. Juan Pérez"
                         />
                     </div>
@@ -66,7 +66,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                             type="email"
                             value={userForm.email}
                             onChange={(e) => onFormChange('email', e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-600 outline-none"
+                            className="w-full px-4 py-3 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-primary-600 outline-none"
                             placeholder="Ej. juan@ejemplo.com"
                         />
                     </div>
@@ -81,7 +81,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                                     type={showPassword ? 'text' : 'password'}
                                     value={userForm.password}
                                     onChange={(e) => onFormChange('password', e.target.value)}
-                                    className="w-full px-4 py-3 pr-12 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-600 outline-none"
+                                    className="w-full px-4 py-3 pr-12 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)] focus:ring-2 focus:ring-primary-600 outline-none"
                                     placeholder="Min. 6 caracteres"
                                 />
                                 <button
@@ -101,7 +101,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                             id="isAdmin"
                             checked={userForm.isAdmin}
                             onChange={(e) => onFormChange('isAdmin', e.target.checked)}
-                            className="w-5 h-5 rounded text-indigo-600 focus:ring-indigo-600"
+                            className="w-5 h-5 rounded text-primary-600 focus:ring-primary-600 accent-primary-600"
                         />
                         <label htmlFor="isAdmin" className="font-bold text-[var(--text-main)] select-none cursor-pointer">
                             ¿Es Administrador?
@@ -118,7 +118,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                     </button>
                     <button
                         onClick={onSave}
-                        className="px-6 py-3 rounded-xl font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 hover:scale-105 transition-all flex items-center gap-2"
+                        className="px-6 py-3 rounded-xl font-bold bg-primary-600 text-white shadow-lg shadow-primary-600/20 hover:bg-primary-700 hover:scale-105 transition-all flex items-center gap-2"
                     >
                         <Save className="w-5 h-5" /> Guardar
                     </button>

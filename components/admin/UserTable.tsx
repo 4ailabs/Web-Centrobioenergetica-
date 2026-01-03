@@ -66,12 +66,12 @@ const UserTable: React.FC<UserTableProps> = ({
                                 <tr key={user.id} className="hover:bg-[var(--bg-main)] transition-colors">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 font-bold text-xs">
+                                            <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 font-bold text-xs">
                                                 {user.name.charAt(0)}
                                             </div>
                                             <div className="font-bold text-[var(--text-main)]">{user.name}</div>
                                             {user.isAdmin && (
-                                                <span className="text-[10px] bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                                                <span className="text-[10px] bg-primary-100 dark:bg-primary-900/30 text-primary-600 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
                                                     Admin
                                                 </span>
                                             )}

@@ -167,7 +167,7 @@ const AdminDashboard: React.FC = () => {
         <div className="w-full lg:mt-20 mt-16 px-4 pb-20 relative">
             <header className="mb-8 lg:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
+                    <div className="w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary-600/20">
                         <Shield className="w-6 h-6" />
                     </div>
                     <div>
@@ -179,7 +179,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <button
                     onClick={handleOpenCreateUser}
-                    className="flex items-center gap-2 px-5 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/20"
+                    className="flex items-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-xl font-bold hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20"
                 >
                     <Plus className="w-5 h-5" /> Nuevo Usuario
                 </button>
@@ -196,7 +196,7 @@ const AdminDashboard: React.FC = () => {
                     placeholder="Buscar usuario por nombre o email..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl focus:ring-2 focus:ring-indigo-600 outline-none transition-all"
+                    className="w-full pl-12 pr-4 py-3 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl focus:ring-2 focus:ring-primary-600 outline-none transition-all"
                 />
             </div>
 

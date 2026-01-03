@@ -51,12 +51,12 @@ const CourseDetail: React.FC = () => {
       return;
     }
     setActiveVideo(video);
-    document.body.style.overflow = 'hidden';
+    // Scroll suave hacia el reproductor
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const closeVideo = () => {
     setActiveVideo(null);
-    document.body.style.overflow = 'auto';
   };
 
   const toggleVideoCompletion = (videoId: number) => {
@@ -82,13 +82,110 @@ const CourseDetail: React.FC = () => {
         <span className="text-sm lg:text-base font-medium">Volver a Cursos</span>
       </button>
 
-      {/* Imagen del curso */}
-      <div className="w-full h-64 lg:h-96 rounded-2xl overflow-hidden mb-8">
-        <LazyImage
-          src={course.imageUrl}
-          alt={course.title}
-          className="w-full h-full object-cover"
-        />
+      {/* Player inline o Imagen del curso */}
+      <div className="w-full rounded-2xl overflow-hidden mb-8 bg-[var(--panel-bg)] border border-[var(--border-color)]">
+        {activeVideo ? (
+          // Reproductor de video inline
+          <div className="relative">
+            {/* Header del video */}
+            <div className="bg-[var(--panel-bg)] border-b border-[var(--border-color)] p-4 lg:p-6">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center font-black text-sm">
+                      <Play className="w-4 h-4 fill-current" />
+                    </div>
+                    <span className="text-xs font-black text-primary-600 uppercase tracking-widest">Reproduciendo</span>
+                  </div>
+                  <h3 className="text-lg lg:text-2xl font-black text-[var(--text-main)] uppercase tracking-tight mb-1">
+                    {activeVideo.title}
+                  </h3>
+                  {activeVideo.description && (
+                    <p className="text-sm text-[var(--text-muted)] font-medium line-clamp-2">
+                      {activeVideo.description}
+                    </p>
+                  )}
+                </div>
+                <button
+                  onClick={closeVideo}
+                  className="flex-shrink-0 w-10 h-10 bg-[var(--bg-main)] hover:bg-red-600 text-[var(--text-main)] hover:text-white rounded-xl flex items-center justify-center transition-colors border border-[var(--border-color)]"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Video player */}
+            <div className="relative w-full bg-black" style={{ aspectRatio: '16/9' }}>
+              {activeVideo.cloudflareStreamId ? (
+                <iframe
+                  src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, {
+                    controls: true,
+                    autoplay: true,
+                  })}
+                  className="absolute inset-0 w-full h-full border-0"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : activeVideo.vimeoId ? (
+                <iframe
+                  src={`https://player.vimeo.com/video/${activeVideo.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+                  className="absolute inset-0 w-full h-full border-0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : null}
+            </div>
+
+            {/* Footer con acciones */}
+            <div className="bg-[var(--panel-bg)] border-t border-[var(--border-color)] p-4 lg:p-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  {activeVideo.duration && (
+                    <div className="flex items-center gap-2 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest">
+                      <Clock className="w-4 h-4" />
+                      {activeVideo.duration}
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={() => toggleVideoCompletion(activeVideo.id)}
+                  className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors ${
+                    completedVideos.has(activeVideo.id)
+                      ? 'bg-green-500 text-white'
+                      : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
+                  }`}
+                >
+                  <CheckCircle2 className="w-4 h-4" />
+                  {completedVideos.has(activeVideo.id) ? 'Completado' : 'Marcar como visto'}
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          // Imagen del curso (estado por defecto)
+          <div className="relative h-64 lg:h-96">
+            <LazyImage
+              src={course.imageUrl}
+              alt={course.title}
+              className="w-full h-full object-cover"
+            />
+            {/* Overlay con texto para indicar que pueden seleccionar un video */}
+            {hasAccess && course.modules && course.modules.length > 0 && (
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center pb-8">
+                <div className="text-center">
+                  <p className="text-white/80 text-sm font-medium mb-2">Selecciona un video para comenzar</p>
+                  <div className="flex items-center justify-center gap-2 text-white">
+                    <Play className="w-5 h-5" />
+                    <span className="text-xs font-black uppercase tracking-widest">
+                      {course.modules.reduce((acc, m) => acc + m.videos.length, 0)} videos disponibles
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Información principal del curso */}
@@ -144,6 +241,7 @@ const CourseDetail: React.FC = () => {
                       const isCompleted = completedVideos.has(video.id);
                       const hasVideo = video.cloudflareStreamId || video.vimeoId;
                       const isLocked = !hasAccess && hasVideo;
+                      const isPlaying = activeVideo?.id === video.id;
                       const thumbnailUrl = video.cloudflareStreamId
                         ? `https://customer-${import.meta.env.VITE_CLOUDFLARE_ACCOUNT_ID || 'placeholder'}.cloudflarestream.com/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
                         : null;
@@ -152,13 +250,15 @@ const CourseDetail: React.FC = () => {
                         <div
                           key={video.id}
                           onClick={() => hasVideo && openVideo(video)}
-                          className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] ${
-                            isLocked
-                              ? 'opacity-60 cursor-not-allowed'
-                              : hasVideo
-                                ? 'cursor-pointer hover:border-primary-600'
-                                : 'cursor-default'
-                          } transition-colors`}
+                          className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border-2 ${
+                            isPlaying
+                              ? 'border-primary-600 ring-2 ring-primary-600/20'
+                              : isLocked
+                                ? 'border-[var(--border-color)] opacity-60 cursor-not-allowed'
+                                : hasVideo
+                                  ? 'border-[var(--border-color)] cursor-pointer hover:border-primary-600'
+                                  : 'border-[var(--border-color)] cursor-default'
+                          } transition-all`}
                         >
                           {/* Thumbnail / Placeholder */}
                           <div className="relative h-48 lg:h-56 overflow-hidden bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent">
@@ -212,8 +312,20 @@ const CourseDetail: React.FC = () => {
                               </div>
                             )}
 
+                            {/* Badge de reproduciendo */}
+                            {isPlaying && (
+                              <div className="absolute top-4 right-4 px-3 py-1.5 bg-primary-600 text-white rounded-lg flex items-center gap-2 shadow-lg z-10">
+                                <div className="flex items-center gap-1">
+                                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-75"></span>
+                                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-150"></span>
+                                </div>
+                                <span className="text-[9px] font-black uppercase tracking-widest">Reproduciendo</span>
+                              </div>
+                            )}
+
                             {/* Badge de completado */}
-                            {isCompleted && (
+                            {isCompleted && !isPlaying && (
                               <div className="absolute top-4 right-4 w-10 h-10 bg-green-500 text-white rounded-xl flex items-center justify-center shadow-lg z-10">
                                 <CheckCircle2 className="w-6 h-6" />
                               </div>
@@ -344,84 +456,6 @@ const CourseDetail: React.FC = () => {
         )}
       </div>
 
-      {/* Video Player Modal */}
-      {activeVideo && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 lg:p-8">
-          <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={closeVideo}></div>
-          <div className="relative w-full max-w-6xl bg-[var(--panel-bg)] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)]">
-            {/* Header del modal */}
-            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-b border-[var(--border-color)] p-3 sm:p-4 lg:p-6">
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base sm:text-xl lg:text-2xl font-black text-[var(--text-main)] uppercase tracking-tight mb-1 sm:mb-2 line-clamp-2">
-                    {activeVideo.title}
-                  </h3>
-                  {activeVideo.description && (
-                    <p className="text-xs sm:text-sm text-[var(--text-muted)] font-medium line-clamp-2">
-                      {activeVideo.description}
-                    </p>
-                  )}
-                </div>
-                <button
-                  onClick={closeVideo}
-                  className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-[var(--bg-main)] hover:bg-red-600 text-[var(--text-main)] hover:text-white rounded-lg sm:rounded-xl flex items-center justify-center transition-colors border border-[var(--border-color)]"
-                >
-                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
-                </button>
-              </div>
-            </div>
-
-            {/* Video player - Optimizado para móviles */}
-            <div className="relative w-full bg-black" style={{ aspectRatio: '16/9' }}>
-              {activeVideo.cloudflareStreamId ? (
-                <iframe
-                  src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, {
-                    controls: true,
-                    autoplay: true,
-                  })}
-                  className="absolute inset-0 w-full h-full border-0"
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                />
-              ) : activeVideo.vimeoId ? (
-                <iframe
-                  src={`https://player.vimeo.com/video/${activeVideo.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
-                  className="absolute inset-0 w-full h-full border-0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                />
-              ) : null}
-            </div>
-
-            {/* Footer con acciones */}
-            <div className="relative z-50 bg-[var(--panel-bg)]/95 backdrop-blur-sm border-t border-[var(--border-color)] p-3 sm:p-4 lg:p-6">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-4">
-                  {activeVideo.duration && (
-                    <div className="flex items-center gap-2 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest">
-                      <Clock className="w-4 h-4" />
-                      {activeVideo.duration}
-                    </div>
-                  )}
-                </div>
-                <button
-                  onClick={() => toggleVideoCompletion(activeVideo.id)}
-                  className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors min-h-[44px] ${
-                    completedVideos.has(activeVideo.id)
-                      ? 'bg-green-500 text-white'
-                      : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
-                  }`}
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span className="whitespace-nowrap">{completedVideos.has(activeVideo.id) ? 'Completado' : 'Marcar como visto'}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

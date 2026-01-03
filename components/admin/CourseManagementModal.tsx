@@ -32,7 +32,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                     <div>
                         <h2 className="text-xl font-black text-[var(--text-main)]">Gestionar Acceso a Cursos</h2>
                         <p className="text-sm text-[var(--text-muted)]">
-                            Usuario: <span className="font-bold text-indigo-600">{user.name}</span>
+                            Usuario: <span className="font-bold text-primary-600">{user.name}</span>
                         </p>
                     </div>
                     <button
@@ -54,8 +54,8 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                                     className={`
                     cursor-pointer p-4 rounded-2xl border transition-all duration-200 flex items-start gap-3
                     ${isSelected
-                                            ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-500 shadow-sm'
-                                            : 'bg-[var(--bg-main)] border-[var(--border-color)] hover:border-indigo-300 dark:hover:border-indigo-700'
+                                            ? 'bg-primary-50 dark:bg-primary-900/20 border-primary-500 shadow-sm'
+                                            : 'bg-[var(--bg-main)] border-[var(--border-color)] hover:border-primary-300 dark:hover:border-primary-700'
                                         }
                   `}
                                 >
@@ -63,7 +63,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                                         className={`
                       w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5
                       ${isSelected
-                                                ? 'bg-indigo-600 border-indigo-600 text-white'
+                                                ? 'bg-primary-600 border-primary-600 text-white'
                                                 : 'border-zinc-300 dark:border-zinc-600'
                                             }
                     `}
@@ -72,7 +72,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                                     </div>
                                     <div>
                                         <h3
-                                            className={`font-bold text-sm mb-1 ${isSelected ? 'text-indigo-700 dark:text-indigo-300' : 'text-[var(--text-main)]'
+                                            className={`font-bold text-sm mb-1 ${isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-[var(--text-main)]'
                                                 }`}
                                         >
                                             {course.title}
@@ -94,7 +94,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                     </button>
                     <button
                         onClick={onSave}
-                        className="px-6 py-3 rounded-xl font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 hover:scale-105 transition-all"
+                        className="px-6 py-3 rounded-xl font-bold bg-primary-600 text-white shadow-lg shadow-primary-600/20 hover:bg-primary-700 hover:scale-105 transition-all"
                     >
                         Guardar Cambios
                     </button>
