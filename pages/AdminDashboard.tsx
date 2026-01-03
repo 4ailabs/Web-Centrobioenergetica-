@@ -4,7 +4,7 @@ import { Shield, CheckCircle, XCircle, Search, BookOpen, X, Plus, Pencil, Save, 
 import { MOCK_DATA } from '../data/mockData';
 
 const AdminDashboard: React.FC = () => {
-    const { getAllUsers, updateUserSubscription, updateUserCourses, adminCreateUser, adminUpdateUser, user: currentUser } = useAuth();
+    const { getAllUsers, updateUserSubscription, updateUserCourses, adminCreateUser, adminUpdateUser, adminDeleteUser, user: currentUser } = useAuth();
     const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -123,6 +123,20 @@ const AdminDashboard: React.FC = () => {
             console.error('Error saving user:', error);
             alert(error.message || 'Error al guardar usuario');
         }
+    }
+
+    const handleDeleteUser = async (user: any) => {
+        if (!window.confirm(`¿Estás seguro de que deseas eliminar permanentemente a "${user.name}"? Esta acción no se puede deshacer.`)) {
+            return;
+        }
+
+        try {
+            await adminDeleteUser(user.id);
+            await fetchUsers();
+        } catch (error: any) {
+            console.error('Error deleting user:', error);
+            alert(error.message || 'Error al eliminar usuario');
+        }
     };
 
 
@@ -234,10 +248,10 @@ const AdminDashboard: React.FC = () => {
                                                     onClick={() => handleToggleSubscription(user.id, user.subscriptionStatus || 'inactive')}
                                                     disabled={user.id === currentUser?.id}
                                                     className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${user.id === currentUser?.id
-                                                            ? 'opacity-50 cursor-not-allowed bg-gray-100 text-gray-400'
-                                                            : user.subscriptionStatus === 'active'
-                                                                ? 'bg-red-50 dark:bg-red-900/20 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/40'
-                                                                : 'bg-green-50 dark:bg-green-900/20 text-green-600 hover:bg-green-100 dark:hover:bg-green-900/40'
+                                                        ? 'opacity-50 cursor-not-allowed bg-gray-100 text-gray-400'
+                                                        : user.subscriptionStatus === 'active'
+                                                            ? 'bg-red-50 dark:bg-red-900/20 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/40'
+                                                            : 'bg-green-50 dark:bg-green-900/20 text-green-600 hover:bg-green-100 dark:hover:bg-green-900/40'
                                                         }`}
                                                     title={user.subscriptionStatus === 'active' ? 'Cancelar Suscripción' : 'Activar Suscripción'}
                                                 >
@@ -258,6 +272,18 @@ const AdminDashboard: React.FC = () => {
                                                     title="Editar Usuario"
                                                 >
                                                     <Pencil className="w-4 h-4" />
+                                                </button>
+
+                                                <button
+                                                    onClick={() => handleDeleteUser(user)}
+                                                    disabled={user.id === currentUser?.id}
+                                                    className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1 ${user.id === currentUser?.id
+                                                        ? 'opacity-50 cursor-not-allowed bg-gray-100 text-gray-400'
+                                                        : 'bg-red-50 dark:bg-red-900/20 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/40'
+                                                        }`}
+                                                    title="Eliminar Usuario"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
                                                 </button>
                                             </div>
                                         </td>

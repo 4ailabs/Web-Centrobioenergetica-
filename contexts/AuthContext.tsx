@@ -22,6 +22,7 @@ interface AuthContextType {
   updateUserCourses: (userId: string, courseIds: string[]) => Promise<void>;
   adminCreateUser: (userData: any) => Promise<void>;
   adminUpdateUser: (userId: string, userData: any) => Promise<void>;
+  adminDeleteUser: (userId: string) => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -298,7 +299,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           const newUser = {
             id: `${Date.now()}`,
             email: userData.email,
-            password: userData.password, // In a real app, hash this!
+            password: userData.password,
             name: userData.name,
             isAdmin: userData.isAdmin || false,
             totalXP: 0,
@@ -335,13 +336,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             return;
           }
 
-          // Update fields
           users[userIndex] = { ...users[userIndex], ...userData };
-
-          // Don't update ID or enrolledCourses (handled separately) unless specifically needed, 
-          // generally we just merge what is passed. 
-          // Note: If updating email, should technically check for duplicates but skipping for mock simplicity unless requested.
-
           localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
 
           // If updating current user
@@ -354,6 +349,40 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           resolve();
         } catch (error) {
           reject(new Error('Error al actualizar usuario'));
+        }
+      }, 300);
+    });
+  };
+
+  const adminDeleteUser = async (userId: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          const usersData = localStorage.getItem(MOCK_USERS_KEY);
+          if (!usersData) {
+            reject(new Error('Sistema de usuarios no inicializado'));
+            return;
+          }
+
+          let users = JSON.parse(usersData);
+          const initialLength = users.length;
+          users = users.filter((u: any) => u.id !== userId);
+
+          if (users.length === initialLength) {
+            reject(new Error('Usuario no encontrado'));
+            return;
+          }
+
+          localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(users));
+
+          // If deleting current user (should theoretically be prevented in UI but good safeguard)
+          if (user && user.id === userId) {
+            logout();
+          }
+
+          resolve();
+        } catch (error) {
+          reject(new Error('Error al eliminar usuario'));
         }
       }, 300);
     });
@@ -372,6 +401,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         updateUserCourses,
         adminCreateUser,
         adminUpdateUser,
+        adminDeleteUser,
         isAuthenticated: !!user,
       }}
     >
