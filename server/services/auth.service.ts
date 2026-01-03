@@ -97,6 +97,13 @@ export class AuthService {
             throw new Error('Tu cuenta está pendiente de aprobación por un administrador.');
         }
 
+        // Cargar cursos inscritos del usuario
+        const enrollments = await prisma.progress.findMany({
+            where: { userId: user.id },
+            select: { courseId: true },
+            distinct: ['courseId'],
+        });
+
         // Generar JWT
         const token = jwt.sign(
             {
@@ -115,6 +122,11 @@ export class AuthService {
                 email: user.email,
                 name: user.name,
                 isAdmin: user.isAdmin,
+                totalXP: user.totalXP,
+                enrolledCourses: enrollments
+                    .map((e) => e.courseId?.toString() || '')
+                    .filter(Boolean),
+                subscriptionStatus: user.premiumUnlocked ? 'active' : 'inactive',
             },
         };
     }

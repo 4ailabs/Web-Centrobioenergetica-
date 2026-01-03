@@ -38,6 +38,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         name: true,
         isAdmin: true,
         approved: true,
+        totalXP: true,
+        premiumUnlocked: true,
       },
     });
 
@@ -49,7 +51,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(403).json({ error: 'Usuario no aprobado' });
     }
 
-    return res.json({ user });
+    // Cargar cursos inscritos del usuario
+    const enrollments = await prisma.progress.findMany({
+      where: { userId: user.id },
+      select: { courseId: true },
+      distinct: ['courseId'],
+    });
+
+    return res.json({
+      user: {
+        ...user,
+        totalXP: user.totalXP || 0,
+        enrolledCourses: enrollments
+          .map((e) => e.courseId?.toString() || '')
+          .filter(Boolean),
+        subscriptionStatus: user.premiumUnlocked ? 'active' : 'inactive',
+      }
+    });
   } catch (error: any) {
     console.error('Error in /api/auth/me:', error);
 
