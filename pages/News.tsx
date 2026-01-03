@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import type { NewsArticle } from '../types';
 import NewsCard from '../components/NewsCard';
 import { SparklesIcon, FilterIcon, SearchIcon, MailIcon } from '../components/Icons';
+import PageHeader from '../components/ui/PageHeader';
 import { Heart, Lightbulb, Zap, X, Share2 } from 'lucide-react';
 import { MOCK_DATA } from '../data/mockData';
 import { useCourses } from '../contexts/AppContext';
@@ -126,34 +127,23 @@ const News: React.FC = () => {
     <div className="w-full lg:mt-20 mt-16 space-y-12">
       <ReadingProgressBar />
 
-      <header className="px-4 relative overflow-hidden pb-12">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-primary-600/5 blur-[100px] rounded-full pointer-events-none"></div>
-        <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-600/10 rounded-full border border-primary-600/20">
-              <span className="w-2 h-2 bg-primary-600 rounded-full"></span>
-              <span className="text-[10px] font-black text-primary-600 uppercase tracking-widest">Magazine Digital</span>
-            </div>
-            <h1 className="text-4xl lg:text-7xl font-black text-primary-600 uppercase tracking-tight leading-[0.9]">
-              Noticias
-            </h1>
-            <p className="text-lg text-[var(--text-muted)] max-w-2xl font-medium leading-relaxed">
-              Explora las fronteras de la bionergética, investigaciones científicas y novedades exclusivas del instituto.
-            </p>
-          </div>
-
-          <div className="w-full lg:w-96 group relative">
-            <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] w-5 h-5 transition-colors group-focus-within:text-primary-600" />
-            <input
-              type="text"
-              placeholder="Buscar investigaciones..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-14 pr-6 py-5 bg-[var(--panel-bg)] border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary-600/5 focus:border-primary-600 transition-all font-medium text-sm shadow-sm"
-            />
-          </div>
+      <PageHeader
+        icon={<Zap className="w-6 h-6" />}
+        tag="Magazine Digital"
+        title="Noticias"
+        description="Explora las fronteras de la bionergética, investigaciones científicas y novedades exclusivas del instituto."
+      >
+        <div className="w-full lg:w-96 group relative">
+          <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] w-5 h-5 transition-colors group-focus-within:text-primary-600" />
+          <input
+            type="text"
+            placeholder="Buscar investigaciones..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-14 pr-6 py-5 bg-[var(--panel-bg)] border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary-600/5 focus:border-primary-600 transition-all font-medium text-sm shadow-sm"
+          />
         </div>
-      </header>
+      </PageHeader>
 
       {featuredArticle && activeCategory === 'Todas' && !searchQuery && (
         <section className="px-4 animate-fade-in">

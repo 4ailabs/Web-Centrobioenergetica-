@@ -1,8 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../../lib/prisma';
 import jwt from 'jsonwebtoken';
 
-const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -59,7 +58,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     return res.status(500).json({ error: 'Error interno del servidor' });
-  } finally {
-    await prisma.$disconnect();
   }
 }

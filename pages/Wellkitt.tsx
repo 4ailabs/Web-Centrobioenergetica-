@@ -8,9 +8,12 @@ import KitCard from '../wellkitt-components/KitCard';
 import KitCardCompact from '../wellkitt-components/KitCardCompact';
 import ProductDetailModal from '../wellkitt-components/ProductDetailModal';
 import KitDetailModal from '../wellkitt-components/KitDetailModal';
-import { categoryConfig, mainCategories } from '../wellkitt-components/category-config';
+import { categoryConfig } from '../wellkitt-components/category-config';
 import { CartProvider, useCart } from '../contexts/CartContext';
-import { Heart, Droplets, Zap, Shield, Activity, Brain, Dna, List, ShoppingCart, ArrowRight, TestTube, Sparkles, Truck } from 'lucide-react';
+import PageHeader from '../components/ui/PageHeader';
+import SectionHeader from '../components/ui/SectionHeader';
+import CTASection from '../components/ui/CTASection';
+import { Heart, Droplets, Zap, Shield, Activity, Brain, Dna, List, ArrowRight, Sparkles, Truck } from 'lucide-react';
 
 const Wellkitt: React.FC = () => {
   const navigate = useNavigate();
@@ -57,17 +60,13 @@ const Wellkitt: React.FC = () => {
 
   return (
     <div className="w-full lg:mt-20 mt-12 sm:mt-16 px-4">
-      <header className="mb-6 sm:mb-8 lg:mb-12">
-        <div className="flex items-center mb-3 sm:mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mr-4 border border-primary-600/20">
-            <WellkittIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
-          </div>
-          <h1 className="text-lg sm:text-xl lg:text-3xl font-black text-[var(--text-main)] uppercase tracking-tight">Wellkitt</h1>
-        </div>
-        <p className="text-sm sm:text-base lg:text-lg text-[var(--text-muted)] leading-relaxed font-medium">
-          Tu Navegador de Salud Natural - Productos especializados para el bienestar energético
-        </p>
-      </header>
+      <PageHeader
+        icon={<WellkittIcon className="w-6 h-6" />}
+        tag="Wellkitt"
+        title="Tu Navegador de"
+        titleAccent="Salud Natural"
+        description="Productos especializados para el bienestar energético. Tu Salud, Ciencia Personalizada."
+      />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-600/5 to-primary-600/10 rounded-[2.5rem] p-6 lg:p-12 mb-12 border border-primary-600/10 relative overflow-hidden">
@@ -107,12 +106,12 @@ const Wellkitt: React.FC = () => {
 
       {/* Kits Estratégicos */}
       <section className="mb-20">
-        <div className="text-center mb-6">
-          <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-main)] group-hover:text-primary-600 transition-colors uppercase tracking-tight">Kits Estratégicos</h3>
-          <p className="text-sm lg:text-base text-[var(--text-muted)] font-medium leading-relaxed">
-            Soluciones expertas diseñadas para los objetivos de salud más comunes.
-          </p>
-        </div>
+        <SectionHeader
+          title="Kits"
+          titleAccent="Estratégicos"
+          description="Soluciones expertas diseñadas para los objetivos de salud más comunes."
+          center
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           {kits.map(kit => (
             <KitCard
@@ -127,12 +126,12 @@ const Wellkitt: React.FC = () => {
 
       {/* Sección de Tests y IA */}
       <section className="mb-20">
-        <div className="text-center mb-6">
-          <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-main)] group-hover:text-primary-600 transition-colors uppercase tracking-tight">Descubre tu Perfil de Salud</h3>
-          <p className="text-sm lg:text-base text-[var(--text-muted)] font-medium leading-relaxed">
-            Realiza nuestros tests especializados y obtén recomendaciones personalizadas con IA
-          </p>
-        </div>
+        <SectionHeader
+          title="Descubre tu Perfil"
+          titleAccent="de Salud"
+          description="Realiza nuestros tests especializados y obtén recomendaciones personalizadas con IA"
+          center
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-6">
           {/* Test de Endotelio */}
@@ -393,26 +392,10 @@ const Wellkitt: React.FC = () => {
       </div>
 
       {/* Contacto */}
-      <div className="mt-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-6 text-white text-center">
-        <h3 className="text-lg font-bold mb-2">¿Tienes dudas sobre algún producto?</h3>
-        <p className="text-sm mb-4 opacity-90">Nuestros especialistas están listos para ayudarte</p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a
-            href="tel:+525579076626"
-            className="bg-[var(--text-main)] text-[var(--bg-main)] px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-primary-600 hover:text-white transition-all shadow-xl shadow-slate-900/10 active:scale-95"
-          >
-            📞 Llamar Ahora
-          </a>
-          <a
-            href="https://wa.me/525579076626"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[var(--text-main)] text-[var(--bg-main)] px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-primary-600 hover:text-white transition-all shadow-xl shadow-slate-900/10 active:scale-95 flex items-center justify-center gap-2"
-          >
-            💬 WhatsApp
-          </a>
-        </div>
-      </div>
+      <CTASection
+        title="¿Tienes dudas sobre algún producto?"
+        description="Nuestros especialistas están listos para ayudarte"
+      />
 
       {/* Modal de detalles de producto */}
       <ProductDetailModal

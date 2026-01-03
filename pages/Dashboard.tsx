@@ -82,23 +82,58 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
 
   return (
     <div className="w-full lg:pt-12 pt-8 space-y-20 pb-20">
-      {/* Hero Section with Depth */}
-      <header className="animate-fade-in px-4 relative">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary-600/10 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-600/10 rounded-full border border-primary-600/20">
-            <span className="w-2 h-2 bg-primary-600 rounded-full animate-pulse"></span>
-            <span className="text-[10px] font-black text-primary-600 uppercase tracking-widest">Bienvenido al Instituto</span>
-          </div>
-          <h1 className="text-4xl lg:text-7xl font-black text-[var(--text-main)] tracking-tight leading-[0.9] uppercase">
-            Instituto <br />
-            <span className="text-primary-600 underline decoration-primary-600/20 decoration-8 underline-offset-8">Centrobioenergética</span>
-          </h1>
-          <p className="text-lg lg:text-xl text-[var(--text-muted)] max-w-xl leading-relaxed font-medium">
-            Tu plataforma integral para la evolución personal y el bienestar bionergético avanzado.
-          </p>
+      {/* Premium Hero Section - Compact & Professional */}
+      <div className="relative mx-4 h-[350px] lg:h-[450px] overflow-hidden rounded-3xl group mb-12 shadow-2xl">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="/hero_clinical_professional.png"
+            alt="Bioenergetic Background"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/80 via-transparent to-transparent opacity-40"></div>
         </div>
-      </header>
+
+        {/* Content Container */}
+        <div className="relative h-full z-10 flex flex-col justify-center px-8 lg:px-16 max-w-4xl space-y-6 animate-fade-in">
+          <div className="inline-flex items-center gap-3 px-3 py-1.5 bg-primary-600/20 backdrop-blur-md rounded-full border border-primary-600/30 w-fit">
+            <span className="w-2 h-2 bg-primary-600 rounded-full animate-pulse"></span>
+            <span className="text-[9px] font-bold text-white uppercase tracking-[0.2em]">Formación de Vanguardia</span>
+          </div>
+
+          <div className="space-y-2">
+            <h1 className="text-4xl lg:text-7xl font-black text-white tracking-tight leading-none uppercase">
+              Instituto <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">
+                Centrobioenergética
+              </span>
+            </h1>
+            <p className="text-lg lg:text-xl text-zinc-100/70 max-w-xl leading-relaxed font-medium">
+              Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-4 pt-2">
+            <button
+              onClick={() => navigate('/cursos')}
+              className="px-6 py-4 bg-primary-600 text-white rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-primary-500 transition-all active:scale-95 flex items-center gap-2 group/btn"
+            >
+              Oferta Académica
+              <span className="group-hover/btn:translate-x-1 transition-transform text-base">→</span>
+            </button>
+            <button
+              onClick={() => navigate('/servicios')}
+              className="px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 rounded-xl font-black uppercase tracking-widest text-[10px] transition-all active:scale-95"
+            >
+              Servicios
+            </button>
+          </div>
+        </div>
+
+        {/* Decorative Glass Elements */}
+        <div className="absolute top-1/2 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
 
       {/* Featured Programs Section */}
       <section className="animate-slide-in-up px-4">
@@ -108,17 +143,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
             <div className="max-w-xl">
               <h2 className="text-xs font-black text-primary-600 uppercase tracking-[0.3em] mb-4 flex items-center gap-3">
                 <span className="w-10 h-px bg-primary-600/30"></span>
-                Programas Destacados
+                Programas Académicos
               </h2>
               <h3 className="text-3xl lg:text-4xl font-black text-[var(--text-main)] uppercase tracking-tight leading-none">
-                Inicia tu <span className="text-primary-600">Transformación</span>
+                Especialización <span className="text-primary-600">Profesional</span>
               </h3>
             </div>
             <button
               onClick={() => navigate('/cursos')}
               className="group flex items-center gap-3 px-8 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-primary-600 transition-all hover:shadow-2xl hover:shadow-primary-600/20 active:scale-95 whitespace-nowrap"
             >
-              Catálogo completo
+              Catálogo de Cursos
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </button>
           </div>
@@ -139,13 +174,13 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="w-1 h-8 bg-primary-600 rounded-full"></div>
-            <h2 className="text-2xl font-black text-[var(--text-main)] uppercase tracking-tight">Últimas Noticias</h2>
+            <h2 className="text-2xl font-black text-[var(--text-main)] uppercase tracking-tight">Actualidad Científica</h2>
           </div>
           <button
             onClick={onNavigateToNews}
             className="text-[10px] font-black text-primary-600 uppercase tracking-[0.2em] hover:opacity-70 transition-opacity flex items-center gap-2"
           >
-            Ver todas <span className="text-base">→</span>
+            Ver más artículos <span className="text-base">→</span>
           </button>
         </div>
 

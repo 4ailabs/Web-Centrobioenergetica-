@@ -1,10 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-
-const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+import { authService } from '../server/services/auth.service';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS headers
@@ -29,49 +24,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Email y contraseña son requeridos' });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (!user || !user.password) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
-    }
-
-    if (!user.approved) {
-      return res.status(403).json({
-        error: 'Tu cuenta está pendiente de aprobación por un administrador.',
-      });
-    }
-
-    const token = jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        isAdmin: user.isAdmin,
-      },
-      JWT_SECRET,
-      { expiresIn: '30d' }
-    );
-
-    return res.json({
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        isAdmin: user.isAdmin,
-      },
-    });
+    const result = await authService.loginUser({ email, password });
+    return res.json(result);
   } catch (error: any) {
     console.error('Error logging in:', error);
-    return res.status(500).json({ error: 'Error al iniciar sesión' });
-  } finally {
-    await prisma.$disconnect();
+    const status = error.message.includes('Credenciales') ? 401 :
+      error.message.includes('aprobación') ? 403 : 500;
+    return res.status(status).json({ error: error.message || 'Error al iniciar sesión' });
   }
 }

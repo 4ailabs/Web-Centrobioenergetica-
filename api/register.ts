@@ -1,8 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
-
-const prisma = new PrismaClient();
+import { authService } from '../server/services/auth.service';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS headers
@@ -27,58 +24,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Email y contraseña son requeridos' });
     }
 
-    // Validar contraseña
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-    if (!passwordRegex.test(password)) {
-      return res.status(400).json({
-        error: 'La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas y números',
-      });
-    }
-
-    // Validar email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: 'El formato del email no es válido' });
-    }
-
-    // Verificar si existe
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (existingUser) {
-      return res.status(400).json({ error: 'El email ya está registrado' });
-    }
-
-    // Hashear contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Crear usuario
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-        name: name || null,
-        approved: false,
-      },
-      select: {
-        id: true,
-        email: true,
-        name: true,
-        approved: true,
-      },
-    });
-
-    return res.status(201).json({
-      message: 'Registro exitoso. Tu cuenta está pendiente de aprobación por un administrador.',
-      user,
-    });
+    const result = await authService.registerUser({ email, password, name });
+    return res.status(201).json(result);
   } catch (error: any) {
     console.error('Error registering user:', error);
-    return res.status(500).json({
-      error: 'Error al registrar usuario. Por favor, intenta de nuevo.',
+    return res.status(400).json({
+      error: error.message || 'Error al registrar usuario',
     });
-  } finally {
-    await prisma.$disconnect();
   }
 }

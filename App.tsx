@@ -25,6 +25,17 @@ import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './pages/AdminDashboard';
 
 
+const PAGE_MAP: Record<string, string> = {
+  'cursos': 'Cursos',
+  'servicios': 'Servicios Clínicos',
+  'noticias': 'Noticias',
+  'sobre-nosotros': 'Sobre Nosotros',
+  'aplicaciones': 'Aplicaciones',
+  'calendario': 'Calendario',
+  'wellvibe-media': 'Wellvibe Media',
+  'panel': 'Panel'
+};
+
 // Componente interno que usa el contexto
 const AppContent: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -36,23 +47,8 @@ const AppContent: React.FC = () => {
     const params = getUrlParams();
     const page = params.page;
 
-    if (page) {
-      const pageMap: Record<string, string> = {
-        'cursos': 'Cursos',
-        'servicios': 'Servicios Clínicos',
-        // 'wellkitt': 'Wellkitt', // Temporalmente deshabilitado
-        'noticias': 'Noticias',
-        'sobre-nosotros': 'Sobre Nosotros',
-        'aplicaciones': 'Aplicaciones',
-        'calendario': 'Calendario',
-        'wellvibe-media': 'Wellvibe Media',
-        'panel': 'Panel'
-      };
-
-      const mappedPage = pageMap[page];
-      if (mappedPage) {
-        dispatch({ type: 'SET_ACTIVE_PAGE', payload: mappedPage });
-      }
+    if (page && PAGE_MAP[page]) {
+      dispatch({ type: 'SET_ACTIVE_PAGE', payload: PAGE_MAP[page] });
     }
   }, [dispatch]);
 
