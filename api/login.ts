@@ -28,6 +28,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.json(result);
   } catch (error: any) {
     console.error('Error logging in:', error);
+
+    // Detectar errores de base de datos
+    if (error.code === 'P2002' || error.code === 'P2025') {
+      return res.status(500).json({ error: 'Error de base de datos. Por favor, intenta de nuevo.' });
+    }
+
+    if (error.message?.includes('Prisma') || error.message?.includes('database')) {
+      return res.status(500).json({ error: 'Error de conexión con la base de datos. Por favor, intenta más tarde.' });
+    }
+
     const status = error.message.includes('Credenciales') ? 401 :
       error.message.includes('aprobación') ? 403 : 500;
     return res.status(status).json({ error: error.message || 'Error al iniciar sesión' });
