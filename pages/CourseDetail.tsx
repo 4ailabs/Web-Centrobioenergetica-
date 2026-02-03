@@ -116,7 +116,7 @@ const CourseDetail: React.FC = () => {
             </div>
 
             {/* Video player */}
-            <div className="relative w-full bg-black" style={{ aspectRatio: '16/9' }}>
+            <div className="relative w-full bg-black" style={{ aspectRatio: '16/9', minHeight: '600px' }}>
               {activeVideo.cloudflareStreamId ? (
                 <iframe
                   src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, {
@@ -150,11 +150,10 @@ const CourseDetail: React.FC = () => {
                 </div>
                 <button
                   onClick={() => toggleVideoCompletion(activeVideo.id)}
-                  className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors ${
-                    completedVideos.has(activeVideo.id)
-                      ? 'bg-green-500 text-white'
-                      : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
-                  }`}
+                  className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors ${completedVideos.has(activeVideo.id)
+                    ? 'bg-green-500 text-white'
+                    : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
+                    }`}
                 >
                   <CheckCircle2 className="w-4 h-4" />
                   {completedVideos.has(activeVideo.id) ? 'Completado' : 'Marcar como visto'}
@@ -238,161 +237,155 @@ const CourseDetail: React.FC = () => {
                 {/* Grid de videos del módulo */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {module.videos.map((video, index) => {
-                      const isCompleted = completedVideos.has(video.id);
-                      const hasVideo = video.cloudflareStreamId || video.vimeoId;
-                      const isLocked = !hasAccess && hasVideo;
-                      const isPlaying = activeVideo?.id === video.id;
-                      // Usar videodelivery.net para thumbnails (funciona sin Account ID)
-                      const thumbnailUrl = video.cloudflareStreamId
-                        ? `https://videodelivery.net/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
-                        : null;
+                    const isCompleted = completedVideos.has(video.id);
+                    const hasVideo = video.cloudflareStreamId || video.vimeoId;
+                    const isLocked = !hasAccess && hasVideo;
+                    const isPlaying = activeVideo?.id === video.id;
+                    // Usar videodelivery.net para thumbnails (funciona sin Account ID)
+                    const thumbnailUrl = video.cloudflareStreamId
+                      ? `https://videodelivery.net/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
+                      : null;
 
-                      return (
-                        <div
-                          key={video.id}
-                          onClick={() => hasVideo && openVideo(video)}
-                          className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border-2 ${
-                            isPlaying
-                              ? 'border-primary-600 ring-2 ring-primary-600/20'
-                              : isLocked
-                                ? 'border-[var(--border-color)] opacity-60 cursor-not-allowed'
-                                : hasVideo
-                                  ? 'border-[var(--border-color)] cursor-pointer hover:border-primary-600'
-                                  : 'border-[var(--border-color)] cursor-default'
+                    return (
+                      <div
+                        key={video.id}
+                        onClick={() => hasVideo && openVideo(video)}
+                        className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border-2 ${isPlaying
+                          ? 'border-primary-600 ring-2 ring-primary-600/20'
+                          : isLocked
+                            ? 'border-[var(--border-color)] opacity-60 cursor-not-allowed'
+                            : hasVideo
+                              ? 'border-[var(--border-color)] cursor-pointer hover:border-primary-600'
+                              : 'border-[var(--border-color)] cursor-default'
                           } transition-all`}
-                        >
-                          {/* Thumbnail / Placeholder */}
-                          <div className="relative h-48 lg:h-56 overflow-hidden bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent">
-                            {thumbnailUrl && hasVideo ? (
-                              <img
-                                src={thumbnailUrl}
-                                alt={video.title}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  // Fallback to gradient if thumbnail fails
-                                  e.currentTarget.style.display = 'none';
-                                }}
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/10 via-primary-600/5 to-transparent">
-                                <div className="text-center">
-                                  <div className="w-20 h-20 mx-auto mb-3 bg-primary-600/20 rounded-2xl flex items-center justify-center">
-                                    {hasVideo ? (
-                                      <Play className="w-10 h-10 text-primary-600" />
-                                    ) : (
-                                      <Lock className="w-10 h-10 text-[var(--text-muted)]" />
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Overlay con botón de play o candado */}
-                            {hasVideo && (
-                              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <div className={`w-16 h-16 ${isLocked ? 'bg-red-600' : 'bg-primary-600'} text-white rounded-full flex items-center justify-center`}>
+                      >
+                        {/* Thumbnail / Placeholder */}
+                        <div className="relative w-full aspect-video overflow-hidden bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent">
+                          {thumbnailUrl && hasVideo ? (
+                            <img
+                              src={thumbnailUrl}
+                              alt={video.title}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                // Fallback to gradient if thumbnail fails
+                                e.currentTarget.style.display = 'none';
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/10 via-primary-600/5 to-transparent">
+                              <div className="text-center">
+                                <div className="w-20 h-20 mx-auto mb-3 bg-primary-600/20 rounded-2xl flex items-center justify-center">
                                   {isLocked ? (
-                                    <Lock className="w-8 h-8" />
+                                    <Lock className="w-10 h-10 text-red-600" />
                                   ) : (
-                                    <Play className="w-8 h-8 fill-current ml-1" />
+                                    <Play className="w-10 h-10 text-primary-600" />
                                   )}
                                 </div>
                               </div>
-                            )}
-
-                            {/* Badge de número */}
-                            <div className="absolute top-4 left-4 w-10 h-10 bg-primary-600 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg z-10">
-                              {index + 1}
                             </div>
+                          )}
 
-                            {/* Badge de duración */}
-                            {video.duration && (
-                              <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-black/80 backdrop-blur-sm rounded-lg text-[10px] font-black text-white uppercase tracking-widest z-10 flex items-center gap-1.5">
-                                <Clock className="w-3 h-3" />
-                                {video.duration}
+                          {/* Overlay con botón de play (solo si tiene acceso) */}
+                          {hasVideo && !isLocked && (
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center">
+                                <Play className="w-8 h-8 fill-current ml-1" />
                               </div>
-                            )}
+                            </div>
+                          )}
 
-                            {/* Badge de reproduciendo */}
-                            {isPlaying && (
-                              <div className="absolute top-4 right-4 px-3 py-1.5 bg-primary-600 text-white rounded-lg flex items-center gap-2 shadow-lg z-10">
-                                <div className="flex items-center gap-1">
-                                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-                                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-75"></span>
-                                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-150"></span>
-                                </div>
-                                <span className="text-[9px] font-black uppercase tracking-widest">Reproduciendo</span>
-                              </div>
-                            )}
-
-                            {/* Badge de completado */}
-                            {isCompleted && !isPlaying && (
-                              <div className="absolute top-4 right-4 w-10 h-10 bg-green-500 text-white rounded-xl flex items-center justify-center shadow-lg z-10">
-                                <CheckCircle2 className="w-6 h-6" />
-                              </div>
-                            )}
+                          {/* Badge de número */}
+                          <div className="absolute top-4 left-4 w-10 h-10 bg-primary-600 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg z-10">
+                            {index + 1}
                           </div>
 
-                          {/* Contenido */}
-                          <div className="p-6">
-                            <h4 className="text-lg lg:text-xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight line-clamp-2 leading-tight min-h-[3rem]">
-                              {video.title}
-                            </h4>
-                            {video.description && (
-                              <p className="text-sm text-[var(--text-muted)] mb-4 font-medium leading-relaxed line-clamp-2">
-                                {video.description}
-                              </p>
-                            )}
-
-                            {/* Footer */}
-                            <div className="flex items-center justify-between pt-4 border-t border-[var(--border-color)]/30">
-                              {isLocked ? (
-                                <div className="w-full flex items-center justify-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest">
-                                  <Lock className="w-3 h-3" />
-                                  Bloqueado
-                                </div>
-                              ) : hasVideo ? (
-                                <>
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      openVideo(video);
-                                    }}
-                                    className="text-[10px] font-black text-primary-600 uppercase tracking-widest flex items-center gap-2"
-                                  >
-                                    Ver ahora
-                                    <Play className="w-3 h-3" />
-                                  </button>
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      toggleVideoCompletion(video.id);
-                                    }}
-                                    className={`text-[10px] font-black uppercase tracking-widest ${
-                                      isCompleted
-                                        ? 'text-green-500'
-                                        : 'text-[var(--text-muted)] opacity-60 hover:opacity-100'
-                                    }`}
-                                  >
-                                    {isCompleted ? 'Completado' : 'Marcar'}
-                                  </button>
-                                </>
-                              ) : (
-                                <div className="w-full text-center text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest opacity-60">
-                                  Próximamente
-                                </div>
-                              )}
+                          {/* Badge de duración */}
+                          {video.duration && (
+                            <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-black/80 backdrop-blur-sm rounded-lg text-[10px] font-black text-white uppercase tracking-widest z-10 flex items-center gap-1.5">
+                              <Clock className="w-3 h-3" />
+                              {video.duration}
                             </div>
+                          )}
+
+                          {/* Badge de reproduciendo */}
+                          {isPlaying && (
+                            <div className="absolute top-4 right-4 px-3 py-1.5 bg-primary-600 text-white rounded-lg flex items-center gap-2 shadow-lg z-10">
+                              <div className="flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-75"></span>
+                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-150"></span>
+                              </div>
+                              <span className="text-[9px] font-black uppercase tracking-widest">Reproduciendo</span>
+                            </div>
+                          )}
+
+                          {/* Badge de completado */}
+                          {isCompleted && !isPlaying && (
+                            <div className="absolute top-4 right-4 w-10 h-10 bg-green-500 text-white rounded-xl flex items-center justify-center shadow-lg z-10">
+                              <CheckCircle2 className="w-6 h-6" />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Contenido */}
+                        <div className="p-6">
+                          <h4 className="text-lg lg:text-xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight line-clamp-2 leading-tight min-h-[3rem]">
+                            {video.title}
+                          </h4>
+                          {video.description && (
+                            <p className="text-sm text-[var(--text-muted)] mb-4 font-medium leading-relaxed line-clamp-2">
+                              {video.description}
+                            </p>
+                          )}
+
+                          {/* Footer */}
+                          <div className="flex items-center justify-between pt-4 border-t border-[var(--border-color)]/30">
+                            {isLocked ? (
+                              <div className="w-full flex items-center justify-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest">
+                                <Lock className="w-3 h-3" />
+                                Bloqueado
+                              </div>
+                            ) : hasVideo ? (
+                              <>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    openVideo(video);
+                                  }}
+                                  className="text-[10px] font-black text-primary-600 uppercase tracking-widest flex items-center gap-2"
+                                >
+                                  Ver ahora
+                                  <Play className="w-3 h-3" />
+                                </button>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleVideoCompletion(video.id);
+                                  }}
+                                  className={`text-[10px] font-black uppercase tracking-widest ${isCompleted
+                                    ? 'text-green-500'
+                                    : 'text-[var(--text-muted)] opacity-60 hover:opacity-100'
+                                    }`}
+                                >
+                                  {isCompleted ? 'Completado' : 'Marcar'}
+                                </button>
+                              </>
+                            ) : (
+                              <div className="w-full text-center text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest opacity-60">
+                                Próximamente
+                              </div>
+                            )}
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ) : (
+        </div>
+      ) : (
         <div className="mt-12 p-10 bg-[var(--bg-main)] rounded-[2.5rem] text-center border border-[var(--border-color)] border-dashed">
           <p className="text-[var(--text-muted)] font-black uppercase tracking-widest">El contenido del curso estará disponible pronto.</p>
         </div>

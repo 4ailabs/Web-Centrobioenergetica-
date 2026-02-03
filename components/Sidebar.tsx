@@ -98,7 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             <div className="space-y-3">
               <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Personal</h3>
               <div className="space-y-1">
-                <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} />
+                {/* <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} /> */}
                 <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
                 <ThemeToggle mobile />
                 {user ? (
@@ -182,7 +182,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
               {user?.isAdmin && (
                 <NavItem icon={<Shield className="w-5 h-5" />} label="Panel Admin" active={location.pathname === '/admin'} onClick={() => handleNavigation('Panel Admin', '/admin')} />
               )}
-              <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} />
+              {/* <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} /> */}
               <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} />
               <ThemeToggle />
               {user ? (
