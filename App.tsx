@@ -72,7 +72,7 @@ const AppContent: React.FC = () => {
     <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] min-h-screen font-sans text-[var(--text-main)] transition-colors duration-300 flex flex-col`}>
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
-        <div className="hidden lg:block lg:w-80">
+        <div className="hidden lg:block lg:w-64">
           <Sidebar
             activeItem={activePage}
             setActiveItem={handleSetActivePage}
@@ -92,7 +92,7 @@ const AppContent: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <main className="flex-1 lg:ml-0 p-2 lg:p-12">
+        <main className="flex-1 lg:ml-0 p-2 lg:p-14">
           <div key={activePage} className="animate-fade-in">
             <Routes>
               <Route path="/" element={

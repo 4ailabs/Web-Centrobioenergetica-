@@ -96,7 +96,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
         </div>
 
         {/* Content Container */}
-        <div className="relative h-full z-10 flex flex-col justify-end pb-6 sm:justify-center sm:pb-0 px-5 sm:px-6 lg:px-20 max-w-6xl mx-auto w-full space-y-2.5 sm:space-y-4 md:space-y-6">
+        <div className="relative h-full z-10 flex flex-col justify-end pb-6 sm:justify-center sm:pb-0 px-5 sm:px-6 lg:px-20 max-w-7xl mx-auto w-full space-y-2.5 sm:space-y-4 md:space-y-6">
           <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-primary-600/30 backdrop-blur-md rounded-full border border-primary-400/40 w-fit">
             <span className="w-1.5 h-1.5 bg-primary-400 rounded-full"></span>
             <span className="text-[9px] md:text-[10px] font-bold text-white uppercase tracking-wide">Formación de Vanguardia</span>
@@ -136,7 +136,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </div>
 
       {/* Featured Programs Section */}
-      <section className="px-4 max-w-7xl mx-auto w-full">
+      <section className="px-4 max-w-[1500px] mx-auto w-full">
         <div className="relative">
           {/* Header */}
           <div className="flex flex-col items-start mb-10 gap-3 relative z-10">
@@ -150,7 +150,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-14 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 relative z-10">
             {featuredCourses.map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}
@@ -159,7 +159,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </section>
 
       {/* Latest News Preview Section */}
-      <section className="px-4 max-w-7xl mx-auto w-full">
+      <section className="px-4 max-w-[1500px] mx-auto w-full">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="w-1 h-8 bg-primary-600 rounded-full"></div>
@@ -204,7 +204,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </section>
 
       {/* Quick Access Grid - Balanced */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto w-full">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-[1500px] mx-auto w-full">
         {[
           { icon: NewsIcon, title: "Noticias", desc: "Investigaciones y novedades.", action: onNavigateToNews },
           { icon: AboutUsIcon, title: "Nosotros", desc: "Misión y equipo experto.", action: onNavigateToAbout },

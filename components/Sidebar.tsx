@@ -134,7 +134,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       </aside>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:sticky top-0 h-screen bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl border-r border-zinc-200/50 dark:border-zinc-800/50 p-6 flex-col w-72 shrink-0 relative overflow-hidden">
+      <aside className="hidden lg:flex lg:sticky top-0 h-screen bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl border-r border-zinc-200/50 dark:border-zinc-800/50 p-6 flex-col w-64 shrink-0 relative overflow-hidden">
         {/* Premium gradient backgrounds */}
         <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-emerald-500/10 to-transparent pointer-events-none rounded-full blur-3xl" />
