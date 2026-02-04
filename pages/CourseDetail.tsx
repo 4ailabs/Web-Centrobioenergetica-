@@ -235,7 +235,7 @@ const CourseDetail: React.FC = () => {
                 </div>
 
                 {/* Grid de videos del módulo */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {module.videos.map((video, index) => {
                     const isCompleted = completedVideos.has(video.id);
                     const hasVideo = video.cloudflareStreamId || video.vimeoId;
@@ -250,99 +250,105 @@ const CourseDetail: React.FC = () => {
                       <div
                         key={video.id}
                         onClick={() => hasVideo && openVideo(video)}
-                        className={`group relative bg-[var(--panel-bg)] rounded-3xl overflow-hidden border-2 ${isPlaying
-                          ? 'border-primary-600 ring-2 ring-primary-600/20'
-                          : isLocked
-                            ? 'border-[var(--border-color)] opacity-60 cursor-not-allowed'
-                            : hasVideo
-                              ? 'border-[var(--border-color)] cursor-pointer hover:border-primary-600'
-                              : 'border-[var(--border-color)] cursor-default'
-                          } transition-all`}
+                        className={`group relative flex flex-col h-full rounded-3xl overflow-hidden transition-all duration-300 ${
+                          isPlaying
+                            ? 'ring-2 ring-primary-600 ring-offset-2 ring-offset-[var(--bg-main)]'
+                            : isLocked
+                              ? 'opacity-60 cursor-not-allowed'
+                              : hasVideo
+                                ? 'cursor-pointer hover:scale-105'
+                                : 'cursor-default'
+                        }`}
                       >
                         {/* Thumbnail / Placeholder */}
-                        <div className="relative w-full aspect-video overflow-hidden bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent">
+                        <div className="relative w-full bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent overflow-hidden flex-shrink-0" style={{ aspectRatio: '16/9', minHeight: '280px' }}>
                           {thumbnailUrl && hasVideo ? (
-                            <img
-                              src={thumbnailUrl}
-                              alt={video.title}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                // Fallback to gradient if thumbnail fails
-                                e.currentTarget.style.display = 'none';
-                              }}
-                            />
+                            <>
+                              <img
+                                src={thumbnailUrl}
+                                alt={video.title}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                onError={(e) => {
+                                  // Fallback to gradient if thumbnail fails
+                                  e.currentTarget.style.display = 'none';
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
+                            </>
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/10 via-primary-600/5 to-transparent">
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/15 via-primary-600/5 to-transparent">
                               <div className="text-center">
-                                <div className="w-20 h-20 mx-auto mb-3 bg-primary-600/20 rounded-2xl flex items-center justify-center">
+                                <div className="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center bg-gradient-to-br from-primary-500/30 to-primary-600/20 backdrop-blur-md border border-primary-500/30">
                                   {isLocked ? (
-                                    <Lock className="w-10 h-10 text-red-600" />
+                                    <Lock className="w-12 h-12 text-red-500" />
                                   ) : (
-                                    <Play className="w-10 h-10 text-primary-600" />
+                                    <Play className="w-12 h-12 text-primary-600 fill-current" />
                                   )}
                                 </div>
                               </div>
                             </div>
                           )}
 
-                          {/* Overlay con botón de play (solo si tiene acceso) */}
+                          {/* Overlay con botón de play */}
                           {hasVideo && !isLocked && (
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center">
-                                <Play className="w-8 h-8 fill-current ml-1" />
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                              <div className="w-20 h-20 bg-primary-600 text-white rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+                                <Play className="w-10 h-10 fill-current ml-1" />
                               </div>
                             </div>
                           )}
 
-                          {/* Badge de número */}
-                          <div className="absolute top-4 left-4 w-10 h-10 bg-primary-600 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg z-10">
+                          {/* Badge de número circular */}
+                          <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-full flex items-center justify-center font-black text-lg shadow-lg z-10 border-2 border-white/20">
                             {index + 1}
                           </div>
 
                           {/* Badge de duración */}
                           {video.duration && (
-                            <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-black/80 backdrop-blur-sm rounded-lg text-[10px] font-black text-white uppercase tracking-widest z-10 flex items-center gap-1.5">
-                              <Clock className="w-3 h-3" />
+                            <div className="absolute bottom-4 right-4 px-4 py-2 bg-black/70 backdrop-blur-md rounded-full text-xs font-black text-white uppercase tracking-widest z-10 flex items-center gap-2 border border-white/10">
+                              <Clock className="w-3.5 h-3.5" />
                               {video.duration}
                             </div>
                           )}
 
                           {/* Badge de reproduciendo */}
                           {isPlaying && (
-                            <div className="absolute top-4 right-4 px-3 py-1.5 bg-primary-600 text-white rounded-lg flex items-center gap-2 shadow-lg z-10">
+                            <div className="absolute top-4 right-4 px-4 py-2 bg-primary-600 text-white rounded-full flex items-center gap-2 shadow-lg z-10 border border-primary-500/50 animate-pulse">
                               <div className="flex items-center gap-1">
-                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-75"></span>
-                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-150"></span>
+                                <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                                <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-75"></span>
+                                <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></span>
                               </div>
-                              <span className="text-[9px] font-black uppercase tracking-widest">Reproduciendo</span>
+                              <span className="text-xs font-black uppercase tracking-widest">EN VIVO</span>
                             </div>
                           )}
 
                           {/* Badge de completado */}
                           {isCompleted && !isPlaying && (
-                            <div className="absolute top-4 right-4 w-10 h-10 bg-green-500 text-white rounded-xl flex items-center justify-center shadow-lg z-10">
-                              <CheckCircle2 className="w-6 h-6" />
+                            <div className="absolute top-4 right-4 w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg z-10">
+                              <CheckCircle2 className="w-7 h-7" />
                             </div>
                           )}
                         </div>
 
                         {/* Contenido */}
-                        <div className="p-6">
-                          <h4 className="text-lg lg:text-xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight line-clamp-2 leading-tight min-h-[3rem]">
-                            {video.title}
-                          </h4>
-                          {video.description && (
-                            <p className="text-sm text-[var(--text-muted)] mb-4 font-medium leading-relaxed line-clamp-2">
-                              {video.description}
-                            </p>
-                          )}
+                        <div className="p-6 flex flex-col flex-grow bg-[var(--panel-bg)] border border-t-0 border-[var(--border-color)]">
+                          <div className="flex-grow">
+                            <h4 className="text-lg lg:text-xl font-black text-[var(--text-main)] mb-2 uppercase tracking-tight line-clamp-2 leading-tight">
+                              {video.title}
+                            </h4>
+                            {video.description && (
+                              <p className="text-xs lg:text-sm text-[var(--text-muted)] font-medium leading-relaxed line-clamp-2">
+                                {video.description}
+                              </p>
+                            )}
+                          </div>
 
-                          {/* Footer */}
-                          <div className="flex items-center justify-between pt-4 border-t border-[var(--border-color)]/30">
+                          {/* Footer Actions */}
+                          <div className="flex items-center gap-3 mt-6 pt-4 border-t border-[var(--border-color)]/30">
                             {isLocked ? (
-                              <div className="w-full flex items-center justify-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest">
-                                <Lock className="w-3 h-3" />
+                              <div className="flex-1 flex items-center justify-center gap-2 text-xs font-black text-red-600 uppercase tracking-widest">
+                                <Lock className="w-4 h-4" />
                                 Bloqueado
                               </div>
                             ) : hasVideo ? (
@@ -352,26 +358,27 @@ const CourseDetail: React.FC = () => {
                                     e.stopPropagation();
                                     openVideo(video);
                                   }}
-                                  className="text-[10px] font-black text-primary-600 uppercase tracking-widest flex items-center gap-2"
+                                  className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2"
                                 >
-                                  Ver ahora
-                                  <Play className="w-3 h-3" />
+                                  <Play className="w-3.5 h-3.5 fill-current" />
+                                  Ver
                                 </button>
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     toggleVideoCompletion(video.id);
                                   }}
-                                  className={`text-[10px] font-black uppercase tracking-widest ${isCompleted
-                                    ? 'text-green-500'
-                                    : 'text-[var(--text-muted)] opacity-60 hover:opacity-100'
-                                    }`}
+                                  className={`px-4 py-2 rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-200 ${
+                                    isCompleted
+                                      ? 'bg-green-500/20 text-green-600 border border-green-500/30'
+                                      : 'bg-[var(--bg-main)] text-[var(--text-muted)] border border-[var(--border-color)] hover:border-primary-600/50'
+                                  }`}
                                 >
-                                  {isCompleted ? 'Completado' : 'Marcar'}
+                                  {isCompleted ? '✓' : '○'}
                                 </button>
                               </>
                             ) : (
-                              <div className="w-full text-center text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest opacity-60">
+                              <div className="flex-1 text-center text-xs font-black text-[var(--text-muted)] uppercase tracking-widest opacity-60">
                                 Próximamente
                               </div>
                             )}

@@ -40,7 +40,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 3,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/aminoacidos.png', // Placeholder, user can update
+      imageUrl: '/images/courses/aminoacidos.png',
       modules: [
         {
           id: 1,
@@ -98,7 +98,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 2,
       level: 'Avanzado' as const,
-      imageUrl: '/images/courses/setpoint.png', // Placeholder
+      imageUrl: '/images/courses/setpoint.png',
       modules: [
         {
           id: 1,
