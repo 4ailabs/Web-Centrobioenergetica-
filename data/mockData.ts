@@ -241,7 +241,18 @@ export const MOCK_DATA = {
       title: 'El Poder de la Respiración Consciente en el Día a Día',
       description: 'Nuevos estudios revelan cómo la respiración puede impactar positivamente tu salud física y mental.',
       category: 'Salud Integral',
-      content: 'La respiración consciente no es solo una técnica de relajación; es una herramienta poderosa que influye en nuestro sistema nervioso autónomo. Al practicarla regularmente, podemos reducir el cortisol y mejorar nuestra claridad mental.',
+      content: `La respiración consciente no es solo una técnica de relajación; es una herramienta poderosa que influye directamente en nuestro sistema nervioso autónomo. Al practicarla regularmente, podemos reducir los niveles de cortisol, la hormona del estrés, y mejorar significativamente nuestra claridad mental y capacidad de respuesta emocional.
+
+Beneficios clave:
+1. Regulación del Nervio Vago: Activa la respuesta de relajación del cuerpo.
+2. Equilibrio Bioquímico: Optimiza el intercambio de oxígeno y dióxido de carbono a nivel celular.
+3. Enfoque Mental: Reduce la "niebla mental" y mejora la concentración sostenida.
+
+Técnicas sugeridas:
+- Respiración en Caja (4-4-4-4): Inhala en 4, mantén en 4, exhala en 4, mantén en 4. Ideal para momentos de alta tensión.
+- Respiración Diafragmática: Enfócate en expandir el abdomen en lugar del pecho para una oxigenación más profunda.
+
+Integrar breves pausas de respiración consciente a lo largo del día puede transformar tu energía vital y tu bienestar a largo plazo.`,
       author: 'Henry Carter',
       imageUrl: 'https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -328,30 +339,84 @@ export const MOCK_DATA = {
   events: [
     {
       id: 1,
-      title: 'Workshop: Biomagnetismo Avanzado',
-      description: 'Sesión intensiva sobre nuevas técnicas de rastreo y protocolos complejos.',
-      date: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString(),
+      title: 'Taller IA: Prompts',
+      description: 'Taller práctico para aprender a "hablarle" a la inteligencia artificial con instrucciones efectivas (prompts) para obtener mejores respuestas en trabajo, consultas, terapia, docencia y creación de contenido. Se llevan plantillas listas y ejemplos aplicados a casos reales.',
+      date: '2026-02-06T18:00:00Z',
       type: 'workshop',
-      location: 'Ciudad de México / Online',
-      link: 'https://zoom.us/j/example1',
+      location: 'Online',
     },
     {
       id: 2,
-      title: 'Webinar: El Futuro de la Bionergética',
-      description: 'Charla gratuita sobre las tendencias de salud para el 2026.',
-      date: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString(),
-      type: 'live',
-      location: 'Online (YouTube Live)',
-      link: 'https://youtube.com/live/example2',
+      title: 'Set Point | Módulo 2',
+      description: 'Continuación del programa de Set Point (punto de ajuste). Enfocado en profundizar en patrones, regulación interna y reprogramación de hábitos/estado emocional para sostener cambios. Se trabajan ejercicios guiados y herramientas aplicables en la vida diaria.',
+      date: '2026-02-07T10:00:00Z',
+      type: 'workshop',
+      location: 'Centro Bioenergética',
     },
     {
       id: 3,
-      title: 'Sesión de Soporte Semanal',
-      description: 'Resolución de dudas para alumnos de la plataforma.',
-      date: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString(),
-      type: 'support',
-      location: 'Online (Discord)',
-    }
+      title: 'Nutrición con aminoácidos (2 modulo)',
+      description: 'Sesión formativa sobre cómo usar aminoácidos como estrategia nutricional: energía, recuperación, saciedad, masa muscular, estado de ánimo y soporte metabólico. Ideal para quienes quieren entender el "por qué" y el "cómo" de una suplementación inteligente.',
+      date: '2026-02-09T19:00:00Z',
+      type: 'live',
+      location: 'Online',
+    },
+    {
+      id: 4,
+      title: 'Taller Leche Dorada',
+      description: 'Taller de preparación y uso funcional de la "leche dorada" (cúrcuma y sinergias). Enfoque: bienestar digestivo, soporte antiinflamatorio, descanso y rutina de cuidado diario. Se llevan receta, variaciones y guía de uso.',
+      date: '2026-02-13T17:00:00Z',
+      type: 'workshop',
+      location: 'Presencial',
+    },
+    {
+      id: 5,
+      title: 'LSP: El ADN de tu marca',
+      description: 'Sesión con LEGO® Serious Play para definir el ADN de marca: propósito, esencia, valores, diferenciadores, promesa y personalidad. Súper útil para emprendedores, terapeutas, coaches y proyectos que quieren claridad para comunicar y vender mejor.',
+      date: '2026-02-16T09:00:00Z',
+      type: 'workshop',
+      location: 'Centro Bioenergética',
+    },
+    {
+      id: 6,
+      title: 'Taller Mantequilla Ghee',
+      description: 'Taller práctico para elaborar ghee y aprender a usarlo en la cocina diaria. Se aborda calidad de grasas, digestión, puntos de humo, conservación y recetas simples para integrar el ghee como base culinaria.',
+      date: '2026-02-20T18:00:00Z',
+      type: 'workshop',
+      location: 'Cocina Terapéutica',
+    },
+    {
+      id: 7,
+      title: 'Bioenergética básica',
+      description: 'Introducción estructurada a fundamentos de bioenergética: lectura del cuerpo, energía vital, regulación emocional y herramientas básicas de trabajo personal. Ideal como primera puerta para quien quiere entender el enfoque y aplicarlo de forma ordenada.',
+      date: '2026-02-21T10:00:00Z',
+      type: 'workshop',
+      location: 'Centro Bioenergética',
+    },
+    {
+      id: 8,
+      title: 'Nutrición con aminoácidos (tercer modulo)',
+      description: 'Segunda sesión del mismo eje formativo; puede funcionar como continuación, profundización o como nueva oportunidad para quienes se integran después. Se refuerza aplicación práctica y dudas frecuentes.',
+      date: '2026-02-23T19:00:00Z',
+      type: 'live',
+      location: 'Online',
+    },
+    {
+      id: 9,
+      title: 'Constelación sistemica',
+      description: 'Taller vivencial de constelaciones (enfoque sistémico) para observar dinámicas familiares y patrones repetidos (pareja, dinero, salud, profesión). Trabajo profundo, con insights y movimientos internos de integración.',
+      date: '2026-02-26T17:00:00Z',
+      type: 'workshop',
+      location: 'Sala Sistémica',
+    },
+    {
+      id: 10,
+      title: 'Taller de elabracion (Asaí)',
+      description: 'Taller tipo "nutri" para preparar açaí (bowls y variaciones) con enfoque funcional: energía, antioxidantes, combinaciones inteligentes, porciones y toppings que suman a objetivos (bienestar, rendimiento, saciedad).',
+      date: '2026-02-27T18:00:00Z',
+      type: 'workshop',
+      location: 'Cocina Terapéutica',
+    },
   ] as CalendarEvent[],
 };
 
