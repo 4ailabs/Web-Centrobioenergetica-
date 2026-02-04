@@ -92,7 +92,7 @@ const AppContent: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <main className="flex-1 lg:ml-0 p-2 lg:p-8">
+        <main className="flex-1 lg:ml-0 p-2 lg:p-12">
           <div key={activePage} className="animate-fade-in">
             <Routes>
               <Route path="/" element={

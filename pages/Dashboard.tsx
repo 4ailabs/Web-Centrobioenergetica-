@@ -81,7 +81,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   const featuredCourses = useMemo(() => courses.slice(0, 4), [courses]);
 
   return (
-    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-12 sm:space-y-20 pb-20">
+    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-12 sm:space-y-32 pb-20">
       {/* Premium Hero Section - Compact & Professional */}
       <div className="relative mx-3 sm:mx-4 h-[340px] sm:h-[380px] lg:h-[450px] overflow-hidden rounded-2xl sm:rounded-3xl mb-8 sm:mb-12 shadow-lg">
         {/* Background Image with Overlay */}
@@ -96,7 +96,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
         </div>
 
         {/* Content Container */}
-        <div className="relative h-full z-10 flex flex-col justify-end pb-6 sm:justify-center sm:pb-0 px-5 sm:px-6 lg:px-16 max-w-4xl space-y-2.5 sm:space-y-4 md:space-y-6">
+        <div className="relative h-full z-10 flex flex-col justify-end pb-6 sm:justify-center sm:pb-0 px-5 sm:px-6 lg:px-20 max-w-6xl mx-auto w-full space-y-2.5 sm:space-y-4 md:space-y-6">
           <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-primary-600/30 backdrop-blur-md rounded-full border border-primary-400/40 w-fit">
             <span className="w-1.5 h-1.5 bg-primary-400 rounded-full"></span>
             <span className="text-[9px] md:text-[10px] font-bold text-white uppercase tracking-wide">Formación de Vanguardia</span>
@@ -136,7 +136,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </div>
 
       {/* Featured Programs Section */}
-      <section className="px-4">
+      <section className="px-4 max-w-7xl mx-auto w-full">
         <div className="relative">
           {/* Header */}
           <div className="flex flex-col items-start mb-10 gap-3 relative z-10">
@@ -159,7 +159,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </section>
 
       {/* Latest News Preview Section */}
-      <section className="px-4">
+      <section className="px-4 max-w-7xl mx-auto w-full">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="w-1 h-8 bg-primary-600 rounded-full"></div>
@@ -204,7 +204,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </section>
 
       {/* Quick Access Grid - Balanced */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto w-full">
         {[
           { icon: NewsIcon, title: "Noticias", desc: "Investigaciones y novedades.", action: onNavigateToNews },
           { icon: AboutUsIcon, title: "Nosotros", desc: "Misión y equipo experto.", action: onNavigateToAbout },
