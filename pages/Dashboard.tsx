@@ -82,42 +82,57 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
 
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
-      {/* Hero Section - Clean & Minimal */}
-      <div className="relative bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 px-6 py-20 lg:py-32">
-        {/* Subtle decorative elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary-600/3 rounded-full blur-3xl dark:bg-primary-600/5 opacity-40"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-600/2 rounded-full blur-3xl dark:bg-primary-600/4 opacity-30"></div>
+      {/* Hero Section - Refined Minimalism with Elegant Accents */}
+      <div className="relative overflow-hidden">
+        {/* Soft gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-850"></div>
 
-        <div className="max-w-6xl mx-auto relative">
-          <div className="space-y-8">
-            <div>
-              <span className="text-primary-600 font-medium text-sm">Formación de Vanguardia</span>
-            </div>
+        {/* Refined decorative accent - rounded rectangle in corner */}
+        <div className="absolute -top-32 -right-32 w-72 h-72 rounded-full bg-gradient-to-b from-primary-600/8 to-primary-600/3 dark:from-primary-600/5 dark:to-primary-600/2 blur-2xl"></div>
+        <div className="absolute -bottom-20 -left-48 w-96 h-96 rounded-full bg-gradient-to-t from-primary-600/5 to-transparent dark:from-primary-600/2 dark:to-transparent blur-3xl"></div>
 
-            <div className="space-y-4">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
-                Instituto <br />
-                <span className="text-primary-600">Centrobioenergética</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
-                Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
-              </p>
-            </div>
+        {/* Content */}
+        <div className="relative px-6 py-20 lg:py-32">
+          <div className="max-w-6xl mx-auto">
+            <div className="space-y-8">
+              {/* Tag */}
+              <div className="inline-flex">
+                <span className="px-3 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/8 dark:bg-primary-600/10 rounded-full">
+                  Formación de Vanguardia
+                </span>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-8">
-              <button
-                onClick={() => navigate('/cursos')}
-                className="px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
-              >
-                Oferta Académica
-                <span>→</span>
-              </button>
-              <button
-                onClick={() => navigate('/servicios')}
-                className="px-8 py-3 border-2 border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-600 hover:text-white transition-all active:scale-95 min-h-[44px]"
-              >
-                Servicios
-              </button>
+              {/* Heading Section */}
+              <div className="space-y-6 max-w-4xl">
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
+                  Instituto <br />
+                  <span className="relative">
+                    <span className="text-primary-600">Centrobioenergética</span>
+                    {/* Subtle underline decoration */}
+                    <span className="absolute bottom-0 left-0 w-full h-1 bg-primary-600/20 rounded-full -mb-2"></span>
+                  </span>
+                </h1>
+                <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
+                  Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-8">
+                <button
+                  onClick={() => navigate('/cursos')}
+                  className="group relative px-8 py-3 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px] shadow-md hover:shadow-lg"
+                >
+                  Oferta Académica
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </button>
+                <button
+                  onClick={() => navigate('/servicios')}
+                  className="px-8 py-3 border-2 border-primary-600 text-primary-600 rounded-xl font-medium hover:bg-primary-600 hover:text-white transition-all active:scale-95 min-h-[44px]"
+                >
+                  Servicios
+                </button>
+              </div>
             </div>
           </div>
         </div>
