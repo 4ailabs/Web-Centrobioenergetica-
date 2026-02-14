@@ -129,15 +129,15 @@ const News: React.FC = () => {
 
       <PageHeader
         icon={<Zap className="w-6 h-6" />}
-        tag="Magazine Digital"
+        tag="Bienestar Integral"
         title="Noticias"
-        description="Explora las fronteras de la bionergética, investigaciones científicas y novedades exclusivas del instituto."
+        description="Contenido de medicina alternativa, hábitos saludables y herramientas prácticas para tu bienestar diario."
       >
         <div className="w-full lg:w-96 group relative">
           <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] w-5 h-5 transition-colors group-focus-within:text-primary-600" />
           <input
             type="text"
-            placeholder="Buscar investigaciones..."
+            placeholder="Buscar temas de bienestar..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-14 pr-6 py-5 bg-[var(--panel-bg)] border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary-600/5 focus:border-primary-600 transition-all font-medium text-sm shadow-sm"
@@ -176,20 +176,14 @@ const News: React.FC = () => {
                   {featuredArticle.description}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-between mt-auto pt-8 border-t border-[var(--border-color)]/50 gap-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center text-primary-600 font-black text-xs border border-primary-600/20 shadow-inner">
-                      {featuredArticle.author[0]}
-                    </div>
-                    <div>
-                      <p className="text-xs font-black text-[var(--text-main)] uppercase tracking-widest">{featuredArticle.author}</p>
-                      <p className="text-[10px] text-[var(--text-muted)] font-black uppercase tracking-widest">Editor en Jefe</p>
-                    </div>
-                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary-600 bg-primary-600/5 px-4 py-2 rounded-xl border border-primary-600/20">
+                    Guía práctica
+                  </span>
                   <button
                     onClick={() => setSelectedArticle(featuredArticle)}
                     className="w-full sm:w-auto px-10 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-primary-600 hover:text-white transition-all shadow-xl active:scale-95"
                   >
-                    Leer Historia
+                    Leer artículo
                   </button>
                 </div>
               </div>
@@ -234,7 +228,7 @@ const News: React.FC = () => {
                       <MailIcon className="w-8 h-8 text-primary-600" />
                     </div>
                     <h4 className="text-2xl font-black mb-4 uppercase tracking-tight leading-none">Únete a la <span className="text-primary-600">Comunidad</span></h4>
-                    <p className="text-[var(--text-muted)] text-sm mb-8 font-medium leading-relaxed">Recibe investigaciones exclusivas y novedades científicas cada semana.</p>
+                    <p className="text-[var(--text-muted)] text-sm mb-8 font-medium leading-relaxed">Recibe consejos prácticos de salud integral y medicina alternativa cada semana.</p>
                     <div className="space-y-4">
                       <input
                         type="email"
@@ -294,19 +288,9 @@ const News: React.FC = () => {
                   <h2 className="text-4xl lg:text-6xl font-black text-[var(--text-main)] uppercase tracking-tight mb-8 leading-[1.1]">{selectedArticle.title}</h2>
 
                   <div className="flex flex-col lg:flex-row items-center gap-8 mb-12 py-6 border-y border-[var(--border-color)] w-full">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center text-primary-600 font-black text-xs border border-primary-600/20">
-                        {selectedArticle.author[0]}
-                      </div>
-                      <div className="text-left">
-                        <p className="text-xs font-black text-[var(--text-main)] uppercase tracking-widest leading-none mb-1">{selectedArticle.author}</p>
-                        <p className="text-[10px] text-[var(--text-muted)] font-black uppercase tracking-widest">Hace 2 días</p>
-                      </div>
-                    </div>
-                    <div className="hidden lg:block w-px h-8 bg-[var(--border-color)]"></div>
                     <div className="flex items-center gap-6">
                       <span className="font-black text-[10px] uppercase tracking-widest text-primary-600 bg-primary-600/5 px-3 py-1 rounded-lg">5 min lectura</span>
-                      <span className="font-black text-[10px] uppercase tracking-widest text-[var(--text-muted)]">Científico</span>
+                      <span className="font-black text-[10px] uppercase tracking-widest text-[var(--text-muted)]">Bienestar</span>
                     </div>
                   </div>
                 </div>
@@ -320,7 +304,7 @@ const News: React.FC = () => {
                     <div>
                       <h5 className="text-xs font-black text-[var(--text-main)] uppercase tracking-[0.3em] mb-4 text-center lg:text-left flex items-center gap-3">
                         <SparklesIcon className="w-4 h-4 text-primary-600" />
-                        ¿Qué te pareció la investigación?
+                        ¿Qué te pareció este artículo?
                       </h5>
                       <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                         {[

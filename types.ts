@@ -37,7 +37,7 @@ export interface NewsArticle {
   description: string;
   content?: string;
   category: string;
-  author: string;
+  author?: string;
   imageUrl: string;
   createdAt?: string;
   relatedCourseIds?: number[];

@@ -238,50 +238,164 @@ export const MOCK_DATA = {
   news: [
     {
       id: 1,
-      title: 'El Poder de la Respiración Consciente en el Día a Día',
-      description: 'Nuevos estudios revelan cómo la respiración puede impactar positivamente tu salud física y mental.',
-      category: 'Salud Integral',
-      content: `La respiración consciente no es solo una técnica de relajación; es una herramienta poderosa que influye directamente en nuestro sistema nervioso autónomo. Al practicarla regularmente, podemos reducir los niveles de cortisol, la hormona del estrés, y mejorar significativamente nuestra claridad mental y capacidad de respuesta emocional.
+      title: 'Respiración Consciente para Regular Estrés y Energía',
+      description: 'Aprende una rutina diaria paso a paso para bajar tensión, mejorar enfoque y sostener energía estable durante la jornada.',
+      category: 'Hábitos de Bienestar',
+      content: `La respiración consciente es una herramienta central en medicina integrativa y bienestar general. Cuando respiramos de forma lenta y diafragmática, favorecemos la respuesta de calma del cuerpo, reducimos la tensión acumulada y recuperamos claridad para tomar mejores decisiones.
 
-Beneficios clave:
-1. Regulación del Nervio Vago: Activa la respuesta de relajación del cuerpo.
-2. Equilibrio Bioquímico: Optimiza el intercambio de oxígeno y dióxido de carbono a nivel celular.
-3. Enfoque Mental: Reduce la "niebla mental" y mejora la concentración sostenida.
+En consulta, muchas personas reportan que su respiración diaria suele ser corta y acelerada. Eso mantiene al cuerpo en estado de alerta y, con el tiempo, se traduce en fatiga, irritabilidad y baja concentración.
 
-Técnicas sugeridas:
-- Respiración en Caja (4-4-4-4): Inhala en 4, mantén en 4, exhala en 4, mantén en 4. Ideal para momentos de alta tensión.
-- Respiración Diafragmática: Enfócate en expandir el abdomen en lugar del pecho para una oxigenación más profunda.
+Protocolo sugerido:
+1. Inhala por nariz 4 segundos.
+2. Exhala por nariz 6 segundos.
+3. Repite por 5 minutos, 2 veces al día.
+4. Mantén hombros sueltos y mandíbula relajada.
+5. Si te distraes, vuelve suavemente al conteo.
 
-Integrar breves pausas de respiración consciente a lo largo del día puede transformar tu energía vital y tu bienestar a largo plazo.`,
-      author: 'Henry Carter',
-      imageUrl: 'https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+Beneficios observados:
+- Mejor regulación emocional.
+- Mayor claridad mental.
+- Sensación de energía más estable durante el día.
+- Menos tensión cervical al final de la tarde.
+- Mejor calidad de descanso nocturno.
+
+Cuándo usarla:
+- Antes de una reunión importante.
+- Al despertar, antes de revisar el celular.
+- Después de comer, para retomar actividades con foco.
+- Antes de dormir, como ritual de cierre del día.
+
+Tip práctico: inicia con 3 minutos y aumenta gradualmente. La constancia vale más que la duración.`,
+      imageUrl: '/images/news/respiracion-consciente.svg',
     },
     {
       id: 2,
-      title: 'Revolución del Bienestar en la Educación para Adultos',
-      description: 'Plataformas pioneras de e-learning ofrecen extensos programas de formación en bienestar.',
-      category: 'E-Learning',
-      content: 'La educación para adultos está experimentando un cambio de paradigma, donde el bienestar emocional se considera tan importante como las habilidades técnicas. Nuevos programas integran meditación y gestión del estrés en su currículo.',
-      author: 'Elisabeth Brooks',
-      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title: 'Sueño Reparador: Rutina Nocturna desde la Medicina Integrativa',
+      description: 'Descubre una rutina nocturna completa para conciliar mejor el sueño, recuperarte más rápido y despertar con más energía.',
+      category: 'Descanso y Recuperación',
+      content: `Dormir bien es una base del bienestar integral. Desde un enfoque natural, recomendamos una rutina de cierre diario que combine hábitos sencillos, repetibles y adaptables a distintos estilos de vida.
+
+El cuerpo responde mejor cuando recibe señales claras de que el día terminó. Por eso, más que buscar "dormir de golpe", la clave está en preparar gradualmente al sistema nervioso.
+
+Checklist nocturno:
+- Cenar ligero 2-3 horas antes de dormir.
+- Reducir pantallas 60 minutos antes.
+- Tomar una infusión relajante (sin cafeína).
+- Respiración lenta durante 3 minutos en cama.
+- Mantener habitación oscura, fresca y silenciosa.
+- Evitar conversaciones estresantes al cierre del día.
+
+Mini rutina sugerida (20 minutos):
+1. 5 min de estiramientos suaves.
+2. 10 min de higiene nocturna sin pantallas.
+3. 5 min de respiración o lectura tranquila.
+
+Cuando el descanso mejora, también se beneficia la digestión, la regulación del apetito, la memoria y la capacidad de concentración al día siguiente.
+
+Recomendación práctica: mantén horarios similares entre semana y fin de semana para estabilizar tu ritmo circadiano.`,
+      imageUrl: '/images/news/sueno-reparador.svg',
     },
     {
       id: 3,
-      title: 'Aplicaciones Innovadoras para el Crecimiento Personal',
-      description: 'Una plataforma particular utiliza inteligencia artificial para guiarte en tu desarrollo personal.',
-      category: 'Tecnología',
-      content: 'La inteligencia artificial está permitiendo una personalización sin precedentes en el crecimiento personal. Estas aplicaciones analizan patrones de comportamiento para ofrecer consejos personalizados en tiempo real.',
-      author: 'Steve Mills',
-      imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title: 'Alimentación Antiinflamatoria: Guía Básica para Empezar',
+      description: 'Una guía extendida para organizar tus comidas con enfoque antiinflamatorio y sostener resultados sin dietas extremas.',
+      category: 'Nutrición Funcional',
+      content: `La alimentación antiinflamatoria no es una dieta estricta; es una forma de comer enfocada en calidad, variedad y equilibrio. Su objetivo es disminuir la carga inflamatoria diaria que puede manifestarse como cansancio, digestión pesada, antojos o hinchazón.
+
+En lugar de prohibir alimentos, se priorizan combinaciones que ayuden al cuerpo a recuperarse mejor: fibra, grasas saludables, proteína de calidad e hidratación suficiente.
+
+Recomendaciones iniciales:
+1. Prioriza alimentos frescos y de temporada.
+2. Incluye grasas saludables (aguacate, nueces, aceite de oliva).
+3. Aumenta vegetales de colores en cada comida.
+4. Reduce ultraprocesados, azúcares y exceso de harinas refinadas.
+5. Incluye fuentes de omega-3 2 a 3 veces por semana.
+6. Mantén horarios regulares de comida.
+
+Ejemplo de plato funcional:
+- Mitad del plato: vegetales variados.
+- Un cuarto: proteína (huevo, pescado, leguminosas o pollo).
+- Un cuarto: carbohidrato de calidad (camote, quinoa, arroz integral).
+- Extra: aceite de oliva y especias como cúrcuma o jengibre.
+
+En pocas semanas, muchas personas perciben mejor digestión, menos fatiga y mayor estabilidad en su energía.
+
+Tip clave: empieza por mejorar desayuno y cena. Dos cambios sostenidos generan más impacto que diez cambios imposibles de mantener.`,
+      imageUrl: '/images/news/nutricion-funcional.svg',
     },
     {
       id: 4,
-      title: 'Tendencias en Bienestar y E-Learning para 2024',
-      description: 'El aprendizaje en línea continúa evolucionando, con tendencias de bienestar actualizadas para 2024.',
-      category: 'Tendencias',
-      content: 'Para el 2024, esperamos ver una mayor integración de la realidad virtual en las sesiones de bienestar, permitiendo entornos inmersivos para la meditación y el entrenamiento bionergético.',
-      author: 'Jessica Hayes',
-      imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      title: 'Movimiento Suave: 15 Minutos para Activar Circulación',
+      description: 'Te compartimos una secuencia más completa de movilidad consciente para liberar rigidez y elevar tu energía en pocos minutos.',
+      category: 'Movimiento Terapéutico',
+      content: `No necesitas entrenamientos largos para sentir cambios. Una rutina suave de movilidad articular y estiramientos conscientes durante 15 minutos puede mejorar circulación, postura y energía.
+
+Este tipo de movimiento es ideal para personas que pasan muchas horas sentadas, con estrés acumulado o con sensación de rigidez al despertar. Lo importante no es la intensidad, sino la regularidad y la calidad del movimiento.
+
+Secuencia sugerida:
+- Cuello y hombros (3 min).
+- Columna y cadera (5 min).
+- Piernas y tobillos (5 min).
+- Respiración final (2 min).
+
+Pautas para hacerlo bien:
+- Mueve lento, sin dolor y sin rebotes.
+- Coordina cada movimiento con respiración nasal.
+- Mantén atención en la postura y en cómo se siente tu cuerpo.
+
+Resultados esperados tras 2-3 semanas:
+- Menor tensión muscular.
+- Mejor postura al caminar o trabajar.
+- Más energía al inicio del día.
+
+La clave está en la constancia: poco tiempo, todos los días.`,
+      imageUrl: '/images/news/movimiento-terapeutico.svg',
+    },
+    {
+      id: 5,
+      title: 'Hidratación Inteligente: Más que Tomar Agua',
+      description: 'Conoce cómo hidratarte mejor durante el día para apoyar digestión, circulación, piel y rendimiento mental.',
+      category: 'Hábitos de Bienestar',
+      content: `La hidratación adecuada es una base silenciosa del bienestar. No se trata solo de cantidad, sino de distribución durante el día y de acompañarla con minerales naturales en la alimentación.
+
+Señales frecuentes de hidratación insuficiente:
+- Cansancio temprano.
+- Dolor de cabeza leve.
+- Piel seca.
+- Baja concentración.
+- Estreñimiento ocasional.
+
+Estrategia práctica:
+1. Toma un vaso de agua al despertar.
+2. Distribuye tomas pequeñas cada 2-3 horas.
+3. Aumenta consumo en días de calor o actividad física.
+4. Incluye frutas y verduras ricas en agua.
+
+Tip simple: usa una botella medible para visualizar tu avance diario sin obsesionarte.`,
+      imageUrl: '/images/news/hidratacion-inteligente.svg',
+    },
+    {
+      id: 6,
+      title: 'Gestión Emocional Cotidiana con Micro-Pausas',
+      description: 'Una metodología breve para regular emociones durante el día sin detener por completo tus actividades.',
+      category: 'Salud Emocional',
+      content: `La salud emocional no se trabaja solo en momentos de crisis. Integrar micro-pausas de 1 a 3 minutos durante el día ayuda a reducir sobrecarga mental y prevenir reacciones impulsivas.
+
+Método 3R:
+1. Reconocer: nombra lo que estás sintiendo.
+2. Respirar: realiza 6 respiraciones lentas.
+3. Reencuadrar: elige una acción pequeña y posible.
+
+Ejemplos de micro-pausas:
+- Antes de responder un mensaje difícil.
+- Al terminar una reunión intensa.
+- Antes de comer, para cortar el piloto automático.
+
+Beneficios esperados:
+- Menos reactividad emocional.
+- Mejor comunicación.
+- Más sensación de control y calma interna.`,
+      imageUrl: '/images/news/salud-emocional.svg',
     },
   ] as NewsArticle[],
 
@@ -449,7 +563,7 @@ export const searchData = (query: string): SearchResults => {
     courses: filterByTerms(MOCK_DATA.courses, ['title', 'description', 'level']),
     services: filterByTerms(MOCK_DATA.services, ['title', 'description']),
     products: filterByTerms(MOCK_DATA.products, ['name', 'description', 'category']),
-    news: filterByTerms(MOCK_DATA.news, ['title', 'description', 'author']),
+    news: filterByTerms(MOCK_DATA.news, ['title', 'description', 'category']),
     events: filterByTerms(MOCK_DATA.events, ['title', 'description', 'location']),
   };
 };

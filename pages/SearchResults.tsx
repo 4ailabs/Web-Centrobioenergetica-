@@ -119,11 +119,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
                   <div key={index} className="bg-[var(--bg-main)] border border-[var(--border-color)] rounded-3xl p-6 hover:shadow-xl transition-all group">
                     <h3 className="text-xl font-black text-[var(--text-main)] mb-3 group-hover:text-primary-600 transition-colors uppercase tracking-tight">{article.title}</h3>
                     <p className="text-sm text-[var(--text-muted)] mb-6 leading-relaxed line-clamp-2">{article.description}</p>
-                    <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest flex items-center gap-2">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center text-[10px] text-white">
-                        {article.author.charAt(0)}
-                      </div>
-                      Por {article.author}
+                    <div className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">
+                      Contenido de bienestar
                     </div>
                   </div>
                 ))}

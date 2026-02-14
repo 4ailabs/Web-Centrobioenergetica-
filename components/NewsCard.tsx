@@ -33,12 +33,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
         <p className="text-[var(--text-muted)] text-base mb-8 line-clamp-3 leading-relaxed font-medium">{article.description}</p>
 
         <div className="mt-auto pt-6 border-t border-[var(--border-color)]/50 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary-600/10 rounded-full flex items-center justify-center text-primary-600 font-black text-[10px]">
-              {article.author[0]}
-            </div>
-            <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest">por <span className="font-black text-[var(--text-main)]">{article.author}</span></p>
-          </div>
+          <span className="text-[10px] font-black uppercase tracking-widest text-primary-600 bg-primary-600/5 px-3 py-1.5 rounded-lg border border-primary-600/20">
+            Bienestar práctico
+          </span>
           <div className="flex items-center gap-2 text-primary-600 group-hover:translate-x-1 transition-transform">
             <span className="text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Leer más</span>
             <div className="w-10 h-10 rounded-2xl bg-primary-600/5 flex items-center justify-center text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
