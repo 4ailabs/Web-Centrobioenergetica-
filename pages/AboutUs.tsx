@@ -3,91 +3,151 @@ import { CoursesIcon, NewsIcon, MailIcon, PhoneIcon, YoutubeIcon } from '../comp
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="w-full lg:mt-20 mt-16 px-4">
-      <header className="mb-8 p-4">
-        <h1 className="text-3xl lg:text-5xl font-black text-[var(--text-main)] tracking-tight mb-6">
-          Sobre <span className="text-primary-600">Nosotros</span>
-        </h1>
-        <div className="flex flex-wrap gap-3">
-          <button className="px-6 py-2 bg-primary-600 text-white rounded-full font-bold text-sm shadow-lg shadow-primary-600/20">Instituto</button>
-          <button
-            onClick={() => window.location.href = 'mailto:contacto@institutocentrobioenergetica.com'}
-            className="px-6 py-2 bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] rounded-full font-bold text-sm flex items-center space-x-2 hover:bg-primary-600 hover:text-white transition-all"
-          >
-            <MailIcon className="w-4 h-4 text-primary-600" />
-            <span>Correo</span>
-          </button>
+    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 pb-20">
+      {/* Header Section */}
+      <header className="px-6 max-w-6xl mx-auto w-full">
+        <div className="space-y-8">
+          {/* Title */}
+          <div className="space-y-4">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
+              Sobre <br />
+              <span className="text-primary-600">nosotros</span>
+            </h1>
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
+              Conoce el Instituto Centrobioenergética y nuestra misión de transformación personal.
+            </p>
+          </div>
         </div>
       </header>
 
-      <div className="my-8 lg:my-12">
+      {/* Hero Image */}
+      <section className="px-6 max-w-6xl mx-auto w-full">
         <img
           src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Team working on laptops"
-          className="w-full h-48 lg:h-[400px] object-cover rounded-2xl lg:rounded-3xl"
+          className="w-full h-52 lg:h-80 object-cover rounded-lg"
         />
-      </div>
+      </section>
 
-      <div className="max-w-4xl mx-auto text-center px-4">
-        <h2 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] mb-6">Bienvenido al Instituto <span className="text-primary-600">Centrobioenergética</span></h2>
-        <p className="text-lg text-[var(--text-muted)] leading-relaxed">
-          En el Instituto Centrobioenergetica, brindamos una experiencia de aprendizaje unificada y cautivadora diseñada para adaptarse a tus necesidades. Nos dedicamos a llevar la educación a tu alcance, ofreciendo una diversa gama de cursos para potenciar tu viaje de aprendizaje. Nuestra plataforma combina tecnología de punta con enfoques personalizados, asegurando que tengas las herramientas y recursos para tener éxito en tus esfuerzos educativos.
-        </p>
-        <p className="text-lg text-[var(--text-muted)] leading-relaxed mt-6">
-          Explora un mundo de conocimiento con nuestra interfaz fácil de usar, funciones de seguimiento de progreso y materiales de aprendizaje interactivos. Ya seas estudiante, profesional o aprendiz de por vida, el Instituto Centrobioenergetica es tu destino central para una educación de calidad. Únete a nosotros en esta aventura educativa, donde el aprendizaje no conoce límites, y deja que el Instituto Centrobioenergetica sea tu guía hacia un futuro más brillante.
-        </p>
-      </div>
+      {/* Main Content */}
+      <section className="px-6 max-w-4xl mx-auto w-full space-y-8">
+        <div className="space-y-6">
+          <h2 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+            Bienvenido al Instituto <span className="text-primary-600">Centrobioenergética</span>
+          </h2>
+          <div className="space-y-4 text-lg text-neutral-600 dark:text-neutral-300 font-normal leading-relaxed">
+            <p>
+              En el Instituto Centrobioenergética, brindamos una experiencia de aprendizaje unificada y cautivadora diseñada para adaptarse a tus necesidades. Nos dedicamos a llevar la educación a tu alcance, ofreciendo una diversa gama de cursos para potenciar tu viaje de aprendizaje.
+            </p>
+            <p>
+              Nuestra plataforma combina tecnología de punta con enfoques personalizados, asegurando que tengas las herramientas y recursos para tener éxito en tus esfuerzos educativos. Explora un mundo de conocimiento con nuestra interfaz fácil de usar, funciones de seguimiento de progreso y materiales de aprendizaje interactivos.
+            </p>
+            <p>
+              Ya seas estudiante, profesional o aprendiz de por vida, el Instituto Centrobioenergética es tu destino central para una educación de calidad. Únete a nosotros en esta aventura educativa, donde el aprendizaje no conoce límites, y deja que el Instituto Centrobioenergética sea tu guía hacia un futuro más brillante.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 mt-16 lg:mt-24 max-w-5xl mx-auto px-4">
-        <div className="bg-[var(--bg-main)] p-8 lg:p-12 rounded-[2.5rem] text-center border border-[var(--border-color)] hover:border-primary-500 transition-all cursor-pointer group shadow-sm">
-          <div className="inline-block bg-primary-600/10 p-4 rounded-2xl mb-6">
-            <CoursesIcon className="w-8 h-8 text-primary-600" />
-          </div>
-          <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] group-hover:text-primary-600 transition-colors">CURSOS</h3>
-          <p className="text-[var(--text-muted)] mt-4">Explora nuestros cursos en línea</p>
+      {/* Quick Links Cards */}
+      <section className="px-6 max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {/* Cursos Card */}
+          <a
+            href="/cursos"
+            className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <div className="w-14 h-14 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600 mb-6 group-hover:scale-110 transition-transform duration-200">
+              <CoursesIcon className="w-7 h-7" />
+            </div>
+            <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
+              Cursos
+            </h3>
+            <p className="text-neutral-600 dark:text-neutral-400 font-normal">
+              Explora nuestra oferta académica de cursos transformadores
+            </p>
+          </a>
+
+          {/* Noticias Card */}
+          <a
+            href="/news"
+            className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <div className="w-14 h-14 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600 mb-6 group-hover:scale-110 transition-transform duration-200">
+              <NewsIcon className="w-7 h-7" />
+            </div>
+            <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
+              Noticias
+            </h3>
+            <p className="text-neutral-600 dark:text-neutral-400 font-normal">
+              Lee los últimos artículos y novedades del Instituto
+            </p>
+          </a>
         </div>
-        <div className="bg-[var(--bg-main)] p-8 lg:p-12 rounded-[2.5rem] text-center border border-[var(--border-color)] hover:border-primary-500 transition-all cursor-pointer group shadow-sm">
-          <div className="inline-block bg-primary-600/10 p-4 rounded-2xl mb-6">
-            <NewsIcon className="w-8 h-8 text-primary-600" />
-          </div>
-          <h3 className="text-xl lg:text-2xl font-black text-[var(--text-main)] group-hover:text-primary-600 transition-colors">NOTICIAS</h3>
-          <p className="text-[var(--text-muted)] mt-4">Lee las últimas noticias</p>
-        </div>
-      </div>
+      </section>
 
       {/* Contact Section */}
-      <div className="mt-20 bg-primary-600/5 p-10 lg:p-16 rounded-[3rem] border border-primary-600/10 mx-4">
-        <h3 className="text-2xl lg:text-3xl font-black text-[var(--text-main)] text-center mb-10">¿Alguna pregunta?</h3>
-        <div className="flex flex-col md:flex-row md:justify-center items-center gap-10">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-[var(--bg-main)] rounded-2xl flex items-center justify-center shadow-lg border border-[var(--border-color)]">
-              <MailIcon className="w-6 h-6 text-primary-600" />
+      <section className="px-6 max-w-6xl mx-auto w-full">
+        <div className="bg-gradient-to-br from-primary-600/10 via-primary-600/5 to-transparent dark:from-primary-600/20 dark:via-primary-600/10 dark:to-transparent rounded-lg border border-primary-200 dark:border-primary-600/30 p-12 lg:p-16">
+          {/* Section Title */}
+          <h3 className="text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 text-center mb-12">
+            ¿Alguna pregunta?
+          </h3>
+
+          {/* Contact Items Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Email */}
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="w-12 h-12 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600">
+                <MailIcon className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-xs font-medium text-primary-600 mb-1">Email</p>
+                <a
+                  href="mailto:contacto@institutocentrobioenergetica.com"
+                  className="text-neutral-900 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors break-all"
+                >
+                  contacto@institutocentrobioenergetica.com
+                </a>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Email</span>
-              <span className="text-[var(--text-main)] font-bold">contacto@institutocentrobioenergetica.com</span>
+
+            {/* Phone */}
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="w-12 h-12 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600">
+                <PhoneIcon className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-xs font-medium text-primary-600 mb-1">Teléfono</p>
+                <a
+                  href="tel:+525579076626"
+                  className="text-neutral-900 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors"
+                >
+                  +52 55 7907 6626
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-[var(--bg-main)] rounded-2xl flex items-center justify-center shadow-lg border border-[var(--border-color)]">
-              <PhoneIcon className="w-6 h-6 text-primary-600" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">Teléfono</span>
-              <span className="text-[var(--text-main)] font-bold">+52 55 7907 6626</span>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-[var(--bg-main)] rounded-2xl flex items-center justify-center shadow-lg border border-[var(--border-color)]">
-              <YoutubeIcon className="w-6 h-6 text-primary-600" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-primary-600 uppercase tracking-widest">YouTube</span>
-              <a href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u" target="_blank" rel="noopener noreferrer" className="text-[var(--text-main)] font-bold hover:text-primary-600 transition-colors">wellvibe</a>
+
+            {/* YouTube */}
+            <div className="flex flex-col items-center text-center space-y-4">
+              <div className="w-12 h-12 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600">
+                <YoutubeIcon className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-xs font-medium text-primary-600 mb-1">YouTube</p>
+                <a
+                  href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-900 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors"
+                >
+                  Wellvibe Media
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
