@@ -83,13 +83,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
       {/* Hero Section - Refined Minimalism with Elegant Accents */}
-      <div className="relative overflow-hidden">
-        {/* Soft gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-850"></div>
+      <div className="relative overflow-hidden bg-white dark:bg-neutral-900 mx-6 rounded-2xl">
 
-        {/* Refined decorative accent - rounded rectangle in corner */}
-        <div className="absolute -top-32 -right-32 w-72 h-72 rounded-full bg-gradient-to-b from-primary-600/8 to-primary-600/3 dark:from-primary-600/5 dark:to-primary-600/2 blur-2xl"></div>
-        <div className="absolute -bottom-20 -left-48 w-96 h-96 rounded-full bg-gradient-to-t from-primary-600/5 to-transparent dark:from-primary-600/2 dark:to-transparent blur-3xl"></div>
+        {/* Subtle background decoration - very light accent */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-600/2 via-transparent to-transparent dark:from-primary-600/1 dark:via-transparent dark:to-transparent pointer-events-none"></div>
 
         {/* Content */}
         <div className="relative px-6 py-20 lg:py-32">

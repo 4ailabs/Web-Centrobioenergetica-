@@ -19,14 +19,14 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
     handleCourseClick(course.id, course.title);
   }, [course, onCourseClick, navigate]);
 
-  // Predefined aesthetic gradients
+  // Predefined subtle gradients - minimal palette
   const gradients = [
-    'from-blue-400 to-indigo-600',
-    'from-emerald-400 to-cyan-600',
-    'from-violet-400 to-purple-600',
-    'from-rose-400 to-pink-600',
-    'from-amber-400 to-orange-600',
-    'from-slate-400 to-slate-600',
+    'from-neutral-200 to-neutral-300',
+    'from-neutral-100 to-neutral-200',
+    'from-neutral-200 to-neutral-300',
+    'from-neutral-100 to-neutral-200',
+    'from-neutral-200 to-neutral-300',
+    'from-neutral-100 to-neutral-200',
   ];
 
   const getGradient = (id: number) => gradients[id % gradients.length];
@@ -34,7 +34,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
   return (
     <div
       onClick={handleClick}
-      className="group relative bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
+      className="group relative bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
     >
       {/* Image Container */}
       <div className="relative h-48 lg:h-56 overflow-hidden bg-neutral-200 dark:bg-neutral-700">
@@ -50,10 +50,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
 
         {/* Level Badge */}
         <div className="absolute top-3 left-3">
-          <span className={`px-3 py-1 rounded-lg text-xs font-medium backdrop-blur-sm
-            ${course.level === 'Avanzado' ? 'bg-amber-500 text-white' :
-              course.level === 'Intermedio' ? 'bg-primary text-white' :
-                'bg-blue-500 text-white'}`}>
+          <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary-600 text-white">
             {course.level}
           </span>
         </div>
@@ -74,8 +71,8 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
             <span>Certificado</span>
           </div>
 
-          <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
-            <ArrowRightIcon className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
+            <ArrowRightIcon className="w-4 h-4 text-neutral-700 dark:text-neutral-300 group-hover:text-white transition-all" />
           </div>
         </div>
       </div>

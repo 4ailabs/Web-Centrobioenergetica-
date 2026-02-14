@@ -32,10 +32,10 @@ const CalendarPage: React.FC = () => {
 
     const getTypeBadge = (type: string) => {
         switch (type) {
-            case 'live': return 'bg-red-100 text-red-600';
-            case 'workshop': return 'bg-purple-100 text-purple-600';
-            case 'support': return 'bg-blue-100 text-blue-600';
-            default: return 'bg-[var(--bg-main)] text-[var(--text-muted)] border border-[var(--border-color)]';
+            case 'live': return 'bg-primary-600/10 text-primary-600 dark:bg-primary-600/15';
+            case 'workshop': return 'bg-primary-600/10 text-primary-600 dark:bg-primary-600/15';
+            case 'support': return 'bg-primary-600/10 text-primary-600 dark:bg-primary-600/15';
+            default: return 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400';
         }
     };
 
@@ -43,7 +43,7 @@ const CalendarPage: React.FC = () => {
         const date = new Date(dateStr);
         return {
             day: date.getDate(),
-            month: date.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase(),
+            month: date.toLocaleDateString('es-ES', { month: 'short' }),
             full: date.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' }),
             time: date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
         };
@@ -53,85 +53,102 @@ const CalendarPage: React.FC = () => {
         return (
             <div className="w-full flex items-center justify-center min-h-[50vh]">
                 <div className="animate-pulse flex flex-col items-center">
-                    <div className="w-12 h-12 bg-[var(--border-color)] rounded-full mb-4"></div>
-                    <p className="text-[var(--text-muted)] font-medium">Cargando agenda...</p>
+                    <div className="w-12 h-12 bg-neutral-200 dark:bg-neutral-700 rounded-full mb-4"></div>
+                    <p className="text-neutral-600 dark:text-neutral-400 font-medium">Cargando agenda...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="w-full lg:mt-20 mt-16 space-y-12">
-            <div className="px-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div className="w-full space-y-12 px-6 py-12 lg:py-20">
+            {/* Page Header */}
+            <div className="max-w-6xl mx-auto space-y-8">
                 <div>
-                    <h1 className="text-3xl lg:text-5xl font-black text-[var(--text-main)] tracking-tight mb-4 uppercase">
-                        Agenda <span className="text-primary-600">Eventos</span>
+                    <h1 className="text-5xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight mb-6">
+                        Agenda de <span className="text-primary-600">Eventos</span>
                     </h1>
-                    <p className="text-lg text-[var(--text-muted)] max-w-2xl">
+                    <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
                         Sigue de cerca las clases en vivo, talleres intensivos y sesiones de acompañamiento.
                     </p>
                 </div>
-                <div className="flex bg-[var(--bg-main)] p-1 rounded-xl border border-[var(--border-color)]">
+
+                {/* View Toggle */}
+                <div className="flex bg-neutral-100 dark:bg-neutral-800 p-1 rounded-lg border border-neutral-200 dark:border-neutral-700 w-fit">
                     <button
                         onClick={() => setView('grid')}
-                        className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${view === 'grid' ? 'bg-primary-600 text-white shadow-lg' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
+                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${view === 'grid' ? 'bg-primary-600 text-white shadow-md' : 'text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50'}`}
                     >
-                        Vista Cuadrícula
+                        Cuadrícula
                     </button>
                     <button
                         onClick={() => setView('list')}
-                        className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${view === 'list' ? 'bg-primary-600 text-white shadow-lg' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
+                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${view === 'list' ? 'bg-primary-600 text-white shadow-md' : 'text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50'}`}
                     >
-                        Vista Lista
+                        Lista
                     </button>
                 </div>
             </div>
 
-            <section className="px-4">
+            {/* Events Container */}
+            <section className="max-w-6xl mx-auto w-full">
                 {view === 'grid' ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {events.map((event) => {
                             const dateInfo = formatDate(event.date);
                             return (
-                                <div key={event.id} className="group bg-[var(--panel-bg)] rounded-3xl p-6 border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all duration-300">
-                                    <div className="flex justify-between items-start mb-6">
-                                        <div className="w-16 h-16 bg-[var(--bg-main)] rounded-2xl flex flex-col items-center justify-center border border-[var(--border-color)] group-hover:border-primary-200 transition-colors">
-                                            <span className="text-primary-600 font-black text-xl leading-none">{dateInfo.day}</span>
-                                            <span className="text-[var(--text-muted)] font-bold text-[10px] mt-1 tracking-widest">{dateInfo.month}</span>
-                                        </div>
-                                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getTypeBadge(event.type)}`}>
+                                <div key={event.id} className="group relative bg-white dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 p-8 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+                                    {/* Date Badge */}
+                                    <div className="w-14 h-14 bg-neutral-100 dark:bg-neutral-700 rounded-lg flex flex-col items-center justify-center border border-neutral-200 dark:border-neutral-600 mb-6">
+                                        <span className="text-primary-600 font-semibold text-lg leading-none">{dateInfo.day}</span>
+                                        <span className="text-neutral-600 dark:text-neutral-400 font-medium text-xs mt-1">{dateInfo.month}</span>
+                                    </div>
+
+                                    {/* Type Badge */}
+                                    <div className="flex items-start justify-between mb-4">
+                                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeBadge(event.type)}`}>
                                             {event.type}
                                         </span>
                                     </div>
-                                    <h3 className="text-xl font-bold text-[var(--text-main)] mb-3 group-hover:text-primary-600 transition-colors uppercase tracking-tight">{event.title}</h3>
-                                    <p className="text-[var(--text-muted)] text-sm mb-6 line-clamp-2 leading-relaxed">{event.description}</p>
 
-                                    <div className="space-y-3 pt-4 border-t border-[var(--border-color)]">
-                                        <div className="flex items-center text-[var(--text-muted)] text-xs font-medium">
-                                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {/* Title */}
+                                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
+                                        {event.title}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-6 line-clamp-2 font-normal leading-relaxed">
+                                        {event.description}
+                                    </p>
+
+                                    {/* Event Details */}
+                                    <div className="space-y-2 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                                        <div className="flex items-center text-neutral-600 dark:text-neutral-400 text-sm font-normal">
+                                            <svg className="w-4 h-4 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
-                                            {dateInfo.time}
+                                            <span>{dateInfo.time}</span>
                                         </div>
                                         {event.location && (
-                                            <div className="flex items-center text-[var(--text-muted)] text-[10px] font-black uppercase tracking-widest">
-                                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div className="flex items-center text-neutral-600 dark:text-neutral-400 text-sm font-normal">
+                                                <svg className="w-4 h-4 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
-                                                {event.location}
+                                                <span className="line-clamp-1">{event.location}</span>
                                             </div>
                                         )}
                                     </div>
 
+                                    {/* CTA Button */}
                                     {event.link && (
                                         <a
                                             href={event.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="mt-6 w-full py-3 bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary-600 hover:text-white transition-all group-hover:shadow-lg active:scale-95"
+                                            className="mt-6 w-full py-3 bg-primary-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-lg"
                                         >
-                                            Unirse al evento
+                                            Unirse
                                             <ArrowRightIcon className="w-4 h-4" />
                                         </a>
                                     )}
@@ -141,44 +158,64 @@ const CalendarPage: React.FC = () => {
                     </div>
                 ) : (
                     <div className="space-y-4">
-                        {events.map((event, index) => {
+                        {events.map((event) => {
                             const dateInfo = formatDate(event.date);
                             return (
-                                <div key={event.id} className={`p-6 lg:p-8 flex flex-col md:flex-row items-center gap-6 rounded-[2.5rem] bg-[var(--panel-bg)] border border-[var(--border-color)] hover:border-primary-500 transition-all group shadow-sm hover:shadow-lg`}>
-                                    <div className="w-20 h-20 bg-[var(--bg-main)] rounded-2xl flex flex-col items-center justify-center border border-[var(--border-color)] shadow-sm shrink-0">
-                                        <span className="text-primary-600 font-black text-2xl leading-none">{dateInfo.day}</span>
-                                        <span className="text-[var(--text-muted)] font-bold text-xs mt-1 tracking-widest">{dateInfo.month}</span>
+                                <div key={event.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-6 shrink-0">
+                                    {/* Date Badge */}
+                                    <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-700 rounded-lg flex flex-col items-center justify-center border border-neutral-200 dark:border-neutral-600 shrink-0">
+                                        <span className="text-primary-600 font-semibold text-lg leading-none">{dateInfo.day}</span>
+                                        <span className="text-neutral-600 dark:text-neutral-400 font-medium text-xs mt-1">{dateInfo.month}</span>
                                     </div>
-                                    <div className="flex-grow text-center md:text-left">
-                                        <div className="flex flex-wrap justify-center md:justify-start items-center gap-3 mb-2">
-                                            <span className={`px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${getTypeBadge(event.type)}`}>
-                                                {event.type}
-                                            </span>
-                                            <span className="text-[var(--text-muted)] text-xs font-semibold">{dateInfo.full} • {dateInfo.time}</span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-[var(--text-main)] mb-1 group-hover:text-primary-600 transition-colors uppercase tracking-tight">{event.title}</h3>
-                                        <p className="text-[var(--text-muted)] text-sm max-w-2xl">{event.description}</p>
-                                    </div>
-                                    <div className="shrink-0 flex items-center gap-4">
-                                        {event.location && (
-                                            <div className="hidden lg:flex items-center text-[var(--text-muted)] text-xs bg-[var(--bg-main)] px-4 py-2 rounded-lg border border-[var(--border-color)] font-medium">
-                                                <svg className="w-3 h-3 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                </svg>
-                                                {event.location}
+
+                                    {/* Event Content */}
+                                    <div className="flex-grow">
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+                                            <div className="space-y-2">
+                                                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors">
+                                                    {event.title}
+                                                </h3>
+                                                <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal">
+                                                    {event.description}
+                                                </p>
                                             </div>
-                                        )}
-                                        {event.link && (
-                                            <a
-                                                href={event.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="px-6 py-3 bg-[var(--text-main)] text-[var(--bg-main)] rounded-xl font-bold hover:bg-primary-600 hover:text-white transition-all active:scale-95 shadow-lg shadow-slate-900/10"
-                                            >
-                                                Acceder
-                                            </a>
-                                        )}
+
+                                            {/* Meta Information */}
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-neutral-600 dark:text-neutral-400 text-sm font-normal shrink-0">
+                                                <div className="flex items-center gap-3">
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeBadge(event.type)}`}>
+                                                        {event.type}
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    <span>{dateInfo.time}</span>
+                                                </div>
+                                                {event.location && (
+                                                    <div className="flex items-center gap-2">
+                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                        </svg>
+                                                        <span className="line-clamp-1">{event.location}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    {/* CTA Button */}
+                                    {event.link && (
+                                        <a
+                                            href={event.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-lg shrink-0"
+                                        >
+                                            Unirse
+                                        </a>
+                                    )}
                                 </div>
                             );
                         })}
@@ -187,26 +224,24 @@ const CalendarPage: React.FC = () => {
             </section>
 
             {/* Newsletter / CTA for Calendar */}
-            <section className="px-4 pb-12">
-                <div className="bg-primary-600 rounded-[2.5rem] p-4 lg:p-12 text-center text-white relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-full opacity-10">
-                        <div className="absolute -top-24 -left-24 w-64 h-64 bg-primary-400 rounded-full blur-3xl"></div>
-                        <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary-400 rounded-full blur-3xl"></div>
-                    </div>
-                    <div className="relative z-10 max-w-2xl mx-auto">
-                        <SparklesIcon className="w-12 h-12 mx-auto mb-6 text-yellow-300" />
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4">¿No quieres perderte nada?</h2>
-                        <p className="text-primary-100 text-lg mb-8">
+            <section className="max-w-6xl mx-auto w-full">
+                <div className="bg-primary-600 dark:bg-primary-700 rounded-lg p-8 lg:p-12 text-center text-white relative overflow-hidden border border-primary-500 dark:border-primary-600">
+                    {/* Subtle decorative element */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent pointer-events-none"></div>
+
+                    <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+                        <h2 className="text-3xl lg:text-4xl font-semibold">¿No quieres perderte nada?</h2>
+                        <p className="text-primary-100 text-lg font-normal leading-relaxed">
                             Suscríbete para recibir recordatorios de los eventos y las noticias más relevantes directamente en tu correo.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                        <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-4">
                             <input
                                 type="email"
                                 placeholder="tu@email.com"
-                                className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                                className="flex-grow px-6 py-3 rounded-lg bg-white/15 border border-white/25 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40 font-normal text-sm"
                             />
-                            <button className="px-8 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-white hover:text-primary-600 transition-all active:scale-95 shadow-xl">
-                                Suscribirme
+                            <button className="px-8 py-3 bg-white text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all active:scale-95 shadow-lg hover:shadow-xl shrink-0">
+                                Suscribirse
                             </button>
                         </div>
                     </div>

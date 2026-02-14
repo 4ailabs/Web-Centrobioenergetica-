@@ -30,16 +30,16 @@ const ClinicalServices: React.FC = () => {
   const getIcon = (iconName: string) => {
     const iconProps = { className: "w-8 h-8", strokeWidth: 1.5 };
     switch (iconName) {
-      case 'medical': return <Stethoscope {...iconProps} className="text-blue-600" />;
-      case 'brain': return <Brain {...iconProps} className="text-purple-600" />;
-      case 'infinity': return <Infinity {...iconProps} className="text-indigo-600" />;
-      case 'flower': return <Flower {...iconProps} className="text-pink-600" />;
-      case 'package': return <Package {...iconProps} className="text-orange-600" />;
-      case 'scale': return <Scale {...iconProps} className="text-teal-600" />;
-      case 'apple': return <Apple {...iconProps} className="text-red-600" />;
-      case 'message': return <MessageSquare {...iconProps} className="text-emerald-600" />;
-      case 'box': return <Box {...iconProps} className="text-amber-600" />;
-      default: return <Package {...iconProps} className="text-gray-600" />;
+      case 'medical': return <Stethoscope {...iconProps} className="text-primary-600" />;
+      case 'brain': return <Brain {...iconProps} className="text-primary-600" />;
+      case 'infinity': return <Infinity {...iconProps} className="text-primary-600" />;
+      case 'flower': return <Flower {...iconProps} className="text-primary-600" />;
+      case 'package': return <Package {...iconProps} className="text-primary-600" />;
+      case 'scale': return <Scale {...iconProps} className="text-primary-600" />;
+      case 'apple': return <Apple {...iconProps} className="text-primary-600" />;
+      case 'message': return <MessageSquare {...iconProps} className="text-primary-600" />;
+      case 'box': return <Box {...iconProps} className="text-primary-600" />;
+      default: return <Package {...iconProps} className="text-primary-600" />;
     }
   };
 
@@ -195,7 +195,7 @@ const ClinicalServices: React.FC = () => {
   ];
 
   return (
-    <div className="w-full lg:mt-20 mt-16 space-y-12 pb-20">
+    <div className="w-full space-y-12 pb-20 px-6 py-12 lg:py-20">
       <PageHeader
         icon={<ClinicalServicesIcon className="w-6 h-6" />}
         tag="Cuidado Profesional"
@@ -205,18 +205,18 @@ const ClinicalServices: React.FC = () => {
       />
 
       {/* Categories Filter */}
-      <section className="px-4 overflow-x-auto pb-4 hide-scrollbar">
-        <div className="flex items-center space-x-3 min-w-max">
-          <div className="p-2.5 bg-[var(--panel-bg)] rounded-xl border border-[var(--border-color)] shadow-sm">
+      <section className="max-w-6xl mx-auto w-full overflow-x-auto pb-4 hide-scrollbar">
+        <div className="flex items-center gap-3 min-w-max">
+          <div className="p-2.5 bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
             <FilterIcon className="w-5 h-5 text-primary-600" />
           </div>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 border ${activeCategory === cat
-                ? 'bg-primary-600 text-white shadow-xl shadow-primary-600/20 border-primary-500'
-                : 'bg-[var(--panel-bg)] text-[var(--text-muted)] border-[var(--border-color)] hover:border-primary-400 hover:text-primary-600'
+              className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 border ${activeCategory === cat
+                ? 'bg-primary-600 text-white shadow-md border-primary-600'
+                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700 hover:border-primary-600 hover:text-primary-600'
                 }`}
             >
               {cat}
@@ -226,56 +226,61 @@ const ClinicalServices: React.FC = () => {
       </section>
 
       {/* Grid of Services */}
-      <section className="px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <section className="max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map((service, index) => (
             <div
               key={service.id}
-              className="group bg-[var(--panel-bg)] rounded-3xl overflow-hidden border border-[var(--border-color)] shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
+              className="group relative bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 animate-fade-in"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <div className="relative h-56 overflow-hidden">
+              {/* Image Section */}
+              <div className="relative h-48 overflow-hidden">
                 <img
                   src={service.imageUrl}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/80 via-transparent to-transparent opacity-60"></div>
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
 
-                {/* Glass Icon Box */}
-                <div className="absolute top-6 left-6 w-14 h-14 bg-[var(--bg-main)]/80 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 border border-[var(--border-color)]">
+                {/* Icon Box */}
+                <div className="absolute top-4 left-4 w-12 h-12 bg-white dark:bg-neutral-900 rounded-lg flex items-center justify-center border border-neutral-200 dark:border-neutral-700 shadow-md">
                   {getIcon(service.icon)}
                 </div>
 
-                <div className="absolute bottom-6 left-6 right-6">
-                  <span className="px-3 py-1 bg-primary-600/90 backdrop-blur rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
+                {/* Category Badge */}
+                <div className="absolute bottom-3 left-4 right-4">
+                  <span className="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">
                     {service.category}
                   </span>
                 </div>
               </div>
 
-              <div className="p-8">
-                <h3 className="text-xl font-bold text-[var(--text-main)] mb-4 group-hover:text-primary-600 transition-colors leading-tight uppercase">
+              {/* Content Section */}
+              <div className="p-6 space-y-4">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors line-clamp-2">
                   {service.title}
                 </h3>
-                <p className="text-[var(--text-muted)] text-sm mb-6 leading-relaxed line-clamp-3">
+
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal leading-relaxed line-clamp-2">
                   {service.description}
                 </p>
 
-                <div className="space-y-3 mb-8">
-                  {service.benefits.slice(0, 3).map((benefit, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <div className="mt-1 w-5 h-5 bg-primary-600/10 rounded-full flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-3 h-3 text-primary-600" />
-                      </div>
-                      <span className="text-sm text-[var(--text-muted)] leading-tight font-medium">{benefit}</span>
+                {/* Benefits */}
+                <div className="space-y-2 pt-2">
+                  {service.benefits.slice(0, 2).map((benefit, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary-600 shrink-0 mt-0.5" />
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400 font-normal leading-snug">{benefit}</span>
                     </div>
                   ))}
                 </div>
 
-                <button className="w-full group/btn relative flex items-center justify-center gap-2 py-4 bg-[var(--bg-main)] hover:bg-primary-600 text-[var(--text-main)] hover:text-white rounded-2xl font-bold transition-all overflow-hidden border border-[var(--border-color)] shadow-sm">
-                  <span className="relative z-10">Saber más</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform relative z-10" />
+                {/* CTA Button */}
+                <button className="w-full py-2 mt-4 text-primary-600 hover:text-primary-700 font-medium text-sm flex items-center justify-center gap-2 transition-colors duration-200 group/btn">
+                  <span>Saber más</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
@@ -284,10 +289,9 @@ const ClinicalServices: React.FC = () => {
       </section>
 
       {/* How it Works Section */}
-      <section className="px-4 py-12">
-        <div className="text-[var(--text-main)] relative overflow-hidden">
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-600/5 blur-[100px] rounded-full"></div>
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      <section className="max-w-6xl mx-auto w-full py-12">
+        <div className="relative overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <SectionHeader
               tag="Proceso de Atención"
               title="Tu camino hacia el"
@@ -297,13 +301,13 @@ const ClinicalServices: React.FC = () => {
 
             <div className="grid gap-6">
               {steps.map((step, i) => (
-                <div key={i} className="flex gap-6 p-6 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-3xl hover:border-primary-600 transition-all group shadow-sm hover:shadow-xl">
-                  <div className="w-16 h-16 bg-primary-600/10 rounded-2xl flex items-center justify-center text-primary-600 shrink-0 group-hover:scale-110 transition-transform border border-primary-600/10">
+                <div key={i} className="flex gap-4 p-6 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-600 transition-all group hover:shadow-lg">
+                  <div className="w-14 h-14 bg-neutral-100 dark:bg-neutral-700 rounded-lg flex items-center justify-center text-primary-600 shrink-0 group-hover:scale-105 transition-transform border border-neutral-200 dark:border-neutral-600">
                     {step.icon}
                   </div>
-                  <div>
-                    <h4 className="text-lg font-black mb-1 uppercase tracking-tight text-[var(--text-main)] group-hover:text-primary-600 transition-colors">{step.title}</h4>
-                    <p className="text-[var(--text-muted)] text-sm leading-relaxed font-medium">{step.desc}</p>
+                  <div className="flex-1">
+                    <h4 className="text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-1 group-hover:text-primary-600 transition-colors">{step.title}</h4>
+                    <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -313,7 +317,7 @@ const ClinicalServices: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-4 max-w-4xl mx-auto py-12">
+      <section className="max-w-4xl mx-auto w-full py-12">
         <SectionHeader
           title="Preguntas"
           titleAccent="Frecuentes"
@@ -321,21 +325,23 @@ const ClinicalServices: React.FC = () => {
           center
         />
 
-        <div className="space-y-4">
+        <div className="space-y-4 mt-8">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`border rounded-3xl transition-all duration-300 ${openFaq === i ? 'border-primary-500 bg-primary-600/5' : 'border-[var(--border-color)] bg-[var(--bg-main)]'}`}
+              className={`border rounded-lg transition-all duration-200 ${openFaq === i
+                ? 'border-primary-600 bg-primary-50 dark:bg-primary-600/10'
+                : 'border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800'}`}
             >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full px-8 py-6 flex items-center justify-between text-left group"
+                className="w-full px-6 py-4 flex items-center justify-between text-left group"
               >
-                <span className="font-bold text-[var(--text-main)] group-hover:text-primary-600 lg:text-lg transition-colors">{faq.q}</span>
-                {openFaq === i ? <ChevronUp className="w-5 h-5 text-primary-600" /> : <ChevronDown className="w-5 h-5 text-[var(--text-muted)]" />}
+                <span className="font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors text-base">{faq.q}</span>
+                {openFaq === i ? <ChevronUp className="w-5 h-5 text-primary-600 shrink-0" /> : <ChevronDown className="w-5 h-5 text-neutral-600 dark:text-neutral-400 shrink-0" />}
               </button>
               {openFaq === i && (
-                <div className="px-8 pb-8 text-[var(--text-muted)] leading-relaxed animate-fade-in">
+                <div className="px-6 pb-4 text-neutral-600 dark:text-neutral-400 text-sm font-normal leading-relaxed border-t border-neutral-200 dark:border-neutral-700 animate-fade-in">
                   {faq.a}
                 </div>
               )}

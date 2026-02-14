@@ -161,23 +161,28 @@ const AllCourses: React.FC = () => {
   ];
 
   return (
-    <div className="w-full lg:mt-20 mt-16 px-6 max-w-6xl mx-auto">
-      <header className="mb-12 lg:mb-16">
-        <h1 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-4">
-          Nuestros <span className="text-primary">cursos</span>
-        </h1>
-        <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-3xl leading-relaxed font-normal">
-          Desbloquea tu potencial con nuestros cursos transformadores. Eleva tus habilidades, encuentra tu equilibrio y comienza un nuevo camino hacia el bienestar con nuestra guía experta.
-        </p>
-      </header>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10">
-        {courses.map((course, index) => (
-          <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${50 + index * 100}ms`, opacity: 0 }}>
-            <CourseCard course={course} />
-          </div>
-        ))}
+    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 pb-20 space-y-20">
+      <div className="px-6 max-w-6xl mx-auto w-full">
+        <div className="mb-12">
+          <h2 className="text-sm font-medium text-primary-600 mb-2">Oferta académica</h2>
+          <h1 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-6">
+            Nuestros <span className="text-primary-600">cursos</span>
+          </h1>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-3xl leading-relaxed font-normal">
+            Desbloquea tu potencial con nuestros cursos transformadores. Eleva tus habilidades, encuentra tu equilibrio y comienza un nuevo camino hacia el bienestar con nuestra guía experta.
+          </p>
+        </div>
       </div>
+
+      <section className="px-6 max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10">
+          {courses.map((course, index) => (
+            <div key={course.id} className="animate-slide-in-up" style={{ animationDelay: `${50 + index * 50}ms`, opacity: 0 }}>
+              <CourseCard course={course} />
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

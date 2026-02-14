@@ -18,11 +18,11 @@ const CourseDetail: React.FC = () => {
 
   if (!course) {
     return (
-      <div className="w-full lg:mt-20 mt-16 px-4">
-        <p className="text-[var(--text-muted)]">Curso no encontrado</p>
+      <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6 max-w-6xl mx-auto">
+        <p className="text-neutral-600 dark:text-neutral-400 mb-4">Curso no encontrado</p>
         <button
           onClick={() => navigate('/')}
-          className="mt-4 px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+          className="px-6 py-2.5 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors"
         >
           Volver al inicio
         </button>
@@ -72,43 +72,43 @@ const CourseDetail: React.FC = () => {
   };
 
   return (
-    <div className="w-full lg:mt-20 mt-16 px-4">
+    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 pb-20 px-6 max-w-6xl mx-auto">
       {/* Header con botón de volver */}
       <button
-        onClick={() => navigate('/')}
-        className="flex items-center space-x-2 text-[var(--text-muted)] hover:text-primary-600 transition-colors mb-6"
+        onClick={() => navigate('/cursos')}
+        className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors mb-8 font-medium text-sm"
       >
-        <ArrowLeftIcon className="w-5 h-5" />
-        <span className="text-sm lg:text-base font-medium">Volver a Cursos</span>
+        <ArrowLeftIcon className="w-4 h-4" />
+        <span>Volver a Cursos</span>
       </button>
 
       {/* Player inline o Imagen del curso */}
-      <div className="w-full rounded-2xl overflow-hidden mb-8 bg-[var(--panel-bg)] border border-[var(--border-color)]">
+      <div className="w-full rounded-lg overflow-hidden mb-8 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
         {activeVideo ? (
           // Reproductor de video inline
           <div className="relative">
             {/* Header del video */}
-            <div className="bg-[var(--panel-bg)] border-b border-[var(--border-color)] p-4 lg:p-6">
+            <div className="bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 p-4 lg:p-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center font-black text-sm">
+                    <div className="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center text-sm font-medium">
                       <Play className="w-4 h-4 fill-current" />
                     </div>
-                    <span className="text-xs font-black text-primary-600 uppercase tracking-widest">Reproduciendo</span>
+                    <span className="text-xs font-medium text-primary-600">Reproduciendo</span>
                   </div>
-                  <h3 className="text-lg lg:text-2xl font-black text-[var(--text-main)] uppercase tracking-tight mb-1">
+                  <h3 className="text-lg lg:text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-1">
                     {activeVideo.title}
                   </h3>
                   {activeVideo.description && (
-                    <p className="text-sm text-[var(--text-muted)] font-medium line-clamp-2">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 font-normal line-clamp-2">
                       {activeVideo.description}
                     </p>
                   )}
                 </div>
                 <button
                   onClick={closeVideo}
-                  className="flex-shrink-0 w-10 h-10 bg-[var(--bg-main)] hover:bg-red-600 text-[var(--text-main)] hover:text-white rounded-xl flex items-center justify-center transition-colors border border-[var(--border-color)]"
+                  className="flex-shrink-0 w-10 h-10 bg-neutral-100 dark:bg-neutral-700 hover:bg-red-600 text-neutral-700 dark:text-neutral-300 hover:text-white rounded-lg flex items-center justify-center transition-colors border border-neutral-200 dark:border-neutral-600"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -138,11 +138,11 @@ const CourseDetail: React.FC = () => {
             </div>
 
             {/* Footer con acciones */}
-            <div className="bg-[var(--panel-bg)] border-t border-[var(--border-color)] p-4 lg:p-6">
+            <div className="bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 p-4 lg:p-6">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-4">
                   {activeVideo.duration && (
-                    <div className="flex items-center gap-2 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
                       <Clock className="w-4 h-4" />
                       {activeVideo.duration}
                     </div>
@@ -150,9 +150,9 @@ const CourseDetail: React.FC = () => {
                 </div>
                 <button
                   onClick={() => toggleVideoCompletion(activeVideo.id)}
-                  className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-colors ${completedVideos.has(activeVideo.id)
-                    ? 'bg-green-500 text-white'
-                    : 'bg-[var(--bg-main)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-primary-600'
+                  className={`flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-medium text-sm transition-colors ${completedVideos.has(activeVideo.id)
+                    ? 'bg-green-500/20 text-green-600 border border-green-500/30'
+                    : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-600 hover:border-primary-600'
                     }`}
                 >
                   <CheckCircle2 className="w-4 h-4" />
@@ -163,7 +163,7 @@ const CourseDetail: React.FC = () => {
           </div>
         ) : (
           // Imagen del curso (estado por defecto)
-          <div className="relative h-64 lg:h-96">
+          <div className="relative h-40 lg:h-52">
             <LazyImage
               src={course.imageUrl}
               alt={course.title}
@@ -171,13 +171,13 @@ const CourseDetail: React.FC = () => {
             />
             {/* Overlay con texto para indicar que pueden seleccionar un video */}
             {hasAccess && course.modules && course.modules.length > 0 && (
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center pb-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end justify-center pb-4">
                 <div className="text-center">
-                  <p className="text-white/80 text-sm font-medium mb-2">Selecciona un video para comenzar</p>
-                  <div className="flex items-center justify-center gap-2 text-white">
-                    <Play className="w-5 h-5" />
-                    <span className="text-xs font-black uppercase tracking-widest">
-                      {course.modules.reduce((acc, m) => acc + m.videos.length, 0)} videos disponibles
+                  <p className="text-white/70 text-xs font-medium mb-1">Selecciona un video</p>
+                  <div className="flex items-center justify-center gap-1.5 text-white">
+                    <Play className="w-3.5 h-3.5" />
+                    <span className="text-xs font-medium">
+                      {course.modules.reduce((acc, m) => acc + m.videos.length, 0)} videos
                     </span>
                   </div>
                 </div>
@@ -189,22 +189,30 @@ const CourseDetail: React.FC = () => {
 
       {/* Información principal del curso */}
       <div className="mb-8">
-        <h1 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] mb-4 uppercase">{course.title}</h1>
-        <p className="text-base lg:text-lg text-[var(--text-muted)] mb-6">{course.description}</p>
+        <div className="flex items-start gap-3 mb-3">
+          <h1 className="text-2xl lg:text-3xl font-semibold text-neutral-900 dark:text-neutral-50 flex-grow">{course.title}</h1>
+          {isAuthenticated && (user?.enrolledCourses?.includes(courseId || '') || user?.subscriptionStatus === 'active') && (
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 rounded-full flex-shrink-0">
+              <CheckCircle2 className="w-4 h-4 text-green-600" />
+              <span className="text-xs font-medium text-green-700 dark:text-green-400">Acceso</span>
+            </div>
+          )}
+        </div>
+        <p className="text-sm lg:text-base text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed max-w-3xl">{course.description}</p>
 
-        <div className="flex flex-wrap gap-4 text-sm lg:text-base">
-          <div className="bg-primary-500/10 px-4 py-2 rounded-full border border-primary-500/20">
-            <span className="text-[var(--text-muted)]">Lecciones: </span>
-            <span className="font-bold text-[var(--text-main)]">{course.lessons}</span>
+        <div className="flex flex-wrap gap-3 text-xs lg:text-sm">
+          <div className="px-3 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+            <span className="text-neutral-600 dark:text-neutral-400">Lecciones: </span>
+            <span className="font-semibold text-neutral-900 dark:text-neutral-50">{course.lessons}</span>
           </div>
-          <div className="bg-primary-500/10 px-4 py-2 rounded-full border border-primary-500/20">
-            <span className="text-[var(--text-muted)]">Nivel: </span>
-            <span className="font-bold text-[var(--text-main)]">{course.level}</span>
+          <div className="px-3 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+            <span className="text-neutral-600 dark:text-neutral-400">Nivel: </span>
+            <span className="font-semibold text-neutral-900 dark:text-neutral-50">{course.level}</span>
           </div>
           {course.author && (
-            <div className="bg-primary-500/10 px-4 py-2 rounded-full border border-primary-500/20">
-              <span className="text-[var(--text-muted)]">Instructor: </span>
-              <span className="font-bold text-[var(--text-main)]">{course.author}</span>
+            <div className="px-3 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+              <span className="text-neutral-600 dark:text-neutral-400">Instructor: </span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-50">{course.author}</span>
             </div>
           )}
         </div>
@@ -213,176 +221,97 @@ const CourseDetail: React.FC = () => {
       {/* Módulos y Videos */}
       {course.modules && course.modules.length > 0 ? (
         <div className="mt-8">
-          <h2 className="text-xl lg:text-2xl font-black text-[var(--text-main)] mb-8 uppercase tracking-tight">Contenido del Curso</h2>
+          <h2 className="text-xl lg:text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-8 tracking-tight">Contenido del Curso</h2>
 
           {/* Renderizar todos los módulos secuencialmente */}
-          <div className="space-y-12">
+          <div className="space-y-8">
             {course.modules.map((module) => (
               <div key={module.id}>
                 {/* Header del módulo */}
                 <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center font-black text-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-7 h-7 bg-primary-600 text-white rounded-lg flex items-center justify-center text-xs font-semibold">
                       {module.order}
                     </div>
-                    <h3 className="text-2xl lg:text-3xl font-black text-[var(--text-main)] uppercase tracking-tight">{module.title}</h3>
+                    <h3 className="text-lg lg:text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">{module.title}</h3>
                   </div>
                   {module.description && (
-                    <p className="text-sm lg:text-base text-[var(--text-muted)] font-medium leading-relaxed ml-11">
+                    <p className="text-xs lg:text-sm text-neutral-600 dark:text-neutral-400 font-normal leading-relaxed ml-9">
                       {module.description}
                     </p>
                   )}
                 </div>
 
-                {/* Grid de videos del módulo */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Lista de videos del módulo - Vista profesional */}
+                <div className="space-y-3">
                   {module.videos.map((video, index) => {
                     const isCompleted = completedVideos.has(video.id);
                     const hasVideo = video.cloudflareStreamId || video.vimeoId;
                     const isLocked = !hasAccess && hasVideo;
                     const isPlaying = activeVideo?.id === video.id;
-                    // Usar videodelivery.net para thumbnails (funciona sin Account ID)
-                    const thumbnailUrl = video.cloudflareStreamId
-                      ? `https://videodelivery.net/${video.cloudflareStreamId}/thumbnails/thumbnail.jpg?time=1s&height=600`
-                      : null;
 
                     return (
                       <div
                         key={video.id}
                         onClick={() => hasVideo && openVideo(video)}
-                        className={`group relative flex flex-col h-full rounded-3xl overflow-hidden transition-all duration-300 ${
+                        className={`group flex items-center gap-4 p-4 rounded-lg border transition-all duration-200 ${
                           isPlaying
-                            ? 'ring-2 ring-primary-600 ring-offset-2 ring-offset-[var(--bg-main)]'
+                            ? 'bg-primary-50 dark:bg-primary-600/10 border-primary-300 dark:border-primary-600/30'
                             : isLocked
-                              ? 'opacity-60 cursor-not-allowed'
+                              ? 'opacity-60 cursor-not-allowed border-neutral-200 dark:border-neutral-700'
                               : hasVideo
-                                ? 'cursor-pointer hover:scale-105'
-                                : 'cursor-default'
+                                ? 'bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 hover:border-primary-300 dark:hover:border-primary-600/50 cursor-pointer hover:shadow-md'
+                                : 'bg-neutral-50 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700 cursor-default'
                         }`}
                       >
-                        {/* Thumbnail / Placeholder */}
-                        <div className="relative w-full bg-gradient-to-br from-primary-500/20 via-primary-600/10 to-transparent overflow-hidden flex-shrink-0" style={{ aspectRatio: '16/9', minHeight: '280px' }}>
-                          {thumbnailUrl && hasVideo ? (
-                            <>
-                              <img
-                                src={thumbnailUrl}
-                                alt={video.title}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                onError={(e) => {
-                                  // Fallback to gradient if thumbnail fails
-                                  e.currentTarget.style.display = 'none';
-                                }}
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
-                            </>
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/15 via-primary-600/5 to-transparent">
-                              <div className="text-center">
-                                <div className="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center bg-gradient-to-br from-primary-500/30 to-primary-600/20 backdrop-blur-md border border-primary-500/30">
-                                  {isLocked ? (
-                                    <Lock className="w-12 h-12 text-red-500" />
-                                  ) : (
-                                    <Play className="w-12 h-12 text-primary-600 fill-current" />
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          )}
+                        {/* Video Number Badge */}
+                        <div className="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-600/20 text-primary-600 rounded-lg flex items-center justify-center font-semibold text-sm">
+                          {index + 1}
+                        </div>
 
-                          {/* Overlay con botón de play */}
-                          {hasVideo && !isLocked && (
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                              <div className="w-20 h-20 bg-primary-600 text-white rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
-                                <Play className="w-10 h-10 fill-current ml-1" />
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Badge de número circular */}
-                          <div className="absolute top-4 left-4 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-full flex items-center justify-center font-black text-lg shadow-lg z-10 border-2 border-white/20">
-                            {index + 1}
+                        {/* Content */}
+                        <div className="flex-grow min-w-0">
+                          <div className="flex items-start gap-2 mb-1">
+                            <h4 className="text-sm lg:text-base font-semibold text-neutral-900 dark:text-neutral-50 line-clamp-1">
+                              {video.title}
+                            </h4>
+                            {isCompleted && (
+                              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                            )}
                           </div>
-
-                          {/* Badge de duración */}
-                          {video.duration && (
-                            <div className="absolute bottom-4 right-4 px-4 py-2 bg-black/70 backdrop-blur-md rounded-full text-xs font-black text-white uppercase tracking-widest z-10 flex items-center gap-2 border border-white/10">
-                              <Clock className="w-3.5 h-3.5" />
-                              {video.duration}
-                            </div>
-                          )}
-
-                          {/* Badge de reproduciendo */}
-                          {isPlaying && (
-                            <div className="absolute top-4 right-4 px-4 py-2 bg-primary-600 text-white rounded-full flex items-center gap-2 shadow-lg z-10 border border-primary-500/50 animate-pulse">
-                              <div className="flex items-center gap-1">
-                                <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                                <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-75"></span>
-                                <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></span>
-                              </div>
-                              <span className="text-xs font-black uppercase tracking-widest">EN VIVO</span>
-                            </div>
-                          )}
-
-                          {/* Badge de completado */}
-                          {isCompleted && !isPlaying && (
-                            <div className="absolute top-4 right-4 w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg z-10">
-                              <CheckCircle2 className="w-7 h-7" />
-                            </div>
+                          {video.description && (
+                            <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-1">
+                              {video.description}
+                            </p>
                           )}
                         </div>
 
-                        {/* Contenido */}
-                        <div className="p-6 flex flex-col flex-grow bg-[var(--panel-bg)] border border-t-0 border-[var(--border-color)]">
-                          <div className="flex-grow">
-                            <h4 className="text-lg lg:text-xl font-black text-[var(--text-main)] mb-2 uppercase tracking-tight line-clamp-2 leading-tight">
-                              {video.title}
-                            </h4>
-                            {video.description && (
-                              <p className="text-xs lg:text-sm text-[var(--text-muted)] font-medium leading-relaxed line-clamp-2">
-                                {video.description}
-                              </p>
-                            )}
-                          </div>
+                        {/* Duration & Status */}
+                        <div className="flex items-center gap-4 flex-shrink-0">
+                          {video.duration && (
+                            <div className="flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400 whitespace-nowrap">
+                              <Clock className="w-3.5 h-3.5" />
+                              <span>{video.duration}</span>
+                            </div>
+                          )}
 
-                          {/* Footer Actions */}
-                          <div className="flex items-center gap-3 mt-6 pt-4 border-t border-[var(--border-color)]/30">
-                            {isLocked ? (
-                              <div className="flex-1 flex items-center justify-center gap-2 text-xs font-black text-red-600 uppercase tracking-widest">
-                                <Lock className="w-4 h-4" />
-                                Bloqueado
-                              </div>
-                            ) : hasVideo ? (
-                              <>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    openVideo(video);
-                                  }}
-                                  className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2"
-                                >
-                                  <Play className="w-3.5 h-3.5 fill-current" />
-                                  Ver
-                                </button>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    toggleVideoCompletion(video.id);
-                                  }}
-                                  className={`px-4 py-2 rounded-xl font-black text-xs uppercase tracking-widest transition-all duration-200 ${
-                                    isCompleted
-                                      ? 'bg-green-500/20 text-green-600 border border-green-500/30'
-                                      : 'bg-[var(--bg-main)] text-[var(--text-muted)] border border-[var(--border-color)] hover:border-primary-600/50'
-                                  }`}
-                                >
-                                  {isCompleted ? '✓' : '○'}
-                                </button>
-                              </>
-                            ) : (
-                              <div className="flex-1 text-center text-xs font-black text-[var(--text-muted)] uppercase tracking-widest opacity-60">
-                                Próximamente
-                              </div>
-                            )}
-                          </div>
+                          {/* Action Button */}
+                          {isLocked ? (
+                            <Lock className="w-4 h-4 text-red-500" />
+                          ) : hasVideo ? (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openVideo(video);
+                              }}
+                              className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-all duration-200 shadow-sm"
+                              title="Reproducir video"
+                            >
+                              <Play className="w-4 h-4 fill-current ml-0.5" />
+                            </button>
+                          ) : (
+                            <span className="text-xs text-neutral-500 dark:text-neutral-400 opacity-60">Próx.</span>
+                          )}
                         </div>
                       </div>
                     );
@@ -393,69 +322,58 @@ const CourseDetail: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="mt-12 p-10 bg-[var(--bg-main)] rounded-[2.5rem] text-center border border-[var(--border-color)] border-dashed">
-          <p className="text-[var(--text-muted)] font-black uppercase tracking-widest">El contenido del curso estará disponible pronto.</p>
+        <div className="mt-12 p-10 bg-neutral-50 dark:bg-neutral-800 rounded-lg text-center border border-neutral-200 dark:border-neutral-700 border-dashed">
+          <p className="text-neutral-600 dark:text-neutral-400 font-medium">El contenido del curso estará disponible pronto.</p>
         </div>
       )}
 
-      {/* Información de acceso al curso */}
-      <div className="mt-8 pt-6 border-t border-[var(--border-color)]">
-        {!isAuthenticated ? (
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl">
+      {/* Información de acceso al curso - Solo para acceso restringido */}
+      {!isAuthenticated && (
+        <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-500/20 rounded-lg flex items-center justify-center">
                 <AlertCircle className="w-6 h-6 text-amber-600" />
               </div>
               <div>
-                <h3 className="text-lg font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Inicia sesión para acceder</h3>
-                <p className="text-sm text-[var(--text-muted)] font-medium">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-2">Inicia sesión para acceder</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
                   Necesitas iniciar sesión para acceder al contenido completo del curso.
                 </p>
               </div>
             </div>
             <button
               onClick={() => navigate('/login')}
-              className="px-8 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-xl font-black text-sm hover:bg-primary-600 hover:text-white transition-colors uppercase tracking-wide"
+              className="px-6 py-2.5 bg-primary-600 text-white rounded-lg font-medium text-sm hover:bg-primary-700 transition-colors whitespace-nowrap"
             >
               Iniciar Sesión
             </button>
           </div>
-        ) : !user?.enrolledCourses?.includes(courseId || '') && user?.subscriptionStatus !== 'active' ? (
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-red-500/10 border border-red-500/20 rounded-2xl">
+        </div>
+      )}
+      {isAuthenticated && !user?.enrolledCourses?.includes(courseId || '') && user?.subscriptionStatus !== 'active' && (
+        <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-lg">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 bg-red-100 dark:bg-red-500/20 rounded-lg flex items-center justify-center">
                 <Lock className="w-6 h-6 text-red-600" />
               </div>
               <div>
-                <h3 className="text-lg font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Acceso restringido</h3>
-                <p className="text-sm text-[var(--text-muted)] font-medium">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-2">Acceso restringido</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
                   No tienes acceso a este curso. Contacta al administrador para solicitar acceso o activa tu suscripción.
                 </p>
               </div>
             </div>
             <button
               onClick={() => navigate('/dashboard')}
-              className="px-8 py-4 bg-[var(--text-main)] text-[var(--bg-main)] rounded-xl font-black text-sm hover:bg-primary-600 hover:text-white transition-colors uppercase tracking-wide"
+              className="px-6 py-2.5 bg-primary-600 text-white rounded-lg font-medium text-sm hover:bg-primary-700 transition-colors whitespace-nowrap"
             >
               Ir al Dashboard
             </button>
           </div>
-        ) : (
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 bg-green-500/10 border border-green-500/20 rounded-2xl">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
-                <CheckCircle2 className="w-6 h-6 text-green-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">Tienes acceso completo</h3>
-                <p className="text-sm text-[var(--text-muted)] font-medium">
-                  Puedes ver todos los videos del curso. Haz clic en cualquier video para comenzar.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
     </div>
   );
