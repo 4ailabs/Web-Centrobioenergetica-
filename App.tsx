@@ -28,7 +28,7 @@ import AdminDashboard from './pages/AdminDashboard';
 const PAGE_MAP: Record<string, string> = {
   'cursos': 'Cursos',
   'servicios': 'Servicios Clínicos',
-  'noticias': 'Noticias',
+  // 'noticias': 'Noticias',
   'sobre-nosotros': 'Sobre Nosotros',
   'aplicaciones': 'Aplicaciones',
   'calendario': 'Calendario',
@@ -101,10 +101,10 @@ const AppContent: React.FC = () => {
                     handleSetActivePage('Cursos');
                     navigate('/cursos');
                   }}
-                  onNavigateToNews={() => {
-                    handleSetActivePage('Noticias');
-                    navigate('/noticias');
-                  }}
+                  // onNavigateToNews={() => {
+                  //   handleSetActivePage('Noticias');
+                  //   navigate('/noticias');
+                  // }}
                   onNavigateToAbout={() => {
                     handleSetActivePage('Sobre Nosotros');
                     navigate('/sobre-nosotros');
@@ -117,7 +117,7 @@ const AppContent: React.FC = () => {
               } />
               <Route path="/cursos" element={<AllCourses />} />
               <Route path="/servicios" element={<ClinicalServices />} />
-              <Route path="/noticias" element={<News />} />
+              {/* <Route path="/noticias" element={<News />} /> */}
               <Route path="/sobre-nosotros" element={<AboutUs />} />
               <Route path="/aplicaciones" element={<Apps />} />
               <Route path="/calendario" element={<CalendarPage />} />

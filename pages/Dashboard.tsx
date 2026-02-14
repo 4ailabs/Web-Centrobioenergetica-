@@ -159,7 +159,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </section>
 
       {/* Latest News Preview Section */}
-      <section className="px-4 max-w-[1500px] mx-auto w-full">
+      {/* <section className="px-4 max-w-[1500px] mx-auto w-full">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="w-1 h-8 bg-primary-600 rounded-full"></div>
@@ -201,12 +201,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Quick Access Grid - Balanced */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-[1500px] mx-auto w-full">
         {[
-          { icon: NewsIcon, title: "Noticias", desc: "Investigaciones y novedades.", action: onNavigateToNews },
+          // { icon: NewsIcon, title: "Noticias", desc: "Investigaciones y novedades.", action: onNavigateToNews },
           { icon: AboutUsIcon, title: "Nosotros", desc: "Misión y equipo experto.", action: onNavigateToAbout },
           { icon: AppsIcon, title: "Apps", desc: "Herramientas exclusivas.", action: onNavigateToApps }
         ].map((item, idx) => (
