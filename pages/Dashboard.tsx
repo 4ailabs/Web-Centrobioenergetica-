@@ -83,9 +83,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
       {/* Hero Section - Clean & Minimal */}
-      <div className="relative bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800 px-6 py-20 lg:py-32 border-l-4 border-primary-600">
-        {/* Decorative accent element */}
-        <div className="absolute top-12 right-12 w-24 h-24 bg-primary-600/5 rounded-3xl blur-2xl dark:bg-primary-600/10"></div>
+      <div className="relative bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 px-6 py-20 lg:py-32">
+        {/* Subtle decorative elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary-600/3 rounded-full blur-3xl dark:bg-primary-600/5 opacity-40"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-600/2 rounded-full blur-3xl dark:bg-primary-600/4 opacity-30"></div>
 
         <div className="max-w-6xl mx-auto relative">
           <div className="space-y-8">
