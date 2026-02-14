@@ -1,15 +1,14 @@
-/* Fuentes para Instituto Centrobioenergética */
+/* Fuentes para Instituto Centrobioenergética - Minimalismo Refinado */
 
-/* Importar solo Inter de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* La fuente Poppins ya está importada en index.css via Google Fonts */
 
 /* Configuración de fuentes principales */
 :root {
-  /* Fuente principal - Inter para todo */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  
+  /* Fuente principal - Poppins para todo */
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
   /* Fuente monoespaciada para código o datos técnicos */
-  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
 /* Aplicar fuentes por defecto */
@@ -25,7 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Asegurar que todos los elementos usen Inter */
+/* Asegurar que todos los elementos usen Poppins */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -51,7 +50,7 @@ summary, time, mark, audio, video {
 
 /* Configuración específica para diferentes elementos */
 
-/* Títulos principales */
+/* Títulos principales - Poppins 600 */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
   font-weight: 600;
@@ -59,25 +58,25 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
 }
 
-/* Títulos grandes */
+/* Títulos grandes - h1 específicamente */
 h1 {
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.05em;
 }
 
 h2 {
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
 }
 
-/* Botones y elementos interactivos */
+/* Botones y elementos interactivos - Poppins 500 */
 button, .btn {
   font-family: var(--font-primary);
   font-weight: 500;
-  letter-spacing: 0.025em;
+  letter-spacing: normal;
 }
 
-/* Navegación */
+/* Navegación - Poppins 500 */
 nav, .nav {
   font-family: var(--font-primary);
   font-weight: 500;
@@ -94,19 +93,19 @@ nav, .nav {
   font-weight: 400;
 }
 
-/* Formularios */
+/* Formularios - Poppins 400 */
 input, textarea, select {
   font-family: var(--font-primary);
   font-weight: 400;
 }
 
-/* Texto pequeño y badges */
+/* Texto pequeño y badges - Poppins 500 */
 .text-sm, .badge, .tag {
   font-family: var(--font-primary);
   font-weight: 500;
 }
 
-/* Texto de productos y servicios médicos */
+/* Texto de productos y servicios */
 .product-name {
   font-family: var(--font-primary);
   font-weight: 600;
@@ -117,38 +116,38 @@ input, textarea, select {
   font-weight: 400;
 }
 
-/* Texto de precios y datos importantes */
+/* Texto de precios y datos importantes - Poppins 600 */
 .price, .data-value {
   font-family: var(--font-primary);
   font-weight: 600;
 }
 
-/* Texto de navegación específico para Wellkitt */
+/* Texto de navegación */
 .wellkitt-nav {
   font-family: var(--font-primary);
   font-weight: 500;
 }
 
-/* Texto de información médica */
+/* Texto de información médica - Poppins 400 */
 .medical-info {
   font-family: var(--font-primary);
   font-weight: 400;
   line-height: 1.7;
 }
 
-/* Texto de instrucciones y dosificación */
+/* Texto de instrucciones y dosificación - Poppins 500 */
 .dosage-info {
   font-family: var(--font-primary);
   font-weight: 500;
 }
 
-/* Texto de advertencias y precauciones */
+/* Texto de advertencias y precauciones - Poppins 500 */
 .warning-text {
   font-family: var(--font-primary);
   font-weight: 500;
 }
 
-/* Asegurar que Tailwind CSS use Inter */
+/* Asegurar que Tailwind CSS use Poppins */
 .font-sans {
   font-family: var(--font-primary) !important;
 }
@@ -167,15 +166,15 @@ input, textarea, select {
   h1 {
     font-size: 1.75rem;
   }
-  
+
   h2 {
     font-size: 1.5rem;
   }
-  
+
   h3 {
     font-size: 1.25rem;
   }
-  
+
   body {
     font-size: 0.875rem;
   }
@@ -185,15 +184,15 @@ input, textarea, select {
   h1 {
     font-size: 2.25rem;
   }
-  
+
   h2 {
     font-size: 1.875rem;
   }
-  
+
   h3 {
     font-size: 1.5rem;
   }
-  
+
   body {
     font-size: 1rem;
   }

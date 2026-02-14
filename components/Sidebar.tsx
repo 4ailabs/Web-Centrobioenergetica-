@@ -37,29 +37,29 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
   const ThemeToggle = ({ mobile = false }) => (
     <button
       onClick={toggleTheme}
-      className={`group flex items-center space-x-3 px-4 py-3 rounded-2xl transition-all duration-300 relative overflow-hidden ${mobile ? 'w-full' : ''} text-zinc-500 dark:text-zinc-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 font-medium`}
+      className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 font-medium text-sm ${mobile ? 'w-full' : ''} text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800`}
     >
-      <div className="relative z-10 transition-colors duration-200 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+      <div className="transition-colors duration-200">
         {isDarkMode ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
       </div>
-      <span className="relative z-10 text-[13px] tracking-wide">{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
+      <span>{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
     </button>
   );
 
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 z-50 px-4 py-3 transition-colors">
+      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 z-50 px-4 py-3 transition-colors">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-3">
             <LogoIcon className="h-8 w-auto" />
-            <span className="text-xs sm:text-sm font-bold text-zinc-800 dark:text-white">Instituto Centrobioenergética</span>
+            <span className="text-xs sm:text-sm font-medium text-neutral-900 dark:text-white">Instituto</span>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-xl bg-transparent border border-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
           >
-            {isMobileMenuOpen ? <XIcon className="w-6 h-6 text-zinc-800 dark:text-white" /> : <MenuIcon className="w-6 h-6 text-zinc-800 dark:text-white" />}
+            {isMobileMenuOpen ? <XIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -73,11 +73,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       )}
 
       {/* Mobile Sidebar Drawer */}
-      <aside className={`lg:hidden fixed top-0 left-0 h-full bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 w-80 z-50 transition-transform duration-300 ease-out shadow-2xl ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="p-6 pt-20 flex flex-col h-full bg-gradient-to-b from-transparent to-zinc-50/50 dark:to-zinc-900/20">
-          <nav className="flex-grow overflow-y-auto space-y-8 pr-2 custom-scrollbar">
-            <div className="space-y-3">
-              <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Menú Principal</h3>
+      <aside className={`lg:hidden fixed top-0 left-0 h-full bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 w-80 z-50 transition-transform duration-300 ease-out shadow-lg ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-6 pt-20 flex flex-col h-full">
+          <nav className="flex-grow overflow-y-auto space-y-6 pr-2 custom-scrollbar">
+            <div className="space-y-2">
+              <h3 className="px-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">Menú</h3>
               <div className="space-y-1">
                 <NavItem icon={<DashboardIcon className="w-5 h-5" />} label="Panel" active={location.pathname === '/'} onClick={() => handleNavigation('Panel', '/')} mobile={true} />
                 <NavItem icon={<CoursesIcon className="w-5 h-5" />} label="Cursos" active={location.pathname === '/cursos'} onClick={() => handleNavigation('Cursos', '/cursos')} mobile={true} />
@@ -134,25 +134,19 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       </aside>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:sticky top-0 h-screen bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl border-r border-zinc-200/50 dark:border-zinc-800/50 p-6 flex-col w-64 shrink-0 relative overflow-hidden">
-        {/* Premium gradient backgrounds */}
-        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-emerald-500/10 to-transparent pointer-events-none rounded-full blur-3xl" />
+      <aside className="hidden lg:flex lg:sticky top-0 h-screen bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 p-6 flex-col w-64 shrink-0 relative overflow-hidden">
 
-        <div className="flex items-center space-x-3 mb-8 pl-1 relative z-10">
-          <LogoIcon className="h-10 w-auto" />
+        <div className="flex items-center gap-3 mb-8">
+          <LogoIcon className="h-8 w-auto" />
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-zinc-800 dark:text-zinc-100">Instituto</span>
-            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Centrobioenergética</span>
+            <span className="text-sm font-medium text-neutral-900 dark:text-neutral-50">Instituto</span>
+            <span className="text-xs font-normal text-neutral-500 dark:text-neutral-400">Centrobioenergética</span>
           </div>
         </div>
 
-        <nav className="flex-grow space-y-6 pr-1 custom-scrollbar relative z-10 overflow-y-auto">
-          <div className="space-y-2">
-            <h3 className="px-3 text-[7px] font-normal text-zinc-400 dark:text-zinc-500 uppercase tracking-wider select-none flex items-center gap-2 opacity-30">
-              <span className="w-4 h-px bg-gradient-to-r from-emerald-500/20 to-transparent"></span>
-              MENÚ
-            </h3>
+        <nav className="flex-grow space-y-4 pr-1 custom-scrollbar overflow-y-auto">
+          <div className="space-y-1">
+            <h3 className="px-3 text-xs font-medium text-neutral-500 dark:text-neutral-400">Menú</h3>
             <div className="space-y-1">
               <NavItem icon={<DashboardIcon className="w-5 h-5" />} label="Panel" active={location.pathname === '/'} onClick={() => handleNavigation('Panel', '/')} />
               <NavItem icon={<CoursesIcon className="w-5 h-5" />} label="Cursos" active={location.pathname === '/cursos'} onClick={() => handleNavigation('Cursos', '/cursos')} />
@@ -163,21 +157,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="px-3 text-[7px] font-normal text-zinc-400 dark:text-zinc-500 uppercase tracking-wider select-none flex items-center gap-2 opacity-30">
-              <span className="w-4 h-px bg-gradient-to-r from-teal-500/20 to-transparent"></span>
-              CONTENIDO
-            </h3>
+          <div className="space-y-1 pt-2">
+            <h3 className="px-3 text-xs font-medium text-neutral-500 dark:text-neutral-400">Contenido</h3>
             <div className="space-y-1">
               <NavItem icon={<YoutubeIcon className="w-5 h-5" />} label="Wellvibe Media" active={location.pathname === '/wellvibe-media'} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="px-3 text-[7px] font-normal text-zinc-400 dark:text-zinc-500 uppercase tracking-wider select-none flex items-center gap-2 opacity-30">
-              <span className="w-4 h-px bg-gradient-to-r from-cyan-500/20 to-transparent"></span>
-              PERSONAL
-            </h3>
+          <div className="space-y-1 pt-2">
+            <h3 className="px-3 text-xs font-medium text-neutral-500 dark:text-neutral-400">Personal</h3>
             <div className="space-y-1">
               {user?.isAdmin && (
                 <NavItem icon={<Shield className="w-5 h-5" />} label="Panel Admin" active={location.pathname === '/admin'} onClick={() => handleNavigation('Panel Admin', '/admin')} />

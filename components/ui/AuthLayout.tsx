@@ -24,22 +24,22 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
     children
 }) => {
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg-main)]">
-            <div className="w-full max-w-md bg-[var(--panel-bg)] rounded-3xl shadow-2xl p-8 border border-[var(--border-color)]">
+        <div className="min-h-screen flex items-center justify-center p-6 bg-neutral-50 dark:bg-neutral-900">
+            <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-xl shadow-md p-8 border border-neutral-200 dark:border-neutral-700">
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-black text-[var(--text-main)] mb-2 uppercase tracking-tight">{title}</h1>
-                    <p className="text-[var(--text-muted)]">{subtitle}</p>
+                    <h1 className="text-3xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">{title}</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal">{subtitle}</p>
                 </div>
 
                 {error && (
-                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center space-x-2 text-red-600">
+                    <div className="mb-6 p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2 text-red-700 dark:text-red-200">
                         <AlertCircle className="w-5 h-5 flex-shrink-0" />
                         <span className="text-sm font-medium">{error}</span>
                     </div>
                 )}
 
                 {success && (
-                    <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-2xl flex items-center space-x-2 text-green-600">
+                    <div className="mb-6 p-4 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg flex items-center gap-2 text-green-700 dark:text-green-200">
                         <CheckCircle className="w-5 h-5 flex-shrink-0" />
                         <span className="text-sm font-medium">{success}</span>
                     </div>
@@ -47,10 +47,10 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
 
                 {children}
 
-                <div className="mt-8 text-center border-t border-[var(--border-color)] pt-8">
-                    <p className="text-sm text-[var(--text-muted)] font-medium">
+                <div className="mt-8 text-center border-t border-neutral-200 dark:border-neutral-700 pt-6">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
                         {footerText}{' '}
-                        <Link to={footerLinkTo} className="text-primary-600 font-bold hover:underline transition-all">
+                        <Link to={footerLinkTo} className="text-primary font-medium hover:text-primary-dark transition-colors">
                             {footerLinkText}
                         </Link>
                     </p>

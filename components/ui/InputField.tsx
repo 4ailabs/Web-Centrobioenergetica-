@@ -27,11 +27,11 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => {
     return (
         <div>
-            <label htmlFor={id} className="block text-xs font-black text-primary-600 uppercase tracking-widest mb-2 px-1">
+            <label htmlFor={id} className="block text-xs font-medium text-neutral-600 uppercase tracking-normal mb-2 px-1">
                 {label}
             </label>
             <div className="relative group">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--text-muted)] group-focus-within:text-primary-600 transition-colors">
+                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-400 group-focus-within:text-primary transition-colors duration-200">
                     {icon}
                 </div>
                 <input
@@ -40,7 +40,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     value={value}
                     onChange={onChange}
                     required={required}
-                    className="w-full pl-12 pr-12 py-4 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none text-[var(--text-main)] placeholder:text-[var(--text-muted)] transition-all"
+                    className="w-full pl-12 pr-12 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 dark:focus:ring-offset-neutral-900 text-neutral-900 dark:text-neutral-50 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 transition-all duration-200"
                     placeholder={placeholder}
                 />
                 {rightElement && (
@@ -50,7 +50,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 )}
             </div>
             {helperText && (
-                <p className="mt-1 text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider px-1">
+                <p className="mt-1.5 text-xs font-medium text-neutral-500 px-1">
                     {helperText}
                 </p>
             )}

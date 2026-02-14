@@ -81,80 +81,58 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   const featuredCourses = useMemo(() => courses.slice(0, 4), [courses]);
 
   return (
-    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-12 sm:space-y-32 pb-20">
-      {/* Premium Hero Section - Compact & Professional */}
-      <div className="relative mx-3 sm:mx-4 h-[340px] sm:h-[380px] lg:h-[450px] overflow-hidden rounded-2xl sm:rounded-3xl mb-8 sm:mb-12 shadow-lg">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="/hero_clinical_professional.png"
-            alt="Bioenergetic Background"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/70 via-transparent to-transparent"></div>
-        </div>
+    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
+      {/* Hero Section - Clean & Minimal */}
+      <div className="relative bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800 px-6 py-20 lg:py-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="space-y-8">
+            <div>
+              <span className="text-primary font-medium text-sm">Formación de Vanguardia</span>
+            </div>
 
-        {/* Content Container */}
-        <div className="relative h-full z-10 flex flex-col justify-end pb-6 sm:justify-center sm:pb-0 px-5 sm:px-6 lg:px-20 max-w-7xl mx-auto w-full space-y-2.5 sm:space-y-4 md:space-y-6">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1.5 bg-primary-600/30 backdrop-blur-md rounded-full border border-primary-400/40 w-fit">
-            <span className="w-1.5 h-1.5 bg-primary-400 rounded-full"></span>
-            <span className="text-[9px] md:text-[10px] font-bold text-white uppercase tracking-wide">Formación de Vanguardia</span>
-          </div>
+            <div className="space-y-4">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
+                Instituto <br />
+                <span className="text-primary">Centrobioenergética</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
+                Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+              </p>
+            </div>
 
-          <div className="space-y-1.5 sm:space-y-2 md:space-y-2">
-            <h1 className="text-[26px] leading-[1.1] sm:text-3xl md:text-4xl lg:text-7xl font-black text-white tracking-tight sm:leading-none uppercase">
-              Instituto <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">
-                Centrobioenergética
-              </span>
-            </h1>
-            <p className="text-[13px] leading-snug sm:text-base lg:text-xl text-white/80 max-w-xl font-medium">
-              Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1 sm:pt-2">
-            <button
-              onClick={() => navigate('/cursos')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-primary-600 text-white rounded-xl font-black uppercase tracking-wide text-[11px] hover:bg-primary-500 transition-all active:scale-95 flex items-center justify-center gap-2 group/btn min-h-[44px] touch-manipulation shadow-lg"
-            >
-              Oferta Académica
-              <span className="group-hover/btn:translate-x-1 transition-transform text-sm">→</span>
-            </button>
-            <button
-              onClick={() => navigate('/servicios')}
-              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/30 rounded-xl font-black uppercase tracking-wide text-[11px] transition-all active:scale-95 text-center min-h-[44px] touch-manipulation"
-            >
-              Servicios
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <button
+                onClick={() => navigate('/cursos')}
+                className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
+              >
+                Oferta Académica
+                <span>→</span>
+              </button>
+              <button
+                onClick={() => navigate('/servicios')}
+                className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition-all active:scale-95 min-h-[44px]"
+              >
+                Servicios
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Decorative Glass Elements */}
-        <div className="absolute top-1/2 -right-20 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
       {/* Featured Programs Section */}
-      <section className="px-4 max-w-[1500px] mx-auto w-full">
-        <div className="relative">
-          {/* Header */}
-          <div className="flex flex-col items-start mb-10 gap-3 relative z-10">
-            <h2 className="text-xs font-black text-primary-600 uppercase tracking-[0.3em] flex items-center gap-3">
-              <span className="w-10 h-px bg-primary-600/30"></span>
-              Cursos Destacados
-            </h2>
-            <h3 className="text-3xl lg:text-4xl font-black text-[var(--text-main)] uppercase tracking-tight leading-none">
-              Programas de <span className="text-primary-600">Formación</span>
-            </h3>
-          </div>
+      <section className="px-6 max-w-6xl mx-auto w-full">
+        <div className="mb-12">
+          <h2 className="text-sm font-medium text-primary mb-2">Cursos destacados</h2>
+          <h3 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-2">
+            Programas de <span className="text-primary">formación</span>
+          </h3>
+        </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 relative z-10">
-            {featuredCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10">
+          {featuredCourses.map((course) => (
+            <CourseCard key={course.id} course={course} />
+          ))}
         </div>
       </section>
 
@@ -204,30 +182,33 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       </section> */}
 
       {/* Quick Access Grid - Balanced */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-[1500px] mx-auto w-full">
-        {[
-          // { icon: NewsIcon, title: "Noticias", desc: "Investigaciones y novedades.", action: onNavigateToNews },
-          { icon: AboutUsIcon, title: "Nosotros", desc: "Misión y equipo experto.", action: onNavigateToAbout },
-          { icon: AppsIcon, title: "Apps", desc: "Herramientas exclusivas.", action: onNavigateToApps }
-        ].map((item, idx) => (
-          <div
-            key={item.title}
-            onClick={item.action}
-            className="group relative bg-[var(--panel-bg)] border border-[var(--border-color)] hover:border-primary-600/50 rounded-xl p-8 sm:p-10 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 touch-manipulation"
-          >
-            <div className="relative z-10">
-              <div className="w-16 h-16 bg-primary-600/5 group-hover:bg-primary-600 text-primary-600 group-hover:text-white rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 shadow-sm">
-                <item.icon className="w-8 h-8" />
+      <section className="px-6 max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            { icon: AboutUsIcon, title: "Nosotros", desc: "Misión y equipo experto.", action: onNavigateToAbout },
+            { icon: AppsIcon, title: "Apps", desc: "Herramientas exclusivas.", action: onNavigateToApps }
+          ].map((item) => (
+            <div
+              key={item.title}
+              onClick={item.action}
+              className="group relative bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="space-y-4">
+                <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary text-neutral-700 dark:text-neutral-300 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 font-normal text-base">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-2xl font-black text-[var(--text-main)] mb-3 uppercase tracking-tight group-hover:text-primary-600 transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-[var(--text-muted)] leading-relaxed font-medium text-sm group-hover:text-[var(--text-main)] transition-colors">
-                {item.desc}
-              </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
     </div>
   );
