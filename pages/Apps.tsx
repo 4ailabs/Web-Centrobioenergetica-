@@ -2,11 +2,19 @@
 import React from 'react';
 import type { AppInfo } from '../types';
 import AppCard from '../components/AppCard';
-import { FramerIcon, NotionIcon, LemonSqueezyIcon, GumroadIcon, AsanaIcon, DiagramIcon } from '../components/Icons';
+import { FramerIcon, NotionIcon, LemonSqueezyIcon, GumroadIcon, AsanaIcon, DiagramIcon, WellkittIcon } from '../components/Icons';
 
 const apps: AppInfo[] = [
   {
     id: 1,
+    name: 'Wellkitt',
+    category: 'Herramienta de Bienestar',
+    description: 'Plataforma integral de bienestar y salud holística. Accede a herramientas, recursos y seguimiento personalizado para tu transformación bioenergética.',
+    logo: <WellkittIcon className="w-10 h-10" />,
+    website: 'https://wellkitt.vercel.app',
+  },
+  {
+    id: 2,
     name: 'Framer',
     category: 'Plataforma de Diseño Web',
     description: 'Pasa fácilmente del diseño a un sitio de primera clase con Framer, el constructor web para profesionales creativos. Optimiza para cada punto de interrupción, sin necesidad de código y publica de forma gratuita.',
@@ -14,7 +22,7 @@ const apps: AppInfo[] = [
     website: 'https://framer.com',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Notion',
     category: 'Espacio de Trabajo',
     description: 'Una nueva herramienta que combina tus aplicaciones de trabajo diarias en una sola. Es el espacio de trabajo todo en uno para ti y tu equipo.',
@@ -22,7 +30,7 @@ const apps: AppInfo[] = [
     website: 'https://notion.so',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Lemon Squeezy',
     category: 'Plataforma de Pagos',
     description: 'Lemon Squeezy es la plataforma todo en uno para gestionar tu negocio SaaS. Pagos, suscripciones, cumplimiento fiscal global, prevención de fraudes, multidivisa.',
@@ -30,7 +38,7 @@ const apps: AppInfo[] = [
     website: 'https://lemonsqueezy.com',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Gumroad',
     category: 'Plataforma de Pagos',
     description: 'Gumroad: hacemos que sea fácil ganar tu primer dólar en línea vendiendo productos digitales y membresías. Gumroad fue creado para ayudarte a experimentar con todo tipo de ideas y formatos.',
@@ -38,7 +46,7 @@ const apps: AppInfo[] = [
     website: 'https://gumroad.com',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Asana',
     category: 'Gestión de Proyectos',
     description: 'Mantén a todos y todo organizado. Con Asana, puedes asignar tareas, establecer plazos y seguir el progreso. Mantén a los equipos remotos y distribuidos enfocados en sus metas.',
@@ -46,7 +54,7 @@ const apps: AppInfo[] = [
     website: 'https://asana.com',
   },
   {
-    id: 6,
+    id: 7,
     name: 'Diagram',
     category: 'Herramienta de Diseño IA',
     description: 'Un diagrama es una representación simbólica de información usando técnicas de visualización. Los diagramas se han utilizado desde tiempos prehistóricos, pero se hicieron más frecuentes durante la Ilustración.',
