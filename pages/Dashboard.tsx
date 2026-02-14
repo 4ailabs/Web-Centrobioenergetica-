@@ -83,34 +83,37 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
       {/* Hero Section - Clean & Minimal */}
-      <div className="relative bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800 px-6 py-20 lg:py-32">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800 px-6 py-20 lg:py-32 border-l-4 border-primary-600">
+        {/* Decorative accent element */}
+        <div className="absolute top-12 right-12 w-24 h-24 bg-primary-600/5 rounded-3xl blur-2xl dark:bg-primary-600/10"></div>
+
+        <div className="max-w-6xl mx-auto relative">
           <div className="space-y-8">
             <div>
-              <span className="text-primary font-medium text-sm">Formación de Vanguardia</span>
+              <span className="text-primary-600 font-medium text-sm">Formación de Vanguardia</span>
             </div>
 
             <div className="space-y-4">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
                 Instituto <br />
-                <span className="text-primary">Centrobioenergética</span>
+                <span className="text-primary-600">Centrobioenergética</span>
               </h1>
               <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
                 Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-8">
               <button
                 onClick={() => navigate('/cursos')}
-                className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
+                className="px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
               >
                 Oferta Académica
                 <span>→</span>
               </button>
               <button
                 onClick={() => navigate('/servicios')}
-                className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition-all active:scale-95 min-h-[44px]"
+                className="px-8 py-3 border-2 border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-600 hover:text-white transition-all active:scale-95 min-h-[44px]"
               >
                 Servicios
               </button>
@@ -122,9 +125,9 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
       {/* Featured Programs Section */}
       <section className="px-6 max-w-6xl mx-auto w-full">
         <div className="mb-12">
-          <h2 className="text-sm font-medium text-primary mb-2">Cursos destacados</h2>
+          <h2 className="text-sm font-medium text-primary-600 mb-2">Cursos destacados</h2>
           <h3 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-2">
-            Programas de <span className="text-primary">formación</span>
+            Programas de <span className="text-primary-600">formación</span>
           </h3>
         </div>
 
@@ -194,7 +197,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
               className="group relative bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary text-neutral-700 dark:text-neutral-300 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
+                <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 text-neutral-700 dark:text-neutral-300 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
                   <item.icon className="w-6 h-6" />
                 </div>
                 <div>
