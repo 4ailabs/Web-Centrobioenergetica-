@@ -48,12 +48,6 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
           <div className={`w-full h-full bg-gradient-to-br ${getGradient(course.id)}`} />
         )}
 
-        {/* Level Badge */}
-        <div className="absolute top-3 left-3">
-          <span className="px-2.5 py-1 rounded text-xs font-medium bg-primary-600 text-white">
-            {course.level}
-          </span>
-        </div>
       </div>
 
       {/* Content */}

@@ -124,6 +124,63 @@ export const MOCK_DATA = {
         },
       ],
     },
+    {
+      id: 103,
+      title: 'Bioenergética V4',
+      description: 'Nivel avanzado de formación bioenergética. Tres módulos intensivos de jornada completa para profundizar en los principios y aplicaciones de la bioenergética clínica.',
+      author: 'Centro Bioenergética',
+      price: 0,
+      lessons: 3,
+      level: 'Avanzado' as const,
+      imageUrl: '/images/courses/bioenergetica-v4.png',
+      modules: [
+        {
+          id: 1,
+          title: 'Módulo 1: Fundamentos Avanzados',
+          description: 'Revisión y profundización de los principios bioenergéticos. Jornada de 10:00 a 18:00.',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'Módulo 1 — Bioenergética V4',
+              description: 'Jornada completa. 10:00 – 18:00 h.',
+              duration: '8:00:00',
+              order: 1,
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: 'Módulo 2: Aplicación Clínica',
+          description: 'Protocolos avanzados y casos clínicos aplicados. Jornada de 10:00 a 18:00.',
+          order: 2,
+          videos: [
+            {
+              id: 2,
+              title: 'Módulo 2 — Bioenergética V4',
+              description: 'Jornada completa. 10:00 – 18:00 h.',
+              duration: '8:00:00',
+              order: 1,
+            },
+          ],
+        },
+        {
+          id: 3,
+          title: 'Módulo 3: Integración y Práctica',
+          description: 'Integración de contenidos y práctica supervisada. Jornada de 10:00 a 18:00.',
+          order: 3,
+          videos: [
+            {
+              id: 3,
+              title: 'Módulo 3 — Bioenergética V4',
+              description: 'Jornada completa. 10:00 – 18:00 h.',
+              duration: '8:00:00',
+              order: 1,
+            },
+          ],
+        },
+      ],
+    },
     /* Cursos anteriores ocultos temporalmente
     {
       id: 1,
