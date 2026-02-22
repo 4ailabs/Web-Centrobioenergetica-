@@ -1,19 +1,16 @@
-/* Fuentes para Instituto Centrobioenergética - Minimalismo Refinado */
+/* Fuentes para Instituto Centrobioenergética - Organic Science */
 
-/* La fuente Poppins ya está importada en index.css via Google Fonts */
+/* Libre Baskerville (display/serif) + Outfit (body) se importan en index.css */
 
-/* Configuración de fuentes principales */
 :root {
-  /* Fuente principal - Poppins para todo */
-  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  /* Fuente de display - Fraunces, serif variable contemporánea */
+  --font-display: 'Fraunces', Georgia, serif;
 
-  /* Fuente monoespaciada para código o datos técnicos */
-  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-}
+  /* Fuente de cuerpo - Outfit, sans-serif moderno */
+  --font-primary: 'Outfit', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
 
-/* Aplicar fuentes por defecto */
-* {
-  font-family: var(--font-primary);
+  /* Fuente monoespaciada */
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
 }
 
 body {
@@ -24,176 +21,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Asegurar que todos los elementos usen Poppins */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center, dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend, table, caption,
-tbody, tfoot, thead, tr, th, td, article, aside,
-canvas, details, embed, figure, figcaption, footer,
-header, hgroup, menu, nav, output, ruby, section,
-summary, time, mark, audio, video {
-  font-family: var(--font-primary);
-}
-
-/* Clases de utilidad para fuentes */
-.font-primary {
-  font-family: var(--font-primary);
-}
-
-.font-mono {
-  font-family: var(--font-mono);
-}
-
-/* Configuración específica para diferentes elementos */
-
-/* Títulos principales - Poppins 600 */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
-/* Títulos grandes - h1 específicamente */
 h1 {
-  font-weight: 600;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
 }
 
-h2 {
-  font-weight: 600;
-  letter-spacing: -0.025em;
-}
-
-/* Botones y elementos interactivos - Poppins 500 */
 button, .btn {
   font-family: var(--font-primary);
   font-weight: 500;
   letter-spacing: normal;
 }
 
-/* Navegación - Poppins 500 */
 nav, .nav {
-  font-family: var(--font-primary);
-  font-weight: 500;
-}
-
-/* Cards y componentes */
-.card-title {
-  font-family: var(--font-primary);
-  font-weight: 600;
-}
-
-.card-text {
   font-family: var(--font-primary);
   font-weight: 400;
 }
 
-/* Formularios - Poppins 400 */
 input, textarea, select {
   font-family: var(--font-primary);
   font-weight: 400;
 }
 
-/* Texto pequeño y badges - Poppins 500 */
-.text-sm, .badge, .tag {
-  font-family: var(--font-primary);
-  font-weight: 500;
-}
-
-/* Texto de productos y servicios */
-.product-name {
-  font-family: var(--font-primary);
-  font-weight: 600;
-}
-
-.product-description {
-  font-family: var(--font-primary);
-  font-weight: 400;
-}
-
-/* Texto de precios y datos importantes - Poppins 600 */
-.price, .data-value {
-  font-family: var(--font-primary);
-  font-weight: 600;
-}
-
-/* Texto de navegación */
-.wellkitt-nav {
-  font-family: var(--font-primary);
-  font-weight: 500;
-}
-
-/* Texto de información médica - Poppins 400 */
-.medical-info {
-  font-family: var(--font-primary);
-  font-weight: 400;
-  line-height: 1.7;
-}
-
-/* Texto de instrucciones y dosificación - Poppins 500 */
-.dosage-info {
-  font-family: var(--font-primary);
-  font-weight: 500;
-}
-
-/* Texto de advertencias y precauciones - Poppins 500 */
-.warning-text {
-  font-family: var(--font-primary);
-  font-weight: 500;
-}
-
-/* Asegurar que Tailwind CSS use Poppins */
-.font-sans {
-  font-family: var(--font-primary) !important;
-}
-
-/* Override para elementos específicos de Tailwind */
-.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl {
-  font-family: var(--font-primary) !important;
-}
-
-.font-light, .font-normal, .font-medium, .font-semibold, .font-bold, .font-extrabold {
-  font-family: var(--font-primary) !important;
-}
-
 /* Responsive font sizes */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 1.75rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  body {
-    font-size: 0.875rem;
-  }
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  body { font-size: 0.9375rem; }
 }
 
 @media (min-width: 769px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  h2 {
-    font-size: 1.875rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  body {
-    font-size: 1rem;
-  }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+  body { font-size: 1rem; }
 }

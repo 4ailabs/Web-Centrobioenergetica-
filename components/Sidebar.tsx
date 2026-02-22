@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <LogoIcon className="h-8 w-auto" />
-            <span className="text-xs sm:text-sm font-medium text-neutral-900 dark:text-white">Instituto</span>
+            <span className="text-xs sm:text-sm font-display font-bold text-neutral-900 dark:text-white tracking-tight">Instituto</span>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,14 +89,14 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             </div>
 
             <div className="space-y-3">
-              <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Contenido</h3>
+              <h3 className="px-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">Contenido</h3>
               <div className="space-y-1">
                 <NavItem icon={<YoutubeIcon className="w-5 h-5" />} label="Wellvibe Media" active={location.pathname === '/wellvibe-media'} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} mobile={true} />
               </div>
             </div>
 
             <div className="space-y-3">
-              <h3 className="px-4 text-[9px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wide opacity-50">Personal</h3>
+              <h3 className="px-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">Personal</h3>
               <div className="space-y-1">
                 {/* <NavItem icon={<AppsIcon className="w-5 h-5" />} label="Aplicaciones" active={location.pathname === '/aplicaciones'} onClick={() => handleNavigation('Aplicaciones', '/aplicaciones')} mobile={true} /> */}
                 <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar" active={false} onClick={() => onOpenSearch && onOpenSearch()} mobile={true} />
@@ -139,8 +139,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
         <div className="flex items-center gap-3 mb-8">
           <LogoIcon className="h-8 w-auto" />
           <div className="flex flex-col">
-            <span className="text-sm font-medium text-neutral-900 dark:text-neutral-50">Instituto</span>
-            <span className="text-xs font-normal text-neutral-500 dark:text-neutral-400">Centrobioenergética</span>
+            <span className="text-sm font-display font-bold text-neutral-900 dark:text-neutral-50 tracking-tight">Instituto</span>
+            <span className="text-[11px] font-normal text-neutral-500 dark:text-neutral-400 tracking-tight">Centrobioenergética</span>
           </div>
         </div>
 

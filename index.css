@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @config "./tailwind.config.js";
 
 :root {
   /* Colors - Primary */
-  --primary: #059669;
-  --primary-light: #10b981;
-  --primary-dark: #047857;
+  --primary: #2d6a4f;
+  --primary-light: #2d9670;
+  --primary-dark: #1e4636;
 
   /* Colors - Backgrounds */
-  --bg-main: #fafaf9;
-  --bg-secondary: #f5f5f4;
+  --bg-main: #fafaf8;
+  --bg-secondary: #f5f5f2;
   --bg-elevated: #ffffff;
 
   /* Colors - Text */
-  --text-primary: #1c1917;
-  --text-secondary: #57534e;
-  --text-muted: #78716c;
+  --text-primary: #1b1b18;
+  --text-secondary: #57574e;
+  --text-muted: #7a7a72;
 
   /* Colors - Borders */
-  --border-light: #e7e5e4;
-  --border-medium: #d6d3d1;
+  --border-light: #e8e8e2;
+  --border-medium: #d4d4cc;
 
   /* Shadows - Subtle */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -36,9 +36,9 @@
 
 .dark {
   /* Colors - Backgrounds */
-  --bg-main: #1c1917;
-  --bg-secondary: #292524;
-  --bg-elevated: #44403c;
+  --bg-main: #1b1b18;
+  --bg-secondary: #252520;
+  --bg-elevated: #313130;
 
   /* Colors - Text */
   --text-primary: #fafaf9;
@@ -65,8 +65,8 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-display tracking-tight;
-  font-weight: 600;
+  @apply font-sans tracking-tight;
+  font-weight: 700;
 }
 
 /* Custom Utilities or Global Styles */

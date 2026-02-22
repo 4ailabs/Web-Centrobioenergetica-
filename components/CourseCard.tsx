@@ -34,7 +34,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
   return (
     <div
       onClick={handleClick}
-      className="group relative bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
+      className="group relative bg-white dark:bg-neutral-800 rounded overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
     >
       {/* Image Container */}
       <div className="relative h-48 lg:h-56 overflow-hidden bg-neutral-200 dark:bg-neutral-700">
@@ -50,7 +50,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
 
         {/* Level Badge */}
         <div className="absolute top-3 left-3">
-          <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary-600 text-white">
+          <span className="px-2.5 py-1 rounded text-xs font-medium bg-primary-600 text-white">
             {course.level}
           </span>
         </div>
@@ -58,7 +58,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+        <h3 className="font-display text-lg font-bold text-neutral-900 dark:text-neutral-50 mb-2 leading-snug">
           {course.title}
         </h3>
         <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed mb-4 line-clamp-2 font-normal">
@@ -71,7 +71,7 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
             <span>Certificado</span>
           </div>
 
-          <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
+          <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 group-hover:text-white rounded flex items-center justify-center transition-all duration-200">
             <ArrowRightIcon className="w-4 h-4 text-neutral-700 dark:text-neutral-300 group-hover:text-white transition-all" />
           </div>
         </div>

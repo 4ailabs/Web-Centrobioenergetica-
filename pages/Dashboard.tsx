@@ -82,66 +82,54 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
 
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
-      {/* Hero Section - Refined Minimalism with Elegant Accents */}
-      <div className="relative overflow-hidden bg-white dark:bg-neutral-900 mx-6 rounded-2xl">
+      {/* Hero Section */}
+      <div className="px-6 lg:px-10 py-16 lg:py-28 max-w-6xl mx-auto w-full">
+        <div className="space-y-7">
+          {/* Tag */}
+          <div className="inline-flex">
+            <span className="px-3 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/8 dark:bg-primary-600/15 rounded-full">
+              Formación de Vanguardia
+            </span>
+          </div>
 
-        {/* Subtle background decoration - very light accent */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-600/2 via-transparent to-transparent dark:from-primary-600/1 dark:via-transparent dark:to-transparent pointer-events-none"></div>
+          {/* Heading */}
+          <div className="space-y-5 max-w-3xl">
+            <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-neutral-900 dark:text-neutral-50 tracking-tight leading-[1.05]">
+              Instituto <br />
+              <span className="text-primary-600">Centrobioenergética</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 max-w-xl font-normal leading-relaxed">
+              Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+            </p>
+          </div>
 
-        {/* Content */}
-        <div className="relative px-6 py-20 lg:py-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="space-y-8">
-              {/* Tag */}
-              <div className="inline-flex">
-                <span className="px-3 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/8 dark:bg-primary-600/10 rounded-full">
-                  Formación de Vanguardia
-                </span>
-              </div>
-
-              {/* Heading Section */}
-              <div className="space-y-6 max-w-4xl">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
-                  Instituto <br />
-                  <span className="relative">
-                    <span className="text-primary-600">Centrobioenergética</span>
-                    {/* Subtle underline decoration */}
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-primary-600/20 rounded-full -mb-2"></span>
-                  </span>
-                </h1>
-                <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
-                  Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
-                </p>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-8">
-                <button
-                  onClick={() => navigate('/cursos')}
-                  className="group relative px-8 py-3 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px] shadow-md hover:shadow-lg"
-                >
-                  Oferta Académica
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </button>
-                <button
-                  onClick={() => navigate('/servicios')}
-                  className="px-8 py-3 border-2 border-primary-600 text-primary-600 rounded-xl font-medium hover:bg-primary-600 hover:text-white transition-all active:scale-95 min-h-[44px]"
-                >
-                  Servicios
-                </button>
-              </div>
-            </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <button
+              onClick={() => navigate('/cursos')}
+              className="group px-7 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
+            >
+              Oferta Académica
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </button>
+            <button
+              onClick={() => navigate('/servicios')}
+              className="px-7 py-3 text-neutral-700 dark:text-neutral-300 font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors min-h-[44px] flex items-center gap-2"
+            >
+              Servicios Clínicos
+              <span className="text-sm opacity-50">→</span>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Featured Programs Section */}
       <section className="px-6 max-w-6xl mx-auto w-full">
-        <div className="mb-12">
-          <h2 className="text-sm font-medium text-primary-600 mb-2">Cursos destacados</h2>
-          <h3 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-2">
+        <div className="mb-10">
+          <p className="text-sm font-medium text-primary-600 mb-3">Cursos destacados</p>
+          <h2 className="font-display text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
             Programas de <span className="text-primary-600">formación</span>
-          </h3>
+          </h2>
         </div>
 
         {/* Grid */}
@@ -207,17 +195,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
             <div
               key={item.title}
               onClick={item.action}
-              className="group relative bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+              className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 text-neutral-700 dark:text-neutral-300 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
-                  <item.icon className="w-6 h-6" />
+                <div className="w-11 h-11 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 text-neutral-500 dark:text-neutral-400 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
+                  <item.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+                  <h3 className="font-display text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-1.5 tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-neutral-600 dark:text-neutral-300 font-normal text-base">
+                  <p className="text-neutral-500 dark:text-neutral-400 font-normal text-sm">
                     {item.desc}
                   </p>
                 </div>

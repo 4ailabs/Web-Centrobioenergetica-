@@ -1,5 +1,5 @@
 import React from 'react';
-import { InstagramIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from './Icons';
+import { YoutubeIcon } from './Icons';
 
 const Footer: React.FC = () => {
   return (
@@ -11,18 +11,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center space-y-3">
             <span className="text-xs text-[var(--text-muted)] font-bold uppercase tracking-wider">Conectar</span>
             <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center space-x-2 px-4 py-2.5 bg-[var(--panel-bg)] border border-[var(--border-color)] rounded-xl hover:border-primary-600/50 transition-all min-h-[44px]">
-                <InstagramIcon className="w-4 h-4 text-primary-600" />
-                <span className="text-xs font-medium">Instagram</span>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center space-x-2 px-4 py-2.5 bg-[var(--panel-bg)] border border-[var(--border-color)] rounded-xl hover:border-primary-600/50 transition-all min-h-[44px]">
-                <LinkedinIcon className="w-4 h-4 text-primary-600" />
-                <span className="text-xs font-medium">LinkedIn</span>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center space-x-2 px-4 py-2.5 bg-[var(--panel-bg)] border border-[var(--border-color)] rounded-xl hover:border-primary-600/50 transition-all min-h-[44px]">
-                <TwitterIcon className="w-4 h-4 text-primary-600" />
-                <span className="text-xs font-medium">Twitter</span>
-              </a>
+              {/* Social links removed */}
               <a href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center space-x-2 px-4 py-2.5 bg-[var(--panel-bg)] border border-[var(--border-color)] rounded-xl hover:border-primary-600/50 transition-all min-h-[44px]">
                 <YoutubeIcon className="w-4 h-4 text-primary-600" />
                 <span className="text-xs font-medium">YouTube</span>
@@ -64,21 +53,7 @@ const Footer: React.FC = () => {
           {/* Right Section - Social Links */}
           <div className="flex items-center space-x-4 text-xs text-[var(--text-muted)]">
             <span className="">Conectar:</span>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors flex items-center space-x-1">
-              <InstagramIcon className="w-3 h-3" />
-              <span>Instagram</span>
-            </a>
-            <span className="opacity-30">|</span>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors flex items-center space-x-1">
-              <LinkedinIcon className="w-3 h-3" />
-              <span>LinkedIn</span>
-            </a>
-            <span className="opacity-30">|</span>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors flex items-center space-x-1">
-              <TwitterIcon className="w-3 h-3" />
-              <span>Twitter</span>
-            </a>
-            <span className="opacity-30">|</span>
+
             <a href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u" target="_blank" rel="noopener noreferrer" className="hover:text-primary-600 transition-colors flex items-center space-x-1">
               <YoutubeIcon className="w-3 h-3" />
               <span>YouTube</span>
