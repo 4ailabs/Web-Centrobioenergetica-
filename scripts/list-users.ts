@@ -1,0 +1,1 @@
+import { prisma } from '../lib/prisma.js'; async function main() { try { const users = await prisma.user.findMany({ select: { email: true, approved: true, isAdmin: true } }); console.log('USERS_START'); console.log(JSON.stringify(users, null, 2)); console.log('USERS_END'); } catch (e) { console.error(e); } } main().finally(() => prisma.$disconnect());

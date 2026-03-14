@@ -103,13 +103,16 @@ model Module {
 }
 
 model Video {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  order       Int
-  moduleId    Int
-  module      Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  videoUrl    String?
+  id                 Int      @id @default(autoincrement())
+  title              String
+  description        String?
+  order              Int
+  moduleId           Int
+  module             Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  videoUrl           String?
+  cloudflareStreamId String?
+  vimeoId            String?
+  duration           String?
 }
 
 model Service {
