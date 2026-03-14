@@ -69,82 +69,79 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] min-h-screen font-sans text-[var(--text-main)] transition-colors duration-300 flex flex-col`}>
-      <div className="flex flex-1">
-        {/* Desktop Sidebar */}
-        <div className="hidden lg:block lg:w-64">
-          <Sidebar
-            activeItem={activePage}
-            setActiveItem={handleSetActivePage}
-            onSearch={handleSearch}
-            onOpenSearch={handleOpenSearch}
-          />
-        </div>
-
-        {/* Mobile Sidebar (floating) */}
-        <div className="lg:hidden">
-          <Sidebar
-            activeItem={activePage}
-            setActiveItem={handleSetActivePage}
-            onSearch={handleSearch}
-            onOpenSearch={handleOpenSearch}
-          />
-        </div>
-
-        {/* Main Content */}
-        <main className="flex-1 lg:ml-0 p-2 lg:p-14">
-          <div key={activePage} className="animate-fade-in">
-            <Routes>
-              <Route path="/" element={
-                <Dashboard
-                  onNavigateToCourses={() => {
-                    handleSetActivePage('Cursos');
-                    navigate('/cursos');
-                  }}
-                  // onNavigateToNews={() => {
-                  //   handleSetActivePage('Noticias');
-                  //   navigate('/noticias');
-                  // }}
-                  onNavigateToAbout={() => {
-                    handleSetActivePage('Sobre Nosotros');
-                    navigate('/sobre-nosotros');
-                  }}
-                  onNavigateToApps={() => {
-                    handleSetActivePage('Aplicaciones');
-                    navigate('/aplicaciones');
-                  }}
-                />
-              } />
-              <Route path="/cursos" element={<AllCourses />} />
-              <Route path="/servicios" element={<ClinicalServices />} />
-              {/* <Route path="/noticias" element={<News />} /> */}
-              <Route path="/sobre-nosotros" element={<AboutUs />} />
-              <Route path="/aplicaciones" element={<Apps />} />
-              <Route path="/calendario" element={<CalendarPage />} />
-              <Route path="/wellvibe-media" element={<WellvibeMedia />} />
-              <Route path="/course/:courseId" element={
-                <ProtectedRoute>
-                  <CourseDetail />
-                </ProtectedRoute>
-              } />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/search" element={<SearchResults query={searchQuery} />} />
-              <Route path="/admin" element={
-                <ProtectedRoute>
-                  <AdminRoute>
-                    <AdminDashboard />
-                  </AdminRoute>
-                </ProtectedRoute>
-              } />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </div>
-        </main>
+    <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] h-screen font-sans text-[var(--text-main)] transition-colors duration-300 flex overflow-hidden`}>
+      {/* Desktop Sidebar */}
+      <div className="hidden lg:block shrink-0">
+        <Sidebar
+          activeItem={activePage}
+          setActiveItem={handleSetActivePage}
+          onSearch={handleSearch}
+          onOpenSearch={handleOpenSearch}
+        />
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Mobile Sidebar (floating) */}
+      <div className="lg:hidden">
+        <Sidebar
+          activeItem={activePage}
+          setActiveItem={handleSetActivePage}
+          onSearch={handleSearch}
+          onOpenSearch={handleOpenSearch}
+        />
+      </div>
+
+      {/* Main Content + Fixed Footer */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <main className="flex-1 overflow-y-auto">
+          <div className="p-2 lg:p-14">
+            <div key={activePage} className="animate-fade-in">
+              <Routes>
+                <Route path="/" element={
+                  <Dashboard
+                    onNavigateToCourses={() => {
+                      handleSetActivePage('Cursos');
+                      navigate('/cursos');
+                    }}
+                    onNavigateToAbout={() => {
+                      handleSetActivePage('Sobre Nosotros');
+                      navigate('/sobre-nosotros');
+                    }}
+                    onNavigateToApps={() => {
+                      handleSetActivePage('Aplicaciones');
+                      navigate('/aplicaciones');
+                    }}
+                  />
+                } />
+                <Route path="/cursos" element={<AllCourses />} />
+                <Route path="/servicios" element={<ClinicalServices />} />
+                <Route path="/sobre-nosotros" element={<AboutUs />} />
+                <Route path="/aplicaciones" element={<Apps />} />
+                <Route path="/calendario" element={<CalendarPage />} />
+                <Route path="/wellvibe-media" element={<WellvibeMedia />} />
+                <Route path="/course/:courseId" element={
+                  <ProtectedRoute>
+                    <CourseDetail />
+                  </ProtectedRoute>
+                } />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/search" element={<SearchResults query={searchQuery} />} />
+                <Route path="/admin" element={
+                  <ProtectedRoute>
+                    <AdminRoute>
+                      <AdminDashboard />
+                    </AdminRoute>
+                  </ProtectedRoute>
+                } />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </div>
+          </div>
+        </main>
+
+        {/* Footer fijo al fondo */}
+        <Footer />
+      </div>
 
       {/* Search Modal */}
       <Search

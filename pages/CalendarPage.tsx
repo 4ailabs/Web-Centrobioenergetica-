@@ -106,7 +106,7 @@ const CalendarPage: React.FC = () => {
 
                                     {/* Type Badge */}
                                     <div className="flex items-start justify-between mb-4">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeBadge(event.type)}`}>
+                                        <span className={`px-3 py-1 rounded-lg text-xs font-medium ${getTypeBadge(event.type)}`}>
                                             {event.type}
                                         </span>
                                     </div>
@@ -183,7 +183,7 @@ const CalendarPage: React.FC = () => {
                                             {/* Meta Information */}
                                             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-neutral-600 dark:text-neutral-400 text-sm font-normal shrink-0">
                                                 <div className="flex items-center gap-3">
-                                                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeBadge(event.type)}`}>
+                                                    <span className={`px-3 py-1 rounded-lg text-xs font-medium ${getTypeBadge(event.type)}`}>
                                                         {event.type}
                                                     </span>
                                                 </div>

@@ -24,8 +24,8 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
     children
 }) => {
     return (
-        <div className="min-h-screen flex items-center justify-center p-6 bg-neutral-50 dark:bg-neutral-900">
-            <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-xl shadow-md p-8 border border-neutral-200 dark:border-neutral-700">
+        <div className="flex items-center justify-center p-6 py-16 lg:py-24">
+            <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-lg shadow-md p-8 border border-neutral-200 dark:border-neutral-700">
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">{title}</h1>
                     <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal">{subtitle}</p>
@@ -50,7 +50,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
                 <div className="mt-8 text-center border-t border-neutral-200 dark:border-neutral-700 pt-6">
                     <p className="text-sm text-neutral-600 dark:text-neutral-400 font-normal">
                         {footerText}{' '}
-                        <Link to={footerLinkTo} className="text-primary font-medium hover:text-primary-dark transition-colors">
+                        <Link to={footerLinkTo} className="text-primary-600 font-medium hover:text-primary-700 transition-colors">
                             {footerLinkText}
                         </Link>
                     </p>

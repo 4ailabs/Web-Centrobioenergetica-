@@ -27,7 +27,7 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => {
     return (
         <div>
-            <label htmlFor={id} className="block text-xs font-medium text-neutral-600 uppercase tracking-normal mb-2 px-1">
+            <label htmlFor={id} className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 {label}
             </label>
             <div className="relative group">

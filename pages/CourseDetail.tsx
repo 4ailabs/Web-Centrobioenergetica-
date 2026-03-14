@@ -116,7 +116,7 @@ const CourseDetail: React.FC = () => {
             </div>
 
             {/* Video player */}
-            <div className="relative w-full bg-black" style={{ aspectRatio: '16/9', minHeight: '600px' }}>
+            <div className="relative w-full bg-black aspect-video">
               {activeVideo.cloudflareStreamId ? (
                 <iframe
                   src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, {

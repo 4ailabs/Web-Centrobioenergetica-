@@ -73,7 +73,7 @@ const Login: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[var(--text-main)] text-[var(--bg-main)] py-4 rounded-2xl font-black text-lg hover:bg-primary-600 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 shadow-xl shadow-slate-900/10 uppercase"
+          className="w-full bg-primary-600 text-white py-3.5 rounded-lg font-semibold text-base hover:bg-primary-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 min-h-[44px]"
         >
           {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
         </button>

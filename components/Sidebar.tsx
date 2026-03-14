@@ -134,7 +134,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       </aside>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:sticky top-0 h-screen bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 p-6 flex-col w-64 shrink-0 relative overflow-hidden">
+      <aside className="hidden lg:flex h-screen bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 p-6 flex-col w-64 shrink-0 relative overflow-hidden">
 
         <div className="flex items-center gap-3 mb-8">
           <LogoIcon className="h-8 w-auto" />

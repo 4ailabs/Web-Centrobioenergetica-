@@ -83,42 +83,46 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
       {/* Hero Section */}
-      <div className="px-6 lg:px-10 py-16 lg:py-28 max-w-6xl mx-auto w-full">
-        <div className="space-y-7">
-          {/* Tag */}
-          <div className="inline-flex">
-            <span className="px-3 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/8 dark:bg-primary-600/15 rounded-full">
-              Formación de Vanguardia
-            </span>
-          </div>
+      <div className="relative">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/40 via-transparent to-transparent dark:from-primary-900/10 dark:via-transparent pointer-events-none"></div>
 
-          {/* Heading */}
-          <div className="space-y-5 max-w-3xl">
-            <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-neutral-900 dark:text-neutral-50 tracking-tight leading-[1.05]">
-              Instituto <br />
-              <span className="text-primary-600">Centrobioenergética</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 max-w-xl font-normal leading-relaxed">
-              Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
-            </p>
-          </div>
+        <div className="relative px-6 lg:px-10 py-20 lg:py-32 max-w-6xl mx-auto w-full">
+          <div className="space-y-8">
+            {/* Tag */}
+            <div className="inline-flex">
+              <span className="px-3.5 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/10 dark:bg-primary-600/15 rounded-lg">
+                Formación de Vanguardia
+              </span>
+            </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <button
-              onClick={() => navigate('/cursos')}
-              className="group px-7 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
-            >
-              Oferta Académica
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </button>
-            <button
-              onClick={() => navigate('/servicios')}
-              className="px-7 py-3 text-neutral-700 dark:text-neutral-300 font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors min-h-[44px] flex items-center gap-2"
-            >
-              Servicios Clínicos
-              <span className="text-sm opacity-50">→</span>
-            </button>
+            {/* Heading */}
+            <div className="space-y-6 max-w-3xl">
+              <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-neutral-900 dark:text-neutral-50 tracking-tight leading-[1.05]">
+                Instituto <br />
+                <span className="text-primary-600">Centrobioenergética</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 max-w-xl font-normal leading-relaxed">
+                Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+              </p>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <button
+                onClick={() => navigate('/cursos')}
+                className="group px-8 py-3.5 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px] shadow-sm hover:shadow-md"
+              >
+                Oferta Académica
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </button>
+              <button
+                onClick={() => navigate('/servicios')}
+                className="px-8 py-3.5 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg font-medium hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-all min-h-[44px] flex items-center justify-center gap-2"
+              >
+                Servicios Clínicos
+              </button>
+            </div>
           </div>
         </div>
       </div>

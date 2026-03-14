@@ -251,7 +251,7 @@ const ClinicalServices: React.FC = () => {
 
                 {/* Category Badge */}
                 <div className="absolute bottom-3 left-4 right-4">
-                  <span className="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-lg">
                     {service.category}
                   </span>
                 </div>

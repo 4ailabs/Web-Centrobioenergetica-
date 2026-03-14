@@ -111,7 +111,7 @@ const WellvibeMedia: React.FC = () => {
                         <div className="p-8 lg:p-12 flex flex-col justify-center space-y-6">
                             {/* Metadata */}
                             <div className="flex items-center gap-3">
-                                <span className="px-3 py-1 rounded-full text-xs font-medium bg-primary-600 text-white">
+                                <span className="px-3 py-1 rounded-lg text-xs font-medium bg-primary-600 text-white">
                                     Destacado
                                 </span>
                                 <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">

@@ -18,13 +18,13 @@ const apps: AppInfo[] = [
 
 const Apps: React.FC = () => {
   return (
-    <div className="w-full lg:mt-20 mt-16 px-4">
-      <header className="mb-8 lg:mb-12">
-        <h1 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] uppercase tracking-tight">Aplicaciones</h1>
-        <p className="text-base lg:text-lg text-[var(--text-muted)] mt-2">Todo lo que necesitas para alcanzar el éxito</p>
+    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6">
+      <header className="mb-8 lg:mb-12 max-w-6xl mx-auto">
+        <h1 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50 tracking-tight">Aplicaciones</h1>
+        <p className="text-lg text-neutral-500 dark:text-neutral-400 mt-3">Herramientas para tu desarrollo integral</p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {apps.map((app, index) => (
           <div key={app.id} className="animate-slide-in-up" style={{ animationDelay: `${100 + index * 100}ms`, opacity: 0 }}>
             <AppCard app={app} />
