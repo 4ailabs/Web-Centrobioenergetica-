@@ -20,6 +20,12 @@ const AdminDashboard: React.FC = () => {
     const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+    const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+        setToast({ message, type });
+        setTimeout(() => setToast(null), 3000);
+    };
 
     // Course Management Modal State
     const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
@@ -59,9 +65,10 @@ const AdminDashboard: React.FC = () => {
             const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
             await updateUserSubscription(userId, newStatus);
             await fetchUsers();
+            showToast(`Suscripción ${newStatus === 'active' ? 'activada' : 'desactivada'} correctamente`);
         } catch (error) {
             console.error('Error updating subscription:', error);
-            alert('Error al actualizar la suscripción');
+            showToast('Error al actualizar la suscripción', 'error');
         }
     };
 
@@ -85,9 +92,10 @@ const AdminDashboard: React.FC = () => {
             setIsCourseModalOpen(false);
             setSelectedUserForCourses(null);
             await fetchUsers();
+            showToast('Cursos actualizados correctamente');
         } catch (error) {
             console.error('Error updating courses:', error);
-            alert('Error al actualizar los cursos');
+            showToast('Error al actualizar los cursos', 'error');
         }
     };
 
@@ -127,9 +135,10 @@ const AdminDashboard: React.FC = () => {
             setIsUserModalOpen(false);
             setEditingUser(null);
             await fetchUsers();
+            showToast(editingUser ? 'Usuario actualizado correctamente' : 'Usuario creado correctamente');
         } catch (error: any) {
             console.error('Error saving user:', error);
-            alert(error.message || 'Error al guardar usuario');
+            showToast(error.message || 'Error al guardar usuario', 'error');
         }
     };
 
@@ -145,9 +154,10 @@ const AdminDashboard: React.FC = () => {
         try {
             await adminDeleteUser(user.id);
             await fetchUsers();
+            showToast('Usuario eliminado correctamente');
         } catch (error: any) {
             console.error('Error deleting user:', error);
-            alert(error.message || 'Error al eliminar usuario');
+            showToast(error.message || 'Error al eliminar usuario', 'error');
         }
     };
 
@@ -164,22 +174,33 @@ const AdminDashboard: React.FC = () => {
     const activeSubscriptions = users.filter((u) => u.subscriptionStatus === 'active').length;
 
     return (
-        <div className="w-full lg:mt-20 mt-16 px-4 pb-20 relative">
+        <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6 pb-20 relative max-w-6xl mx-auto">
+            {/* Toast notification */}
+            {toast && (
+                <div className={`fixed top-6 right-6 z-[100] px-5 py-3 rounded-lg shadow-lg text-sm font-medium animate-fade-in flex items-center gap-2 ${
+                    toast.type === 'success'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-red-600 text-white'
+                }`}>
+                    {toast.type === 'success' ? '✓' : '✕'} {toast.message}
+                </div>
+            )}
+
             <header className="mb-8 lg:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary-600/20">
+                    <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center text-white">
                         <Shield className="w-6 h-6" />
                     </div>
                     <div>
-                        <h1 className="text-2xl lg:text-4xl font-black text-[var(--text-main)] uppercase tracking-tight">
+                        <h1 className="text-2xl lg:text-4xl font-bold text-neutral-900 dark:text-neutral-50 tracking-tight">
                             Panel de Administración
                         </h1>
-                        <p className="text-[var(--text-muted)] font-medium">Gestión de usuarios y suscripciones</p>
+                        <p className="text-neutral-500 dark:text-neutral-400 text-sm font-normal">Gestión de usuarios y suscripciones</p>
                     </div>
                 </div>
                 <button
                     onClick={handleOpenCreateUser}
-                    className="flex items-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-xl font-bold hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20"
+                    className="flex items-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors min-h-[44px]"
                 >
                     <Plus className="w-5 h-5" /> Nuevo Usuario
                 </button>
@@ -190,13 +211,13 @@ const AdminDashboard: React.FC = () => {
 
             {/* Search */}
             <div className="mb-8 relative max-w-md">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-muted)]" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
                 <input
                     type="text"
                     placeholder="Buscar usuario por nombre o email..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl focus:ring-2 focus:ring-primary-600 outline-none transition-all"
+                    className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-50 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
                 />
             </div>
 
