@@ -1,6 +1,5 @@
 import React from 'react';
 import type { NewsArticle } from '../types';
-import { ArrowRightIcon } from './Icons';
 
 interface NewsCardProps {
   article: NewsArticle;
@@ -12,43 +11,27 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
     : 'Reciente';
 
   return (
-    <div className="bg-white dark:bg-neutral-800 rounded overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col group h-full">
-      <div className="relative overflow-hidden h-56">
+    <div className="group cursor-pointer">
+      {/* Image */}
+      <div className="relative overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800 mb-3 aspect-[4/3]">
         <img
           src={article.imageUrl}
           alt={article.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
-        <div className="absolute top-4 left-4">
-          <span className="px-2.5 py-1 bg-primary-600 text-white text-xs font-medium rounded">
-            {article.category || 'General'}
-          </span>
-        </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="flex items-center text-xs text-neutral-500 dark:text-neutral-400 mb-3 font-normal">
-          <span>{formattedDate}</span>
-          <span className="mx-2 opacity-40">·</span>
-          <span>5 min lectura</span>
-        </div>
-
-        <h3 className="font-display text-xl font-bold mb-3 line-clamp-2 text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors leading-snug">
-          {article.title}
-        </h3>
-
-        <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-6 line-clamp-3 leading-relaxed font-normal">
-          {article.description}
-        </p>
-
-        <div className="mt-auto pt-4 border-t border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
-          <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
-            Bienestar práctico
-          </span>
-          <div className="w-9 h-9 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 rounded flex items-center justify-center transition-all duration-200">
-            <ArrowRightIcon className="w-4 h-4 text-neutral-600 dark:text-neutral-300 group-hover:text-white transition-colors" />
-          </div>
-        </div>
+      {/* Content */}
+      <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-50 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors line-clamp-2">
+        {article.title}
+      </h3>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
+        {article.description}
+      </p>
+      <div className="flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-500">
+        <span>{formattedDate}</span>
+        <span>·</span>
+        <span>{article.category || 'General'}</span>
       </div>
     </div>
   );

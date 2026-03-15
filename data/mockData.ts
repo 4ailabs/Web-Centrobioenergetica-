@@ -33,65 +33,7 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
-      id: 101, // New ID to avoid collision
-      title: 'Nutrición con Aminoácidos',
-      description: 'Aprende cómo los aminoácidos esenciales transforman tu salud, potencian tu energía y equilibran tu bioquímica corporal.',
-      author: 'Centro Bioenergética',
-      price: 0,
-      lessons: 3,
-      level: 'Intermedio' as const,
-      imageUrl: '/images/courses/aminoacidos.png',
-      modules: [
-        {
-          id: 1,
-          title: 'Módulo 1: Fundamentos de los Aminoácidos',
-          description: 'Introducción a la estructura y función de los aminoácidos en el cuerpo humano.',
-          order: 1,
-          videos: [
-            {
-              id: 1,
-              title: 'Introducción a los Aminoácidos',
-              description: '¿Qué son y por qué son vitales?',
-              duration: '2:21:00',
-              order: 1,
-              cloudflareStreamId: '81ab89ca0cff635143ed4dfb18416382',
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: 'Módulo 2: Aplicaciones Terapéuticas',
-          description: 'Uso clínico de aminoácidos para tratar diversas condiciones de salud.',
-          order: 2,
-          videos: [
-            {
-              id: 2,
-              title: 'Protocolos Clínicos',
-              description: 'Cómo aplicar aminoácidos en terapia.',
-              duration: '2:15:00',
-              order: 1,
-            },
-          ],
-        },
-        {
-          id: 3,
-          title: 'Módulo 3: Nutrición Avanzada',
-          description: 'Estrategias avanzadas de suplementación y sinergia nutricional.',
-          order: 3,
-          videos: [
-            {
-              id: 3,
-              title: 'Sinergia y Absorción',
-              description: 'Maximizando los beneficios.',
-              duration: '2:10:00',
-              order: 1,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 102, // New ID
+      id: 102,
       title: 'Set Point',
       description: 'Descubre y ajusta tu punto de ajuste metabólico y energético para alcanzar un bienestar sostenible y definitivo.',
       author: 'Centro Bioenergética',
@@ -153,6 +95,64 @@ export const MOCK_DATA = {
               duration: '1:00:00',
               order: 2,
               cloudflareStreamId: '703c3ad4c80acb68a08f5a2d0ef3f310',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 101,
+      title: 'Nutrición con Aminoácidos',
+      description: 'Aprende cómo los aminoácidos esenciales transforman tu salud, potencian tu energía y equilibran tu bioquímica corporal.',
+      author: 'Centro Bioenergética',
+      price: 0,
+      lessons: 3,
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/aminoacidos.png',
+      modules: [
+        {
+          id: 1,
+          title: 'Módulo 1: Fundamentos de los Aminoácidos',
+          description: 'Introducción a la estructura y función de los aminoácidos en el cuerpo humano.',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'Introducción a los Aminoácidos',
+              description: '¿Qué son y por qué son vitales?',
+              duration: '2:21:00',
+              order: 1,
+              cloudflareStreamId: '81ab89ca0cff635143ed4dfb18416382',
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: 'Módulo 2: Aplicaciones Terapéuticas',
+          description: 'Uso clínico de aminoácidos para tratar diversas condiciones de salud.',
+          order: 2,
+          videos: [
+            {
+              id: 2,
+              title: 'Protocolos Clínicos',
+              description: 'Cómo aplicar aminoácidos en terapia.',
+              duration: '2:15:00',
+              order: 1,
+            },
+          ],
+        },
+        {
+          id: 3,
+          title: 'Módulo 3: Nutrición Avanzada',
+          description: 'Estrategias avanzadas de suplementación y sinergia nutricional.',
+          order: 3,
+          videos: [
+            {
+              id: 3,
+              title: 'Sinergia y Absorción',
+              description: 'Maximizando los beneficios.',
+              duration: '2:10:00',
+              order: 1,
             },
           ],
         },

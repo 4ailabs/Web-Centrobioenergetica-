@@ -125,7 +125,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       </aside>
 
       {/* Desktop Sidebar */}
-      <aside className={`hidden lg:flex h-screen bg-[#F2F0EC] dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 py-4 flex-col shrink-0 overflow-hidden transition-all duration-200 ease-[cubic-bezier(.33,1,.68,1)] ${collapsed ? 'w-[90px] px-3' : 'w-[220px] px-3'}`}>
+      <aside className={`hidden lg:flex h-screen bg-[#F2F0EC] dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 py-4 flex-col shrink-0 overflow-hidden transition-all duration-200 ease-[cubic-bezier(.33,1,.68,1)] ${collapsed ? 'w-[60px] px-2' : 'w-[220px] px-3'}`}>
         {/* Logo + Toggle */}
         <div className={`flex items-center mb-5 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
           {collapsed ? (
