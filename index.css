@@ -35,19 +35,19 @@
 }
 
 .dark {
-  /* Colors - Backgrounds */
-  --bg-main: #100e12;
-  --bg-secondary: #1a181c;
-  --bg-elevated: #242226;
+  /* Colors - Backgrounds (Perplexity dark) */
+  --bg-main: #100E12;
+  --bg-secondary: #1A181C;
+  --bg-elevated: #222026;
 
-  /* Colors - Text */
-  --text-primary: #fafaf9;
-  --text-secondary: #d6d3d1;
-  --text-muted: #a8a29e;
+  /* Colors - Text (warm light, not pure white) */
+  --text-primary: #DEDBD6;
+  --text-secondary: #9E9B95;
+  --text-muted: #6B6862;
 
   /* Colors - Borders */
-  --border-light: rgba(231, 229, 228, 0.1);
-  --border-medium: rgba(231, 229, 228, 0.2);
+  --border-light: rgba(222, 219, 214, 0.08);
+  --border-medium: rgba(222, 219, 214, 0.12);
 }
 
 body {
