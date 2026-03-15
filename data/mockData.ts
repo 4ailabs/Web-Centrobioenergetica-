@@ -40,7 +40,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 4,
       level: 'Avanzado' as const,
-      imageUrl: '/images/courses/setpoint.png',
+      imageUrl: '/images/courses/setpoint/image.png',
       modules: [
         {
           id: 1,
@@ -108,7 +108,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 3,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/aminoacidos.png',
+      imageUrl: '/images/courses/aminoacidos/Nutricion_aminoacidos_poster.jpg',
       modules: [
         {
           id: 1,
@@ -166,7 +166,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 3,
       level: 'Avanzado' as const,
-      imageUrl: '/images/courses/bioenergetica-v4.png',
+      imageUrl: '/images/courses/bioenergetica-v4/Bioenergetica.png',
       modules: [
         {
           id: 1,
