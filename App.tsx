@@ -93,7 +93,7 @@ const AppContent: React.FC = () => {
 
       {/* Main Content + Fixed Footer */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden">
           <div className="p-2 lg:p-8">
             <div key={activePage} className="animate-fade-in">
               <Routes>
