@@ -23,6 +23,7 @@ import WellvibeMedia from './pages/WellvibeMedia';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './pages/AdminDashboard';
+import TallerMascotas from './pages/TallerMascotas';
 
 
 const PAGE_MAP: Record<string, string> = {
@@ -118,6 +119,7 @@ const AppContent: React.FC = () => {
                 <Route path="/aplicaciones" element={<Apps />} />
                 <Route path="/calendario" element={<CalendarPage />} />
                 <Route path="/wellvibe-media" element={<WellvibeMedia />} />
+                <Route path="/taller-mascotas" element={<TallerMascotas />} />
                 <Route path="/course/:courseId" element={
                   <ProtectedRoute>
                     <CourseDetail />

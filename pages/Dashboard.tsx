@@ -50,6 +50,37 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
+      {/* Próximamente — Taller Mascotas */}
+      <div className="px-6 lg:px-0 pb-10 group cursor-pointer" onClick={() => navigate('/taller-mascotas')}>
+        <div className="bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors">
+          <div className="aspect-[2.2/1] overflow-hidden relative">
+            <img
+              src="/images/courses/taller-mascotas/mascota.png"
+              alt="Lo Que Tu Mascota Quiere Decirte"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute top-4 left-4">
+              <span className="px-3 py-1 bg-primary-600 text-white text-[11px] font-medium rounded-full">
+                Próximamente
+              </span>
+            </div>
+          </div>
+          <div className="p-5 lg:p-6">
+            <h2 className="text-lg lg:text-xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-2">
+              Lo Que Tu Mascota Quiere Decirte
+            </h2>
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <span className="text-xs font-medium text-primary-600 bg-primary-600/10 px-2.5 py-1 rounded-lg">Taller · 2 Módulos</span>
+              <span className="text-xs text-neutral-500 dark:text-neutral-400">Viernes 27 de marzo + 10 de abril · 3:00 – 7:00 pm · Presencial u Online</span>
+            </div>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3 max-w-2xl">
+              Descubre cómo tu mascota refleja tu estado emocional. Aprende Flores de Bach, Pares Biomagnéticos y lectura del campo mórfico para sanar el vínculo con tu animal.
+            </p>
+            <span className="text-xs text-neutral-400">Dr. Miguel Ojeda Ríos · Nivel Básico-Intermedio</span>
+          </div>
+        </div>
+      </div>
+
       {/* Featured Course — card with full-width image */}
       {featuredCourse && (
         <div
