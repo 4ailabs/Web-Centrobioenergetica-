@@ -9,7 +9,7 @@ const AboutUs: React.FC = () => {
         <div className="space-y-8">
           {/* Title */}
           <div className="space-y-4">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight leading-tight">
               Sobre <br />
               <span className="text-primary-600">nosotros</span>
             </h1>
@@ -32,7 +32,7 @@ const AboutUs: React.FC = () => {
       {/* Main Content */}
       <section className="px-6 max-w-4xl mx-auto w-full space-y-8">
         <div className="space-y-6">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+          <h2 className="text-lg lg:text-xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight">
             Bienvenido al Instituto <span className="text-primary-600">Centrobioenergética</span>
           </h2>
           <div className="space-y-4 text-lg text-neutral-600 dark:text-neutral-300 font-normal leading-relaxed">
@@ -55,12 +55,12 @@ const AboutUs: React.FC = () => {
           {/* Cursos Card */}
           <a
             href="/cursos"
-            className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+            className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-10 flex flex-col items-center text-center hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className="w-14 h-14 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600 mb-6 group-hover:scale-110 transition-transform duration-200">
               <CoursesIcon className="w-7 h-7" />
             </div>
-            <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
+            <h3 className="text-2xl font-semibold text-neutral-800 dark:text-neutral-50 mb-3">
               Cursos
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 font-normal">
@@ -71,12 +71,12 @@ const AboutUs: React.FC = () => {
           {/* Noticias Card */}
           <a
             href="/news"
-            className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+            className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-10 flex flex-col items-center text-center hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className="w-14 h-14 bg-primary-100 dark:bg-primary-600/20 rounded-lg flex items-center justify-center text-primary-600 mb-6 group-hover:scale-110 transition-transform duration-200">
               <NewsIcon className="w-7 h-7" />
             </div>
-            <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3">
+            <h3 className="text-2xl font-semibold text-neutral-800 dark:text-neutral-50 mb-3">
               Noticias
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 font-normal">
@@ -90,7 +90,7 @@ const AboutUs: React.FC = () => {
       <section className="px-6 max-w-6xl mx-auto w-full">
         <div className="bg-gradient-to-br from-primary-600/10 via-primary-600/5 to-transparent dark:from-primary-600/20 dark:via-primary-600/10 dark:to-transparent rounded-lg border border-primary-200 dark:border-primary-600/30 p-12 lg:p-16">
           {/* Section Title */}
-          <h3 className="text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 text-center mb-12">
+          <h3 className="text-3xl lg:text-4xl font-semibold text-neutral-800 dark:text-neutral-50 text-center mb-12">
             ¿Alguna pregunta?
           </h3>
 
@@ -105,7 +105,7 @@ const AboutUs: React.FC = () => {
                 <p className="text-xs font-medium text-primary-600 mb-1">Email</p>
                 <a
                   href="mailto:contacto@institutocentrobioenergetica.com"
-                  className="text-neutral-900 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors break-all"
+                  className="text-neutral-800 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors break-all"
                 >
                   contacto@institutocentrobioenergetica.com
                 </a>
@@ -121,7 +121,7 @@ const AboutUs: React.FC = () => {
                 <p className="text-xs font-medium text-primary-600 mb-1">Teléfono</p>
                 <a
                   href="tel:+525579076626"
-                  className="text-neutral-900 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors"
+                  className="text-neutral-800 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors"
                 >
                   +52 55 7907 6626
                 </a>
@@ -139,7 +139,7 @@ const AboutUs: React.FC = () => {
                   href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-900 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors"
+                  className="text-neutral-800 dark:text-neutral-50 font-medium hover:text-primary-600 transition-colors"
                 >
                   Wellvibe Media
                 </a>

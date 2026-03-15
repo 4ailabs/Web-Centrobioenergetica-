@@ -8,7 +8,7 @@ const AllCourses: React.FC = () => {
   return (
     <div className="w-full pt-[72px] lg:pt-0 pb-16">
       <div className="px-6 lg:px-0 pt-8 lg:pt-12 pb-10">
-        <h1 className="text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight mb-3">
+        <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-3">
           Nuestros <span className="text-primary-600">cursos</span>
         </h1>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed">

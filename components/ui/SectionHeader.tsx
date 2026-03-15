@@ -22,7 +22,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                     {tag}
                 </span>
             )}
-            <h2 className={`text-3xl lg:text-5xl font-semibold mb-6 tracking-tight leading-tight text-neutral-900 dark:text-neutral-50`}>
+            <h2 className={`text-lg lg:text-xl font-semibold mb-4 tracking-tight leading-tight text-neutral-800 dark:text-neutral-100`}>
                 {title} {titleAccent && <span className="text-primary-600">{titleAccent}</span>}
             </h2>
             {description && (

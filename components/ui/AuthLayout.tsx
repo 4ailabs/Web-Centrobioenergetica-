@@ -27,7 +27,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
         <div className="flex items-center justify-center p-6 py-16 lg:py-24">
             <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-lg shadow-md p-8 border border-neutral-200 dark:border-neutral-700">
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">{title}</h1>
+                    <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2">{title}</h1>
                     <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal">{subtitle}</p>
                 </div>
 

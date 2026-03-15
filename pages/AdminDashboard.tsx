@@ -192,7 +192,7 @@ const AdminDashboard: React.FC = () => {
                         <Shield className="w-6 h-6" />
                     </div>
                     <div>
-                        <h1 className="text-2xl lg:text-4xl font-bold text-neutral-900 dark:text-neutral-50 tracking-tight">
+                        <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight">
                             Panel de Administración
                         </h1>
                         <p className="text-neutral-500 dark:text-neutral-400 text-sm font-normal">Gestión de usuarios y suscripciones</p>

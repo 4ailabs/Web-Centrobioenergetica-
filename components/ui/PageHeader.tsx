@@ -27,7 +27,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                         </div>
                         <span className="text-primary-600 font-medium text-xs">{tag}</span>
                     </div>
-                    <h1 className="text-4xl lg:text-6xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight max-w-3xl">
+                    <h1 className="text-xl lg:text-2xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight leading-tight max-w-3xl">
                         {title} {titleAccent && <span className="text-primary-600">{titleAccent}</span>}
                     </h1>
                     <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl leading-relaxed font-normal">

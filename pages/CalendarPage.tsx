@@ -65,7 +65,7 @@ const CalendarPage: React.FC = () => {
             {/* Page Header */}
             <div className="max-w-6xl mx-auto space-y-8">
                 <div>
-                    <h1 className="text-5xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight mb-6">
+                    <h1 className="text-5xl lg:text-7xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight leading-tight mb-6">
                         Agenda de <span className="text-primary-600">Eventos</span>
                     </h1>
                     <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
@@ -77,13 +77,13 @@ const CalendarPage: React.FC = () => {
                 <div className="flex bg-neutral-100 dark:bg-neutral-800 p-1 rounded-lg border border-neutral-200 dark:border-neutral-700 w-fit">
                     <button
                         onClick={() => setView('grid')}
-                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${view === 'grid' ? 'bg-primary-600 text-white shadow-md' : 'text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50'}`}
+                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${view === 'grid' ? 'bg-primary-600 text-white shadow-md' : 'text-neutral-700 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-neutral-50'}`}
                     >
                         Cuadrícula
                     </button>
                     <button
                         onClick={() => setView('list')}
-                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${view === 'list' ? 'bg-primary-600 text-white shadow-md' : 'text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50'}`}
+                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${view === 'list' ? 'bg-primary-600 text-white shadow-md' : 'text-neutral-700 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-neutral-50'}`}
                     >
                         Lista
                     </button>
@@ -97,7 +97,7 @@ const CalendarPage: React.FC = () => {
                         {events.map((event) => {
                             const dateInfo = formatDate(event.date);
                             return (
-                                <div key={event.id} className="group relative bg-white dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 p-8 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+                                <div key={event.id} className="group relative bg-white dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 p-8 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5">
                                     {/* Date Badge */}
                                     <div className="w-14 h-14 bg-neutral-100 dark:bg-neutral-700 rounded-lg flex flex-col items-center justify-center border border-neutral-200 dark:border-neutral-600 mb-6">
                                         <span className="text-primary-600 font-semibold text-lg leading-none">{dateInfo.day}</span>
@@ -112,7 +112,7 @@ const CalendarPage: React.FC = () => {
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
+                                    <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-50 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
                                         {event.title}
                                     </h3>
 
@@ -146,7 +146,7 @@ const CalendarPage: React.FC = () => {
                                             href={event.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="mt-6 w-full py-3 bg-primary-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-lg"
+                                            className="mt-6 w-full py-3 bg-primary-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-sm"
                                         >
                                             Unirse
                                             <ArrowRightIcon className="w-4 h-4" />
@@ -172,7 +172,7 @@ const CalendarPage: React.FC = () => {
                                     <div className="flex-grow">
                                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
                                             <div className="space-y-2">
-                                                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors">
+                                                <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-50 group-hover:text-primary-600 transition-colors">
                                                     {event.title}
                                                 </h3>
                                                 <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal">
@@ -211,7 +211,7 @@ const CalendarPage: React.FC = () => {
                                             href={event.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-lg shrink-0"
+                                            className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-sm shrink-0"
                                         >
                                             Unirse
                                         </a>
@@ -240,7 +240,7 @@ const CalendarPage: React.FC = () => {
                                 placeholder="tu@email.com"
                                 className="flex-grow px-6 py-3 rounded-lg bg-white/15 border border-white/25 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40 font-normal text-sm"
                             />
-                            <button className="px-8 py-3 bg-white text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all active:scale-95 shadow-lg hover:shadow-xl shrink-0">
+                            <button className="px-8 py-3 bg-white text-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-all active:scale-95 shadow-sm hover:shadow-sm shrink-0">
                                 Suscribirse
                             </button>
                         </div>

@@ -231,7 +231,7 @@ const ClinicalServices: React.FC = () => {
           {filteredServices.map((service, index) => (
             <div
               key={service.id}
-              className="group relative bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 animate-fade-in"
+              className="group relative bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 transition-all duration-200 hover:shadow-sm hover:-translate-y-0.5 animate-fade-in"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Image Section */}
@@ -259,7 +259,7 @@ const ClinicalServices: React.FC = () => {
 
               {/* Content Section */}
               <div className="p-6 space-y-4">
-                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors line-clamp-2">
+                <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-50 group-hover:text-primary-600 transition-colors line-clamp-2">
                   {service.title}
                 </h3>
 
@@ -301,12 +301,12 @@ const ClinicalServices: React.FC = () => {
 
             <div className="grid gap-6">
               {steps.map((step, i) => (
-                <div key={i} className="flex gap-4 p-6 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-600 transition-all group hover:shadow-lg">
+                <div key={i} className="flex gap-4 p-6 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-600 transition-all group hover:shadow-sm">
                   <div className="w-14 h-14 bg-neutral-100 dark:bg-neutral-700 rounded-lg flex items-center justify-center text-primary-600 shrink-0 group-hover:scale-105 transition-transform border border-neutral-200 dark:border-neutral-600">
                     {step.icon}
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-1 group-hover:text-primary-600 transition-colors">{step.title}</h4>
+                    <h4 className="text-base font-semibold text-neutral-800 dark:text-neutral-50 mb-1 group-hover:text-primary-600 transition-colors">{step.title}</h4>
                     <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
@@ -337,7 +337,7 @@ const ClinicalServices: React.FC = () => {
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 className="w-full px-6 py-4 flex items-center justify-between text-left group"
               >
-                <span className="font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors text-base">{faq.q}</span>
+                <span className="font-semibold text-neutral-800 dark:text-neutral-50 group-hover:text-primary-600 transition-colors text-base">{faq.q}</span>
                 {openFaq === i ? <ChevronUp className="w-5 h-5 text-primary-600 shrink-0" /> : <ChevronDown className="w-5 h-5 text-neutral-600 dark:text-neutral-400 shrink-0" />}
               </button>
               {openFaq === i && (

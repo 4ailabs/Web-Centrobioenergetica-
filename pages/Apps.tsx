@@ -20,7 +20,7 @@ const Apps: React.FC = () => {
   return (
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6">
       <header className="mb-8 lg:mb-12 max-w-6xl mx-auto">
-        <h1 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50 tracking-tight">Aplicaciones</h1>
+        <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight">Aplicaciones</h1>
         <p className="text-lg text-neutral-500 dark:text-neutral-400 mt-3">Herramientas para tu desarrollo integral</p>
       </header>
 

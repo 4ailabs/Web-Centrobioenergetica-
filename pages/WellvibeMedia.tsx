@@ -80,7 +80,7 @@ const WellvibeMedia: React.FC = () => {
                         </span>
                     </div>
                     <div className="space-y-4">
-                        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
+                        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight leading-tight">
                             Sesiones en <br />
                             <span className="text-primary-600">directo</span>
                         </h1>
@@ -121,7 +121,7 @@ const WellvibeMedia: React.FC = () => {
 
                             {/* Title */}
                             <div className="space-y-2">
-                                <h2 className="text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 leading-tight">
+                                <h2 className="text-3xl lg:text-4xl font-semibold text-neutral-800 dark:text-neutral-50 leading-tight">
                                     {featuredVideo.title}
                                 </h2>
                                 <p className="text-sm text-primary-600 font-medium">
@@ -138,7 +138,7 @@ const WellvibeMedia: React.FC = () => {
                             <div className="pt-4">
                                 <button
                                     onClick={() => openVideo(featuredVideo.id)}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-lg"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-sm"
                                 >
                                     <Play className="w-4 h-4 fill-current" />
                                     Ver sesión
@@ -155,7 +155,7 @@ const WellvibeMedia: React.FC = () => {
                 <div className="flex items-center justify-between mb-12">
                     <div>
                         <h2 className="text-sm font-medium text-primary-600 mb-2">Transmisiones</h2>
-                        <h3 className="text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-50">
+                        <h3 className="text-3xl lg:text-4xl font-semibold text-neutral-800 dark:text-neutral-50">
                             Sesiones pasadas
                         </h3>
                     </div>
@@ -175,7 +175,7 @@ const WellvibeMedia: React.FC = () => {
                     {videos.map((video, index) => (
                         <div
                             key={video.id}
-                            className="group bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
+                            className="group bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
                             style={{ animationDelay: `${index * 50}ms` }}
                             onClick={() => openVideo(video.id)}
                         >
@@ -188,7 +188,7 @@ const WellvibeMedia: React.FC = () => {
                                 />
                                 {/* Play Overlay */}
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center shadow-lg">
+                                    <div className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center shadow-sm">
                                         <Play className="w-5 h-5 fill-current ml-0.5" />
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@ const WellvibeMedia: React.FC = () => {
                                 </span>
 
                                 {/* Title */}
-                                <h4 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 leading-tight line-clamp-2">
+                                <h4 className="text-lg font-semibold text-neutral-800 dark:text-neutral-50 leading-tight line-clamp-2">
                                     {video.title}
                                 </h4>
 
@@ -230,7 +230,7 @@ const WellvibeMedia: React.FC = () => {
                 <div className="relative bg-gradient-to-br from-primary-600/10 via-primary-600/5 to-transparent dark:from-primary-600/20 dark:via-primary-600/10 dark:to-transparent rounded-lg border border-primary-200 dark:border-primary-600/30 p-12 lg:p-16 text-center overflow-hidden">
                     {/* Content */}
                     <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
-                        <h2 className="text-3xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+                        <h2 className="text-3xl lg:text-5xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight">
                             Únete a nuestra comunidad
                         </h2>
                         <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal">
@@ -241,7 +241,7 @@ const WellvibeMedia: React.FC = () => {
                                 href="https://youtube.com/@wellvibe-media?sub_confirmation=1"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-lg"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-sm"
                             >
                                 <YoutubeIcon className="w-5 h-5" />
                                 Suscribirse
@@ -258,7 +258,7 @@ const WellvibeMedia: React.FC = () => {
                         className="absolute inset-0 bg-black/95 backdrop-blur-sm"
                         onClick={closeVideo}
                     ></div>
-                    <div className="relative w-full max-w-6xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl border border-neutral-700 group">
+                    <div className="relative w-full max-w-6xl aspect-video bg-black rounded-lg overflow-hidden shadow-md border border-neutral-700 group">
                         <button
                             onClick={closeVideo}
                             className="absolute top-4 right-4 z-50 w-10 h-10 bg-neutral-700 hover:bg-primary-600 text-white rounded-lg flex items-center justify-center transition-colors"
