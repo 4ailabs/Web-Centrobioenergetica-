@@ -69,7 +69,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] h-screen font-sans text-[var(--text-main)] transition-colors duration-300 flex overflow-hidden`}>
+    <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] h-screen font-sans text-[var(--text-primary)] transition-colors duration-300 flex overflow-hidden`}>
       {/* Desktop Sidebar */}
       <div className="hidden lg:block shrink-0">
         <Sidebar
@@ -93,7 +93,7 @@ const AppContent: React.FC = () => {
       {/* Main Content + Fixed Footer */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <main className="flex-1 overflow-y-auto">
-          <div className="p-2 lg:p-14">
+          <div className="p-2 lg:p-8">
             <div key={activePage} className="animate-fade-in">
               <Routes>
                 <Route path="/" element={

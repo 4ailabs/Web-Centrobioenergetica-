@@ -21,12 +21,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, mobile = false }) => {
 
     if (!user) return null;
 
-    const xp = user.totalXP || 0;
-    const level = Math.floor(xp / 500) + 1;
-    const nextLevelXP = level * 500;
-    const currentLevelXP = (level - 1) * 500;
-    const progress = ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
-
     const handleLogout = () => {
         logout();
         navigate('/');
@@ -34,47 +28,33 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, mobile = false }) => {
     };
 
     return (
-        <div className={`mt-auto pt-6 border-t border-zinc-200/50 dark:border-zinc-800/30 ${mobile ? 'px-6' : ''}`}>
+        <div className={`mt-auto pt-4 border-t border-neutral-200 dark:border-neutral-700 ${mobile ? 'px-4' : ''}`}>
             <div className="relative">
                 <button
                     onClick={() => setShowMenu(!showMenu)}
-                    className="w-full flex items-center space-x-3 mb-4 p-3 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-100/50 dark:border-emerald-800/20 group hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
+                    className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors"
                 >
-                    <div className="w-11 h-11 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white font-medium text-sm shrink-0">
                         {user.name?.[0] || user.email[0].toUpperCase()}
                     </div>
                     <div className="flex flex-col overflow-hidden flex-1 text-left">
-                        <span className="text-sm font-bold text-zinc-800 dark:text-zinc-100 tracking-tight line-clamp-1">{user.name || 'Usuario'}</span>
-                        <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Nivel {level}</span>
+                        <span className="text-[13px] font-medium text-neutral-900 dark:text-neutral-50 truncate">{user.name || 'Usuario'}</span>
+                        <span className="text-[11px] text-neutral-400 dark:text-neutral-500 truncate">{user.email}</span>
                     </div>
-                    <ChevronDown className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${showMenu ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 shrink-0 ${showMenu ? 'rotate-180' : ''}`} />
                 </button>
 
-                {/* Dropdown Menu */}
                 {showMenu && (
-                    <div className="absolute bottom-full left-0 right-0 mb-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-xl overflow-hidden z-50">
+                    <div className="absolute bottom-full left-0 right-0 mb-1 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-md overflow-hidden z-50">
                         <button
                             onClick={handleLogout}
-                            className="w-full flex items-center space-x-3 px-4 py-3 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors text-red-600 dark:text-red-400"
+                            className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors text-red-600 dark:text-red-400 text-sm"
                         >
                             <LogOut className="w-4 h-4" />
-                            <span className="text-sm font-medium">Cerrar Sesión</span>
+                            <span className="font-medium">Cerrar Sesión</span>
                         </button>
                     </div>
                 )}
-            </div>
-
-            <div className="space-y-2 px-1">
-                <div className="flex justify-between items-end">
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Energía {xp} XP</span>
-                    <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">{Math.round(progress)}%</span>
-                </div>
-                <div className="h-2 w-full bg-zinc-100 dark:bg-zinc-800/50 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(16,185,129,0.4)] rounded-full"
-                        style={{ width: `${progress}%` }}
-                    />
-                </div>
             </div>
         </div>
     );

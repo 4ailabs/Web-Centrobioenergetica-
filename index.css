@@ -3,29 +3,29 @@
 @config "./tailwind.config.js";
 
 :root {
-  /* Colors - Primary */
-  --primary: #2d6a4f;
-  --primary-light: #2d9670;
-  --primary-dark: #1e4636;
+  /* Colors - Primary (Perplexity teal) */
+  --primary: #20a39e;
+  --primary-light: #4ab8b3;
+  --primary-dark: #17706d;
 
   /* Colors - Backgrounds */
-  --bg-main: #fafaf8;
+  --bg-main: #F9F8F6;
   --bg-secondary: #f5f5f2;
   --bg-elevated: #ffffff;
 
   /* Colors - Text */
-  --text-primary: #1b1b18;
-  --text-secondary: #57574e;
-  --text-muted: #7a7a72;
+  --text-primary: #100e12;
+  --text-secondary: #5c5c5a;
+  --text-muted: #7c7c7a;
 
   /* Colors - Borders */
-  --border-light: #e8e8e2;
-  --border-medium: #d4d4cc;
+  --border-light: #ebebea;
+  --border-medium: #d4d4d2;
 
-  /* Shadows - Subtle */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.08);
+  /* Shadows - Minimal (Perplexity-style) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.06);
 
   /* Safe Area Insets para iPhone 16 */
   --safe-area-inset-top: env(safe-area-inset-top);
@@ -36,9 +36,9 @@
 
 .dark {
   /* Colors - Backgrounds */
-  --bg-main: #1b1b18;
-  --bg-secondary: #252520;
-  --bg-elevated: #313130;
+  --bg-main: #100e12;
+  --bg-secondary: #1a181c;
+  --bg-elevated: #242226;
 
   /* Colors - Text */
   --text-primary: #fafaf9;
@@ -66,7 +66,7 @@ h4,
 h5,
 h6 {
   @apply font-sans tracking-tight;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Custom Utilities or Global Styles */

@@ -19,54 +19,37 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
     handleCourseClick(course.id, course.title);
   }, [course, onCourseClick, navigate]);
 
-  // Predefined subtle gradients - minimal palette
-  const gradients = [
-    'from-neutral-200 to-neutral-300',
-    'from-neutral-100 to-neutral-200',
-    'from-neutral-200 to-neutral-300',
-    'from-neutral-100 to-neutral-200',
-    'from-neutral-200 to-neutral-300',
-    'from-neutral-100 to-neutral-200',
-  ];
-
-  const getGradient = (id: number) => gradients[id % gradients.length];
-
   return (
     <div
       onClick={handleClick}
-      className="group relative bg-white dark:bg-neutral-800 rounded overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
+      className="group bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors duration-150 cursor-pointer flex flex-col h-full"
     >
-      {/* Image Container */}
-      <div className="relative h-48 lg:h-56 overflow-hidden bg-neutral-200 dark:bg-neutral-700">
+      {/* Image */}
+      <div className="relative h-40 lg:h-44 overflow-hidden bg-neutral-100 dark:bg-neutral-700">
         {course.imageUrl ? (
           <LazyImage
             src={course.imageUrl}
             alt={course.title}
-            className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
           />
         ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${getGradient(course.id)}`} />
+          <div className="w-full h-full bg-neutral-100 dark:bg-neutral-700" />
         )}
-
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="font-display text-lg font-bold text-neutral-900 dark:text-neutral-50 mb-2 leading-snug">
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-50 mb-1.5 leading-snug line-clamp-2">
           {course.title}
         </h3>
-        <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed mb-4 line-clamp-2 font-normal">
+        <p className="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed mb-3 line-clamp-2">
           {course.description}
         </p>
 
-        <div className="mt-auto pt-4 border-t border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
-          <div className="flex items-center gap-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">
-            <span>{course.lessons} lecciones</span>
-            <span>Certificado</span>
-          </div>
-
-          <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 group-hover:text-white rounded flex items-center justify-center transition-all duration-200">
-            <ArrowRightIcon className="w-4 h-4 text-neutral-700 dark:text-neutral-300 group-hover:text-white transition-all" />
+        <div className="mt-auto pt-3 border-t border-neutral-100 dark:border-neutral-700 flex justify-between items-center">
+          <span className="text-xs text-neutral-400 dark:text-neutral-500">{course.lessons} lecciones</span>
+          <div className="w-7 h-7 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 group-hover:text-white rounded-lg flex items-center justify-center transition-colors duration-150">
+            <ArrowRightIcon className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors" />
           </div>
         </div>
       </div>

@@ -81,63 +81,51 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
   const featuredCourses = useMemo(() => courses.slice(0, 4), [courses]);
 
   return (
-    <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 sm:space-y-32 pb-20">
-      {/* Hero Section */}
-      <div className="relative">
-        {/* Subtle gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/40 via-transparent to-transparent dark:from-primary-900/10 dark:via-transparent pointer-events-none"></div>
+    <div className="w-full lg:pt-8 pt-[72px] sm:pt-8 space-y-16 sm:space-y-24 pb-20">
+      {/* Hero Section - Clean like Perplexity */}
+      <div className="px-6 lg:px-8 py-12 lg:py-20 max-w-5xl mx-auto w-full">
+        <div className="space-y-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight leading-[1.1]">
+            Instituto <span className="text-primary-600">Centrobioenergética</span>
+          </h1>
+          <p className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed">
+            Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+          </p>
 
-        <div className="relative px-6 lg:px-10 py-20 lg:py-32 max-w-6xl mx-auto w-full">
-          <div className="space-y-8">
-            {/* Tag */}
-            <div className="inline-flex">
-              <span className="px-3.5 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/10 dark:bg-primary-600/15 rounded-lg">
-                Formación de Vanguardia
-              </span>
-            </div>
-
-            {/* Heading */}
-            <div className="space-y-6 max-w-3xl">
-              <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-neutral-900 dark:text-neutral-50 tracking-tight leading-[1.05]">
-                Instituto <br />
-                <span className="text-primary-600">Centrobioenergética</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 max-w-xl font-normal leading-relaxed">
-                Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
-              </p>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-4">
-              <button
-                onClick={() => navigate('/cursos')}
-                className="group px-8 py-3.5 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center gap-2 min-h-[44px] shadow-sm hover:shadow-md"
-              >
-                Oferta Académica
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </button>
-              <button
-                onClick={() => navigate('/servicios')}
-                className="px-8 py-3.5 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg font-medium hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-all min-h-[44px] flex items-center justify-center gap-2"
-              >
-                Servicios Clínicos
-              </button>
-            </div>
+          {/* CTA Buttons - compact */}
+          <div className="flex flex-wrap gap-2.5 pt-2">
+            <button
+              onClick={() => navigate('/cursos')}
+              className="px-5 py-2.5 bg-primary-600 text-white rounded-full text-sm font-medium hover:bg-primary-700 transition-colors min-h-[40px]"
+            >
+              Oferta Académica
+            </button>
+            <button
+              onClick={() => navigate('/servicios')}
+              className="px-5 py-2.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-full text-sm font-medium hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors min-h-[40px]"
+            >
+              Servicios Clínicos
+            </button>
+            <button
+              onClick={() => navigate('/calendario')}
+              className="px-5 py-2.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-full text-sm font-medium hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors min-h-[40px]"
+            >
+              Calendario
+            </button>
           </div>
         </div>
       </div>
 
       {/* Featured Programs Section */}
-      <section className="px-6 max-w-6xl mx-auto w-full">
-        <div className="mb-10">
-          <p className="text-sm font-medium text-primary-600 mb-3">Cursos destacados</p>
-          <h2 className="font-display text-4xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
-            Programas de <span className="text-primary-600">formación</span>
+      <section className="px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        <div className="mb-8">
+          <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-900 dark:text-neutral-50 tracking-tight">
+            Cursos destacados
           </h2>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {featuredCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}
@@ -189,9 +177,9 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
         </div>
       </section> */}
 
-      {/* Quick Access Grid - Balanced */}
-      <section className="px-6 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Quick Access */}
+      <section className="px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { icon: AboutUsIcon, title: "Nosotros", desc: "Misión y equipo experto.", action: onNavigateToAbout },
             { icon: AppsIcon, title: "Apps", desc: "Herramientas exclusivas.", action: onNavigateToApps }
@@ -199,20 +187,18 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToNews, onNavigateToAbo
             <div
               key={item.title}
               onClick={item.action}
-              className="group bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+              className="group flex items-center gap-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-5 cursor-pointer transition-colors duration-150 hover:bg-neutral-100/50 dark:hover:bg-neutral-700/30"
             >
-              <div className="space-y-4">
-                <div className="w-11 h-11 bg-neutral-100 dark:bg-neutral-700 group-hover:bg-primary-600 text-neutral-500 dark:text-neutral-400 group-hover:text-white rounded-lg flex items-center justify-center transition-all duration-200">
-                  <item.icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-1.5 tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-neutral-500 dark:text-neutral-400 font-normal text-sm">
-                    {item.desc}
-                  </p>
-                </div>
+              <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 rounded-lg flex items-center justify-center shrink-0">
+                <item.icon className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
+                  {item.title}
+                </h3>
+                <p className="text-neutral-500 dark:text-neutral-400 text-xs">
+                  {item.desc}
+                </p>
               </div>
             </div>
           ))}

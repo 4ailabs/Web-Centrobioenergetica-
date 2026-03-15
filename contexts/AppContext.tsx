@@ -23,6 +23,9 @@ interface AppState {
 
   // Theme
   isDarkMode: boolean;
+
+  // Sidebar
+  isSidebarCollapsed: boolean;
 }
 
 // Acciones
@@ -34,7 +37,8 @@ type AppAction =
   | { type: 'PERFORM_SEARCH'; payload: string }
   | { type: 'TOGGLE_MOBILE_MENU' }
   | { type: 'CLOSE_MOBILE_MENU' }
-  | { type: 'TOGGLE_DARK_MODE' };
+  | { type: 'TOGGLE_DARK_MODE' }
+  | { type: 'TOGGLE_SIDEBAR' };
 
 // Estado inicial
 const initialState: AppState = {
@@ -55,6 +59,7 @@ const initialState: AppState = {
   },
   isMobileMenuOpen: false,
   isDarkMode: localStorage.getItem('theme') === 'dark',
+  isSidebarCollapsed: localStorage.getItem('sidebarCollapsed') === 'true',
 };
 
 // Reducer
@@ -113,6 +118,14 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         isDarkMode: newDarkMode,
+      };
+
+    case 'TOGGLE_SIDEBAR':
+      const newCollapsed = !state.isSidebarCollapsed;
+      localStorage.setItem('sidebarCollapsed', String(newCollapsed));
+      return {
+        ...state,
+        isSidebarCollapsed: newCollapsed,
       };
 
     default:
@@ -198,5 +211,6 @@ export const useUIState = () => {
     searchQuery: state.searchQuery,
     isMobileMenuOpen: state.isMobileMenuOpen,
     isDarkMode: state.isDarkMode,
-  }), [state.activePage, state.isSearchOpen, state.searchQuery, state.isMobileMenuOpen, state.isDarkMode]);
+    isSidebarCollapsed: state.isSidebarCollapsed,
+  }), [state.activePage, state.isSearchOpen, state.searchQuery, state.isMobileMenuOpen, state.isDarkMode, state.isSidebarCollapsed]);
 };
