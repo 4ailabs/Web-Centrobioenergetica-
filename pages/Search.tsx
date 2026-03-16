@@ -29,9 +29,9 @@ const Search: React.FC<SearchProps> = ({ onSearch, onClose, isOpen }) => {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/40 z-50" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/40 z-[60]" onClick={onClose} />
 
-      <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
+      <div className="fixed inset-0 z-[60] flex items-start justify-center pt-20 px-4">
         <div className="w-full max-w-xl">
           <form onSubmit={handleSubmit}>
             <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-700 overflow-hidden">

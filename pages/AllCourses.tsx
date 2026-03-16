@@ -6,8 +6,12 @@ import type { Course } from '../types';
 import { ArrowRight } from 'lucide-react';
 
 const AllCourses: React.FC = () => {
-  const courses = useCourses();
+  const allCourses = useCourses();
   const navigate = useNavigate();
+
+  // Solo cursos disponibles (con videos), no los futuros
+  const activeCourseIds = [102, 101, 103]; // Set Point, Aminoácidos, Bioenergética V4
+  const courses = allCourses.filter(c => activeCourseIds.includes(c.id));
 
   const first = useMemo(() => courses[0], [courses]);
   const rest = useMemo(() => courses.slice(1), [courses]);

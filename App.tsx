@@ -57,6 +57,7 @@ const AppContent: React.FC = () => {
 
   const handleSearch = (query: string) => {
     dispatch({ type: 'PERFORM_SEARCH', payload: query });
+    navigate('/search');
   };
 
   const handleOpenSearch = () => {
@@ -72,6 +73,7 @@ const AppContent: React.FC = () => {
   };
 
   return (
+    <>
     <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] h-screen font-sans text-[var(--text-primary)] transition-colors duration-300 flex overflow-hidden`}>
       {/* Desktop Sidebar */}
       <div className="hidden lg:block shrink-0">
@@ -149,13 +151,19 @@ const AppContent: React.FC = () => {
         <Footer />
       </div>
 
-      {/* Search Modal */}
-      <Search
-        onSearch={handleSearch}
-        onClose={handleCloseSearch}
-        isOpen={isSearchOpen}
-      />
     </div>
+
+    {/* Search Modal — outside flex container for proper z-index */}
+    {isSearchOpen && (
+      <div className={isDarkMode ? 'dark' : ''}>
+        <Search
+          onSearch={handleSearch}
+          onClose={handleCloseSearch}
+          isOpen={isSearchOpen}
+        />
+      </div>
+    )}
+    </>
   );
 };
 

@@ -102,7 +102,7 @@ const CourseDetail: React.FC = () => {
                       <span className={`text-[12px] truncate ${isPlaying ? 'text-primary-600 font-medium' : 'text-neutral-700 dark:text-neutral-300'}`}>
                         {video.title}
                       </span>
-                      {isCompleted && <CheckCircle2 className="w-3 h-3 text-green-500 shrink-0" />}
+                      {isCompleted && <CheckCircle2 className="w-3 h-3 text-salvia-400 shrink-0" />}
                     </div>
                   </div>
 
@@ -171,7 +171,7 @@ const CourseDetail: React.FC = () => {
                   <button
                     onClick={() => toggleVideoCompletion(activeVideo.id)}
                     className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium transition-colors ${completedVideos.has(activeVideo.id)
-                      ? 'bg-green-50 dark:bg-green-500/10 text-green-600'
+                      ? 'bg-salvia-50 dark:bg-salvia-400/10 text-salvia-500'
                       : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500 hover:text-primary-600'
                     }`}
                   >
@@ -213,7 +213,7 @@ const CourseDetail: React.FC = () => {
                 <div className="flex items-start gap-2 mb-2">
                   <h1 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight flex-grow">{course.title}</h1>
                   {hasAccess && (
-                    <span className="px-2 py-0.5 bg-green-50 dark:bg-green-500/10 text-green-600 text-[10px] font-medium rounded shrink-0">Acceso</span>
+                    <span className="px-2 py-0.5 bg-salvia-50 dark:bg-salvia-400/10 text-salvia-500 text-[10px] font-medium rounded shrink-0">Acceso</span>
                   )}
                 </div>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 max-w-lg">{course.description}</p>

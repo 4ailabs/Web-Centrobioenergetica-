@@ -167,7 +167,7 @@ const CalendarPage: React.FC = () => {
 
             {/* CTA */}
             <div className="px-6 lg:px-0">
-                <div className="bg-primary-600 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
+                <div className="bg-salvia-400 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
                     <div className="text-center sm:text-left">
                         <h3 className="text-base font-medium text-white mb-1">¿No quieres perderte nada?</h3>
                         <p className="text-primary-100 text-xs">Recibe recordatorios de eventos en tu correo.</p>
@@ -178,7 +178,7 @@ const CalendarPage: React.FC = () => {
                             placeholder="tu@email.com"
                             className="flex-grow sm:w-48 px-4 py-2.5 rounded-lg bg-white/15 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-white/40 text-sm"
                         />
-                        <button className="px-4 py-2.5 bg-white text-primary-600 rounded-lg font-medium text-sm hover:bg-primary-50 transition-colors shrink-0">
+                        <button className="px-4 py-2.5 bg-white text-salvia-500 rounded-lg font-medium text-sm hover:shadow-sm transition-colors shrink-0">
                             Suscribirse
                         </button>
                     </div>

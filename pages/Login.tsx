@@ -1,9 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import AuthLayout from '../components/ui/AuthLayout';
 import InputField from '../components/ui/InputField';
+import { Link } from 'react-router-dom';
+import { AlertCircle } from 'lucide-react';
+
+const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
+  const dotsRef = useRef<(SVGCircleElement | null)[]>([]);
+  const glowRef = useRef<SVGCircleElement | null>(null);
+  const coreRef = useRef<SVGCircleElement | null>(null);
+  const txt1Ref = useRef<HTMLDivElement | null>(null);
+  const txt2Ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Animate dots one by one
+    dotsRef.current.forEach((dot, i) => {
+      if (!dot) return;
+      setTimeout(() => {
+        dot.style.transition = 'opacity 0.3s';
+        dot.style.opacity = '1';
+      }, 200 + i * 100);
+    });
+
+    // Glow
+    setTimeout(() => {
+      if (glowRef.current) {
+        glowRef.current.style.transition = 'opacity 0.4s';
+        glowRef.current.style.opacity = '0.45';
+      }
+    }, 1600);
+
+    // Core
+    setTimeout(() => {
+      if (coreRef.current) {
+        coreRef.current.style.transition = 'opacity 0.3s';
+        coreRef.current.style.opacity = '1';
+      }
+    }, 1800);
+
+    // Text
+    setTimeout(() => {
+      if (txt1Ref.current) {
+        txt1Ref.current.style.transition = 'opacity 0.8s';
+        txt1Ref.current.style.opacity = '1';
+      }
+    }, 2100);
+
+    setTimeout(() => {
+      if (txt2Ref.current) {
+        txt2Ref.current.style.transition = 'opacity 0.8s';
+        txt2Ref.current.style.opacity = '1';
+      }
+    }, 2400);
+
+    // Complete
+    setTimeout(onComplete, 3600);
+  }, [onComplete]);
+
+  const dots = [
+    { cx: 0, cy: -50, fill: '#B5604A' },
+    { cx: 25, cy: -43.3, fill: '#8FA87A' },
+    { cx: 43.3, cy: -25, fill: '#B5604A' },
+    { cx: 50, cy: 0, fill: '#8FA87A' },
+    { cx: 43.3, cy: 25, fill: '#B5604A' },
+    { cx: 25, cy: 43.3, fill: '#8FA87A' },
+    { cx: 0, cy: 50, fill: '#B5604A' },
+    { cx: -25, cy: 43.3, fill: '#8FA87A' },
+    { cx: -43.3, cy: 25, fill: '#B5604A' },
+    { cx: -50, cy: 0, fill: '#8FA87A' },
+    { cx: -43.3, cy: -25, fill: '#B5604A' },
+    { cx: -25, cy: -43.3, fill: '#8FA87A' },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <svg width="120" height="120" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(80,80)">
+          {dots.map((d, i) => (
+            <circle
+              key={i}
+              ref={el => { dotsRef.current[i] = el; }}
+              cx={d.cx}
+              cy={d.cy}
+              r="8"
+              fill={d.fill}
+              style={{ opacity: 0 }}
+            />
+          ))}
+          <circle ref={glowRef} cx="0" cy="0" r="5" fill="#E8A857" style={{ opacity: 0 }} />
+          <circle ref={coreRef} cx="0" cy="0" r="3" fill="#E8A857" style={{ opacity: 0 }} />
+        </g>
+      </svg>
+      <div className="mt-5 text-center">
+        <div ref={txt1Ref} className="text-[9px] tracking-[4px] font-medium text-neutral-400" style={{ opacity: 0 }}>
+          INSTITUTO
+        </div>
+        <div ref={txt2Ref} className="text-[13px] tracking-[1.8px] font-medium text-[#B5604A] mt-1" style={{ opacity: 0 }}>
+          CENTROBIOENERGETICA
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +110,7 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [animDone, setAnimDone] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -30,57 +130,93 @@ const Login: React.FC = () => {
   };
 
   return (
-    <AuthLayout
-      title="Bienvenido"
-      subtitle="Inicia sesión en tu cuenta"
-      error={error}
-      footerText="¿No tienes una cuenta?"
-      footerLinkText="Regístrate aquí"
-      footerLinkTo="/register"
-    >
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <InputField
-          id="email"
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          icon={<Mail className="w-5 h-5" />}
-          placeholder="tu@email.com"
-        />
+    <div className="flex items-center justify-center p-6 py-16 lg:py-24 min-h-[80vh]">
+      <div className="w-full max-w-md">
+        {/* Logo animation → form */}
+        <div className="relative">
+          {/* Animation */}
+          <div
+            className={`flex items-center justify-center transition-all duration-700 ${animDone ? 'opacity-0 scale-95 absolute inset-0 pointer-events-none' : 'opacity-100'}`}
+            style={{ minHeight: animDone ? 0 : 280 }}
+          >
+            <LogoAnimation onComplete={() => setAnimDone(true)} />
+          </div>
 
-        <InputField
-          id="password"
-          label="Contraseña"
-          type={showPassword ? 'text' : 'password'}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          icon={<Lock className="w-5 h-5" />}
-          placeholder="••••••••"
-          rightElement={
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="text-neutral-400 hover:text-primary-600 transition-colors"
-            >
-              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-            </button>
-          }
-        />
+          {/* Form */}
+          <div className={`transition-all duration-700 ${animDone ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+            <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-sm p-8 border border-neutral-200 dark:border-neutral-700">
+              {/* Small logo at top of form */}
+              <div className="flex justify-center mb-6">
+                <img src="/logo-instituto.svg" alt="Instituto Centrobioenergética" className="w-10 h-10" />
+              </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-primary-600 text-white py-3.5 rounded-lg font-semibold text-base hover:bg-primary-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 min-h-[44px]"
-        >
-          {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-        </button>
-      </form>
-    </AuthLayout>
+              <div className="text-center mb-6">
+                <h1 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-1">Bienvenido</h1>
+                <p className="text-neutral-500 dark:text-neutral-400 text-xs">Inicia sesión en tu cuenta</p>
+              </div>
+
+              {error && (
+                <div className="mb-5 p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2 text-red-700 dark:text-red-200">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-xs font-medium">{error}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <InputField
+                  id="email"
+                  label="Email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  icon={<Mail className="w-5 h-5" />}
+                  placeholder="tu@email.com"
+                />
+
+                <InputField
+                  id="password"
+                  label="Contraseña"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  icon={<Lock className="w-5 h-5" />}
+                  placeholder="••••••••"
+                  rightElement={
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="text-neutral-400 hover:text-primary-600 transition-colors"
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+                  }
+                />
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-salvia-400 text-white py-3 rounded-lg font-medium text-sm hover:bg-salvia-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 min-h-[44px]"
+                >
+                  {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+                </button>
+              </form>
+
+              <div className="mt-6 text-center border-t border-neutral-200 dark:border-neutral-700 pt-5">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  ¿No tienes una cuenta?{' '}
+                  <Link to="/register" className="text-primary-600 font-medium hover:text-primary-700 transition-colors">
+                    Regístrate aquí
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Login;
-

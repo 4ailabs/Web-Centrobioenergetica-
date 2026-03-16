@@ -3,10 +3,10 @@
 @config "./tailwind.config.js";
 
 :root {
-  /* Colors - Primary (Perplexity teal) */
-  --primary: #20a39e;
-  --primary-light: #4ab8b3;
-  --primary-dark: #17706d;
+  /* Colors - Primary (Terracota — marca institucional) */
+  --primary: #B5604A;
+  --primary-light: #C47D62;
+  --primary-dark: #9a4f3c;
 
   /* Colors - Backgrounds */
   --bg-main: #F9F8F6;

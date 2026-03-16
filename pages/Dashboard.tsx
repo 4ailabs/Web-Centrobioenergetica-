@@ -189,7 +189,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
               onClick={item.action}
               className="group flex items-center gap-2.5 p-2.5 rounded-lg cursor-pointer hover:bg-white dark:hover:bg-neutral-800 transition-colors"
             >
-              <div className="w-7 h-7 bg-neutral-200/60 dark:bg-neutral-700 text-neutral-500 rounded-lg flex items-center justify-center shrink-0 group-hover:text-primary-600 transition-colors">
+              <div className="w-7 h-7 bg-salvia-50 dark:bg-salvia-400/10 text-salvia-400 rounded-lg flex items-center justify-center shrink-0 group-hover:text-salvia-600 transition-colors">
                 <item.icon className="w-3.5 h-3.5" />
               </div>
               <span className="text-[13px] text-neutral-600 dark:text-neutral-400 group-hover:text-primary-600 transition-colors">

@@ -18,6 +18,13 @@ const AboutUs: React.FC = () => {
         </p>
       </div>
 
+      {/* Imagen del instituto */}
+      <div className="px-6 lg:px-0 pb-10">
+        <div className="rounded-xl overflow-hidden aspect-[2.5/1] bg-neutral-100 dark:bg-neutral-800">
+          <img src="/images/imagenes_instituto/clases.png" alt="Alumnos del Instituto Centrobioenergética en clase" className="w-full h-full object-cover" />
+        </div>
+      </div>
+
       {/* Visión de salud */}
       <div className="px-6 lg:px-0 pb-10">
         <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-5">
@@ -190,13 +197,13 @@ const AboutUs: React.FC = () => {
 
       {/* CTA */}
       <div className="px-6 lg:px-0">
-        <div className="bg-primary-600 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div className="bg-salvia-400 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
           <div className="text-center sm:text-left">
             <h3 className="text-base font-medium text-white mb-1">¿Listo para comenzar?</h3>
-            <p className="text-primary-100 text-xs">Explora nuestros cursos o agenda una consulta.</p>
+            <p className="text-white/70 text-xs">Explora nuestros cursos o agenda una consulta.</p>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => navigate('/cursos')} className="px-4 py-2.5 bg-white text-primary-600 rounded-lg font-medium text-sm hover:shadow-sm transition-all">
+            <button onClick={() => navigate('/cursos')} className="px-4 py-2.5 bg-white text-salvia-500 rounded-lg font-medium text-sm hover:shadow-sm transition-all">
               Ver cursos
             </button>
             <a href="https://wa.me/525579076626" target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 bg-white/15 border border-white/20 text-white rounded-lg font-medium text-sm hover:bg-white/25 transition-all">
