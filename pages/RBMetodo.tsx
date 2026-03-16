@@ -13,6 +13,7 @@ const Dipolo = ({ color = '#0F6E56', size = 44 }: { color?: string; size?: numbe
 const C = {
   teal: '#0F6E56', tealMid: '#5DCAA5', tealLight: '#E1F5EE',
   black: '#2C2C2A', cream: '#E8E6DE', grey: '#888780',
+  coral: '#D85A30', purple: '#534AB7', amber: '#BA7517',
   greyLight: '#F1EFE8', bg: '#FAF9F6',
 };
 
@@ -94,35 +95,21 @@ const RBMetodo: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="p-5 rounded-xl" style={{ background: C.tealLight }}>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg font-semibold" style={{ color: C.teal }}>1</span>
-              <h3 className="text-[14px] font-semibold" style={{ color: C.black }}>Rastreo</h3>
+          {[
+            { n: '1', title: 'Rastreo', color: C.teal, desc: 'El terapeuta pasa un imán por las distintas regiones de tu cuerpo. Cuando encuentra una zona desregulada, un reflejo muscular lo señala. Así se construye un mapa de tu estado bioeléctrico — individualizado, de ese momento.' },
+            { n: '2', title: 'Impactación', color: C.purple, desc: 'Se colocan dos imanes de polaridad opuesta sobre los puntos identificados. Esto modifica las condiciones del microambiente del tejido — pH, distribución de iones, voltaje celular — y facilita que regrese a su rango óptimo.' },
+            { n: '3', title: 'Seguimiento', color: C.amber, desc: 'Se registra el perfil bioeléctrico de cada sesión. En la siguiente, se compara: ¿qué zonas mejoraron? ¿Cuáles persisten? El seguimiento es medible y documentable — no depende de la percepción subjetiva.' },
+          ].map((step, i) => (
+            <div key={i} className="p-5 rounded-xl bg-white border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center justify-center rounded-lg" style={{ width: 32, height: 32, background: step.color + '12' }}>
+                  <span className="text-sm font-bold" style={{ fontFamily: 'Georgia, serif', color: step.color }}>{step.n}</span>
+                </div>
+                <h3 className="text-[14px] font-semibold" style={{ color: C.black }}>{step.title}</h3>
+              </div>
+              <p className="text-xs leading-relaxed" style={{ color: C.grey }}>{step.desc}</p>
             </div>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              El terapeuta pasa un imán por las distintas regiones de tu cuerpo. Cuando encuentra una zona desregulada, un reflejo muscular lo señala. Así se construye un mapa de tu estado bioeléctrico — individualizado, de ese momento.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-xl" style={{ background: C.tealLight }}>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg font-semibold" style={{ color: C.teal }}>2</span>
-              <h3 className="text-[14px] font-semibold" style={{ color: C.black }}>Impactación</h3>
-            </div>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              Se colocan dos imanes de polaridad opuesta sobre los puntos identificados. Esto modifica las condiciones del microambiente del tejido — pH, distribución de iones, voltaje celular — y facilita que regrese a su rango óptimo.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-xl" style={{ background: C.tealLight }}>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg font-semibold" style={{ color: C.teal }}>3</span>
-              <h3 className="text-[14px] font-semibold" style={{ color: C.black }}>Seguimiento</h3>
-            </div>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              Se registra el perfil bioeléctrico de cada sesión. En la siguiente, se compara: ¿qué zonas mejoraron? ¿Cuáles persisten? El seguimiento es medible y documentable — no depende de la percepción subjetiva.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -133,16 +120,16 @@ const RBMetodo: React.FC = () => {
           <div className="h-px flex-1" style={{ background: C.cream }} />
         </div>
 
-        <div className="space-y-3 max-w-2xl">
+        <div className="space-y-3">
           {[
-            { title: 'Lectura por regiones', desc: 'El cuerpo se explora en 10 regiones anatómicas. No solo puntos memorizados — territorios completos. Esto permite detectar desregulaciones que no están en ningún catálogo.' },
-            { title: 'Perfil individualizado', desc: 'Dos personas con el mismo síntoma pueden tener mapas bioeléctricos completamente diferentes. El perfil es tuyo, no genérico.' },
-            { title: 'No solo para enfermos', desc: 'Un deportista puede usarlo para optimizar. Una persona sana para prevenir. No necesitas estar enfermo para saber cómo está tu terreno bioeléctrico.' },
-            { title: 'Documentable', desc: 'Cada sesión genera un registro: cuántos nodos, en qué regiones, qué densidad. Se puede comparar entre sesiones. Es seguimiento real, no percepción.' },
-            { title: 'Comunicable', desc: 'El reporte de una sesión de RB usa lenguaje que cualquier médico puede leer. Eso permite colaboración con otros profesionales de salud.' },
+            { title: 'Lectura por regiones', color: C.teal, desc: 'El cuerpo se explora en 10 regiones anatómicas. No solo puntos memorizados — territorios completos. Esto permite detectar desregulaciones que no están en ningún catálogo.' },
+            { title: 'Perfil individualizado', color: C.purple, desc: 'Dos personas con el mismo síntoma pueden tener mapas bioeléctricos completamente diferentes. El perfil es tuyo, no genérico.' },
+            { title: 'No solo para enfermos', color: C.amber, desc: 'Un deportista puede usarlo para optimizar. Una persona sana para prevenir. No necesitas estar enfermo para saber cómo está tu terreno bioeléctrico.' },
+            { title: 'Documentable', color: C.coral, desc: 'Cada sesión genera un registro: cuántos nodos, en qué regiones, qué densidad. Se puede comparar entre sesiones. Es seguimiento real, no percepción.' },
+            { title: 'Comunicable', color: C.teal, desc: 'El reporte de una sesión de RB usa lenguaje que cualquier médico puede leer. Eso permite colaboración con otros profesionales de salud.' },
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3">
-              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: C.teal }} />
+            <div key={i} className="flex items-start gap-3 p-3 rounded-lg hover:bg-white transition-colors">
+              <div className="w-2 h-2 rounded-full shrink-0 mt-1.5" style={{ background: item.color }} />
               <div>
                 <span className="text-[13px] font-medium" style={{ color: C.black }}>{item.title}</span>
                 <span className="text-[13px]" style={{ color: '#555' }}> — {item.desc}</span>
@@ -159,31 +146,21 @@ const RBMetodo: React.FC = () => {
           <div className="h-px flex-1" style={{ background: C.cream }} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-          <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Si eres paciente</h3>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              Puedes solicitar una sesión de RB como complemento a tu tratamiento médico. El terapeuta te explica en lenguaje claro qué encontró y qué se hizo. Sin jerga, sin nombres de microorganismos, sin promesas.
-            </p>
-          </div>
-          <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Si eres profesional de salud</h3>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              RB es una herramienta que puedes integrar a tu práctica. El fundamento está publicado en revistas indexadas. No necesitas creer en nada — la evidencia está disponible para que la evalúes.
-            </p>
-          </div>
-          <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Si quieres aprender</h3>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              El curso "El Cuerpo Eléctrico" te forma en RB en 4 sábados. No necesitas experiencia previa. Abierto a cualquier persona interesada.
-            </p>
-          </div>
-          <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Si ya rastrean</h3>
-            <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              Lo que haces funciona. RB te da el marco biofísico para explicar por qué, el rastreo por regiones para ver más, y el lenguaje para comunicarlo profesionalmente.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { title: 'Si eres paciente', color: C.teal, desc: 'Puedes solicitar una sesión de RB como complemento a tu tratamiento médico. El terapeuta te explica en lenguaje claro qué encontró y qué se hizo. Sin jerga, sin promesas.' },
+            { title: 'Si eres profesional de salud', color: C.purple, desc: 'RB es una herramienta que puedes integrar a tu práctica. El fundamento está publicado en revistas indexadas. No necesitas creer en nada — la evidencia está disponible.' },
+            { title: 'Si quieres aprender', color: C.amber, desc: 'El curso "El Cuerpo Eléctrico" te forma en RB en 4 sábados. No necesitas experiencia previa. Abierto a cualquier persona interesada.' },
+            { title: 'Si ya rastrean', color: C.coral, desc: 'Lo que haces funciona. RB te da el marco biofísico para explicar por qué, el rastreo por regiones para ver más, y el lenguaje para comunicarlo profesionalmente.' },
+          ].map((card, i) => (
+            <div key={i} className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full" style={{ background: card.color }} />
+                <h3 className="text-[13px] font-semibold" style={{ color: C.black }}>{card.title}</h3>
+              </div>
+              <p className="text-xs leading-relaxed" style={{ color: C.grey }}>{card.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 

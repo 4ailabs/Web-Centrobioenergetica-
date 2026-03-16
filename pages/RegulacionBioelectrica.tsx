@@ -9,6 +9,9 @@ const BK = '#2C2C2A';
 const GR = '#888780';
 const BG = '#FAF9F6';
 const CR = '#E8E6DE';
+const CORAL = '#D85A30';
+const PURPLE = '#534AB7';
+const AMBER = '#BA7517';
 
 const Dipolo = ({ size = 44, color = T }: { size?: number; color?: string }) => (
   <svg width={size} height={size * 0.27} viewBox="0 0 44 12">
@@ -27,7 +30,7 @@ const RegulacionBioelectrica: React.FC = () => {
 
   const modulos = [
     {
-      n: '1', fecha: '11 de julio', titulo: 'El mapa eléctrico',
+      n: '1', fecha: '11 de julio', titulo: 'El mapa eléctrico', accent: T,
       resultado: 'Entiendes por qué funciona lo que vas a hacer — y puedes explicarlo.',
       temas: [
         ['Matriz extracelular', 'Entre tus células hay un sistema activo con carga eléctrica negativa que regula la comunicación celular, la distribución de iones y el microambiente de cada tejido. Cuando esa carga se altera — por inflamación, acidosis o estrés sostenido — el terreno cambia y se crean las condiciones para la enfermedad. Esto ocurre antes de que aparezcan síntomas clínicos.'],
@@ -38,7 +41,7 @@ const RegulacionBioelectrica: React.FC = () => {
       ],
     },
     {
-      n: '2', fecha: '25 de julio', titulo: 'El rastreo',
+      n: '2', fecha: '25 de julio', titulo: 'El rastreo', accent: PURPLE,
       resultado: 'Puedes leer el estado bioeléctrico del cuerpo y generar un perfil por regiones.',
       temas: [
         ['Qué detecta el rastreo', 'No detecta microorganismos — eso corresponde al laboratorio. Detecta el estado bioeléctrico del terreno tisular: dónde se desvió del rango óptimo, con qué patrón, en qué regiones. Dos pacientes con el mismo diagnóstico pueden tener mapas completamente diferentes.'],
@@ -48,7 +51,7 @@ const RegulacionBioelectrica: React.FC = () => {
       ],
     },
     {
-      n: '3', fecha: '8 de agosto', titulo: 'La impactación',
+      n: '3', fecha: '8 de agosto', titulo: 'La impactación', accent: AMBER,
       resultado: 'Haces sesiones completas y conoces exactamente dónde están tus límites.',
       temas: [
         ['Qué hace la impactación', 'Dos imanes de polaridad opuesta colocados sobre los nodos identificados. Modifican las condiciones electroquímicas del microambiente tisular — pH, distribución iónica, voltaje celular, polarización de macrófagos — y facilitan que el tejido regrese a su rango óptimo. Cada tejido tiene su propio rango; no existe un valor universal.'],
@@ -58,7 +61,7 @@ const RegulacionBioelectrica: React.FC = () => {
       ],
     },
     {
-      n: '4', fecha: '22 de agosto', titulo: 'La clínica',
+      n: '4', fecha: '22 de agosto', titulo: 'La clínica', accent: CORAL,
       resultado: 'Puedes ejercer, documentar tu trabajo, y colaborar con otros profesionales.',
       temas: [
         ['Casos clínicos reales', 'El Dr. Ojeda presenta 4-5 casos reales anonimizados. Para cada caso: historia clínica breve, los participantes proponen su rastreo e interpretación, y el Dr. Ojeda revela su perfil bioeléctrico y el resultado. Discusión grupal sobre qué habrían hecho diferente.'],
@@ -105,12 +108,15 @@ const RegulacionBioelectrica: React.FC = () => {
       </div>
 
       {/* ===== HEADLINE + LINK AL MÉTODO ===== */}
-      <div className="px-6 lg:px-0 pt-8 pb-6 max-w-2xl mx-auto">
-        <h1 style={{ fontFamily: G, fontSize: 17, color: BK, letterSpacing: 0.5, lineHeight: 1.4 }}>
+      <div className="px-6 lg:px-0 pt-5 pb-6 max-w-3xl border-t" style={{ borderColor: '#E8E6DE' }}>
+        <h1 style={{ fontFamily: G, fontSize: 22, color: BK, letterSpacing: 0.5, lineHeight: 1.3 }}>
           El Cuerpo <span style={{ color: T }}>Eléctrico</span>
         </h1>
-        <p className="mt-2 text-sm leading-relaxed" style={{ color: '#666' }}>
-          Tu cuerpo es un mapa eléctrico. Este curso te enseña a leerlo con imanes, interpretarlo por regiones anatómicas, y regularlo con fundamento biofísico publicado.
+        <p className="mt-2 text-[13px] leading-relaxed" style={{ color: '#555' }}>
+          Formación profesional en <strong style={{ color: BK }}>Regulación Bioeléctrica (RB)</strong> — un método de evaluación y regulación del estado bioeléctrico de los tejidos del cuerpo humano con campos magnéticos estáticos. Es la evolución del Par Biomagnético con fundamento biofísico publicado en revistas como <em>Physical Review Applied</em>, <em>Cell</em> y <em>PNAS</em>.
+        </p>
+        <p className="mt-2 text-[13px] leading-relaxed" style={{ color: '#555' }}>
+          En 4 sábados aprendes a leer el mapa bioeléctrico del cuerpo con imanes, rastrear por 10 regiones anatómicas, aplicar protocolos de impactación, y documentar tu trabajo en lenguaje que cualquier médico pueda leer. Con práctica supervisada por el Dr. Miguel Ojeda Rios.
         </p>
         <button onClick={() => navigate('/rb')} className="mt-3 flex items-center gap-1.5 text-sm font-medium" style={{ color: T }}>
           Conoce el método detrás de este curso
@@ -119,7 +125,7 @@ const RegulacionBioelectrica: React.FC = () => {
       </div>
 
       {/* ===== FECHAS — prominentes ===== */}
-      <div className="px-6 lg:px-0 pb-8 max-w-2xl mx-auto">
+      <div className="px-6 lg:px-0 pb-8">
         <div className="flex flex-wrap gap-3">
           {['11 julio', '25 julio', '8 agosto', '22 agosto'].map((f, i) => (
             <div key={i} className="flex items-center gap-2 px-4 py-2.5 rounded-lg" style={{ background: TL }}>
@@ -131,13 +137,15 @@ const RegulacionBioelectrica: React.FC = () => {
             </div>
           ))}
         </div>
-        <p className="mt-3 text-xs" style={{ color: GR }}>
-          Presencial en Ciudad de México (15 lugares) · En línea en vivo (cupo abierto) · Dr. Miguel Ojeda Rios
-        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <span className="text-[11px] px-2.5 py-1 rounded-md" style={{ background: TL, color: T }}>Presencial CDMX</span>
+          <span className="text-[11px] px-2.5 py-1 rounded-md" style={{ background: TL, color: T }}>En línea en vivo</span>
+          <span className="text-[11px] px-2.5 py-1 rounded-md" style={{ background: '#F1EFE8', color: GR }}>Dr. Miguel Ojeda Rios</span>
+        </div>
       </div>
 
       {/* ===== MODALIDADES — dos columnas ===== */}
-      <div className="px-6 lg:px-0 pb-10 max-w-2xl mx-auto">
+      <div className="px-6 lg:px-0 pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-5 rounded-xl" style={{ background: '#fff', border: `1.5px solid ${T}30` }}>
             <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: T }}>Modalidad Formación</span>
@@ -157,7 +165,7 @@ const RegulacionBioelectrica: React.FC = () => {
       </div>
 
       {/* ===== PROGRAMA — no accordion, sino cards abiertas ===== */}
-      <div className="px-6 lg:px-0 pb-10 max-w-2xl mx-auto">
+      <div className="px-6 lg:px-0 pb-10">
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-medium uppercase tracking-wider" style={{ color: GR }}>Programa</span>
           <div className="h-px flex-1" style={{ background: CR }} />
@@ -168,10 +176,10 @@ const RegulacionBioelectrica: React.FC = () => {
           {modulos.map((m, mi) => {
             const isOpen = openMod === mi;
             return (
-              <div key={mi} className="rounded-xl overflow-hidden" style={{ background: '#fff', border: '1px solid #E8E4DE' }}>
+              <div key={mi} className="rounded-xl overflow-hidden transition-shadow hover:shadow-md" style={{ background: '#fff', border: '1px solid #E8E4DE' }}>
                 <button onClick={() => setOpenMod(isOpen ? null : mi)} className="w-full flex items-start gap-4 p-5 text-left">
-                  <div className="flex flex-col items-center shrink-0" style={{ width: 36 }}>
-                    <span className="text-base font-semibold" style={{ fontFamily: G, color: T }}>{m.n}</span>
+                  <div className="flex items-center justify-center shrink-0 rounded-lg" style={{ width: 36, height: 36, background: m.accent + '12' }}>
+                    <span className="text-sm font-bold" style={{ fontFamily: G, color: m.accent }}>{m.n}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <h2 className="text-[13px] font-medium" style={{ fontFamily: S, color: BK }}>{m.titulo}</h2>
@@ -207,7 +215,7 @@ const RegulacionBioelectrica: React.FC = () => {
       </div>
 
       {/* ===== LO QUE RECIBES — grid, no lista ===== */}
-      <div className="px-6 lg:px-0 pb-10 max-w-2xl mx-auto">
+      <div className="px-6 lg:px-0 pb-10">
         <div className="flex items-center gap-3 mb-5">
           <span className="text-[11px] font-medium uppercase tracking-wider" style={{ color: GR }}>Lo que recibes</span>
           <div className="h-px flex-1" style={{ background: CR }} />
@@ -215,13 +223,16 @@ const RegulacionBioelectrica: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { cat: 'Atlas y materiales', items: ['Atlas nuevo de puntos por regiones anatómicas', 'Catálogo de 359 pares por 10 regiones', '29 Principios del Biomagnetismo 2026'] },
-            { cat: 'Protocolos', items: ['Protocolo de rastreo por regiones', 'Protocolo de impactación', 'Guía de documentación clínica'] },
-            { cat: 'Evidencia', items: ['Tabla de evidencia científica del mecanismo'] },
-            { cat: 'Comunidad', items: ['Certificación del Instituto Centrobioenergetica', 'Grupo de supervisión mensual con el Dr. Ojeda'] },
+            { cat: 'Atlas y materiales', accent: T, items: ['Atlas nuevo de puntos por regiones anatómicas', 'Catálogo de 359 pares por 10 regiones', '29 Principios del Biomagnetismo 2026'] },
+            { cat: 'Protocolos', accent: PURPLE, items: ['Protocolo de rastreo por regiones', 'Protocolo de impactación', 'Guía de documentación clínica'] },
+            { cat: 'Evidencia', accent: AMBER, items: ['Tabla de evidencia científica del mecanismo'] },
+            { cat: 'Comunidad', accent: CORAL, items: ['Certificación del Instituto Centrobioenergetica', 'Grupo de supervisión mensual con el Dr. Ojeda'] },
           ].map((group, gi) => (
             <div key={gi} className="p-4 rounded-xl" style={{ background: '#fff', border: '1px solid #E8E4DE' }}>
-              <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: T }}>{group.cat}</span>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full" style={{ background: group.accent }} />
+                <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: group.accent }}>{group.cat}</span>
+              </div>
               <div className="mt-2 space-y-1.5">
                 {group.items.map((item, ii) => (
                   <div key={ii} className="flex items-start gap-2">
@@ -236,7 +247,7 @@ const RegulacionBioelectrica: React.FC = () => {
       </div>
 
       {/* ===== CTA ===== */}
-      <div className="px-6 lg:px-0 pb-6 max-w-2xl mx-auto">
+      <div className="px-6 lg:px-0 pb-6">
         <a
           href="https://wa.me/525579076626?text=Hola%2C%20quiero%20inscribirme%20al%20curso%20de%20Regulaci%C3%B3n%20Bioel%C3%A9ctrica"
           target="_blank"
@@ -250,7 +261,7 @@ const RegulacionBioelectrica: React.FC = () => {
           Inscribirme por WhatsApp
         </a>
         <p className="text-center mt-3 text-[11px]" style={{ color: GR }}>
-          15 lugares presenciales · Cupo en línea abierto · Primera generación RB
+          Presencial y en línea · Primera generación RB
         </p>
       </div>
 
