@@ -22,7 +22,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
       </div>
 
       {/* Content */}
-      <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-50 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors line-clamp-2">
+      <h3 className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors line-clamp-2">
         {article.title}
       </h3>
       <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">

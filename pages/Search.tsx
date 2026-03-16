@@ -44,7 +44,7 @@ const Search: React.FC<SearchProps> = ({ onSearch, onClose, isOpen }) => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={(e) => e.key === 'Escape' && onClose()}
-                  className="flex-1 text-base bg-transparent border-none outline-none text-neutral-900 dark:text-neutral-50 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
+                  className="flex-1 text-base bg-transparent border-none outline-none text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                   autoFocus
                 />
                 <button

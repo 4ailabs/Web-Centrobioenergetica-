@@ -12,7 +12,7 @@ const StatsCards: React.FC<StatsCardsProps> = ({ totalUsers, activeSubscriptions
                 <div className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-2">
                     Total Usuarios
                 </div>
-                <div className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">{totalUsers}</div>
+                <div className="text-3xl font-bold text-neutral-800 dark:text-neutral-100">{totalUsers}</div>
             </div>
 
             <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg border border-neutral-200 dark:border-neutral-700">

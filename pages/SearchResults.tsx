@@ -19,7 +19,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
             <SearchIcon className="w-5 h-5 text-primary-600" />
           </div>
           <div>
-            <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">Resultados de Búsqueda</h1>
+            <h1 className="text-2xl font-semibold text-neutral-800 dark:text-neutral-100">Resultados de Búsqueda</h1>
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
               {totalResults} resultado{totalResults !== 1 ? 's' : ''} para <span className="text-primary-600">"{query}"</span>
             </p>
@@ -30,7 +30,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
       {totalResults === 0 ? (
         <div className="text-center py-16 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
           <SearchIcon className="w-10 h-10 text-neutral-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-2">No se encontraron resultados</h3>
+          <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-2">No se encontraron resultados</h3>
           <p className="text-neutral-500 dark:text-neutral-400 text-sm max-w-md mx-auto">
             Intenta con otros términos de búsqueda.
           </p>
@@ -52,7 +52,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {results.services.map((service, i) => (
                   <div key={i} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-5 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors group">
-                    <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-2 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+                    <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 mb-2 group-hover:text-primary-600 transition-colors">{service.title}</h3>
                     <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4 leading-relaxed">{service.description}</p>
                     <div className="flex justify-between items-center text-xs text-neutral-500 dark:text-neutral-400">
                       <span>{service.duration}</span>
@@ -70,7 +70,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {results.products.map((product, i) => (
                   <div key={i} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-5 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors group">
-                    <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-2 group-hover:text-primary-600 transition-colors">{product.name}</h3>
+                    <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 mb-2 group-hover:text-primary-600 transition-colors">{product.name}</h3>
                     <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4 leading-relaxed">{product.description}</p>
                     <div className="flex justify-between items-center">
                       <span className="text-base font-semibold text-primary-600">{product.price}</span>
@@ -88,7 +88,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {results.news.map((article, i) => (
                   <div key={i} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-5 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors group">
-                    <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-50 mb-2 group-hover:text-primary-600 transition-colors">{article.title}</h3>
+                    <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 mb-2 group-hover:text-primary-600 transition-colors">{article.title}</h3>
                     <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2">{article.description}</p>
                   </div>
                 ))}

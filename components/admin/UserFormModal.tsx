@@ -34,7 +34,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
             <div className="bg-white dark:bg-neutral-800 w-full max-w-lg rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
                 {/* Header */}
                 <div className="p-6 border-b border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
-                    <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-50">
+                    <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">
                         {editingUser ? 'Editar Usuario' : 'Nuevo Usuario'}
                     </h2>
                     <button
@@ -55,7 +55,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                             type="text"
                             value={userForm.name}
                             onChange={(e) => onFormChange('name', e.target.value)}
-                            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-50 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
+                            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
                             placeholder="Ej. Juan Pérez"
                         />
                     </div>
@@ -68,7 +68,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                             type="email"
                             value={userForm.email}
                             onChange={(e) => onFormChange('email', e.target.value)}
-                            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-50 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
+                            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
                             placeholder="Ej. juan@ejemplo.com"
                         />
                     </div>
@@ -83,7 +83,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                                     type={showPassword ? 'text' : 'password'}
                                     value={userForm.password}
                                     onChange={(e) => onFormChange('password', e.target.value)}
-                                    className="w-full px-4 py-3 pr-12 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-50 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
+                                    className="w-full px-4 py-3 pr-12 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none transition-all"
                                     placeholder="Min. 6 caracteres"
                                 />
                                 <button
@@ -105,7 +105,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                             onChange={(e) => onFormChange('isAdmin', e.target.checked)}
                             className="w-5 h-5 rounded text-primary-600 focus:ring-primary-600 accent-primary-600"
                         />
-                        <label htmlFor="isAdmin" className="font-medium text-neutral-900 dark:text-neutral-50 select-none cursor-pointer">
+                        <label htmlFor="isAdmin" className="font-medium text-neutral-800 dark:text-neutral-100 select-none cursor-pointer">
                             ¿Es Administrador?
                         </label>
                     </div>

@@ -14,8 +14,12 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToApps }) => {
-  const courses = useCourses();
+  const allCourses = useCourses();
   const navigate = useNavigate();
+
+  // Solo cursos que ya están disponibles (con videos), no los futuros
+  const activeCourseIds = [102, 101, 103]; // Set Point, Aminoácidos, Bioenergética V4
+  const courses = allCourses.filter(c => activeCourseIds.includes(c.id));
 
   const goToCourse = (course: Course) => {
     navigate(`/course/${course.id}`);
@@ -25,23 +29,24 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
   return (
     <div className="w-full pt-[72px] lg:pt-0 pb-16">
       {/* Hero */}
-      <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-10">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight leading-[1.15] mb-3">
-          Instituto <span className="text-primary-600">Centrobioenergética</span>
-        </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed mb-5">
-          Excelencia académica para el desarrollo humano y la consciencia bioenergética avanzada.
+      <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-8">
+        <p className="text-[15px] text-neutral-800 dark:text-neutral-100 font-medium mb-1">
+          Escuela de práctica en salud complementaria y bienestar integral
+        </p>
+        <p className="text-xs text-neutral-400 dark:text-neutral-500 mb-4">
+          Más de 2,800 terapeutas formados · 26 cursos especializados · Dr. Miguel Ojeda Rios
         </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { label: 'Oferta Académica', path: '/cursos', primary: true },
-            { label: 'Servicios Clínicos', path: '/servicios' },
-            { label: 'Calendario', path: '/calendario' },
+            { label: 'Cursos', path: '/cursos', primary: true },
+            { label: 'Servicios', path: '/servicios' },
+            { label: 'Agenda', path: '/calendario' },
+            { label: 'Nosotros', path: '/sobre-nosotros' },
           ].map((btn) => (
             <button
               key={btn.label}
               onClick={() => navigate(btn.path)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${btn.primary
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${btn.primary
                 ? 'bg-primary-600 text-white hover:bg-primary-700'
                 : 'bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:border-neutral-400'
               }`}
@@ -73,7 +78,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
               <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
                 Viernes 27 de marzo + 10 de abril · 3:00 – 7:00 pm · Presencial u Online
               </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Ríos</span>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
             </div>
           </div>
         </div>
@@ -95,12 +100,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                 <span className="text-[11px] text-neutral-400">Curso · 2 Sábados</span>
               </div>
               <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
-                Método de Equilibrio para el Climaterio
+                Método de equilibrio para el climaterio
               </h2>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
                 16 y 30 de mayo · 10:00 – 18:00 h · Presencial u Online
               </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Ríos</span>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
             </div>
           </div>
         </div>
@@ -121,13 +126,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                 <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Próximamente</span>
                 <span className="text-[11px] text-neutral-400">Taller · 2 Sábados</span>
               </div>
-              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
-                Taller de Rituales Personales
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5 group-hover:text-primary-600 transition-colors">
+                Actos que Mueven
               </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Taller de rituales personales</p>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
                 6 y 20 de junio · 10:00 – 18:00 h · Presencial · Cupo: 15 personas
               </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Ríos</span>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
             </div>
           </div>
         </div>
@@ -136,7 +142,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
       {/* Courses section */}
       <div className="px-6 lg:px-0 pb-8">
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-sm font-medium text-neutral-800 dark:text-neutral-100">Cursos</h2>
+          <h2 className="text-sm font-medium text-neutral-800 dark:text-neutral-100">Cursos disponibles</h2>
           <button onClick={() => navigate('/cursos')} className="flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 transition-colors font-medium">
             Ver todos <ArrowRight className="w-3 h-3" />
           </button>

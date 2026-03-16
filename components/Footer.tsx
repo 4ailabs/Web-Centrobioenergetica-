@@ -3,11 +3,11 @@ import { YoutubeIcon } from './Icons';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[var(--bg-main)] border-t border-neutral-200 dark:border-neutral-800 shrink-0 transition-colors">
+    <footer className="bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800 shrink-0 transition-colors">
       <div className="max-w-7xl mx-auto px-4 lg:px-8 py-3 lg:py-4">
         {/* Mobile Layout - compact single row */}
         <div className="flex lg:hidden items-center justify-between text-[11px] text-neutral-500 dark:text-neutral-400">
-          <span>© 2026 Instituto Centrobioenergetica</span>
+          <span>© 2026 Instituto Centrobioenergética</span>
           <a
             href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u"
             target="_blank"
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="text-xs text-neutral-500 dark:text-neutral-400">
-            © 2026 Instituto Centrobioenergetica
+            © 2026 Instituto Centrobioenergética
           </div>
 
           <a

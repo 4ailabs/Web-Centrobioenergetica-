@@ -40,7 +40,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     value={value}
                     onChange={onChange}
                     required={required}
-                    className="w-full pl-12 pr-12 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:ring-offset-2 dark:focus:ring-offset-neutral-900 text-neutral-900 dark:text-neutral-50 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 transition-all duration-200"
+                    className="w-full pl-12 pr-12 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:ring-offset-2 dark:focus:ring-offset-neutral-900 text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 transition-all duration-200"
                     placeholder={placeholder}
                 />
                 {rightElement && (

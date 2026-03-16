@@ -36,6 +36,7 @@ export default {
       fontFamily: {
         sans: ['Outfit', 'system-ui', 'sans-serif'],
         display: ['Outfit', 'system-ui', 'sans-serif'],
+        editorial: ['Newsreader', 'Georgia', 'serif'],
       },
       borderRadius: {
         'pplx': '0.375rem',

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { CalendarEvent } from '../types';
 import { MOCK_DATA } from '../data/mockData';
-import { Clock, MapPin } from 'lucide-react';
+import { Clock, MapPin, ArrowRight } from 'lucide-react';
 
 const CalendarPage: React.FC = () => {
     const [events, setEvents] = useState<CalendarEvent[]>([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -30,27 +32,44 @@ const CalendarPage: React.FC = () => {
         const date = new Date(dateStr);
         return {
             day: date.getDate(),
-            month: date.toLocaleDateString('es-ES', { month: 'short' }),
-            full: date.toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' }),
-            time: date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
+            weekday: date.toLocaleDateString('es-ES', { weekday: 'short' }),
+            month: date.toLocaleDateString('es-ES', { month: 'long' }),
+            monthKey: date.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }),
+            time: date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }),
+            year: date.getFullYear(),
         };
     };
 
-    const getTypeLabel = (type: string) => {
-        switch (type) {
-            case 'live': return 'En vivo';
-            case 'workshop': return 'Taller';
-            case 'support': return 'Soporte';
-            default: return type;
-        }
+    // Group events by month
+    const groupedEvents = useMemo(() => {
+        const groups: { month: string; events: CalendarEvent[] }[] = [];
+        let currentMonth = '';
+        events.forEach((event) => {
+            const { monthKey } = formatDate(event.date);
+            if (monthKey !== currentMonth) {
+                currentMonth = monthKey;
+                groups.push({ month: monthKey, events: [event] });
+            } else {
+                groups[groups.length - 1].events.push(event);
+            }
+        });
+        return groups;
+    }, [events]);
+
+    // Map event titles to routes
+    const getEventRoute = (title: string) => {
+        if (title.includes('Mascota')) return '/taller-mascotas';
+        if (title.includes('Reset')) return '/reset-hormonal';
+        if (title.includes('Actos')) return '/actos-que-mueven';
+        return null;
     };
 
     if (loading) {
         return (
             <div className="w-full flex items-center justify-center min-h-[50vh]">
                 <div className="animate-pulse flex flex-col items-center">
-                    <div className="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 rounded-full mb-3"></div>
-                    <p className="text-neutral-500 dark:text-neutral-400 text-sm">Cargando agenda...</p>
+                    <div className="w-8 h-8 bg-neutral-200 dark:bg-neutral-700 rounded-full mb-3"></div>
+                    <p className="text-neutral-500 dark:text-neutral-400 text-xs">Cargando agenda...</p>
                 </div>
             </div>
         );
@@ -59,73 +78,94 @@ const CalendarPage: React.FC = () => {
     return (
         <div className="w-full pt-[72px] lg:pt-0 pb-16 overflow-x-hidden">
             {/* Header */}
-            <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-8">
+            <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-10">
                 <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
                     Agenda de <span className="text-primary-600">Eventos</span>
                 </h1>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
-                    Clases en vivo, talleres intensivos y sesiones de acompañamiento.
+                    Talleres, cursos y sesiones programadas para los próximos meses.
                 </p>
             </div>
 
-            {/* Events list — clean, editorial */}
-            <div className="px-6 lg:px-0 pb-10">
-                <div className="divide-y divide-neutral-200 dark:divide-neutral-700">
-                    {events.map((event) => {
-                        const dateInfo = formatDate(event.date);
-                        return (
-                            <div key={event.id} className="py-5 first:pt-0 flex gap-4 items-start">
-                                {/* Date badge */}
-                                <div className="w-12 h-12 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl flex flex-col items-center justify-center shrink-0">
-                                    <span className="text-primary-600 font-semibold text-base leading-none">{dateInfo.day}</span>
-                                    <span className="text-neutral-400 text-[10px] mt-0.5 capitalize">{dateInfo.month}</span>
-                                </div>
+            {/* Timeline */}
+            <div className="px-6 lg:px-0 pb-12">
+                {groupedEvents.map((group, groupIndex) => (
+                    <div key={group.month} className="mb-10 last:mb-0">
+                        {/* Month header */}
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
+                            <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider capitalize shrink-0">
+                                {group.month}
+                            </span>
+                            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
+                        </div>
 
-                                {/* Content */}
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <h3 className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug truncate">
-                                            {event.title}
-                                        </h3>
-                                        <span className="px-2 py-0.5 bg-primary-600/8 dark:bg-primary-600/15 text-primary-600 text-[10px] font-medium rounded shrink-0">
-                                            {getTypeLabel(event.type)}
-                                        </span>
-                                    </div>
-                                    <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1 leading-relaxed mb-2">
-                                        {event.description}
-                                    </p>
-                                    <div className="flex items-center gap-4 text-[11px] text-neutral-400">
-                                        <div className="flex items-center gap-1">
-                                            <Clock className="w-3 h-3" />
-                                            <span>{dateInfo.time}</span>
-                                        </div>
-                                        {event.location && (
-                                            <div className="flex items-center gap-1">
-                                                <MapPin className="w-3 h-3" />
-                                                <span className="truncate max-w-[150px]">{event.location}</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
+                        {/* Events in this month */}
+                        <div className="space-y-4">
+                            {group.events.map((event, eventIndex) => {
+                                const dateInfo = formatDate(event.date);
+                                const route = getEventRoute(event.title);
+                                const isFirst = groupIndex === 0 && eventIndex === 0;
 
-                                {/* CTA */}
-                                {event.link && (
-                                    <a
-                                        href={event.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-4 py-2 bg-primary-600 text-white rounded-lg text-xs font-medium hover:bg-primary-700 transition-colors shrink-0"
+                                return (
+                                    <div
+                                        key={event.id}
+                                        onClick={() => route && navigate(route)}
+                                        className={`group flex gap-5 items-start ${route ? 'cursor-pointer' : ''} ${
+                                            isFirst
+                                                ? 'bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-5 hover:border-primary-600/30 dark:hover:border-primary-600/20 transition-colors'
+                                                : 'py-1'
+                                        }`}
                                     >
-                                        Unirse
-                                    </a>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
+                                        {/* Date column */}
+                                        <div className="w-14 shrink-0 text-center">
+                                            <div className={`text-2xl font-semibold leading-none mb-1 ${isFirst ? 'text-primary-600' : 'text-neutral-700 dark:text-neutral-200'}`}>
+                                                {dateInfo.day}
+                                            </div>
+                                            <div className="text-[10px] text-neutral-400 capitalize">{dateInfo.weekday}</div>
+                                        </div>
+
+                                        {/* Timeline dot + line */}
+                                        <div className="flex flex-col items-center shrink-0 pt-1.5">
+                                            <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${isFirst ? 'bg-primary-600 ring-4 ring-primary-600/10' : 'bg-neutral-300 dark:bg-neutral-600'}`}></div>
+                                            <div className="w-px flex-1 bg-neutral-200 dark:bg-neutral-700 mt-1.5 min-h-[40px]"></div>
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="flex-1 min-w-0 pb-6">
+                                            <h3 className={`font-medium leading-snug mb-1 ${route ? 'group-hover:text-primary-600 transition-colors' : ''} ${isFirst ? 'text-[15px] text-neutral-800 dark:text-neutral-100' : 'text-[14px] text-neutral-700 dark:text-neutral-200'}`}>
+                                                {event.title}
+                                            </h3>
+                                            <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
+                                                {event.description}
+                                            </p>
+                                            <div className="flex items-center gap-4 text-[11px] text-neutral-400">
+                                                <div className="flex items-center gap-1">
+                                                    <Clock className="w-3 h-3" />
+                                                    <span>{dateInfo.time}</span>
+                                                </div>
+                                                {event.location && (
+                                                    <div className="flex items-center gap-1">
+                                                        <MapPin className="w-3 h-3" />
+                                                        <span>{event.location}</span>
+                                                    </div>
+                                                )}
+                                                {route && (
+                                                    <span className="flex items-center gap-0.5 text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+                                                        Ver programa <ArrowRight className="w-3 h-3" />
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ))}
             </div>
 
-            {/* Subscribe CTA */}
+            {/* CTA */}
             <div className="px-6 lg:px-0">
                 <div className="bg-primary-600 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
                     <div className="text-center sm:text-left">

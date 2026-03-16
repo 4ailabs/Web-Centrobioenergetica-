@@ -31,7 +31,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                 {/* Header */}
                 <div className="p-6 border-b border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
                     <div>
-                        <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-50">Gestionar Acceso a Cursos</h2>
+                        <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">Gestionar Acceso a Cursos</h2>
                         <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                             Usuario: <span className="font-medium text-primary-600">{user.name}</span>
                         </p>
@@ -68,7 +68,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                                     </div>
                                     <div>
                                         <h3 className={`font-medium text-sm mb-1 ${
-                                            isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-neutral-900 dark:text-neutral-50'
+                                            isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-neutral-800 dark:text-neutral-100'
                                         }`}>
                                             {course.title}
                                         </h3>

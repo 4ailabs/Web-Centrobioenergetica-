@@ -28,11 +28,11 @@ const SidebarNavItem: React.FC<{
     onClick={(e) => { e.preventDefault(); onClick(); }}
     title={collapsed ? label : undefined}
     className={`flex items-center ${collapsed ? 'justify-center' : 'gap-3'} ${collapsed ? 'px-0 py-2.5' : 'px-3 py-2.5'} rounded-[6px] transition-colors duration-150 text-[14px] ${active
-      ? 'bg-neutral-200/70 dark:bg-neutral-700/50 text-neutral-900 dark:text-neutral-50 font-medium'
+      ? 'bg-neutral-200/70 dark:bg-neutral-700/50 text-neutral-800 dark:text-neutral-100 font-medium'
       : 'text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30'
     } ${mobile ? 'mobile-nav-item' : ''}`}
   >
-    <div className={`shrink-0 ${active ? 'text-neutral-900 dark:text-neutral-50' : 'text-neutral-500 dark:text-neutral-500'}`}>
+    <div className={`shrink-0 ${active ? 'text-neutral-800 dark:text-neutral-100' : 'text-neutral-500 dark:text-neutral-500'}`}>
       {icon}
     </div>
     {!collapsed && <span className="truncate">{label}</span>}
@@ -69,11 +69,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 bg-[#F2F0EC] dark:bg-[#1A181C] border-b border-neutral-200 dark:border-neutral-800 z-50 px-4 py-3 transition-colors">
+      <div className="lg:hidden fixed top-0 left-0 right-0 bg-neutral-100 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 z-50 px-4 py-3 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <LogoIcon className="h-7 w-auto" />
-            <span className="text-sm font-semibold text-neutral-900 dark:text-white">Instituto</span>
+            <span className="text-[12px] font-medium text-neutral-800 dark:text-neutral-100">Instituto Centrobioenergética</span>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -90,7 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       )}
 
       {/* Mobile Sidebar Drawer */}
-      <aside className={`lg:hidden fixed top-0 left-0 h-full bg-[#F2F0EC] dark:bg-[#1A181C] border-r border-neutral-200 dark:border-neutral-800 w-72 z-50 transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`lg:hidden fixed top-0 left-0 h-full bg-neutral-100 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 w-72 z-50 transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-4 pt-16 flex flex-col h-full">
           <nav className="flex-grow overflow-y-auto space-y-1 pr-1">
             <div className="bg-neutral-100/60 dark:bg-neutral-800/40 rounded-xl p-1.5 mb-3">
@@ -125,7 +125,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       </aside>
 
       {/* Desktop Sidebar */}
-      <aside className={`hidden lg:flex h-screen bg-[#F2F0EC] dark:bg-[#1A181C] border-r border-neutral-200 dark:border-neutral-800 py-4 flex-col shrink-0 overflow-hidden transition-all duration-200 ease-[cubic-bezier(.33,1,.68,1)] ${collapsed ? 'w-[60px] px-2' : 'w-[220px] px-3'}`}>
+      <aside className={`hidden lg:flex h-screen bg-neutral-100 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 py-4 flex-col shrink-0 overflow-hidden transition-all duration-200 ease-[cubic-bezier(.33,1,.68,1)] ${collapsed ? 'w-[60px] px-2' : 'w-[220px] px-3'}`}>
         {/* Logo + Toggle */}
         <div className={`flex items-center mb-5 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
           {collapsed ? (
@@ -137,7 +137,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
               <div className="flex items-center gap-2.5">
                 <LogoIcon className="h-7 w-auto" />
                 <div className="flex flex-col">
-                  <span className="text-[13px] font-semibold text-neutral-900 dark:text-neutral-50 leading-tight">Instituto</span>
+                  <span className="text-[11px] font-medium text-neutral-800 dark:text-neutral-100 leading-tight">Instituto</span>
                   <span className="text-[10px] text-neutral-400 dark:text-neutral-500 leading-tight">Centrobioenergética</span>
                 </div>
               </div>

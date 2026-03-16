@@ -107,7 +107,7 @@ const News: React.FC = () => {
             placeholder="Buscar temas de bienestar..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 transition-all text-sm"
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 transition-all text-sm"
           />
         </div>
       </PageHeader>
@@ -125,7 +125,7 @@ const News: React.FC = () => {
               </div>
               <div className="lg:w-2/5 p-8 lg:p-10 flex flex-col justify-center">
                 <span className="text-xs font-medium text-primary-600 mb-3">{featuredArticle.category}</span>
-                <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-900 dark:text-neutral-50 mb-4 leading-tight group-hover:text-primary-600 transition-colors">
+                <h2 className="text-2xl lg:text-3xl font-semibold text-neutral-800 dark:text-neutral-100 mb-4 leading-tight group-hover:text-primary-600 transition-colors">
                   {featuredArticle.title}
                 </h2>
                 <p className="text-neutral-500 dark:text-neutral-400 text-sm mb-6 leading-relaxed line-clamp-3">
@@ -206,7 +206,7 @@ const News: React.FC = () => {
                 <span className="inline-block px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-lg mb-4">
                   {selectedArticle.category}
                 </span>
-                <h2 className="text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-50 mb-6 leading-tight tracking-tight">
+                <h2 className="text-3xl lg:text-4xl font-semibold text-neutral-800 dark:text-neutral-100 mb-6 leading-tight tracking-tight">
                   {selectedArticle.title}
                 </h2>
 
@@ -222,7 +222,7 @@ const News: React.FC = () => {
 
                 {/* Reactions */}
                 <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
-                  <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50 mb-4">¿Qué te pareció?</p>
+                  <p className="text-sm font-medium text-neutral-800 dark:text-neutral-100 mb-4">¿Qué te pareció?</p>
                   <div className="flex flex-wrap gap-3">
                     {[
                       { key: 'love', icon: <Heart className="w-4 h-4 text-red-500" />, label: 'Me encanta' },

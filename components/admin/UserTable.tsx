@@ -69,7 +69,7 @@ const UserTable: React.FC<UserTableProps> = ({
                                             <div className="w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-600/20 flex items-center justify-center text-primary-600 font-semibold text-xs">
                                                 {user.name.charAt(0)}
                                             </div>
-                                            <div className="font-medium text-neutral-900 dark:text-neutral-50">{user.name}</div>
+                                            <div className="font-medium text-neutral-800 dark:text-neutral-100">{user.name}</div>
                                             {user.isAdmin && (
                                                 <span className="text-[10px] bg-primary-100 dark:bg-primary-600/20 text-primary-600 px-2 py-0.5 rounded-lg font-medium">
                                                     Admin
