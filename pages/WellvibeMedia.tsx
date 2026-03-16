@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { YoutubeIcon, ArrowRightIcon } from '../components/Icons';
-import { Play, ExternalLink, X } from 'lucide-react';
+import { YoutubeIcon } from '../components/Icons';
+import { Play, ExternalLink, X, ArrowRight } from 'lucide-react';
 
 const WellvibeMedia: React.FC = () => {
     const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
@@ -15,255 +15,141 @@ const WellvibeMedia: React.FC = () => {
     };
 
     const videos = [
-        {
-            id: 'Q0zJ_vZEupc',
-            title: 'Libido: El termómetro de tu salud metabólica',
-            thumbnail: 'https://img.youtube.com/vi/Q0zJ_vZEupc/maxresdefault.jpg',
-            duration: '58:45',
-            category: 'Wellvibe Live'
-        },
-        {
-            id: '93R9WEyw9Js',
-            title: 'El calendario secreto de tu cuerpo',
-            thumbnail: 'https://img.youtube.com/vi/93R9WEyw9Js/maxresdefault.jpg',
-            duration: '1:05:20',
-            category: 'En Vivo'
-        },
-        {
-            id: '-JADCesWEog',
-            title: 'Los 7 principios de la trascendencia',
-            thumbnail: 'https://img.youtube.com/vi/-JADCesWEog/maxresdefault.jpg',
-            duration: '1:12:15',
-            category: 'Educativo'
-        },
-        {
-            id: 'IfbE_5Xbsl8',
-            title: 'El botón de pausa de tu ansiedad: Nervio vago',
-            thumbnail: 'https://img.youtube.com/vi/IfbE_5Xbsl8/maxresdefault.jpg',
-            duration: '45:30',
-            category: 'Wellvibe Live'
-        },
-        {
-            id: 'W9KhVq-grzU',
-            title: '5 desayunos para bajar el azúcar en sangre',
-            thumbnail: 'https://img.youtube.com/vi/W9KhVq-grzU/maxresdefault.jpg',
-            duration: '1:02:10',
-            category: 'Nutrición'
-        },
-        {
-            id: 'xMr-_e5qokQ',
-            title: 'Hígado limpio, vida plena: Detoxificación',
-            thumbnail: 'https://img.youtube.com/vi/xMr-_e5qokQ/maxresdefault.jpg',
-            duration: '1:20:45',
-            category: 'En Vivo'
-        },
+        { id: 'Q0zJ_vZEupc', title: 'Libido: El termómetro de tu salud metabólica', thumbnail: 'https://img.youtube.com/vi/Q0zJ_vZEupc/maxresdefault.jpg', duration: '58:45', category: 'Wellvibe Live' },
+        { id: '93R9WEyw9Js', title: 'El calendario secreto de tu cuerpo', thumbnail: 'https://img.youtube.com/vi/93R9WEyw9Js/maxresdefault.jpg', duration: '1:05:20', category: 'En Vivo' },
+        { id: '-JADCesWEog', title: 'Los 7 principios de la trascendencia', thumbnail: 'https://img.youtube.com/vi/-JADCesWEog/maxresdefault.jpg', duration: '1:12:15', category: 'Educativo' },
+        { id: 'IfbE_5Xbsl8', title: 'El botón de pausa de tu ansiedad: Nervio vago', thumbnail: 'https://img.youtube.com/vi/IfbE_5Xbsl8/maxresdefault.jpg', duration: '45:30', category: 'Wellvibe Live' },
+        { id: 'W9KhVq-grzU', title: '5 desayunos para bajar el azúcar en sangre', thumbnail: 'https://img.youtube.com/vi/W9KhVq-grzU/maxresdefault.jpg', duration: '1:02:10', category: 'Nutrición' },
+        { id: 'xMr-_e5qokQ', title: 'Hígado limpio, vida plena: Detoxificación', thumbnail: 'https://img.youtube.com/vi/xMr-_e5qokQ/maxresdefault.jpg', duration: '1:20:45', category: 'En Vivo' },
     ];
 
-    const openVideo = (id: string) => {
-        setActiveVideoId(id);
-        document.body.style.overflow = 'hidden';
-    };
-
-    const closeVideo = () => {
-        setActiveVideoId(null);
-        document.body.style.overflow = 'auto';
-    };
+    const openVideo = (id: string) => setActiveVideoId(id);
+    const closeVideo = () => setActiveVideoId(null);
 
     return (
-        <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 space-y-20 pb-20">
-            {/* Header Section - Refined Minimalism */}
-            <header className="px-6 max-w-6xl mx-auto w-full">
-                <div className="space-y-6">
-                    <div className="inline-flex">
-                        <span className="px-3 py-1.5 text-xs font-medium text-primary-600 bg-primary-600/8 dark:bg-primary-600/10 rounded-full">
-                            Wellvibe Media
-                        </span>
-                    </div>
-                    <div className="space-y-4">
-                        <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight leading-tight">
-                            Sesiones en <br />
-                            <span className="text-primary-600">directo</span>
-                        </h1>
-                        <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl font-normal leading-relaxed">
-                            Accede a nuestras transmisiones, talleres y masterclasses diseñadas para elevar tu inteligencia energética y transformación personal.
-                        </p>
-                    </div>
-                </div>
-            </header>
+        <div className="w-full pt-[72px] lg:pt-0 pb-16 overflow-x-hidden">
+            {/* Header */}
+            <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-8">
+                <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
+                    Wellvibe <span className="text-primary-600">Media</span>
+                </h1>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+                    Transmisiones, talleres y masterclasses para tu transformación personal.
+                </p>
+            </div>
 
-            {/* Featured Video - Clean & Elegant */}
-            <section className="px-6 max-w-6xl mx-auto w-full">
-                <div className="bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
-                    <div className="grid lg:grid-cols-2">
-                        {/* Video Container */}
-                        <div className="aspect-video bg-black relative">
+            {/* Featured Video — horizontal card */}
+            <div className="px-6 lg:px-0 pb-10">
+                <div
+                    onClick={() => openVideo(featuredVideo.id)}
+                    className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+                >
+                    <div className="flex flex-col sm:flex-row">
+                        <div className="sm:w-1/2 aspect-video sm:aspect-auto sm:min-h-[220px] bg-black relative overflow-hidden">
                             <iframe
-                                className="w-full h-full"
+                                className="w-full h-full pointer-events-none"
                                 src={`https://www.youtube.com/embed/${featuredVideo.id}?rel=0&showinfo=0&autoplay=0`}
                                 title={featuredVideo.title}
                                 frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
+                                allow="encrypted-media"
                             ></iframe>
+                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                                <div className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                                </div>
+                            </div>
                         </div>
-
-                        {/* Content Container */}
-                        <div className="p-8 lg:p-12 flex flex-col justify-center space-y-6">
-                            {/* Metadata */}
-                            <div className="flex items-center gap-3">
-                                <span className="px-3 py-1 rounded-lg text-xs font-medium bg-primary-600 text-white">
-                                    Destacado
-                                </span>
-                                <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                                    {featuredVideo.duration} • {featuredVideo.category}
-                                </span>
+                        <div className="sm:w-1/2 p-5 lg:p-6 flex flex-col justify-center">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Destacado</span>
+                                <span className="text-[11px] text-neutral-400">{featuredVideo.duration} · {featuredVideo.category}</span>
                             </div>
-
-                            {/* Title */}
-                            <div className="space-y-2">
-                                <h2 className="text-3xl lg:text-4xl font-semibold text-neutral-800 dark:text-neutral-50 leading-tight">
-                                    {featuredVideo.title}
-                                </h2>
-                                <p className="text-sm text-primary-600 font-medium">
-                                    {featuredVideo.subtitle}
-                                </p>
-                            </div>
-
-                            {/* Description */}
-                            <p className="text-neutral-600 dark:text-neutral-300 text-base leading-relaxed font-normal">
+                            <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1 group-hover:text-primary-600 transition-colors">
+                                {featuredVideo.title}
+                            </h2>
+                            <p className="text-xs text-primary-600 mb-2">{featuredVideo.subtitle}</p>
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">
                                 {featuredVideo.description}
                             </p>
-
-                            {/* CTA Button */}
-                            <div className="pt-4">
-                                <button
-                                    onClick={() => openVideo(featuredVideo.id)}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-sm"
-                                >
-                                    <Play className="w-4 h-4 fill-current" />
-                                    Ver sesión
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            {/* Video Grid Section */}
-            <section className="px-6 max-w-6xl mx-auto w-full">
-                {/* Section Header */}
-                <div className="flex items-center justify-between mb-12">
-                    <div>
-                        <h2 className="text-sm font-medium text-primary-600 mb-2">Transmisiones</h2>
-                        <h3 className="text-3xl lg:text-4xl font-semibold text-neutral-800 dark:text-neutral-50">
-                            Sesiones pasadas
-                        </h3>
-                    </div>
+            {/* Video Grid */}
+            <div className="px-6 lg:px-0 pb-10">
+                <div className="flex items-center justify-between mb-5">
+                    <h2 className="text-sm font-medium text-neutral-800 dark:text-neutral-100">Sesiones pasadas</h2>
                     <a
                         href="https://youtube.com/@wellvibe-media"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors"
+                        className="flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 font-medium transition-colors"
                     >
-                        Ir a YouTube
-                        <ExternalLink className="w-4 h-4" />
+                        Ir a YouTube <ExternalLink className="w-3 h-3" />
                     </a>
                 </div>
 
-                {/* Video Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {videos.map((video, index) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {videos.map((video) => (
                         <div
                             key={video.id}
-                            className="group bg-white dark:bg-neutral-800 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col h-full"
-                            style={{ animationDelay: `${index * 50}ms` }}
                             onClick={() => openVideo(video.id)}
+                            className="group cursor-pointer"
                         >
-                            {/* Thumbnail */}
-                            <div className="relative h-48 overflow-hidden bg-neutral-200 dark:bg-neutral-700">
+                            <div className="relative overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800 aspect-video mb-3">
                                 <img
                                     src={video.thumbnail}
                                     alt={video.title}
-                                    className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                                 />
-                                {/* Play Overlay */}
-                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <div className="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center shadow-sm">
-                                        <Play className="w-5 h-5 fill-current ml-0.5" />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                                    <div className="w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <Play className="w-4 h-4 fill-current ml-0.5" />
                                     </div>
                                 </div>
-                                {/* Duration Badge */}
-                                <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-neutral-900/80 dark:bg-neutral-950/80 rounded-md text-xs font-medium text-white">
+                                <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/70 rounded text-[11px] text-white font-medium">
                                     {video.duration}
                                 </div>
                             </div>
-
-                            {/* Content */}
-                            <div className="p-6 flex flex-col flex-grow space-y-4">
-                                {/* Category */}
-                                <span className="text-xs font-medium text-primary-600">
-                                    {video.category}
-                                </span>
-
-                                {/* Title */}
-                                <h4 className="text-lg font-semibold text-neutral-800 dark:text-neutral-50 leading-tight line-clamp-2">
-                                    {video.title}
-                                </h4>
-
-                                {/* Footer */}
-                                <div className="mt-auto pt-4 border-t border-neutral-200 dark:border-neutral-700">
-                                    <div className="flex items-center justify-between">
-                                        <span className="text-sm font-medium text-primary-600">
-                                            Ver sesión
-                                        </span>
-                                        <ArrowRightIcon className="w-4 h-4 text-neutral-400 group-hover:text-primary-600 transition-colors" />
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug mb-1 group-hover:text-primary-600 transition-colors line-clamp-2">
+                                {video.title}
+                            </h3>
+                            <span className="text-[11px] text-neutral-400">{video.category}</span>
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
 
-            {/* Subscribe Section - Subtle Gradient */}
-            <section className="px-6 max-w-6xl mx-auto w-full">
-                <div className="relative bg-gradient-to-br from-primary-600/10 via-primary-600/5 to-transparent dark:from-primary-600/20 dark:via-primary-600/10 dark:to-transparent rounded-lg border border-primary-200 dark:border-primary-600/30 p-12 lg:p-16 text-center overflow-hidden">
-                    {/* Content */}
-                    <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
-                        <h2 className="text-3xl lg:text-5xl font-semibold text-neutral-800 dark:text-neutral-50 tracking-tight">
-                            Únete a nuestra comunidad
-                        </h2>
-                        <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal">
-                            Suscríbete a nuestro canal de YouTube y activa las notificaciones para no perderte ningún estreno de Wellvibe Media.
-                        </p>
-                        <div className="pt-2">
-                            <a
-                                href="https://youtube.com/@wellvibe-media?sub_confirmation=1"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all active:scale-95 shadow-md hover:shadow-sm"
-                            >
-                                <YoutubeIcon className="w-5 h-5" />
-                                Suscribirse
-                            </a>
-                        </div>
+            {/* Subscribe */}
+            <div className="px-6 lg:px-0">
+                <div className="bg-primary-600 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
+                    <div className="text-center sm:text-left">
+                        <h3 className="text-base font-medium text-white mb-1">Únete a la comunidad</h3>
+                        <p className="text-primary-100 text-xs">Suscríbete a YouTube para no perderte ningún estreno.</p>
                     </div>
+                    <a
+                        href="https://youtube.com/@wellvibe-media?sub_confirmation=1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary-600 rounded-lg font-medium text-sm hover:shadow-sm transition-all shrink-0"
+                    >
+                        <YoutubeIcon className="w-4 h-4" />
+                        Suscribirse
+                    </a>
                 </div>
-            </section>
+            </div>
 
-            {/* Video Player Modal */}
+            {/* Video Modal */}
             {activeVideoId && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8 animate-fade-in">
-                    <div
-                        className="absolute inset-0 bg-black/95 backdrop-blur-sm"
-                        onClick={closeVideo}
-                    ></div>
-                    <div className="relative w-full max-w-6xl aspect-video bg-black rounded-lg overflow-hidden shadow-md border border-neutral-700 group">
+                    <div className="absolute inset-0 bg-black/90" onClick={closeVideo}></div>
+                    <div className="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden">
                         <button
                             onClick={closeVideo}
-                            className="absolute top-4 right-4 z-50 w-10 h-10 bg-neutral-700 hover:bg-primary-600 text-white rounded-lg flex items-center justify-center transition-colors"
+                            className="absolute top-3 right-3 z-50 p-2 bg-neutral-800/80 hover:bg-red-600 text-white rounded-lg transition-colors"
                         >
-                            <X className="w-6 h-6" />
+                            <X className="w-5 h-5" />
                         </button>
                         <iframe
                             className="w-full h-full"

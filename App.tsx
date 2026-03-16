@@ -24,6 +24,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './pages/AdminDashboard';
 import TallerMascotas from './pages/TallerMascotas';
+import ResetHormonal from './pages/ResetHormonal';
+import ActosQueMueven from './pages/ActosQueMueven';
 
 
 const PAGE_MAP: Record<string, string> = {
@@ -120,6 +122,8 @@ const AppContent: React.FC = () => {
                 <Route path="/calendario" element={<CalendarPage />} />
                 <Route path="/wellvibe-media" element={<WellvibeMedia />} />
                 <Route path="/taller-mascotas" element={<TallerMascotas />} />
+                <Route path="/reset-hormonal" element={<ResetHormonal />} />
+                <Route path="/actos-que-mueven" element={<ActosQueMueven />} />
                 <Route path="/course/:courseId" element={
                   <ProtectedRoute>
                     <CourseDetail />

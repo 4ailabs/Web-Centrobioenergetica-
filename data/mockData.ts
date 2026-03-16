@@ -33,6 +33,78 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      id: 105,
+      title: 'Actos que Mueven',
+      description: 'Taller vivencial de rituales personales. El cuerpo no cambia con lo que entiendes — cambia con lo que haces. Dos módulos para aprender a diseñar y ejecutar actos rituales con la Secuencia TAME.',
+      author: 'Dr. Miguel Ojeda Ríos',
+      price: 0,
+      lessons: 2,
+      level: 'Básico' as const,
+      imageUrl: '/images/courses/actos-que-mueven/ritual_2.png',
+      modules: [
+        {
+          id: 1,
+          title: 'Los 5 Actos Fundamentales',
+          description: '6 de junio · 10:00 – 18:00 h. Cinco actos rituales independientes, cada uno trabajando un patrón diferente.',
+          order: 1,
+          videos: [
+            { id: 1, title: 'Módulo 1 — Actos que Mueven', description: 'Jornada completa. 10:00 – 18:00 h.', duration: '8:00:00', order: 1 },
+          ],
+        },
+        {
+          id: 2,
+          title: 'La Secuencia que Transforma',
+          description: '20 de junio · 10:00 – 18:00 h. Secuencia progresiva de 6 actos encadenados: Descenso → Encuentro → Ascenso.',
+          order: 2,
+          videos: [
+            { id: 2, title: 'Módulo 2 — Actos que Mueven', description: 'Jornada completa. 10:00 – 18:00 h.', duration: '8:00:00', order: 1 },
+          ],
+        },
+      ],
+    },
+    {
+      id: 104,
+      title: 'El Reset Hormonal',
+      description: 'Método de equilibrio para el climaterio y la postmenopausia. Sistema de regulación femenina con Cartografía Hormonal, fitoterapia específica y protocolos probados.',
+      author: 'Dr. Miguel Ojeda Ríos',
+      price: 0,
+      lessons: 2,
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/reset-hormonal/reset_hormonal.jpg',
+      modules: [
+        {
+          id: 1,
+          title: 'Sábado 1 — El Mapa',
+          description: '16 de mayo · 10:00 – 18:00 h. Cartografía Hormonal Femenina: mapas de regulación para climaterio y postmenopausia.',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'El Mapa — Reset Hormonal',
+              description: 'Jornada completa. 10:00 – 18:00 h.',
+              duration: '8:00:00',
+              order: 1,
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: 'Sábado 2 — El Método',
+          description: '30 de mayo · 10:00 – 18:00 h. Protocolos de aplicación, fitoterapia y La Botica del Reset.',
+          order: 2,
+          videos: [
+            {
+              id: 2,
+              title: 'El Método — Reset Hormonal',
+              description: 'Jornada completa. 10:00 – 18:00 h.',
+              duration: '8:00:00',
+              order: 1,
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: 102,
       title: 'Set Point',
       description: 'Descubre y ajusta tu punto de ajuste metabólico y energético para alcanzar un bienestar sostenible y definitivo.',

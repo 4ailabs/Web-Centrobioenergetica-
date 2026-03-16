@@ -79,6 +79,60 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
+      {/* Próximamente — Reset Hormonal */}
+      <div className="px-6 lg:px-0 pb-8">
+        <div
+          onClick={() => navigate('/reset-hormonal')}
+          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px]">
+              <img src="/images/courses/reset-hormonal/reset_hormonal.jpg" alt="El Reset Hormonal" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+            </div>
+            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Próximamente</span>
+                <span className="text-[11px] text-neutral-400">Curso · 2 Sábados</span>
+              </div>
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
+                Método de Equilibrio para el Climaterio
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
+                16 y 30 de mayo · 10:00 – 18:00 h · Presencial u Online
+              </p>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Ríos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Próximamente — Actos que Mueven */}
+      <div className="px-6 lg:px-0 pb-8">
+        <div
+          onClick={() => navigate('/actos-que-mueven')}
+          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px]">
+              <img src="/images/courses/actos-que-mueven/ritual_2.png" alt="Actos que Mueven" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+            </div>
+            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Próximamente</span>
+                <span className="text-[11px] text-neutral-400">Taller · 2 Sábados</span>
+              </div>
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
+                Taller de Rituales Personales
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
+                6 y 20 de junio · 10:00 – 18:00 h · Presencial · Cupo: 15 personas
+              </p>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Ríos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Courses section */}
       <div className="px-6 lg:px-0 pb-8">
         <div className="flex items-center justify-between mb-5">
