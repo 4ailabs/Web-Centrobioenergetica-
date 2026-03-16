@@ -72,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
       <div className="lg:hidden fixed top-0 left-0 right-0 bg-neutral-100 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 z-50 px-4 py-3 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <LogoIcon className="h-7 w-auto" />
+            <img src="/logo-instituto.svg" alt="Instituto Centrobioenergética" className="h-7 w-7" />
             <span className="text-[12px] font-medium text-neutral-800 dark:text-neutral-100">Instituto Centrobioenergética</span>
           </div>
           <button
@@ -135,7 +135,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
           ) : (
             <>
               <div className="flex items-center gap-2.5">
-                <LogoIcon className="h-7 w-auto" />
+                <img src="/logo-instituto.svg" alt="Instituto Centrobioenergética" className="h-7 w-7" />
                 <div className="flex flex-col">
                   <span className="text-[11px] font-medium text-neutral-800 dark:text-neutral-100 leading-tight">Instituto</span>
                   <span className="text-[10px] text-neutral-400 dark:text-neutral-500 leading-tight">Centrobioenergética</span>
