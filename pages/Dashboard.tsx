@@ -86,8 +86,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
           className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
         >
           <div className="flex flex-col sm:flex-row">
-            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px]">
-              <img src="/images/courses/reset-hormonal/reset_hormonal.jpg" alt="El Reset Hormonal" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+            <div className="sm:w-1/2 overflow-hidden aspect-[16/9] sm:aspect-auto sm:min-h-[200px]">
+              <img src="/images/courses/reset-hormonal/reset_hormonal.jpg" alt="El Reset Hormonal" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" />
             </div>
             <div className="sm:w-1/2 p-5 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
