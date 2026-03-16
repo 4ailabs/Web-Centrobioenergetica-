@@ -26,6 +26,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import TallerMascotas from './pages/TallerMascotas';
 import ResetHormonal from './pages/ResetHormonal';
 import ActosQueMueven from './pages/ActosQueMueven';
+import RegulacionBioelectrica from './pages/RegulacionBioelectrica';
+import RBMetodo from './pages/RBMetodo';
 
 
 const PAGE_MAP: Record<string, string> = {
@@ -126,6 +128,8 @@ const AppContent: React.FC = () => {
                 <Route path="/taller-mascotas" element={<TallerMascotas />} />
                 <Route path="/reset-hormonal" element={<ResetHormonal />} />
                 <Route path="/actos-que-mueven" element={<ActosQueMueven />} />
+                <Route path="/regulacion-bioelectrica" element={<RegulacionBioelectrica />} />
+                <Route path="/rb" element={<RBMetodo />} />
                 <Route path="/course/:courseId" element={
                   <ProtectedRoute>
                     <CourseDetail />

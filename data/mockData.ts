@@ -33,6 +33,22 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      id: 106,
+      title: 'El Cuerpo Eléctrico — RB',
+      description: 'Tu cuerpo es un mapa eléctrico. Aprende a leerlo. Formación profesional en evaluación y regulación del estado bioeléctrico del cuerpo humano con campos magnéticos estáticos.',
+      author: 'Dr. Miguel Ojeda Rios',
+      price: 0,
+      lessons: 4,
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/regulacion-bioelectrica/banner.png',
+      modules: [
+        { id: 1, title: 'El Mapa Eléctrico', description: '11 de julio · 10:00 – 18:00 h', order: 1, videos: [{ id: 1, title: 'Módulo 1 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
+        { id: 2, title: 'El Rastreo', description: '25 de julio · 10:00 – 18:00 h', order: 2, videos: [{ id: 2, title: 'Módulo 2 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
+        { id: 3, title: 'La Impactación', description: '8 de agosto · 10:00 – 18:00 h', order: 3, videos: [{ id: 3, title: 'Módulo 3 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
+        { id: 4, title: 'La Clínica', description: '22 de agosto · 10:00 – 18:00 h', order: 4, videos: [{ id: 4, title: 'Módulo 4 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
+      ],
+    },
+    {
       id: 105,
       title: 'Actos que Mueven',
       description: 'Taller vivencial de rituales personales. El cuerpo no cambia con lo que entiendes — cambia con lo que haces. Dos módulos para aprender a diseñar y ejecutar actos rituales con la Secuencia TAME.',
@@ -661,6 +677,38 @@ Beneficios esperados:
       date: '2026-06-20T10:00:00Z',
       type: 'workshop',
       location: 'Presencial',
+    },
+    {
+      id: 7,
+      title: 'Regulación Bioeléctrica — El Mapa Eléctrico',
+      description: 'Módulo 1: Qué es el cuerpo eléctrico, la matriz extracelular, el voltaje celular y cómo interactúan los imanes con el tejido.',
+      date: '2026-07-11T10:00:00Z',
+      type: 'workshop',
+      location: 'Presencial u Online',
+    },
+    {
+      id: 8,
+      title: 'Regulación Bioeléctrica — El Rastreo',
+      description: 'Módulo 2: Cómo leer el mapa bioeléctrico del cuerpo. Rastreo por regiones anatómicas.',
+      date: '2026-07-25T10:00:00Z',
+      type: 'workshop',
+      location: 'Presencial u Online',
+    },
+    {
+      id: 9,
+      title: 'Regulación Bioeléctrica — La Impactación',
+      description: 'Módulo 3: Protocolos de aplicación, contraindicaciones y práctica completa supervisada.',
+      date: '2026-08-08T10:00:00Z',
+      type: 'workshop',
+      location: 'Presencial u Online',
+    },
+    {
+      id: 10,
+      title: 'Regulación Bioeléctrica — La Clínica',
+      description: 'Módulo 4: Casos clínicos, supervisión en vivo, documentación profesional y certificación.',
+      date: '2026-08-22T10:00:00Z',
+      type: 'workshop',
+      location: 'Presencial u Online',
     },
   ] as CalendarEvent[],
 };

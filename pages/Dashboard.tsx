@@ -139,6 +139,53 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
+      {/* Próximamente — Regulación Bioeléctrica */}
+      <div className="px-6 lg:px-0 pb-8">
+        <div
+          onClick={() => navigate('/regulacion-bioelectrica')}
+          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px] relative" style={{ background: '#FAF9F6' }}>
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+                {[[30,20,2,0.07],[80,60,2.5,0.09],[50,120,1.8,0.06],[140,35,2,0.05],[120,160,2.5,0.07],
+                  [320,25,2,0.06],[370,70,2.5,0.08],[340,130,2,0.05],[380,170,2,0.06],[280,90,1.8,0.05],
+                  [200,15,1.2,0.04],[250,180,1.5,0.04]
+                ].map(([cx,cy,r,o], i) => <circle key={`rn${i}`} cx={cx} cy={cy} r={r} fill="#0F6E56" opacity={o} />)}
+                {[[30,20,80,60],[80,60,50,120],[80,60,140,35],[120,160,50,120],
+                  [320,25,370,70],[370,70,340,130],[380,170,340,130],[280,90,340,130]
+                ].map(([x1,y1,x2,y2], i) => <line key={`rl${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0F6E56" strokeWidth="0.5" opacity="0.05" />)}
+              </svg>
+              <div className="relative z-10 flex flex-col items-center justify-center h-full py-8 px-6">
+                <svg width="64" height="18" viewBox="0 0 44 12">
+                  <circle cx="6" cy="6" r="5" fill="#0F6E56"/>
+                  <line x1="13" y1="6" x2="25" y2="6" stroke="#0F6E56" strokeWidth="0.8"/>
+                  <circle cx="32" cy="6" r="5" fill="#0F6E56" opacity="0.35"/>
+                </svg>
+                <div className="flex flex-col items-center mt-2.5">
+                  <span style={{ fontFamily: 'Georgia, serif', fontSize: 17, color: '#2C2C2A', letterSpacing: 1 }}>Regulación</span>
+                  <span style={{ fontFamily: 'Georgia, serif', fontSize: 17, color: '#0F6E56', letterSpacing: 1 }}>Bioeléctrica</span>
+                </div>
+              </div>
+            </div>
+            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 text-white text-[10px] font-medium rounded-full" style={{ background: '#0F6E56' }}>Próximamente</span>
+                <span className="text-[11px] text-neutral-400">Curso · 4 Sábados</span>
+              </div>
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5" style={{ fontFamily: 'Georgia, serif' }}>
+                El Cuerpo <span style={{ color: '#0F6E56' }}>Eléctrico</span>
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Tu cuerpo es un mapa eléctrico. Aprende a leerlo.</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
+                Julio–Agosto 2026 · Presencial u Online · 15 lugares
+              </p>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Courses section */}
       <div className="px-6 lg:px-0 pb-8">
         <div className="flex items-center justify-between mb-5">
