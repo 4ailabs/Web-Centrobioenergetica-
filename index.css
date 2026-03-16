@@ -50,13 +50,24 @@
   --border-medium: rgba(222, 219, 214, 0.12);
 }
 
+html {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
 body {
   @apply bg-[var(--bg-main)] text-[var(--text-primary)] font-sans antialiased transition-colors duration-300;
   font-weight: 400;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   padding-top: var(--safe-area-inset-top);
   padding-right: var(--safe-area-inset-right);
   padding-bottom: var(--safe-area-inset-bottom);
   padding-left: var(--safe-area-inset-left);
+  -webkit-overflow-scrolling: touch;
 }
 
 h1,
