@@ -123,13 +123,13 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             </div>
             <div className="sm:w-1/2 p-5 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Próximamente</span>
+                <span className="px-2 py-0.5 text-white text-[10px] font-medium rounded-full" style={{ background: '#8B4513' }}>Próximamente</span>
                 <span className="text-[11px] text-neutral-400">Taller · 2 Sábados</span>
               </div>
-              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5 group-hover:text-primary-600 transition-colors">
-                Actos que Mueven
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                Actos que <span style={{ color: '#8B4513' }}>Mueven</span>
               </h2>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Taller de rituales personales</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">El cuerpo no cambia con lo que entiendes — cambia con lo que haces</p>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
                 6 y 20 de junio · 10:00 – 18:00 h · Presencial · Cupo: 15 personas
               </p>
