@@ -83,25 +83,17 @@ const RegulacionBioelectrica: React.FC = () => {
         </button>
       </div>
 
-      {/* ===== HERO — full width ===== */}
-      <div className="relative overflow-hidden" style={{ minHeight: 320 }}>
-        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.6 }} viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice">
-          {[[60,40,2.5,0.06],[140,100,3,0.08],[80,180,2,0.05],[200,60,1.8,0.04],[160,260,2.5,0.07],
-            [1000,35,2,0.05],[1080,90,2.8,0.07],[1040,170,2,0.04],[1120,240,3,0.08],[960,130,1.8,0.05],
-            [350,25,1.5,0.03],[800,290,1.8,0.03],[500,20,1.2,0.02],[700,300,1.5,0.02]
-          ].map(([cx,cy,r,o], i) => <circle key={i} cx={cx} cy={cy} r={r} fill={T} opacity={o} />)}
-          {[[60,40,140,100],[140,100,80,180],[140,100,200,60],[160,260,80,180],
-            [1000,35,1080,90],[1080,90,1040,170],[1120,240,1040,170],[960,130,1040,170]
-          ].map(([x1,y1,x2,y2], i) => <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={T} strokeWidth="0.5" opacity="0.04" />)}
-        </svg>
-
-        <div className="relative z-10 flex flex-col items-center justify-center py-12 px-6">
-          <Dipolo size={56} />
-          <div className="flex flex-col items-center mt-5">
-            <span style={{ fontFamily: G, fontSize: 26, color: BK, letterSpacing: 1.5 }}>Regulación</span>
-            <span style={{ fontFamily: G, fontSize: 26, color: T, letterSpacing: 1.5 }}>bioeléctrica</span>
+      {/* ===== HERO — imagen + overlay ===== */}
+      <div className="relative overflow-hidden rounded-xl mx-6 lg:mx-0" style={{ minHeight: 240 }}>
+        <img src="/images/courses/regulacion-bioelectrica/Fondo.jpg" alt="Regulación Bioeléctrica" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(13,27,31,0.7) 0%, rgba(13,27,31,0.3) 100%)' }} />
+        <div className="relative z-10 flex flex-col justify-center py-10 px-8" style={{ minHeight: 240 }}>
+          <Dipolo size={48} color="#5DCAA5" />
+          <div className="flex flex-col mt-4">
+            <span style={{ fontFamily: G, fontSize: 24, color: '#E8E6DE', letterSpacing: 1.5 }}>Regulación</span>
+            <span style={{ fontFamily: G, fontSize: 24, color: '#5DCAA5', letterSpacing: 1.5 }}>Bioeléctrica</span>
           </div>
-          <p className="text-center mt-3 max-w-sm" style={{ fontSize: 12, color: GR, lineHeight: 1.6 }}>
+          <p className="mt-2 max-w-sm" style={{ fontSize: 12, color: '#E8E6DE', opacity: 0.7, lineHeight: 1.5 }}>
             Formación profesional · 4 sábados · Julio–Agosto 2026
           </p>
         </div>

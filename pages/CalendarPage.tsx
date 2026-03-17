@@ -61,6 +61,8 @@ const CalendarPage: React.FC = () => {
         if (title.includes('Mascota')) return '/taller-mascotas';
         if (title.includes('Reset')) return '/reset-hormonal';
         if (title.includes('Actos')) return '/actos-que-mueven';
+        if (title.includes('Regulación') || title.includes('Bioeléctrica') || title.includes('RB') || title.includes('Cuerpo Eléctrico')) return '/regulacion-bioelectrica';
+        if (title.includes('Palabras No Alcanzan')) return '/cuando-las-palabras';
         return null;
     };
 
