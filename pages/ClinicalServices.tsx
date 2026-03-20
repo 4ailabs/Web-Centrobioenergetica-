@@ -29,7 +29,7 @@ const ClinicalServices: React.FC = () => {
       name: 'Salud Emocional',
       services: [
         { title: 'Terapia de metaposiciones', desc: 'Conexión energética a través de patrones invisibles de información.', icon: 'infinity' },
-        { title: 'Consulta de Flores de Bach', desc: 'Esencias florales para equilibrar emociones y reducir estrés.', icon: 'flower' },
+        { title: 'Consulta de Remedios Florales', desc: 'Esencias florales para equilibrar emociones y reducir estrés.', icon: 'flower' },
         { title: 'Conflictología biológica', desc: 'Conflictos emocionales desde una perspectiva biológica.', icon: 'message' },
         { title: 'Terapia Sand Play', desc: 'Procesamiento de emociones y resolución simbólica de traumas.', icon: 'box' },
       ]

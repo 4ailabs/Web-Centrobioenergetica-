@@ -9,7 +9,7 @@ interface CTASectionProps {
 
 const CTASection: React.FC<CTASectionProps> = ({
     title = "¿Listo para comenzar?",
-    description = "Agenda tu cita y descubre cómo nuestras terapias integrativas — biomagnetismo, nutrición, flores de Bach y técnicas somáticas — pueden apoyar tu bienestar."
+    description = "Agenda tu cita y descubre cómo nuestras terapias integrativas — biomagnetismo, nutrición, remedios florales y técnicas somáticas — pueden apoyar tu bienestar."
 }) => {
     return (
         <section className="px-6">

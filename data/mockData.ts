@@ -331,7 +331,7 @@ export const MOCK_DATA = {
     },
     {
       id: 3,
-      title: 'Flores de Bach',
+      title: 'Remedios Florales',
       description: 'Sistema de sanación natural con esencias florales para el equilibrio emocional.',
       duration: '30-45 min',
       price: 'Consultar',
@@ -633,7 +633,7 @@ Beneficios esperados:
     {
       id: 1,
       title: 'Lo Que Tu Mascota Quiere Decirte — Módulo 1',
-      description: 'Tu Mascota Es Tu Espejo. Flores de Bach, lectura del campo mórfico y los 10 conflictos más comunes mascota-dueño.',
+      description: 'Tu Mascota Es Tu Espejo. Remedios florales, lectura del campo mórfico y los 10 conflictos más comunes mascota-dueño.',
       date: '2026-03-27T15:00:00Z',
       type: 'workshop',
       location: 'Presencial u Online',
