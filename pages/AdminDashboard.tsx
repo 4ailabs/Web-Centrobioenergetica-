@@ -167,8 +167,8 @@ const AdminDashboard: React.FC = () => {
 
     const filteredUsers = users.filter(
         (user) =>
-            user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            user.email.toLowerCase().includes(searchTerm.toLowerCase())
+            (user.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (user.email || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const activeSubscriptions = users.filter((u) => u.subscriptionStatus === 'active').length;
