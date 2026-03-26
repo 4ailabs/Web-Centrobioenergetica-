@@ -28,6 +28,7 @@ import ResetHormonal from './pages/ResetHormonal';
 import ActosQueMueven from './pages/ActosQueMueven';
 import RegulacionBioelectrica from './pages/RegulacionBioelectrica';
 import RBMetodo from './pages/RBMetodo';
+import TestHormonal from './pages/TestHormonal';
 
 
 const PAGE_MAP: Record<string, string> = {
@@ -130,6 +131,7 @@ const AppContent: React.FC = () => {
                 <Route path="/actos-que-mueven" element={<ActosQueMueven />} />
                 <Route path="/regulacion-bioelectrica" element={<RegulacionBioelectrica />} />
                 <Route path="/rb" element={<RBMetodo />} />
+                <Route path="/test-hormonal" element={<TestHormonal />} />
                 <Route path="/course/:courseId" element={
                   <ProtectedRoute>
                     <CourseDetail />

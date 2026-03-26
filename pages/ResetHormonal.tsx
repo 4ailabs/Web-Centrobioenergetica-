@@ -1,5 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProgramPage from '../components/ProgramPage';
+
+const TestBanner: React.FC = () => {
+  const navigate = useNavigate();
+  return (
+    <div
+      onClick={() => navigate('/test-hormonal')}
+      className="cursor-pointer mx-6 lg:mx-0 mb-6 rounded-xl overflow-hidden transition-all hover:shadow-md"
+      style={{ background: '#F2EDE8', border: '1px solid #E0D6CC' }}
+    >
+      <div className="px-6 py-5 flex items-center justify-between">
+        <div>
+          <span className="text-[10px] font-medium uppercase tracking-widest" style={{ color: '#9a4f3c' }}>Test gratuito</span>
+          <h3 className="text-[15px] font-medium mt-0.5" style={{ color: '#3D3B37' }}>Descubre tu perfil hormonal</h3>
+          <p className="text-[12px] mt-1" style={{ color: '#6B6963' }}>22 preguntas basadas en la escala MRS. Identifica tu fase, la severidad de tus sintomas y tus ejes de riesgo.</p>
+        </div>
+        <div className="shrink-0 ml-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#9a4f3c' }}>
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ResetHormonal: React.FC = () => (
   <ProgramPage
@@ -10,6 +35,7 @@ const ResetHormonal: React.FC = () => (
     modalidad="Presencial u Online · 10:00 – 18:00 h"
     instructor="Dr. Miguel Ojeda Rios"
     detalles={['Curso · 2 Sábados']}
+    heroElement={<TestBanner />}
     modulos={[
       {
         numero: '1',
