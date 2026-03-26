@@ -344,40 +344,34 @@ const TestHormonal: React.FC = () => {
     };
 
     return (
-      <div className="w-full pt-[72px] lg:pt-0 pb-16" style={{ background: '#F9F8F6' }}>
-        {/* Report Header — dark band */}
-        <div style={{ background: '#F2EDE8' }}>
-          <div className="max-w-2xl mx-auto px-6 py-8">
-            <div className="flex items-center justify-between mb-6">
-              <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-500 hover:text-neutral-700 transition-colors text-[13px]">
-                <ArrowLeft className="w-4 h-4" /> Volver al curso
-              </button>
-              <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 11, letterSpacing: 3, color: '#6B6963', textTransform: 'uppercase' as const }}>
-                Instituto Centrobioenergetica
-              </span>
-            </div>
-            <div className="flex items-end justify-between">
-              <div>
-                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 13, color: '#8C8A84', letterSpacing: 2, textTransform: 'uppercase' as const, marginBottom: 6 }}>
-                  Cartografia Hormonal Femenina
-                </p>
-                <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 36, fontWeight: 300, color: result.color, letterSpacing: 1, lineHeight: 1.1 }}>
-                  Perfil {result.name}
-                </h1>
-              </div>
-              <div className="text-right">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md" style={{ background: result.color + '18' }}>
-                  <div className="w-2 h-2 rounded-full" style={{ background: result.color }} />
-                  <span style={{ fontSize: 13, fontWeight: 500, color: result.color }}>{result.severity}</span>
-                </div>
-              </div>
-            </div>
-            {/* Thin colored line under header */}
-            <div className="mt-6 h-px" style={{ background: `linear-gradient(90deg, ${result.color}, ${result.color}40, transparent)` }} />
+      <div className="w-full pt-[72px] lg:pt-0 pb-16 px-6" style={{ background: '#F9F8F6' }}>
+        <div className="max-w-2xl mx-auto pt-6">
+          {/* Navigation */}
+          <div className="flex items-center justify-between mb-8">
+            <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-400 hover:text-neutral-600 transition-colors text-[13px]">
+              <ArrowLeft className="w-4 h-4" /> Volver al curso
+            </button>
+            <span className="text-[11px] uppercase tracking-widest" style={{ color: '#8C8A84' }}>
+              {new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </span>
           </div>
-        </div>
 
-        <div className="max-w-2xl mx-auto px-6">
+          {/* Profile header — integrated, no separate block */}
+          <div className="mb-2">
+            <p className="text-[12px] uppercase tracking-widest mb-2" style={{ color: '#8C8A84', letterSpacing: 3 }}>
+              Cartografia Hormonal Femenina
+            </p>
+            <div className="flex items-end justify-between">
+              <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 34, fontWeight: 300, color: result.color, letterSpacing: 0.5, lineHeight: 1.1 }}>
+                Perfil {result.name}
+              </h1>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md" style={{ background: result.color + '12', border: `1px solid ${result.color}20` }}>
+                <div className="w-2 h-2 rounded-full" style={{ background: result.color }} />
+                <span className="text-[13px] font-medium" style={{ color: result.color }}>{result.severity}</span>
+              </div>
+            </div>
+          </div>
+          <div className="h-px mb-6" style={{ background: `linear-gradient(90deg, ${result.color}60, ${result.color}15, transparent)` }} />
           {/* Phase + Date row */}
           <div className="flex items-center justify-between py-4 border-b" style={{ borderColor: '#E8E6E1' }}>
             <div className="flex items-center gap-6">
@@ -489,7 +483,7 @@ const TestHormonal: React.FC = () => {
 
           {/* CTA */}
           <div className="py-8">
-            <div className="rounded-xl p-6" style={{ background: '#F2EDE8' }}>
+            <div className="rounded-xl p-6 border" style={{ background: '#fff', borderColor: '#E8E6E1' }}>
               <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 20, fontWeight: 300, color: '#3D3B37', marginBottom: 4 }}>
                 El Reset Hormonal
               </p>
