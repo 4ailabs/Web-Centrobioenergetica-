@@ -450,9 +450,12 @@ const TestHormonal: React.FC = () => {
       <div className="px-6 pt-4">
         <div className="max-w-lg mx-auto">
           <div className="flex items-center justify-between mb-2">
-            <button onClick={goBack} className={`flex items-center gap-1.5 text-neutral-400 hover:text-neutral-600 transition-colors text-[13px] ${step === 0 ? 'invisible' : ''}`}>
+            <button
+              onClick={step === 0 ? () => navigate(-1) : goBack}
+              className="flex items-center gap-1.5 text-neutral-400 hover:text-neutral-600 transition-colors text-[13px]"
+            >
               <ArrowLeft className="w-4 h-4" />
-              <span>Anterior</span>
+              <span>{step === 0 ? 'Salir' : 'Anterior'}</span>
             </button>
             <span className="text-[11px] font-medium uppercase tracking-widest" style={{ color: sectionColors[sectionProgress] }}>
               {currentQuestion.sectionLabel}
