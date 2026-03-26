@@ -362,7 +362,7 @@ const TestHormonal: React.FC = () => {
               Cartografia Hormonal Femenina
             </p>
             <div className="flex items-end justify-between">
-              <h1 style={{ fontFamily: "'Newsreader', Georgia, serif", fontSize: 32, fontWeight: 500, color: result.color, letterSpacing: 0.3, lineHeight: 1.1 }}>
+              <h1 className="text-3xl lg:text-4xl" style={{ fontFamily: "'Newsreader', Georgia, serif", fontWeight: 500, color: result.color, letterSpacing: 0.3, lineHeight: 1.1 }}>
                 Perfil {result.name}
               </h1>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md" style={{ background: result.color + '12', border: `1px solid ${result.color}20` }}>
