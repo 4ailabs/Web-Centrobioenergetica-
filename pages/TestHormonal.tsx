@@ -346,10 +346,10 @@ const TestHormonal: React.FC = () => {
     return (
       <div className="w-full pt-[72px] lg:pt-0 pb-16" style={{ background: '#F9F8F6' }}>
         {/* Report Header — dark band */}
-        <div style={{ background: '#2C2825' }}>
+        <div style={{ background: '#F2EDE8' }}>
           <div className="max-w-2xl mx-auto px-6 py-8">
             <div className="flex items-center justify-between mb-6">
-              <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-500 hover:text-neutral-300 transition-colors text-[13px]">
+              <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-500 hover:text-neutral-700 transition-colors text-[13px]">
                 <ArrowLeft className="w-4 h-4" /> Volver al curso
               </button>
               <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 11, letterSpacing: 3, color: '#6B6963', textTransform: 'uppercase' as const }}>
@@ -489,8 +489,8 @@ const TestHormonal: React.FC = () => {
 
           {/* CTA */}
           <div className="py-8">
-            <div className="rounded-xl p-6" style={{ background: '#2C2825' }}>
-              <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 20, fontWeight: 300, color: '#E8E6DE', marginBottom: 4 }}>
+            <div className="rounded-xl p-6" style={{ background: '#F2EDE8' }}>
+              <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 20, fontWeight: 300, color: '#3D3B37', marginBottom: 4 }}>
                 El Reset Hormonal
               </p>
               <p className="text-[13px] mb-4" style={{ color: '#8C8A84' }}>
