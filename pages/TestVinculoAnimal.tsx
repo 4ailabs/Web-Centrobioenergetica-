@@ -224,8 +224,24 @@ const questions: Question[] = [
 
 // ─── Algorithm ────────────────────────────────────────────────────────────────
 
+const evitativoInterpretation: Record<Species, string> = {
+  perro:
+    'En perros, este patrón suele leerse como apatía o indiferencia — cuando en realidad es distancia aprendida. Tu perro no eligió esto: lo aprendió como estrategia de adaptación ante un entorno donde el contacto fue inconsistente.',
+  gato:
+    'Los gatos con este perfil son los más malinterpretados: se les llama independientes cuando en realidad aprendieron que no vale la pena acercarse. No es independencia — es desconexión. El gato no eligió este patrón: lo aprendió.',
+  caballo:
+    'En caballos, este patrón puede verse como falta de respuesta al tacto o a la presencia humana — cuando en realidad es distancia aprendida. El caballo no eligió esto: desarrolló esta estrategia ante señales inconsistentes del entorno.',
+  conejo:
+    'En conejos, este patrón suele leerse como timidez permanente o desinterés — cuando en realidad es distancia aprendida. El conejo no eligió este patrón: lo aprendió como estrategia de adaptación.',
+  ave:
+    'En aves, este patrón puede verse como indiferencia o falta de sociabilidad — cuando en realidad es desconexión aprendida. El ave no eligió este patrón: lo desarrolló ante un entorno donde el contacto fue impredecible.',
+  otro:
+    'Este patrón suele leerse como independencia o indiferencia — cuando en realidad es distancia aprendida. Tu animal no eligió este patrón: lo aprendió como estrategia de adaptación ante un entorno donde el contacto fue inconsistente.',
+};
+
 function calculateProfile(
-  answers: Record<string, number>
+  answers: Record<string, number>,
+  species: Species
 ): Profile & { anxietyScore: number; avoidanceScore: number } {
   const anxietyScore = ['a1', 'a2', 'a3', 'a4', 'a5'].reduce(
     (s, id) => s + (answers[id] ?? 0),
@@ -261,7 +277,7 @@ function calculateProfile(
       description:
         'Tu animal no tiene suficiente suelo interno para regularse sin ti. Busca proximidad de forma intensa, espeja tu estado con fidelidad, y puede mostrar síntomas cuando hay tensión sostenida en el hogar. No es "demasiado cariñoso" — es un sistema nervioso que aprendió que la estabilidad no está garantizada.',
       interpretation:
-        'El flujo de tensión va del sistema humano al animal. Lo que no se procesa en el hogar, el animal lo porta. El cortisol compartido no es metáfora: tiene una firma química medible. Un estudio de 58 pares dueño-perro encontró que el nivel de estrés del dueño predice el del animal con más fuerza que la raza o el ejercicio.',
+        'El flujo de tensión va del sistema humano al animal. Lo que no se procesa en el hogar, el animal lo porta. El cortisol compartido no es metáfora: tiene una firma química medible. Estudios de sincronía fisiológica dueño-animal muestran que el nivel de estrés del dueño predice el del animal con más fuerza que la raza o el ejercicio.',
       recommendation:
         'Este es el perfil que el taller aborda directamente: qué carga emocional porta tu animal y cómo aflojarla desde el sistema completo, no solo desde el animal.',
     };
@@ -272,8 +288,7 @@ function calculateProfile(
       color: '#534AB7',
       description:
         'Tu animal ha aprendido a reducir la expresión de su necesidad de vínculo. Lo que parece independencia es, con frecuencia, desconexión. Hay conexión — pero está suprimida. Esto puede venir de su historia, de experiencias tempranas, o de un entorno donde el contacto fue inconsistente.',
-      interpretation:
-        'Los gatos con este perfil son los más malinterpretados: se les llama independientes cuando en realidad aprendieron que no vale la pena acercarse. En caballos puede verse como falta de respuesta. En perros, como apatía. El animal no eligió este patrón — lo aprendió como estrategia de adaptación.',
+      interpretation: evitativoInterpretation[species],
       recommendation:
         'El taller incluye trabajo específico sobre vínculo evitativo: cómo recuperar la conexión sin forzar el contacto y qué señales observar para saber que el patrón está cambiando.',
     };
@@ -310,12 +325,14 @@ const TestVinculoAnimal: React.FC = () => {
 
   const answersRef = React.useRef(answers);
   answersRef.current = answers;
+  const speciesRef = React.useRef(species);
+  speciesRef.current = species;
 
   const advanceStep = useCallback(() => {
     setAnimating(true);
     setTimeout(() => {
       if (step + 1 >= totalQuestions) {
-        setResult(calculateProfile(answersRef.current));
+        setResult(calculateProfile(answersRef.current, speciesRef.current ?? 'otro'));
       } else {
         setStep(s => s + 1);
       }
