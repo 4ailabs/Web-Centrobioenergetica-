@@ -29,7 +29,7 @@ import ActosQueMueven from './pages/ActosQueMueven';
 import RegulacionBioelectrica from './pages/RegulacionBioelectrica';
 import RBMetodo from './pages/RBMetodo';
 import TestHormonal from './pages/TestHormonal';
-
+import TestVinculoAnimal from './pages/TestVinculoAnimal';
 
 const PAGE_MAP: Record<string, string> = {
   'cursos': 'Cursos',
@@ -132,6 +132,7 @@ const AppContent: React.FC = () => {
                 <Route path="/regulacion-bioelectrica" element={<RegulacionBioelectrica />} />
                 <Route path="/rb" element={<RBMetodo />} />
                 <Route path="/test-hormonal" element={<TestHormonal />} />
+                <Route path="/test-vinculo-animal" element={<TestVinculoAnimal />} />
                 <Route path="/course/:courseId" element={
                   <ProtectedRoute>
                     <CourseDetail />
