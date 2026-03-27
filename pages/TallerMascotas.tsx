@@ -45,7 +45,7 @@ const TallerMascotas: React.FC = () => (
       'Hoja resumen con rutina diaria y semanal',
     ]}
     requisitos="Ninguno. Solo traer una foto de tu mascota."
-    metodoLink={{ label: 'Antes de llegar: haz el Test de Vínculo Animal →', path: '/test-vinculo-animal' }}
+    testBanner={{ label: 'Test de Vínculo Animal', sublabel: 'Descubre el patrón de apego entre tú y tu mascota antes del taller — 3 minutos, gratuito.', path: '/test-vinculo-animal' }}
     whatsappMsg="Hola, quiero inscribirme al taller Lo Que Tu Mascota Quiere Decirte"
   />
 );

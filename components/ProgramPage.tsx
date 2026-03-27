@@ -33,6 +33,7 @@ interface ProgramPageProps {
   badge?: string;
   accentColor?: string;
   metodoLink?: { label: string; path: string };
+  testBanner?: { label: string; sublabel: string; path: string };
   heroElement?: React.ReactNode;
   titleFont?: string;
   modalidades?: { titulo: string; desc: string }[];
@@ -55,6 +56,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
   badge = 'Próximamente',
   accentColor,
   metodoLink,
+  testBanner,
   heroElement,
   titleFont,
   modalidades,
@@ -155,6 +157,24 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Test banner */}
+      {testBanner && (
+        <div className="px-6 lg:px-0 pb-8">
+          <button
+            onClick={() => navigate(testBanner.path)}
+            className="w-full flex items-center justify-between gap-4 px-5 py-4 rounded-xl border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-600/10 hover:bg-primary-100 dark:hover:bg-primary-600/20 transition-colors text-left group"
+          >
+            <div>
+              <p className="text-sm font-semibold text-primary-700 dark:text-primary-400">{testBanner.label}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{testBanner.sublabel}</p>
+            </div>
+            <svg className="w-5 h-5 text-primary-500 shrink-0 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       )}
 
