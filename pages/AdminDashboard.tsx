@@ -204,6 +204,7 @@ const AdminDashboard: React.FC = () => {
     );
 
     const activeSubscriptions = users.filter((u) => u.subscriptionStatus === 'active').length;
+    const usersWithCourses = users.filter((u) => u.enrolledCourses && u.enrolledCourses.length > 0).length;
 
     return (
         <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6 pb-20 relative max-w-6xl mx-auto">
@@ -233,7 +234,7 @@ const AdminDashboard: React.FC = () => {
             </header>
 
             {/* Stats */}
-            <StatsCards totalUsers={users.length} activeSubscriptions={activeSubscriptions} />
+            <StatsCards totalUsers={users.length} activeSubscriptions={activeSubscriptions} usersWithCourses={usersWithCourses} />
 
             {/* Search */}
             <div className="mb-8 relative max-w-md">
