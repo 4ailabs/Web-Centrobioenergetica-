@@ -21,6 +21,9 @@ const PORT = process.env.PORT || 3001;
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
+  'https://www.institutocentrobioenergetica.com',
+  'https://institutocentrobioenergetica.com',
+  'https://institutocentrobioenergetica.vercel.app',
   process.env.CLIENT_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
 ].filter(Boolean);
