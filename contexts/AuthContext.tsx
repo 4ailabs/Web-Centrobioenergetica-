@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../lib/api';
 
 interface User {
   id: string;
@@ -46,7 +47,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
 
     try {
-      const response = await fetch('/api/auth/me', {
+      const response = await fetch(`${API_BASE}/api/auth/me`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -74,7 +75,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const login = async (email: string, password: string) => {
-    const response = await fetch('/api/login', {
+    const response = await fetch(`${API_BASE}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -96,7 +97,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const register = async (email: string, password: string, name: string) => {
-    const response = await fetch('/api/register', {
+    const response = await fetch(`${API_BASE}/api/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password, name }),
@@ -124,7 +125,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Using a mock return for now if endpoint doesn't exist, OR assuming I added it.
     // I need to add GET /api/users to backend. 
     // For now, let's try calling it.
-    const response = await fetch('/api/users', {
+    const response = await fetch(`${API_BASE}/api/users`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -139,7 +140,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const updateUserSubscription = async (userId: string, status: 'active' | 'inactive') => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`/api/users/${userId}/subscription`, {
+    const response = await fetch(`${API_BASE}/api/users/${userId}/subscription`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -152,7 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const updateUserCourses = async (userId: string, courseIds: string[]) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`/api/users/${userId}/courses`, {
+    const response = await fetch(`${API_BASE}/api/users/${userId}/courses`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -165,7 +166,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const adminCreateUser = async (userData: any) => {
     const token = localStorage.getItem('token');
-    const response = await fetch('/api/users', {
+    const response = await fetch(`${API_BASE}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -181,7 +182,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const adminUpdateUser = async (userId: string, userData: any) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`/api/users/${userId}`, {
+    const response = await fetch(`${API_BASE}/api/users/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -194,7 +195,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const adminDeleteUser = async (userId: string) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`/api/users/${userId}`, {
+    const response = await fetch(`${API_BASE}/api/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`

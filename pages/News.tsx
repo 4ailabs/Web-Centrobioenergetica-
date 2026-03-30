@@ -3,6 +3,7 @@ import type { NewsArticle } from '../types';
 import NewsCard from '../components/NewsCard';
 import { SparklesIcon, FilterIcon, SearchIcon, MailIcon } from '../components/Icons';
 import PageHeader from '../components/ui/PageHeader';
+import { API_BASE } from '../lib/api';
 import { Heart, Lightbulb, Zap, X, Share2 } from 'lucide-react';
 import { MOCK_DATA } from '../data/mockData';
 import { useCourses } from '../contexts/AppContext';
@@ -19,7 +20,7 @@ const News: React.FC = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/news');
+        const response = await fetch(`${API_BASE}/api/news`);
         if (response.ok) {
           const data = await response.json();
           setArticles(data.length > 0 ? data : MOCK_DATA.news);
@@ -38,7 +39,7 @@ const News: React.FC = () => {
   const handleReaction = async (articleId: number, reaction: string) => {
     setIsReacting(articleId);
     try {
-      const response = await fetch(`http://localhost:3001/api/news/${articleId}/react`, {
+      const response = await fetch(`${API_BASE}/api/news/${articleId}/react`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reaction })

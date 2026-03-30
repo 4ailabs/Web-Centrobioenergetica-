@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { CalendarEvent } from '../types';
 import { MOCK_DATA } from '../data/mockData';
 import { Clock, MapPin, ArrowRight } from 'lucide-react';
+import { API_BASE } from '../lib/api';
 
 const CalendarPage: React.FC = () => {
     const [events, setEvents] = useState<CalendarEvent[]>([]);
@@ -12,7 +13,7 @@ const CalendarPage: React.FC = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/events');
+                const response = await fetch(`${API_BASE}/api/events`);
                 if (response.ok) {
                     const data = await response.json();
                     setEvents(data.length > 0 ? data : MOCK_DATA.events);
