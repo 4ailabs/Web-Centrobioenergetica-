@@ -45,7 +45,6 @@ app.use(
 
       callback(null, true); // Allow all in production to avoid iframe issues
     },
-    credentials: true,
   })
 );
 
