@@ -162,18 +162,31 @@ const AdminDashboard: React.FC = () => {
     };
 
     const handleDeleteUser = async (user: any) => {
-        if (
-            !window.confirm(
-                `¿Estás seguro de que deseas eliminar permanentemente a "${user.name}"? Esta acción no se puede deshacer.`
-            )
-        ) {
+        // Protect admin accounts from deletion
+        if (user.isAdmin) {
+            showToast('No se puede eliminar una cuenta de administrador', 'error');
+            return;
+        }
+
+        // Protect current user from self-deletion
+        if (user.id === currentUser?.id) {
+            showToast('No puedes eliminar tu propia cuenta', 'error');
+            return;
+        }
+
+        // Double confirmation
+        const name = user.name || user.email;
+        if (!window.confirm(`¿Eliminar a "${name}"?\n\nEsta acción no se puede deshacer.`)) {
+            return;
+        }
+        if (!window.confirm(`CONFIRMAR: ¿Realmente deseas eliminar permanentemente a "${name}"?`)) {
             return;
         }
 
         try {
             await adminDeleteUser(user.id);
             await fetchUsers();
-            showToast('Usuario eliminado correctamente');
+            showToast(`"${name}" eliminado correctamente`);
         } catch (error: any) {
             console.error('Error deleting user:', error);
             showToast(error.message || 'Error al eliminar usuario', 'error');

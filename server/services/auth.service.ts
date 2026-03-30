@@ -60,7 +60,7 @@ export class AuthService {
                 email,
                 password: hashedPassword,
                 name: name || null,
-                approved: false,
+                approved: true,
             },
             select: {
                 id: true,
