@@ -16,7 +16,7 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'self' https://*.framer.app https://*.framerusercontent.com https://www.institutocentrobioenergetica.com https://institutocentrobioenergetica.com" }
       ]
     }
   ],
