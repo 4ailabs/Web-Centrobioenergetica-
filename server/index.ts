@@ -34,16 +34,16 @@ app.use(
       // Allow requests with no origin (mobile apps, Postman, etc.)
       if (!origin) return callback(null, true);
 
-      // In production without CLIENT_URL set, allow all origins from same domain
-      if (process.env.NODE_ENV === 'production' && !process.env.CLIENT_URL) {
+      // Allow all origins that match our domains
+      if (
+        allowedOrigins.includes(origin) ||
+        origin?.includes('institutocentrobioenergetica') ||
+        origin?.includes('localhost')
+      ) {
         return callback(null, true);
       }
 
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
+      callback(null, true); // Allow all in production to avoid iframe issues
     },
     credentials: true,
   })
