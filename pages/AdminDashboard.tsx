@@ -1,10 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Shield, Search, Plus } from 'lucide-react';
+import { Shield, Search, Plus, CheckCircle2, XCircle } from 'lucide-react';
 import StatsCards from '../components/admin/StatsCards';
 import UserTable from '../components/admin/UserTable';
 import CourseManagementModal from '../components/admin/CourseManagementModal';
 import UserFormModal from '../components/admin/UserFormModal';
+
+// Toast notification
+const Toast: React.FC<{ message: string; type: 'success' | 'error'; onClose: () => void }> = ({ message, type, onClose }) => {
+    useEffect(() => {
+        const timer = setTimeout(onClose, 4000);
+        return () => clearTimeout(timer);
+    }, [onClose]);
+
+    return (
+        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-lg shadow-lg border animate-slide-in-up ${
+            type === 'success'
+                ? 'bg-white dark:bg-neutral-800 border-salvia-400/30 text-salvia-600 dark:text-salvia-400'
+                : 'bg-white dark:bg-neutral-800 border-red-300 dark:border-red-800 text-red-600 dark:text-red-400'
+        }`}>
+            {type === 'success' ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <XCircle className="w-4 h-4 shrink-0" />}
+            <span className="text-sm font-medium">{message}</span>
+        </div>
+    );
+};
 
 const AdminDashboard: React.FC = () => {
     const {
@@ -127,7 +146,7 @@ const AdminDashboard: React.FC = () => {
                 });
             } else {
                 if (!userForm.password) {
-                    alert('La contraseña es obligatoria para nuevos usuarios');
+                    showToast('La contraseña es obligatoria para nuevos usuarios', 'error');
                     return;
                 }
                 await adminCreateUser(userForm);
@@ -177,13 +196,7 @@ const AdminDashboard: React.FC = () => {
         <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6 pb-20 relative max-w-6xl mx-auto">
             {/* Toast notification */}
             {toast && (
-                <div className={`fixed top-6 right-6 z-[100] px-5 py-3 rounded-lg shadow-lg text-sm font-medium animate-fade-in flex items-center gap-2 ${
-                    toast.type === 'success'
-                        ? 'bg-green-600 text-white'
-                        : 'bg-red-600 text-white'
-                }`}>
-                    {toast.type === 'success' ? '✓' : '✕'} {toast.message}
-                </div>
+                <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
             )}
 
             <header className="mb-8 lg:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
