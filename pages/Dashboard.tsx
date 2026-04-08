@@ -84,6 +84,34 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
+      {/* Próximamente — Resonantia */}
+      <div className="px-6 lg:px-0 pb-8">
+        <div
+          onClick={() => navigate('/resonantia')}
+          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px]">
+              <img src="/images/courses/resonantia/Resonantia.jpg" alt="Resonantia" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+            </div>
+            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 text-white text-[10px] font-medium rounded-full" style={{ background: '#1A3A5C' }}>Este sábado</span>
+                <span className="text-[11px] text-neutral-400">Taller · Presencial u Online</span>
+              </div>
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
+                Resonantia
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Diapasones Terapéuticos</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
+                Sábado 11 de abril · 10:00 – 18:00 h · Presencial u Online
+              </p>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Próximamente — Reset Hormonal */}
       <div className="px-6 lg:px-0 pb-8">
         <div
