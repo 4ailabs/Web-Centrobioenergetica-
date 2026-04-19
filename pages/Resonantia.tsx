@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronDown, CheckCircle2 } from 'lucide-react';
+import { useUIState } from '../contexts/AppContext';
 
 // Resonantia Brand Colors
-const AZ = '#4A5568';    // Pizarra cálido — neutro profundo, no frío
-const AZL = '#718096';   // Pizarra medio
-const CIELO = '#F0EDE8'; // Fondo cálido neutro — mismo tono que el resto de la web
-const CIELO_L = '#F7F4F0';
-const BK = '#2C2C2A';
-const GR = '#888780';
-const CR = '#E8E6DE';
-const BG = '#FAF9F6';
+const LIGHT = {
+  AZ: '#4A5568',    // Pizarra cálido
+  AZL: '#718096',   // Pizarra medio
+  CIELO: '#F0EDE8', // Fondo cálido neutro
+  CIELO_L: '#F7F4F0',
+  BK: '#2C2C2A',    // Texto principal
+  GR: '#888780',    // Texto secundario
+  CR: '#E8E6DE',    // Borde sutil
+  BG: '#FAF9F6',    // Fondo página
+  CARD: '#FFFFFF',  // Card background
+  CARD_BORDER: '#E2EAF0',
+};
+
+const DARK = {
+  AZ: '#9CB3D0',    // Pizarra claro para contraste
+  AZL: '#7A8FA8',
+  CIELO: '#252520',
+  CIELO_L: '#1E1E1B',
+  BK: '#DEDBD6',    // Texto claro cálido
+  GR: '#7A7770',    // Texto secundario
+  CR: '#3A3A35',    // Borde sutil oscuro
+  BG: '#100E12',    // Fondo página oscuro
+  CARD: '#1A1816',  // Card background
+  CARD_BORDER: '#2A2A24',
+};
 
 const CG = "'Cormorant Garamond', Georgia, serif";
 const S = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
@@ -25,6 +43,9 @@ const OndaSvg = ({ size = 40, color = AZ, opacity = 0.8 }: { size?: number; colo
 
 const Resonantia: React.FC = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useUIState();
+  const C = isDarkMode ? DARK : LIGHT;
+  const { AZ, AZL, CIELO, CIELO_L, BK, GR, CR, BG } = C;
   const [openBloque, setOpenBloque] = useState<number | null>(0);
 
   const bloques = [
