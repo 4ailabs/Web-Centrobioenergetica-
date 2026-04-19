@@ -33,6 +33,64 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      id: 108,
+      title: 'Lo Que Tu Mascota Quiere Decirte',
+      description: 'Taller de 2 módulos. Tu mascota es tu espejo. Aprende a leer las señales y sanar el vínculo con tu animal a través de Flores de Bach, Pares Biomagnéticos y lectura del campo mórfico.',
+      author: 'Dr. Miguel Ojeda Rios',
+      price: 0,
+      lessons: 4,
+      level: 'Básico-Intermedio' as const,
+      imageUrl: '/images/courses/taller-mascotas/mascota.png',
+      modules: [
+        {
+          id: 1,
+          title: 'Módulo 1 — Tu mascota es tu espejo',
+          description: '',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'Capítulo 1',
+              description: '',
+              duration: '1:00:00',
+              order: 1,
+              cloudflareStreamId: '1cf35aebc7554832a5a071c2f4cba207',
+            },
+            {
+              id: 2,
+              title: 'Capítulo 2',
+              description: '',
+              duration: '1:00:00',
+              order: 2,
+              cloudflareStreamId: '829616be5b41b7413288a7d474ce5b57',
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: 'Módulo 2 — Sana el vínculo con tu animal',
+          description: '',
+          order: 2,
+          videos: [
+            {
+              id: 3,
+              title: 'Capítulo 1',
+              description: '',
+              duration: '1:00:00',
+              order: 1,
+            },
+            {
+              id: 4,
+              title: 'Capítulo 2',
+              description: '',
+              duration: '1:00:00',
+              order: 2,
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: 107,
       title: 'Resonantia — Diapasones Terapéuticos',
       description: 'Lo que sigue vibrando cuando el sonido se apaga. Un día completo para aprender a usar la vibración del diapasón 128 Hz como intervención sobre el sistema nervioso.',

@@ -10,7 +10,7 @@ const AllCourses: React.FC = () => {
   const navigate = useNavigate();
 
   // Solo cursos disponibles (con videos), no los futuros
-  const activeCourseIds = [102, 101, 103, 107]; // Set Point, Aminoácidos, Bioenergética V4, Resonantia
+  const activeCourseIds = [102, 101, 103, 107, 108]; // Set Point, Aminoácidos, Bioenergética V4, Resonantia, Mascotas
   const courses = allCourses.filter(c => activeCourseIds.includes(c.id));
 
   const first = useMemo(() => courses[0], [courses]);
