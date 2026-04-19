@@ -33,6 +33,55 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      id: 107,
+      title: 'Resonantia — Diapasones Terapéuticos',
+      description: 'Lo que sigue vibrando cuando el sonido se apaga. Un día completo para aprender a usar la vibración del diapasón 128 Hz como intervención sobre el sistema nervioso.',
+      author: 'Dr. Miguel Ojeda Rios',
+      price: 0,
+      lessons: 4,
+      level: 'Intermedio' as const,
+      imageUrl: '/images/courses/resonantia/banner.jpg',
+      modules: [
+        {
+          id: 1,
+          title: 'Resonantia — Taller completo',
+          description: '',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'Capítulo 1',
+              description: '',
+              duration: '1:00:00',
+              order: 1,
+            },
+            {
+              id: 2,
+              title: 'Capítulo 2',
+              description: '',
+              duration: '1:00:00',
+              order: 2,
+              cloudflareStreamId: 'c2f8e4614aa626e73cc8ae241c20922e',
+            },
+            {
+              id: 3,
+              title: 'Capítulo 3',
+              description: '',
+              duration: '1:00:00',
+              order: 3,
+            },
+            {
+              id: 4,
+              title: 'Capítulo 4',
+              description: '',
+              duration: '1:00:00',
+              order: 4,
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: 106,
       title: 'El Cuerpo Eléctrico — RB',
       description: 'Tu cuerpo es un mapa eléctrico. Aprende a leerlo. Formación profesional en evaluación y regulación del estado bioeléctrico del cuerpo humano con campos magnéticos estáticos.',
