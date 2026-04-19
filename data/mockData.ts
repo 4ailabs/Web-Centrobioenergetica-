@@ -40,7 +40,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 4,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/resonantia/banner.jpg',
+      imageUrl: '/images/courses/resonantia/Resonantia.jpg',
       modules: [
         {
           id: 1,
