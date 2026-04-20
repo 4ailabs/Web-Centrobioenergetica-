@@ -25,6 +25,7 @@ interface AuthContextType {
   adminCreateUser: (userData: any) => Promise<void>;
   adminUpdateUser: (userId: string, userData: any) => Promise<void>;
   adminDeleteUser: (userId: string) => Promise<void>;
+  adminResetPassword: (userId: string, password: string) => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -193,6 +194,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (!response.ok) throw new Error('Failed to update user');
   };
 
+  const adminResetPassword = async (userId: string, password: string) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE}/api/users/${userId}/reset-password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ password })
+    });
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.error || 'Failed to reset password');
+    }
+  };
+
   const adminDeleteUser = async (userId: string) => {
     const token = localStorage.getItem('token');
     const response = await fetch(`${API_BASE}/api/users/${userId}`, {
@@ -217,6 +234,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       adminCreateUser,
       adminUpdateUser,
       adminDeleteUser,
+      adminResetPassword,
       isAuthenticated: !!user
     }}>
       {children}

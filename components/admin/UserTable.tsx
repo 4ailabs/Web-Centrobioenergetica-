@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, XCircle, BookOpen, Pencil, Trash2, Shield } from 'lucide-react';
+import { CheckCircle, XCircle, BookOpen, Pencil, Trash2, Shield, KeyRound } from 'lucide-react';
 import { MOCK_DATA } from '../../data/mockData';
 
 const COURSE_SHORT_NAMES: Record<string, string> = {
@@ -36,6 +36,7 @@ interface UserTableProps {
     onManageCourses: (user: User) => void;
     onEditUser: (user: User) => void;
     onDeleteUser: (user: User) => void;
+    onResetPassword: (user: User) => void;
 }
 
 const UserTable: React.FC<UserTableProps> = ({
@@ -46,6 +47,7 @@ const UserTable: React.FC<UserTableProps> = ({
     onManageCourses,
     onEditUser,
     onDeleteUser,
+    onResetPassword,
 }) => {
     if (loading) {
         return (
@@ -162,6 +164,13 @@ const UserTable: React.FC<UserTableProps> = ({
                                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
                             >
                                 <Pencil className="w-3.5 h-3.5" /> Editar
+                            </button>
+
+                            <button
+                                onClick={() => onResetPassword(user)}
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-500/10 transition-colors"
+                            >
+                                <KeyRound className="w-3.5 h-3.5" /> Contraseña
                             </button>
 
                             {!user.isAdmin && !isCurrentUser && (

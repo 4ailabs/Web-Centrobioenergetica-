@@ -80,6 +80,22 @@ router.put('/:id/subscription', async (req, res) => {
     }
 });
 
+// Resetear contraseña
+router.put('/:id/reset-password', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { password } = req.body;
+        if (!password || password.length < 8) {
+            return res.status(400).json({ error: 'La contraseña debe tener al menos 8 caracteres' });
+        }
+        await usersService.updateUser(id, { password });
+        res.json({ message: 'Contraseña actualizada' });
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).json({ error: 'Error al resetear contraseña' });
+    }
+});
+
 // Actualizar cursos
 router.put('/:id/courses', async (req, res) => {
     try {
