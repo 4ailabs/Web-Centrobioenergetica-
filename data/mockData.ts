@@ -112,6 +112,7 @@ export const MOCK_DATA = {
               description: '',
               duration: '1:00:00',
               order: 1,
+              cloudflareStreamId: '21a122a1b20486bdb5505948e96b1c47',
             },
             {
               id: 2,
