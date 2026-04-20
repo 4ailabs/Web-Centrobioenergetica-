@@ -1,5 +1,23 @@
 import React from 'react';
 import { CheckCircle, XCircle, BookOpen, Pencil, Trash2, Shield } from 'lucide-react';
+import { MOCK_DATA } from '../../data/mockData';
+
+const COURSE_SHORT_NAMES: Record<string, string> = {
+  '101': 'Aminoácidos',
+  '102': 'Set Point',
+  '103': 'BV4',
+  '104': 'Mascotas',
+  '105': 'Reset Hormonal',
+  '106': 'Actos que Mueven',
+  '107': 'Resonantia',
+  '108': 'Mascotas',
+};
+
+function getCourseShortName(courseId: string): string {
+  if (COURSE_SHORT_NAMES[courseId]) return COURSE_SHORT_NAMES[courseId];
+  const course = MOCK_DATA.courses.find(c => c.id.toString() === courseId);
+  return course ? course.title.split('—')[0].split(':')[0].trim() : `Curso ${courseId}`;
+}
 
 interface User {
     id: string;
@@ -92,15 +110,24 @@ const UserTable: React.FC<UserTableProps> = ({
                                 </span>
                             )}
 
-                            {/* Course count */}
-                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium ${
-                                courseCount > 0
-                                    ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400'
-                                    : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-400'
-                            }`}>
-                                <BookOpen className="w-3 h-3" />
-                                {courseCount > 0 ? `${courseCount} curso${courseCount > 1 ? 's' : ''}` : 'Sin cursos'}
-                            </span>
+                            {/* Enrolled courses */}
+                            {courseCount === 0 ? (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-700 text-neutral-400 text-[11px] font-medium">
+                                    <BookOpen className="w-3 h-3" /> Sin cursos
+                                </span>
+                            ) : (
+                                <div className="flex flex-wrap gap-1">
+                                    {user.enrolledCourses!.map(courseId => (
+                                        <span
+                                            key={courseId}
+                                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[11px] font-medium"
+                                        >
+                                            <BookOpen className="w-3 h-3 shrink-0" />
+                                            {getCourseShortName(courseId)}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         {/* Row 3: Action buttons with labels */}
