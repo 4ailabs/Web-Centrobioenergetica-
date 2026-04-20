@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound } from 'lucide-react';
+import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound, ChevronDown } from 'lucide-react';
 import StatsCards from '../components/admin/StatsCards';
 import UserTable from '../components/admin/UserTable';
 import CourseManagementModal from '../components/admin/CourseManagementModal';
 import UserFormModal from '../components/admin/UserFormModal';
+import { MOCK_DATA } from '../data/mockData';
 
 const USERS_PER_PAGE = 10;
 
@@ -123,6 +124,7 @@ const AdminDashboard: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterSubscription, setFilterSubscription] = useState<'all' | 'active' | 'inactive'>('all');
     const [filterCourses, setFilterCourses] = useState<'all' | 'with' | 'without'>('all');
+    const [filterCourseId, setFilterCourseId] = useState<string>('all');
     const [currentPage, setCurrentPage] = useState(1);
     const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
@@ -160,7 +162,7 @@ const AdminDashboard: React.FC = () => {
     useEffect(() => { fetchUsers(); }, []);
 
     // Reset page when filters change
-    useEffect(() => { setCurrentPage(1); }, [searchTerm, filterSubscription, filterCourses]);
+    useEffect(() => { setCurrentPage(1); }, [searchTerm, filterSubscription, filterCourses, filterCourseId]);
 
     // --- Subscription Handlers ---
     const handleToggleSubscription = async (userId: string, currentStatus: string) => {
@@ -268,7 +270,10 @@ const AdminDashboard: React.FC = () => {
             filterCourses === 'all' ||
             (filterCourses === 'with' && user.enrolledCourses?.length > 0) ||
             (filterCourses === 'without' && (!user.enrolledCourses || user.enrolledCourses.length === 0));
-        return matchesSearch && matchesSubscription && matchesCourses;
+        const matchesCourseId =
+            filterCourseId === 'all' ||
+            (user.enrolledCourses || []).includes(filterCourseId);
+        return matchesSearch && matchesSubscription && matchesCourses && matchesCourseId;
     });
 
     const totalPages = Math.max(1, Math.ceil(filteredUsers.length / USERS_PER_PAGE));
@@ -333,6 +338,22 @@ const AdminDashboard: React.FC = () => {
                     <button className={filterBtnClass(filterCourses === 'all')} onClick={() => setFilterCourses('all')}>Todos</button>
                     <button className={filterBtnClass(filterCourses === 'with')} onClick={() => setFilterCourses('with')}>Con cursos</button>
                     <button className={filterBtnClass(filterCourses === 'without')} onClick={() => setFilterCourses('without')}>Sin cursos</button>
+
+                    <div className="relative ml-3">
+                        <select
+                            value={filterCourseId}
+                            onChange={e => setFilterCourseId(e.target.value)}
+                            className="appearance-none pl-3 pr-8 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 focus:outline-none focus:border-primary-600 transition-colors cursor-pointer"
+                        >
+                            <option value="all">Por curso...</option>
+                            {MOCK_DATA.courses.map(course => (
+                                <option key={course.id} value={course.id.toString()}>
+                                    {course.title.split('—')[0].trim()}
+                                </option>
+                            ))}
+                        </select>
+                        <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 pointer-events-none" />
+                    </div>
                 </div>
 
                 {filteredUsers.length !== users.length && (
