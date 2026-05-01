@@ -59,12 +59,7 @@ const Crania: React.FC = () => (
         ],
       },
     ]}
-    entregables={[
-      'Mapa craneofascial con puntos de aplicación',
-      '6 maniobras de autoaplicación en video',
-      'Rutina de 10 minutos para uso diario',
-      'Guía de indicaciones por síntoma',
-    ]}
+    entregables={[]}
     requisitos="Ninguno. Solo una silla cómoda y 10 minutos sin interrupciones."
     whatsappMsg="Hola, quiero acceder a la clase CRANIA — Práctica Craneofascial"
     ctaLabel="Consultar por WhatsApp"

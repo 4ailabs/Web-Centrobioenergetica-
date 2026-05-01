@@ -234,17 +234,19 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       </div>
 
       {/* What you get */}
-      <div className="px-6 lg:px-0 pb-8 border-t border-neutral-200 dark:border-neutral-700 pt-8">
-        <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-100 mb-4">Qué te llevas</h3>
-        <div className="space-y-2.5">
-          {entregables.map((item, i) => (
-            <div key={i} className="flex items-start gap-2.5">
-              <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent ? '' : 'text-primary-600'}`} style={accentText} />
-              <span className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">{item}</span>
-            </div>
-          ))}
+      {entregables.length > 0 && (
+        <div className="px-6 lg:px-0 pb-8 border-t border-neutral-200 dark:border-neutral-700 pt-8">
+          <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-100 mb-4">Qué te llevas</h3>
+          <div className="space-y-2.5">
+            {entregables.map((item, i) => (
+              <div key={i} className="flex items-start gap-2.5">
+                <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent ? '' : 'text-primary-600'}`} style={accentText} />
+                <span className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Requirements */}
       {requisitos && (
