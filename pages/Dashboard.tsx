@@ -18,7 +18,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
   const navigate = useNavigate();
 
   // Solo cursos que ya están disponibles (con videos), no los futuros
-  const activeCourseIds = [102, 101, 103]; // Set Point, Aminoácidos, Bioenergética V4
+  const activeCourseIds = [109, 102, 101, 103]; // Crania, Set Point, Aminoácidos, Bioenergética V4
   const courses = allCourses.filter(c => activeCourseIds.includes(c.id));
 
   const goToCourse = (course: Course) => {
