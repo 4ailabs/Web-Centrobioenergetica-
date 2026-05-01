@@ -33,6 +33,38 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      id: 109,
+      title: 'CRANIA — Práctica Craneofascial',
+      description: 'Devuelve el flujo. Práctica craneofascial autoaplicada para liberar fascia profunda de rostro, cuello, mandíbula y cráneo con respiración integrada.',
+      author: 'Dr. Miguel Ojeda Rios',
+      price: 0,
+      lessons: 2,
+      level: 'Básico' as const,
+      imageUrl: '/images/courses/crania/crania-course-cover.svg',
+      modules: [
+        {
+          id: 1,
+          title: 'CRANIA — Devuelve el flujo',
+          description: 'Clase práctica craneofascial del 25 de abril de 2026.',
+          order: 1,
+          videos: [
+            {
+              id: 1,
+              title: 'Capítulo 1',
+              description: '',
+              order: 1,
+            },
+            {
+              id: 2,
+              title: 'Capítulo 2',
+              description: '',
+              order: 2,
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: 108,
       title: 'Lo Que Tu Mascota Quiere Decirte',
       description: 'Taller de 2 módulos. Tu mascota es tu espejo. Aprende a leer las señales y sanar el vínculo con tu animal a través de Flores de Bach, Pares Biomagnéticos y lectura del campo mórfico.',
