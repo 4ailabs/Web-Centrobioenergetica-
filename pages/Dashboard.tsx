@@ -57,6 +57,34 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
+      {/* Disponible — Crania */}
+      <div className="px-6 lg:px-0 pb-8">
+        <div
+          onClick={() => navigate('/crania')}
+          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-1/2 overflow-hidden aspect-[16/9] sm:aspect-auto sm:min-h-[200px]">
+              <img src="/images/courses/crania/crania_16_9_webinar.png" alt="CRANIA" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+            </div>
+            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 text-white text-[10px] font-medium rounded-full" style={{ background: '#1A3A5C' }}>Disponible</span>
+                <span className="text-[11px] text-neutral-400">Clase práctica · 2 Módulos</span>
+              </div>
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5 group-hover:text-primary-600 transition-colors">
+                CRANIA
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Práctica Craneofascial</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
+                Libera la tensión de rostro, cuello, mandíbula y cráneo con técnica manual autoaplicada y respiración integrada.
+              </p>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Próximamente — Taller Mascotas */}
       <div className="px-6 lg:px-0 pb-8">
         <div

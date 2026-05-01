@@ -27,6 +27,7 @@ import TallerMascotas from './pages/TallerMascotas';
 import ResetHormonal from './pages/ResetHormonal';
 import ActosQueMueven from './pages/ActosQueMueven';
 import Resonantia from './pages/Resonantia';
+import Crania from './pages/Crania';
 import RegulacionBioelectrica from './pages/RegulacionBioelectrica';
 import RBMetodo from './pages/RBMetodo';
 import TestHormonal from './pages/TestHormonal';
@@ -131,6 +132,7 @@ const AppContent: React.FC = () => {
                 <Route path="/reset-hormonal" element={<ResetHormonal />} />
                 <Route path="/actos-que-mueven" element={<ActosQueMueven />} />
                 <Route path="/resonantia" element={<Resonantia />} />
+                <Route path="/crania" element={<Crania />} />
                 <Route path="/regulacion-bioelectrica" element={<RegulacionBioelectrica />} />
                 <Route path="/rb" element={<RBMetodo />} />
                 <Route path="/test-hormonal" element={<TestHormonal />} />

@@ -11,6 +11,7 @@ const COURSE_SHORT_NAMES: Record<string, string> = {
   '106': 'Actos que Mueven',
   '107': 'Resonantia',
   '108': 'Mascotas',
+  '109': 'Crania',
 };
 
 function getCourseShortName(courseId: string): string {
