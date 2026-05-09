@@ -103,7 +103,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
               <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios Clínicos" active={location.pathname === '/servicios'} onClick={() => handleNavigation('Servicios Clínicos', '/servicios')} mobile />
               <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" active={location.pathname === '/calendario'} onClick={() => handleNavigation('Calendario', '/calendario')} mobile />
               <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Sobre Nosotros" active={location.pathname === '/sobre-nosotros'} onClick={() => handleNavigation('Sobre Nosotros', '/sobre-nosotros')} mobile />
-              <SidebarNavItem icon={<YoutubeIcon className={iconSize} />} label="Wellvibe Media" active={location.pathname === '/wellvibe-media'} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} mobile />
             </div>
 
             <div className="border-t border-neutral-200 dark:border-neutral-800 my-3"></div>
@@ -161,7 +160,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios" active={location.pathname === '/servicios'} collapsed={collapsed} onClick={() => handleNavigation('Servicios Clínicos', '/servicios')} />
             <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" active={location.pathname === '/calendario'} collapsed={collapsed} onClick={() => handleNavigation('Calendario', '/calendario')} />
             <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Nosotros" active={location.pathname === '/sobre-nosotros'} collapsed={collapsed} onClick={() => handleNavigation('Sobre Nosotros', '/sobre-nosotros')} />
-            <SidebarNavItem icon={<YoutubeIcon className={iconSize} />} label="Wellvibe" active={location.pathname === '/wellvibe-media'} collapsed={collapsed} onClick={() => handleNavigation('Wellvibe Media', '/wellvibe-media')} />
 
             {user?.isAdmin && (
               <>

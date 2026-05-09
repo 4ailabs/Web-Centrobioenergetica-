@@ -183,7 +183,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             { icon: AboutUsIcon, title: "Nosotros", action: onNavigateToAbout },
             { icon: AppsIcon, title: "Apps", action: onNavigateToApps },
             { icon: CoursesIcon, title: "Todos los cursos", action: () => navigate('/cursos') },
-            { icon: YoutubeIcon, title: "Wellvibe Media", action: () => navigate('/wellvibe-media') }
           ].map((item) => (
             <div
               key={item.title}
