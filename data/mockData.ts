@@ -391,7 +391,7 @@ export const MOCK_DATA = {
     {
       id: 103,
       title: 'Bioenergética V4',
-      description: 'Nivel avanzado de formación bioenergética. Tres módulos intensivos de jornada completa para profundizar en los principios y aplicaciones de la bioenergética clínica.',
+      description: 'Las 13 Improntas de Supervivencia. Nivel avanzado de formación bioenergética. Tres módulos intensivos de jornada completa para profundizar en los principios y aplicaciones de la bioenergética clínica.',
       author: 'Centro Bioenergética',
       price: 0,
       lessons: 3,

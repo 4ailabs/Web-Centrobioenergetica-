@@ -4,7 +4,7 @@ import { useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
 import type { CourseVideo } from '../types';
 import { getStreamEmbedUrl } from '../lib/cloudflare-stream';
-import { Play, CheckCircle2, X, Lock, AlertCircle, ArrowLeft, BookOpen } from 'lucide-react';
+import { Play, CheckCircle2, X, Lock, AlertCircle, ArrowLeft, BookOpen, ExternalLink } from 'lucide-react';
 
 const Roseton: React.FC<{ size?: number }> = ({ size = 24 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width={size} height={size}>
@@ -294,6 +294,21 @@ const CourseDetail: React.FC = () => {
                         style={{ width: `${progressPct}%` }}
                       />
                     </div>
+                  </div>
+                )}
+
+                {/* BV4 — enlace al material del curso (solo alumnos con acceso) */}
+                {hasAccess && course.id === 103 && (
+                  <div className="mt-4 pl-11">
+                    <a
+                      href="https://bioenergetica-v4.vercel.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-xs font-medium rounded-lg transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Acceder al material del curso
+                    </a>
                   </div>
                 )}
               </div>
