@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
 import { handleCourseClick } from '../utils/framerIntegration';
 import type { Course } from '../types';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const AllCourses: React.FC = () => {
   const allCourses = useCourses();
@@ -97,20 +97,7 @@ const AllCourses: React.FC = () => {
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
                     {course.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-neutral-400">{course.lessons} lecciones</span>
-                    {course.id === 103 && (
-                      <a
-                        href="https://bioenergetica-v4.vercel.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 transition-colors"
-                      >
-                        Info del curso <ExternalLink className="w-3 h-3" />
-                      </a>
-                    )}
-                  </div>
+                  <span className="text-xs text-neutral-400">{course.lessons} lecciones</span>
                 </div>
               </div>
             ))}
