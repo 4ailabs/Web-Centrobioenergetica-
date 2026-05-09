@@ -400,8 +400,8 @@ export const MOCK_DATA = {
       modules: [
         {
           id: 1,
-          title: 'Módulo 1: Fundamentos Avanzados',
-          description: 'Revisión y profundización de los principios bioenergéticos. Jornada de 10:00 a 18:00.',
+          title: 'Módulo 1',
+          description: '',
           order: 1,
           videos: [
             {
@@ -440,8 +440,8 @@ export const MOCK_DATA = {
         },
         {
           id: 2,
-          title: 'Módulo 2: Aplicación Clínica',
-          description: 'Protocolos avanzados y casos clínicos aplicados. Jornada de 10:00 a 18:00.',
+          title: 'Módulo 2',
+          description: '',
           order: 2,
           videos: [
             {
@@ -455,8 +455,8 @@ export const MOCK_DATA = {
         },
         {
           id: 3,
-          title: 'Módulo 3: Integración y Práctica',
-          description: 'Integración de contenidos y práctica supervisada. Jornada de 10:00 a 18:00.',
+          title: 'Módulo 3',
+          description: '',
           order: 3,
           videos: [
             {
