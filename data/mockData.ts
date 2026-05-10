@@ -426,7 +426,7 @@ export const MOCK_DATA = {
               description: '',
               duration: '1:00:00',
               order: 3,
-              cloudflareStreamId: '',
+              cloudflareStreamId: '4efb010092163cd0c8275362ad66b8ef',
             },
             {
               id: 4,
@@ -434,7 +434,7 @@ export const MOCK_DATA = {
               description: '',
               duration: '1:00:00',
               order: 4,
-              cloudflareStreamId: '',
+              cloudflareStreamId: 'c439e2fa0ecac8b94f112ac36572016c',
             },
           ],
         },
