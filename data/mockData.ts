@@ -240,6 +240,7 @@ export const MOCK_DATA = {
               id: 1,
               title: 'Clase 1 — El Mapa Hormonal',
               description: 'Cartografía Hormonal Femenina para climaterio y postmenopausia.',
+              cloudflareStreamId: '6af0e03d65db7038c604d2f613e8ef4a',
               duration: '00:00',
               order: 1,
             },
