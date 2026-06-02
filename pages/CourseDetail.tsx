@@ -311,6 +311,32 @@ const CourseDetail: React.FC = () => {
                     </a>
                   </div>
                 )}
+
+                {/* Test Hormonal banner — solo para alumnos de Reset Hormonal */}
+                {hasAccess && course.id === 104 && (
+                  <div
+                    onClick={() => navigate('/test-hormonal')}
+                    className="mt-4 pl-11 cursor-pointer"
+                  >
+                    <div
+                      className="rounded-xl overflow-hidden transition-all hover:shadow-md"
+                      style={{ background: '#F2EDE8', border: '1px solid #E0D6CC' }}
+                    >
+                      <div className="px-5 py-4 flex items-center justify-between gap-3">
+                        <div>
+                          <span className="text-[10px] font-medium uppercase tracking-widest" style={{ color: '#9a4f3c' }}>Test gratuito</span>
+                          <h3 className="text-[14px] font-medium mt-0.5" style={{ color: '#3D3B37' }}>Descubre tu perfil hormonal</h3>
+                          <p className="text-[11px] mt-1 leading-relaxed" style={{ color: '#6B6963' }}>22 preguntas basadas en la escala MRS. Identifica tu fase, la severidad de tus síntomas y tus ejes de riesgo.</p>
+                        </div>
+                        <div className="shrink-0">
+                          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: '#9a4f3c' }}>
+                            <Play className="w-4 h-4 text-white fill-current ml-0.5" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

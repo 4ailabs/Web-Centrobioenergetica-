@@ -21,6 +21,8 @@ interface Profile {
   phase: string;
   severity: string;
   recommendation: string;
+  anchor: string;
+  maps: string[];
 }
 
 // Questions
@@ -38,11 +40,10 @@ const questions: Question[] = [
     { label: 'Llevo entre 3 y 12 meses sin menstruar', value: 4 },
     { label: 'Llevo más de 12 meses sin menstruar', value: 5 },
   ]},
-  { id: 'a3', section: 'A', sectionLabel: 'Tu fase', text: '¿Has notado cambios en el sangrado?', type: 'single', options: [
-    { label: 'Es igual que siempre', value: 0 },
+  { id: 'a3', section: 'A', sectionLabel: 'Tu fase', text: '¿Has notado cambios en el volumen o patrón del sangrado?', type: 'single', options: [
+    { label: 'Sin cambios, o ya no menstrúo', value: 0 },
     { label: 'Más abundante o más escaso que antes', value: 1 },
-    { label: 'Muy errático — a veces mucho, a veces casi nada', value: 2 },
-    { label: 'Ya no menstruo', value: 3 },
+    { label: 'Muy errático — manchado, saltos, imprevisible', value: 2 },
   ]},
   { id: 'a4', section: 'A', sectionLabel: 'Tu fase', text: '¿Te han realizado alguna cirugía ginecológica?', type: 'single', options: [
     { label: 'No', value: 0 },
@@ -50,19 +51,23 @@ const questions: Question[] = [
     { label: 'Ooforectomía unilateral (un ovario)', value: 1 },
     { label: 'Ooforectomía bilateral (ambos ovarios)', value: 5 },
   ]},
-  // SECTION B — Symptoms (MRS adapted)
+  // SECTION B — Síntomas (MRS adapted) — 12 ítems en 3 ejes
+  // Eje Somático: B1–B5
   { id: 'b1', section: 'B', sectionLabel: 'Tus síntomas', text: 'Bochornos o sudoraciones', subtext: 'Calores repentinos, oleadas de calor, sudoración sin causa', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b2', section: 'B', sectionLabel: 'Tus síntomas', text: 'Molestias cardíacas', subtext: 'Palpitaciones, taquicardia, opresión en el pecho sin causa cardiológica', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  { id: 'b2', section: 'B', sectionLabel: 'Tus síntomas', text: 'Molestias cardíacas o palpitaciones', subtext: 'Palpitaciones, taquicardia, opresión en el pecho sin causa cardiológica', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
   { id: 'b3', section: 'B', sectionLabel: 'Tus síntomas', text: 'Problemas de sueño', subtext: 'Dificultad para dormir, despertar a media noche, despertar muy temprano', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
   { id: 'b4', section: 'B', sectionLabel: 'Tus síntomas', text: 'Dolores musculares o articulares', subtext: 'Dolor de cuerpo, rigidez, molestias articulares', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b5', section: 'B', sectionLabel: 'Tus síntomas', text: 'Estado de ánimo bajo', subtext: 'Tristeza, ganas de llorar, falta de motivación, cambios de humor', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b6', section: 'B', sectionLabel: 'Tus síntomas', text: 'Irritabilidad', subtext: 'Nerviosismo, tensión interna, reacciones desproporcionadas', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b7', section: 'B', sectionLabel: 'Tus síntomas', text: 'Ansiedad', subtext: 'Inquietud interna, sensación de pánico, preocupación constante', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b8', section: 'B', sectionLabel: 'Tus síntomas', text: 'Agotamiento físico y mental', subtext: 'Bajo rendimiento, olvidos frecuentes, falta de concentración', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b9', section: 'B', sectionLabel: 'Tus síntomas', text: 'Cambios en el deseo sexual', subtext: 'Menos deseo, menos satisfacción, evitar la intimidad', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b10', section: 'B', sectionLabel: 'Tus síntomas', text: 'Problemas de vejiga', subtext: 'Urgencia, frecuencia, goteo al toser o reír', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  { id: 'b11', section: 'B', sectionLabel: 'Tus síntomas', text: 'Sequedad vaginal', subtext: 'Ardor, molestia, dolor en relaciones', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
-  // SECTION C — Risk
+  { id: 'b5', section: 'B', sectionLabel: 'Tus síntomas', text: 'Fatiga física persistente', subtext: 'Cansancio que no cede con el descanso, bajo rendimiento físico', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  // Eje Psicológico: B6–B9
+  { id: 'b6', section: 'B', sectionLabel: 'Tus síntomas', text: 'Estado de ánimo bajo o tristeza', subtext: 'Tristeza, ganas de llorar, falta de motivación, cambios de humor', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  { id: 'b7', section: 'B', sectionLabel: 'Tus síntomas', text: 'Irritabilidad o cambios de humor', subtext: 'Nerviosismo, tensión interna, reacciones desproporcionadas', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  { id: 'b8', section: 'B', sectionLabel: 'Tus síntomas', text: 'Ansiedad o nerviosismo', subtext: 'Inquietud interna, sensación de pánico, preocupación constante', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  { id: 'b9', section: 'B', sectionLabel: 'Tus síntomas', text: 'Niebla mental o dificultad de concentración', subtext: 'Olvidos frecuentes, falta de concentración, mente lenta', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  // Eje Urogenital: B10–B12
+  { id: 'b10', section: 'B', sectionLabel: 'Tus síntomas', text: 'Cambios en el deseo sexual', subtext: 'Menos deseo, menos satisfacción, evitar la intimidad', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  { id: 'b11', section: 'B', sectionLabel: 'Tus síntomas', text: 'Problemas de vejiga o urgencia urinaria', subtext: 'Urgencia, frecuencia, goteo al toser o reír', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  { id: 'b12', section: 'B', sectionLabel: 'Tus síntomas', text: 'Sequedad vaginal o molestias', subtext: 'Ardor, molestia, dolor en relaciones', type: 'scale', scaleLabels: { min: 'No lo tengo', max: 'Muy severo' }},
+  // SECTION C — Riesgo
   { id: 'c1', section: 'C', sectionLabel: 'Tu riesgo', text: '¿Tienes antecedentes familiares de osteoporosis o fractura de cadera?', type: 'single', options: [
     { label: 'No', value: 0 }, { label: 'Sí, un familiar', value: 1 }, { label: 'Sí, madre o abuela directa', value: 2 },
   ]},
@@ -83,7 +88,7 @@ const questions: Question[] = [
     { label: 'Aumento de peso en abdomen sin cambio de dieta', value: 1 },
     { label: 'Ninguno de los anteriores', value: 0 },
   ]},
-  { id: 'c6', section: 'C', sectionLabel: 'Tu riesgo', text: '¿Tu dieta incluye regularmente soya, tofu o edamame?', type: 'single', options: [
+  { id: 'c6', section: 'C', sectionLabel: 'Tu riesgo', text: '¿Consumes habitualmente alimentos con fitoestrógenos?', subtext: 'Soya, tofu, linaza, legumbres', type: 'single', options: [
     { label: 'Sí, varias veces por semana', value: 0 }, { label: 'Ocasionalmente', value: 1 }, { label: 'Casi nunca o nunca', value: 2 },
   ]},
 ];
@@ -96,10 +101,10 @@ function calculateProfile(answers: Record<string, number | number[]>): Profile {
     return sum + (typeof v === 'number' ? v : 0);
   }, 0);
 
-  // Symptom scores
-  const somatic = (['b1', 'b2', 'b3', 'b4'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
-  const psychological = (['b5', 'b6', 'b7', 'b8'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
-  const urogenital = (['b9', 'b10', 'b11'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
+  // Symptom scores — Somático: B1–B5 · Psicológico: B6–B9 · Urogenital: B10–B12
+  const somatic = (['b1', 'b2', 'b3', 'b4', 'b5'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
+  const psychological = (['b6', 'b7', 'b8', 'b9'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
+  const urogenital = (['b10', 'b11', 'b12'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
   const totalB = somatic + psychological + urogenital;
 
   // Risk score
@@ -129,63 +134,79 @@ function calculateProfile(answers: Record<string, number | number[]>): Profile {
   else riskLevel = 'Alto';
 
   // Profile determination
-  // Count how many axes are significantly active (>=5 somatic, >=5 psych, >=3 urogenital)
-  const activeAxes = (somatic >= 5 ? 1 : 0) + (psychological >= 5 ? 1 : 0) + (urogenital >= 3 ? 1 : 0);
+  // Count active axes — Somático ≥6 · Psicológico ≥5 · Urogenital ≥3
+  const activeAxes = (somatic >= 6 ? 1 : 0) + (psychological >= 5 ? 1 : 0) + (urogenital >= 3 ? 1 : 0);
 
   // 1. Calma — pre-transition, minimal symptoms
   if (totalB <= 4 && phaseScore <= 3) return {
     name: 'Calma', color: '#7a9466', phase, severity,
-    description: 'Tu cuerpo aun no ha entrado en transicion hormonal activa. Los indicadores son estables. Este es el momento de conocer tu mapa — antes de que los sintomas aparezcan, no despues.',
-    recommendation: 'Necesitas los mapas preventivos: cardiovascular, oseo y metabolico.',
+    description: 'Tu cuerpo aún no ha entrado en transición hormonal activa. Los indicadores son estables. Este es el momento de conocer tu mapa — antes de que los síntomas aparezcan, no después.',
+    recommendation: 'El momento preventivo tiene más impacto que cualquier intervención reactiva. Mapear ahora es ganar tiempo.',
+    anchor: 'El mapa se lee mejor antes de que llegue la tormenta.',
+    maps: ['CALMA preventivo', 'CENTRO preventivo'],
   };
 
   // 2. Señal — early transition, mild symptoms
-  if (totalB <= 10 && phaseScore >= 2 && phaseScore <= 6) return {
-    name: 'Senal', color: '#BA7517', phase, severity,
-    description: 'Las primeras senales estan aqui. Tu cuerpo esta empezando a cambiar de programa hormonal. Los ciclos se mueven, el sueno cambia, el animo fluctua. No es que algo este mal — es que la transicion ya comenzo.',
-    recommendation: 'Necesitas los mapas de transicion: termorregulacion, sueno y regulacion emocional.',
+  if (totalB <= 14 && phaseScore >= 1 && phaseScore <= 8) return {
+    name: 'Señal', color: '#BA7517', phase, severity,
+    description: 'Las primeras señales están aquí. Tu cuerpo está empezando a cambiar de programa hormonal. Los ciclos se mueven, el sueño cambia, el ánimo fluctúa. No es que algo esté mal — es que la transición ya comenzó.',
+    recommendation: 'La transición temprana es la fase con mayor rendimiento de intervención. Actuar ahora previene que los síntomas se profundicen.',
+    anchor: 'Reconocer la señal es el primer paso del mapa.',
+    maps: ['CALMA', 'NOCTURNO', 'MAREA'],
   };
 
   // 3. Niebla — psychological axis dominates clearly
   if (psychological >= 7 && psychological > somatic && psychological > urogenital) return {
     name: 'Niebla', color: '#534AB7', phase, severity,
-    description: 'El impacto principal esta en tu animo, tu energia y tu claridad mental. La irritabilidad, la ansiedad, el agotamiento o los olvidos dominan tu dia a dia. Esto tiene una base neuroendocrina especifica — no es "estres" ni es "tu caracter".',
-    recommendation: 'Necesitas los mapas del eje emocional: serotonina, GABA/allopregnanolona y BDNF.',
+    description: 'El impacto principal está en tu ánimo, tu energía y tu claridad mental. La irritabilidad, la ansiedad, el agotamiento o los olvidos dominan tu día a día. Esto tiene una base neuroendocrina específica — no es "estrés" ni es "tu carácter".',
+    recommendation: 'El eje emocional tiene regulación directa. El trabajo psicológico es más efectivo sobre un sistema que ya está regulado.',
+    anchor: 'Lo que sientes tiene base neuroendocrina — y tiene zona de intervención.',
+    maps: ['NOCTURNO', 'MAREA'],
   };
 
   // 4. Oleaje — somatic axis dominates clearly
   if (somatic >= 9 && somatic > psychological) return {
     name: 'Oleaje', color: '#D85A30', phase, severity,
-    description: 'Tu cuerpo esta en plena transicion. Los sintomas fisicos dominan — calores, sudoraciones, dolor articular, problemas de sueno. El sistema termorregulador y el eje somatico estan activos.',
-    recommendation: 'Necesitas los mapas somaticos: KNDy/termorregulacion, sueno y musculoesqueletico.',
+    description: 'Tu cuerpo está en plena transición. Los síntomas físicos dominan — calores, sudoraciones, dolor articular, problemas de sueño. El sistema termorregulador y el eje somático están activos.',
+    recommendation: 'El sistema termorregulador es con frecuencia la raíz de varios síntomas simultáneos. CALMA primero.',
+    anchor: 'El bochorno es un arco reflejo desregulado — con un mapa específico de intervención.',
+    maps: ['CALMA', 'NOCTURNO'],
   };
 
   // 5. Silencio — urogenital axis significant
   if (urogenital >= 5 && phaseScore >= 6) return {
     name: 'Silencio', color: '#8B6F4E', phase, severity,
-    description: 'Lo que muchas mujeres callan. El eje urogenital necesita atencion — sequedad, molestias, cambios en la sexualidad, problemas de vejiga. Es progresivo y no se resuelve solo. Tiene regulacion especifica.',
-    recommendation: 'Necesitas los mapas urogenitales: epitelio vaginal, microbioma y eje vesical.',
+    description: 'Lo que muchas mujeres callan. El eje urogenital necesita atención — sequedad, molestias, cambios en la sexualidad, problemas de vejiga. Es progresivo y no se resuelve solo. Tiene regulación específica.',
+    recommendation: 'Los síntomas urogenitales progresan con el tiempo sin intervención. La Fase 2 del programa trabaja específicamente este eje.',
+    anchor: 'El silencio no es resignación — es falta de mapa.',
+    maps: ['NOCTURNO', 'VENUS (Fase 2)'],
   };
 
   // 6. Raíz — post-menopausal with high risk but lower symptoms
-  if (phaseScore >= 10 && riskScore >= 6 && totalB <= 20) return {
-    name: 'Raiz', color: '#8B4513', phase, severity,
-    description: 'Los sintomas visibles pueden haber bajado, pero debajo de la superficie los ejes estructurales estan en riesgo. Hueso, corazon, cognicion — lo que no se siente hoy se manifiesta en 5 anos si no se mapea ahora.',
-    recommendation: 'Necesitas los mapas de riesgo: oseo (RANK/RANKL), cardiovascular (eNOS/NO) y cognitivo.',
+  if (phaseScore >= 10 && riskScore >= 6 && totalB <= 22) return {
+    name: 'Raíz', color: '#8B4513', phase, severity,
+    description: 'Los síntomas visibles pueden haber bajado, pero debajo de la superficie los ejes estructurales están en riesgo. Hueso, corazón, cognición — lo que no se siente hoy se manifiesta en 5 años si no se mapea ahora.',
+    recommendation: 'El riesgo estructural silencioso requiere intervención preventiva específica. Lo que no se siente hoy construye el terreno de mañana.',
+    anchor: 'Lo que no se siente hoy construye el terreno de mañana.',
+    maps: ['CALMA preventivo', 'CENTRO preventivo', 'ESCUDO (Fase 2)'],
   };
 
-  // 7. Tormenta — severe symptoms across multiple axes (truly severe)
-  if (totalB >= 22 && activeAxes >= 2) return {
+  // 7. Tormenta — severe symptoms across multiple axes
+  if (totalB >= 21 && activeAxes >= 2) return {
     name: 'Tormenta', color: '#C25A2A', phase, severity,
-    description: 'La transicion esta en su punto mas intenso. Multiples sistemas estan activos al mismo tiempo — calores, sueno fragmentado, cambios emocionales, cambios corporales. Tu cuerpo necesita regulacion en varios frentes simultaneamente.',
-    recommendation: 'Necesitas la cartografia completa: los 9 mapas de regulacion + fitoterapia por fase.',
+    description: 'La transición está en su punto más intenso. Múltiples sistemas están activos al mismo tiempo — calores, sueño fragmentado, cambios emocionales, cambios corporales. Tu cuerpo necesita regulación en varios frentes simultáneamente.',
+    recommendation: 'Cuando varios ejes están activos al mismo tiempo, el orden de intervención importa. CALMA siempre primero — el sistema termorregulador es la raíz de muchos síntomas simultáneos.',
+    anchor: 'El sistema no está roto — está en su punto de mayor intensidad de cambio.',
+    maps: ['CALMA', 'NOCTURNO', 'MAREA', 'CENTRO'],
   };
 
-  // 8. Default — Transición (moderate mixed, no single axis dominates)
+  // 8. Default — Transición (moderate mixed)
   return {
-    name: 'Transicion', color: '#B5604A', phase, severity,
-    description: 'Tu cuerpo esta en transicion activa con sintomas distribuidos en varios ejes. No hay un solo sistema dominante — hay una reorganizacion general que necesita un mapa completo para navegar.',
-    recommendation: 'Necesitas la cartografia completa para identificar cuales mapas priorizar.',
+    name: 'Transición', color: '#B5604A', phase, severity,
+    description: 'Tu cuerpo está en transición activa con síntomas distribuidos en varios ejes. No hay un solo sistema dominante — hay una reorganización general que necesita un mapa completo para navegar.',
+    recommendation: 'La cartografía completa permite identificar cuáles mapas priorizar según tu perfil específico.',
+    anchor: 'Navegar el climaterio sin mapa es moverse a ciegas.',
+    maps: ['CALMA', 'MAREA', 'CENTRO'],
   };
 }
 
@@ -270,58 +291,86 @@ const TestHormonal: React.FC = () => {
     setAnswers(prev => ({ ...prev, [currentQuestion.id]: vals.length > 0 ? vals : [0] }));
   };
 
-  // Score calculations for result
-  const somatic = (['b1', 'b2', 'b3', 'b4'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
-  const psychological = (['b5', 'b6', 'b7', 'b8'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
-  const urogenital = (['b9', 'b10', 'b11'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
+  // Score calculations for result — Somático: B1–B5 · Psicológico: B6–B9 · Urogenital: B10–B12
+  const somatic = (['b1', 'b2', 'b3', 'b4', 'b5'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
+  const psychological = (['b6', 'b7', 'b8', 'b9'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
+  const urogenital = (['b10', 'b11', 'b12'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0);
   const c5v = answers['c5'];
   const c5s = Array.isArray(c5v) ? c5v.reduce((a, b) => a + b, 0) : 0;
   const riskTotal = (['c1', 'c2', 'c3', 'c4', 'c6'] as const).reduce((s, id) => s + (typeof answers[id] === 'number' ? answers[id] as number : 0), 0) + c5s;
 
   // INTRO
   if (step === -1) return (
-    <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex items-center justify-center px-6 bg-[var(--bg-main)]">
-      <div className="max-w-lg w-full text-center">
-        <div className="mb-6">
-          <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3">Instituto Centrobioenergetica</span>
-          <h1 className="text-2xl lg:text-3xl font-editorial font-medium text-neutral-800 dark:text-neutral-100 leading-tight mb-3">
-            Cartografia Hormonal Femenina
-          </h1>
-          <p className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
-            22 preguntas para identificar tu fase, la severidad de tus sintomas y tus ejes de riesgo. Al final recibiras tu perfil hormonal personalizado.
-          </p>
-        </div>
-        <div className="mb-8 text-left bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-5 space-y-3">
-          {[
-            { label: 'Seccion A', desc: 'Tu fase reproductiva', count: '4 preguntas' },
-            { label: 'Seccion B', desc: 'Tus sintomas actuales', count: '11 preguntas' },
-            { label: 'Seccion C', desc: 'Tu perfil de riesgo', count: '6 preguntas' },
-          ].map((s, i) => (
-            <div key={i} className="flex items-center justify-between">
-              <div>
-                <span className="text-[12px] font-medium uppercase tracking-wider text-primary-600">{s.label}</span>
-                <p className="text-[14px] text-neutral-600 dark:text-neutral-300">{s.desc}</p>
+    <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex flex-col bg-[var(--bg-main)]">
+      {/* Banda superior terracota — identidad visual */}
+      <div className="w-full h-1" style={{ background: 'linear-gradient(90deg, #B5604A, #C9A96E 50%, #7A9B7F)' }} />
+
+      <div className="flex-1 flex items-center justify-center px-6 py-10">
+        <div className="max-w-lg w-full">
+
+          {/* Header */}
+          <div className="text-center mb-8">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 mb-4">
+              Instituto Centrobioenergetica
+            </span>
+            <h1 className="mb-3" style={{ fontFamily: "'Newsreader', Georgia, serif", fontWeight: 400, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', lineHeight: 1.1, color: 'var(--text-main, #1a1a1a)' }}>
+              Cartografía Hormonal<br />
+              <em style={{ color: '#B5604A', fontStyle: 'italic' }}>Femenina™</em>
+            </h1>
+            <div className="w-10 h-px mx-auto mb-4" style={{ background: '#B5604A' }} />
+            <p className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
+              22 preguntas para identificar tu fase hormonal, la severidad de tus síntomas y tus ejes de riesgo. Al final recibirás tu perfil personalizado.
+            </p>
+          </div>
+
+          {/* Secciones */}
+          <div className="mb-7 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+            {[
+              { label: 'Sección A', desc: 'Tu fase reproductiva', count: '4 preguntas', color: '#B5604A' },
+              { label: 'Sección B', desc: 'Tus síntomas actuales', count: '12 preguntas', color: '#534AB7' },
+              { label: 'Sección C', desc: 'Tu perfil de riesgo', count: '6 preguntas', color: '#7a9466' },
+            ].map((s, i) => (
+              <div key={i} className={`flex items-center justify-between px-5 py-4 ${i < 2 ? 'border-b border-neutral-100 dark:border-neutral-700' : ''}`}>
+                <div className="flex items-center gap-3">
+                  <div className="w-1 h-8 rounded-full" style={{ background: s.color }} />
+                  <div>
+                    <span className="text-[11px] font-medium uppercase tracking-wider" style={{ color: s.color }}>{s.label}</span>
+                    <p className="text-[14px] text-neutral-700 dark:text-neutral-200">{s.desc}</p>
+                  </div>
+                </div>
+                <span className="text-[12px] text-neutral-400">{s.count}</span>
               </div>
-              <span className="text-[12px] text-neutral-400">{s.count}</span>
-            </div>
-          ))}
-        </div>
-        <div className="space-y-3">
+            ))}
+          </div>
+
+          {/* CTA */}
           <button
             onClick={() => setStep(0)}
-            className="w-full py-4 rounded-xl text-white text-[16px] font-medium transition-opacity hover:opacity-90 bg-primary-600"
+            className="w-full py-4 rounded-xl text-white text-[16px] font-medium transition-all hover:opacity-90 active:scale-[0.99] mb-3"
+            style={{ background: 'linear-gradient(135deg, #B5604A, #9a4f3c)' }}
           >
-            Comenzar
+            Comenzar el test
           </button>
-          <p className="text-[12px] text-neutral-400">Tiempo estimado: 4 minutos. Tus respuestas son privadas y se procesan en tu dispositivo.</p>
-          <div className="mt-4 text-left bg-neutral-50 dark:bg-neutral-800 rounded-lg p-5 border border-neutral-100 dark:border-neutral-700">
-            <p className="text-[12px] font-medium uppercase tracking-widest text-neutral-400 mb-3">Base cientifica del algoritmo</p>
-            <div className="space-y-2.5">
-              <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed"><span className="font-medium text-neutral-700 dark:text-neutral-200">Fase reproductiva:</span> Clasificacion STRAW+10 (Harlow et al. J Clin Endocrinol Metab 2012).</p>
-              <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed"><span className="font-medium text-neutral-700 dark:text-neutral-200">Severidad de sintomas:</span> Menopause Rating Scale / MRS (Heinemann et al. 2003). Validada en 10 idiomas.</p>
-              <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed"><span className="font-medium text-neutral-700 dark:text-neutral-200">Perfil de riesgo:</span> Factores basados en guias NAMS e IMS.</p>
+          <p className="text-center text-[12px] text-neutral-400 mb-6">
+            4 minutos · Privado · Procesado en tu dispositivo
+          </p>
+
+          {/* Base científica */}
+          <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-4 border border-neutral-100 dark:border-neutral-700">
+            <p className="text-[11px] font-medium uppercase tracking-widest text-neutral-400 mb-3">Base científica</p>
+            <div className="space-y-2">
+              <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                <span className="font-medium text-neutral-600 dark:text-neutral-300">Fase reproductiva:</span> Clasificación STRAW+10 (Harlow et al. 2012).
+              </p>
+              <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                <span className="font-medium text-neutral-600 dark:text-neutral-300">Severidad de síntomas:</span> Menopause Rating Scale / MRS (Heinemann et al. 2003). Validada en 10 idiomas.
+              </p>
+              <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                <span className="font-medium text-neutral-600 dark:text-neutral-300">Perfil de riesgo:</span> Guías NAMS e IMS.
+              </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -329,13 +378,14 @@ const TestHormonal: React.FC = () => {
 
   // RESULT
   if (result) {
-    const maxBar = 16;
+    const maxBar = 20; // Somático: 5 ítems × 4 = 20 · Psicológico: 4 ítems × 4 = 16
+    const psychMax = 16;
     const urMax = 12;
     const riskColor = riskTotal <= 3 ? '#7a9466' : riskTotal <= 7 ? '#BA7517' : '#C25A2A';
     const riskLabel = riskTotal <= 3 ? 'Bajo' : riskTotal <= 7 ? 'Moderado' : 'Alto';
     const sevLabel = (v: number, max: number) => {
       const pct = v / max;
-      if (pct === 0) return 'Sin sintomas';
+      if (pct === 0) return 'Sin síntomas';
       if (pct <= 0.25) return 'Leve';
       if (pct <= 0.5) return 'Moderado';
       if (pct <= 0.75) return 'Severo';
@@ -343,12 +393,16 @@ const TestHormonal: React.FC = () => {
     };
 
     return (
-      <div className="w-full pt-[72px] lg:pt-0 pb-16 px-6 bg-[var(--bg-main)]">
-        <div className="max-w-2xl mx-auto pt-6">
+      <div className="w-full pt-[72px] lg:pt-0 pb-16 bg-[var(--bg-main)]">
+        {/* Banda de color del perfil — identidad visual */}
+        <div className="w-full h-1.5" style={{ background: `linear-gradient(90deg, ${result.color}, ${result.color}60, transparent)` }} />
+
+        <div className="max-w-2xl mx-auto px-6 pt-6">
+
           {/* Navigation */}
           <div className="flex items-center justify-between mb-8">
             <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]">
-              <ArrowLeft className="w-4 h-4" /> Volver al curso
+              <ArrowLeft className="w-4 h-4" /> Volver
             </button>
             <span className="text-[11px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
               {new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -356,69 +410,88 @@ const TestHormonal: React.FC = () => {
           </div>
 
           {/* Profile header */}
-          <div className="mb-2">
-            <p className="text-[12px] uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400" style={{ letterSpacing: 3 }}>
-              Cartografia Hormonal Femenina
+          <div className="mb-1">
+            <p className="text-[11px] uppercase tracking-[0.2em] mb-3 text-neutral-400 dark:text-neutral-500">
+              Cartografía Hormonal Femenina™
             </p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-              <h1 className="text-3xl lg:text-4xl" style={{ fontFamily: "'Newsreader', Georgia, serif", fontWeight: 500, color: result.color, letterSpacing: 0.3, lineHeight: 1.1 }}>
+              <h1 style={{ fontFamily: "'Newsreader', Georgia, serif", fontWeight: 400, color: result.color, letterSpacing: '-0.01em', lineHeight: 1.05, fontSize: 'clamp(2rem, 6vw, 2.75rem)' }}>
                 Perfil {result.name}
               </h1>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md self-start sm:self-auto" style={{ background: result.color + '12', border: `1px solid ${result.color}20` }}>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md self-start sm:self-auto" style={{ background: result.color + '12', border: `1px solid ${result.color}30` }}>
                 <div className="w-2 h-2 rounded-full" style={{ background: result.color }} />
-                <span className="text-[13px] font-medium" style={{ color: result.color }}>{result.severity}</span>
+                <span className="text-[12px] font-medium uppercase tracking-wider" style={{ color: result.color }}>{result.severity}</span>
               </div>
             </div>
           </div>
-          <div className="h-px mb-6" style={{ background: `linear-gradient(90deg, ${result.color}60, ${result.color}15, transparent)` }} />
+          <div className="h-px mb-6 mt-3" style={{ background: `linear-gradient(90deg, ${result.color}50, ${result.color}10, transparent)` }} />
+
+          {/* Frase ancla — el momento de impacto */}
+          <div className="mb-6 py-5 px-6 rounded-xl" style={{ background: result.color + '08', borderLeft: `3px solid ${result.color}` }}>
+            <p style={{ fontFamily: "'Newsreader', Georgia, serif", fontStyle: 'italic', fontSize: '1.15rem', color: result.color, lineHeight: 1.5 }}>
+              "{result.anchor}"
+            </p>
+          </div>
 
           {/* Phase + Risk row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-4 border-b border-neutral-200 dark:border-neutral-700 gap-3">
-            <div className="flex items-center gap-6">
-              <div>
-                <span className="text-[12px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">Fase</span>
-                <p className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100">{result.phase}</p>
-              </div>
-              <div className="w-px h-8 bg-neutral-200 dark:bg-neutral-700" />
-              <div>
-                <span className="text-[12px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">Riesgo futuro</span>
-                <p className="text-[15px] font-medium" style={{ color: riskColor }}>{riskLabel}</p>
-              </div>
+          <div className="flex items-center gap-6 py-4 border-b border-neutral-200 dark:border-neutral-700 mb-6">
+            <div>
+              <span className="text-[11px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500">Fase</span>
+              <p className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 mt-0.5">{result.phase}</p>
+            </div>
+            <div className="w-px h-8 bg-neutral-200 dark:bg-neutral-700" />
+            <div>
+              <span className="text-[11px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500">Riesgo estructural</span>
+              <p className="text-[15px] font-medium mt-0.5" style={{ color: riskColor }}>{riskLabel}</p>
             </div>
           </div>
 
           {/* Description */}
-          <div className="py-6 border-b border-neutral-200 dark:border-neutral-700">
-            <p className="text-[16px] leading-relaxed text-neutral-800 dark:text-neutral-200" style={{ fontFamily: "'Newsreader', Georgia, serif" }}>
+          <div className="mb-6">
+            <p className="text-[16px] leading-relaxed text-neutral-700 dark:text-neutral-200" style={{ fontFamily: "'Newsreader', Georgia, serif" }}>
               {result.description}
             </p>
           </div>
 
+          {/* Mapas recomendados — visual */}
+          <div className="mb-6 p-5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
+            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-4 text-neutral-400 dark:text-neutral-500">Mapas de intervención para tu perfil</h3>
+            <div className="flex flex-wrap gap-2">
+              {result.maps.map((mapa) => (
+                <div key={mapa} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: result.color + '10', border: `1px solid ${result.color}25` }}>
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: result.color }} />
+                  <span className="text-[13px] font-medium" style={{ color: result.color }}>{mapa}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-[12px] text-neutral-400 dark:text-neutral-500 mt-3 leading-relaxed">{result.recommendation}</p>
+          </div>
+
           {/* Severity Panel */}
-          <div className="py-6 border-b border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[12px] font-medium uppercase tracking-widest mb-5 text-neutral-500 dark:text-neutral-400">Severidad por eje</h3>
+          <div className="py-6 border-t border-b border-neutral-200 dark:border-neutral-700 mb-6">
+            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-5 text-neutral-400 dark:text-neutral-500">Severidad por eje</h3>
             <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {[
-                { label: 'Somatico', sublabel: 'Calores, sueno, dolor', value: somatic, max: maxBar, color: '#D85A30' },
-                { label: 'Psicologico', sublabel: 'Animo, ansiedad, cognicion', value: psychological, max: maxBar, color: '#534AB7' },
-                { label: 'Urogenital', sublabel: 'Sexualidad, vejiga', value: urogenital, max: urMax, color: '#8B6F4E' },
+                { label: 'Somático', sublabel: 'Calores · sueño · dolor · fatiga', value: somatic, max: maxBar, color: '#D85A30' },
+                { label: 'Psicológico', sublabel: 'Ánimo · ansiedad · niebla mental', value: psychological, max: psychMax, color: '#534AB7' },
+                { label: 'Urogenital', sublabel: 'Sexualidad · vejiga · sequedad', value: urogenital, max: urMax, color: '#8B6F4E' },
               ].map((axis) => {
                 const pct = Math.min((axis.value / axis.max) * 100, 100);
                 return (
                   <div key={axis.label} className="text-center">
-                    <div className="relative w-[72px] h-[72px] sm:w-20 sm:h-20 mx-auto mb-3">
+                    <div className="relative w-[68px] h-[68px] sm:w-20 sm:h-20 mx-auto mb-3">
                       <svg viewBox="0 0 80 80" className="w-full h-full" style={{ transform: 'rotate(-90deg)' }}>
-                        <circle cx="40" cy="40" r="34" fill="none" className="stroke-neutral-100 dark:stroke-neutral-700" strokeWidth="6" />
-                        <circle cx="40" cy="40" r="34" fill="none" stroke={axis.color} strokeWidth="6" strokeLinecap="round"
+                        <circle cx="40" cy="40" r="34" fill="none" className="stroke-neutral-100 dark:stroke-neutral-700" strokeWidth="5" />
+                        <circle cx="40" cy="40" r="34" fill="none" stroke={axis.color} strokeWidth="5" strokeLinecap="round"
                           strokeDasharray={`${(pct / 100) * 213.6} 213.6`} className="transition-all duration-1000 ease-out" />
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="text-[17px] sm:text-[18px] font-semibold" style={{ color: axis.color }}>{axis.value}</span>
-                        <span className="text-[9px] sm:text-[10px] text-neutral-500 dark:text-neutral-400">/{axis.max}</span>
+                        <span className="text-[16px] sm:text-[18px] font-semibold" style={{ color: axis.color }}>{axis.value}</span>
+                        <span className="text-[9px] text-neutral-400 dark:text-neutral-500">/{axis.max}</span>
                       </div>
                     </div>
                     <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100">{axis.label}</p>
-                    <p className="text-[11px] mt-0.5 text-neutral-500 dark:text-neutral-400 hidden sm:block">{axis.sublabel}</p>
+                    <p className="text-[11px] mt-0.5 text-neutral-400 dark:text-neutral-500 hidden sm:block">{axis.sublabel}</p>
                     <p className="text-[11px] font-medium mt-1" style={{ color: axis.color }}>{sevLabel(axis.value, axis.max)}</p>
                   </div>
                 );
@@ -427,59 +500,49 @@ const TestHormonal: React.FC = () => {
           </div>
 
           {/* Risk Detail Bar */}
-          <div className="py-6 border-b border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[12px] font-medium uppercase tracking-widest mb-4 text-neutral-500 dark:text-neutral-400">Riesgo estructural a futuro</h3>
+          <div className="mb-6">
+            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-4 text-neutral-400 dark:text-neutral-500">Riesgo estructural a futuro</h3>
             <div className="flex items-center gap-4">
               <div className="flex-1">
                 <div className="flex gap-0.5 sm:gap-1">
                   {Array.from({ length: 14 }).map((_, i) => (
-                    <div key={i} className="flex-1 h-3 rounded-sm transition-all duration-500"
+                    <div key={i} className="flex-1 h-2.5 rounded-sm transition-all duration-500"
                       style={{
-                        background: i < riskTotal ? (i < 4 ? '#7a9466' : i < 8 ? '#BA7517' : '#C25A2A') : 'var(--border-light)',
-                        transitionDelay: `${i * 50}ms`,
+                        background: i < riskTotal ? (i < 4 ? '#7a9466' : i < 8 ? '#BA7517' : '#C25A2A') : 'var(--border-light, #e8e6e1)',
+                        transitionDelay: `${i * 40}ms`,
                       }} />
                   ))}
                 </div>
                 <div className="flex justify-between mt-1.5">
-                  <span className="text-[10px] sm:text-[11px]" style={{ color: '#7a9466' }}>Bajo</span>
-                  <span className="text-[10px] sm:text-[11px]" style={{ color: '#BA7517' }}>Moderado</span>
-                  <span className="text-[10px] sm:text-[11px]" style={{ color: '#C25A2A' }}>Alto</span>
+                  <span className="text-[10px]" style={{ color: '#7a9466' }}>Bajo</span>
+                  <span className="text-[10px]" style={{ color: '#BA7517' }}>Moderado</span>
+                  <span className="text-[10px]" style={{ color: '#C25A2A' }}>Alto</span>
                 </div>
               </div>
-              <div className="text-right shrink-0 w-14 sm:w-16">
-                <span className="text-[20px] sm:text-[22px] font-semibold" style={{ color: riskColor }}>{riskTotal}</span>
-                <span className="text-[11px] sm:text-[12px] text-neutral-500 dark:text-neutral-400">/14</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Recommendation */}
-          <div className="py-6 border-b border-neutral-200 dark:border-neutral-700">
-            <div className="flex gap-4">
-              <div className="shrink-0 w-1 rounded-full" style={{ background: result.color }} />
-              <div>
-                <h3 className="text-[12px] font-medium uppercase tracking-widest mb-2" style={{ color: result.color }}>Indicacion</h3>
-                <p className="text-[15px] leading-relaxed text-neutral-800 dark:text-neutral-200">{result.recommendation}</p>
+              <div className="text-right shrink-0 w-14">
+                <span className="text-[20px] font-semibold" style={{ color: riskColor }}>{riskTotal}</span>
+                <span className="text-[11px] text-neutral-400 dark:text-neutral-500">/14</span>
               </div>
             </div>
           </div>
 
           {/* CTA */}
-          <div className="py-8">
+          <div className="py-6">
             <div className="rounded-xl p-5 sm:p-6 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
-              <p className="font-editorial text-xl text-neutral-800 dark:text-neutral-100 mb-1">
-                El Reset Hormonal
+              <p style={{ fontFamily: "'Newsreader', Georgia, serif", fontSize: '1.2rem', color: 'var(--text-main, #1a1a1a)' }} className="mb-1">
+                El Reset Hormonal™
               </p>
               <p className="text-[14px] mb-4 text-neutral-500 dark:text-neutral-400">
-                Cartografia Hormonal Femenina — 9 mapas de regulacion + fitoterapia por fase. 16 y 30 de mayo.
+                Cartografía Hormonal Femenina — los cuatro mapas de Fase 1, base bioeléctrica y protocolo completo.
               </p>
               <a
-                href={`https://wa.me/525579076626?text=${encodeURIComponent(`Hola, hice el test hormonal y mi perfil es ${result.name} (${result.phase}, severidad ${result.severity}). Quiero saber mas sobre El Reset Hormonal.`)}`}
+                href={`https://wa.me/525579076626?text=${encodeURIComponent(`Hola, hice el test de Cartografía Hormonal y mi perfil es ${result.name} (${result.phase}, severidad ${result.severity}). Me gustaría saber más sobre El Reset Hormonal.`)}`}
                 target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white text-[15px] font-medium transition-opacity hover:opacity-90 bg-primary-600"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-white text-[15px] font-medium transition-opacity hover:opacity-90"
+                style={{ background: result.color }}
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
-                Quiero saber mas
+                Quiero saber más sobre mi perfil
               </a>
             </div>
           </div>
@@ -487,9 +550,9 @@ const TestHormonal: React.FC = () => {
           {/* Methodology footer */}
           <div className="pb-6">
             <details className="group">
-              <summary className="cursor-pointer text-[12px] font-medium uppercase tracking-widest mb-2 list-none flex items-center gap-2 text-neutral-500 dark:text-neutral-400">
+              <summary className="cursor-pointer text-[12px] font-medium uppercase tracking-widest mb-2 list-none flex items-center gap-2 text-neutral-400 dark:text-neutral-500">
                 <svg className="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                Metodologia y base cientifica
+                Metodología y base científica
               </summary>
               <div className="mt-3 space-y-2 pl-5">
                 <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
@@ -499,10 +562,10 @@ const TestHormonal: React.FC = () => {
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Severidad:</span> MRS (Heinemann et al. 2003). Validada en 10 idiomas.
                 </p>
                 <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                  <span className="font-medium text-neutral-600 dark:text-neutral-300">Riesgo:</span> Guias NAMS e IMS.
+                  <span className="font-medium text-neutral-600 dark:text-neutral-300">Riesgo:</span> Guías NAMS e IMS.
                 </p>
                 <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                  Procesado localmente. No sustituye evaluacion medica.
+                  Procesado localmente en tu dispositivo. No sustituye evaluación médica.
                 </p>
               </div>
             </details>
@@ -512,7 +575,7 @@ const TestHormonal: React.FC = () => {
           <div className="text-center pb-4">
             <button
               onClick={() => { setStep(-1); setAnswers({}); setResult(null); }}
-              className="text-[13px] text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
+              className="text-[13px] text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
             >
               Volver a hacer el test
             </button>
@@ -583,32 +646,39 @@ const TestHormonal: React.FC = () => {
           )}
 
           {/* Scale 0-4 */}
-          {currentQuestion.type === 'scale' && (
-            <div>
-              <div className="flex justify-between mb-3">
-                <span className="text-[12px] text-neutral-500 dark:text-neutral-400">{currentQuestion.scaleLabels?.min}</span>
-                <span className="text-[12px] text-neutral-500 dark:text-neutral-400">{currentQuestion.scaleLabels?.max}</span>
+          {currentQuestion.type === 'scale' && (() => {
+            const scaleOpts = [
+              { label: 'No lo\ntengo', color: '#7a9466', bg: '#7a946612' },
+              { label: 'Leve', color: '#a0b060', bg: '#a0b06012' },
+              { label: 'Moderado', color: '#BA7517', bg: '#BA751712' },
+              { label: 'Severo', color: '#C25A2A', bg: '#C25A2A12' },
+              { label: 'Muy\nsevero', color: '#8B2500', bg: '#8B250012' },
+            ];
+            return (
+              <div>
+                <div className="flex gap-1.5 sm:gap-2">
+                  {scaleOpts.map((opt, v) => (
+                    <button
+                      key={v}
+                      onClick={() => handleScale(v)}
+                      className="flex-1 flex flex-col items-center gap-2.5 py-4 sm:py-5 rounded-xl border-2 transition-all duration-150 active:scale-95 hover:scale-[1.03]"
+                      style={{ borderColor: opt.color + '60', background: 'white' }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = opt.bg; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'white'; }}
+                    >
+                      <div className="w-2.5 h-2.5 rounded-full" style={{ background: opt.color }} />
+                      <span className="text-[10px] font-medium text-center leading-tight whitespace-pre-line hidden sm:block" style={{ color: opt.color }}>{opt.label}</span>
+                      <span className="text-[15px] font-semibold" style={{ color: opt.color }}>{v}</span>
+                    </button>
+                  ))}
+                </div>
+                <div className="flex justify-between mt-2 px-1">
+                  <span className="text-[11px] text-neutral-400">{currentQuestion.scaleLabels?.min}</span>
+                  <span className="text-[11px] text-neutral-400">{currentQuestion.scaleLabels?.max}</span>
+                </div>
               </div>
-              <div className="flex gap-2">
-                {[0, 1, 2, 3, 4].map((v) => (
-                  <button
-                    key={v}
-                    onClick={() => handleScale(v)}
-                    className="flex-1 py-5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:border-primary-400 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-600/10 transition-all text-center active:scale-95"
-                  >
-                    <span className="text-lg font-medium text-neutral-600 dark:text-neutral-300">{v}</span>
-                  </button>
-                ))}
-              </div>
-              <div className="flex justify-between mt-2">
-                {['0', '1', '2', '3', '4'].map((l) => (
-                  <span key={l} className="text-[11px] text-neutral-400 dark:text-neutral-500 flex-1 text-center">
-                    {l === '0' ? 'No' : l === '1' ? 'Leve' : l === '2' ? 'Mod.' : l === '3' ? 'Sev.' : 'Muy sev.'}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Multi select */}
           {currentQuestion.type === 'multi' && (
