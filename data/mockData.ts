@@ -248,6 +248,7 @@ export const MOCK_DATA = {
               id: 2,
               title: 'Clase 2 — El Método',
               description: 'Protocolos de aplicación, lectura del caso y personalización del plan.',
+              cloudflareStreamId: '87c2e0ae3597984cf6ddb5585b7a7bcc',
               duration: '00:00',
               order: 2,
             },
