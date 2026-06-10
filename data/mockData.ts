@@ -256,6 +256,7 @@ export const MOCK_DATA = {
               id: 3,
               title: 'Clase 3 — La Botica del Reset',
               description: 'Fitoterapia específica, casos clínicos e integración del método.',
+              cloudflareStreamId: 'e42c273dd9b06fbef21a33fa8e83743e',
               duration: '00:00',
               order: 3,
             },
