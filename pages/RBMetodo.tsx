@@ -274,7 +274,7 @@ const RBMetodo: React.FC = () => {
             },
             {
               q: '¿Tiene base científica real?',
-              a: 'Los mecanismos por los cuales un campo magnético interactúa con los tejidos están publicados en Cell, Frontiers, PNAS y Development. Lo que aún falta por verificar es la configuración clínica específica de dos campos opuestos simultáneos. Eso lo decimos abiertamente — la honestidad sobre lo que no sabemos es parte de la formación.'
+              a: 'Los mecanismos por los cuales un campo magnético interactúa con los tejidos están publicados en Cell, Frontiers, PNAS y Development. La configuración clínica específica —dos campos opuestos aplicados simultáneamente— aún está en investigación.'
             },
             {
               q: '¿Qué relación tiene con el Dr. Goiz y el Par Biomagnético?',

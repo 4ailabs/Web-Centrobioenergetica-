@@ -38,7 +38,7 @@ const RegulacionBioelectrica: React.FC = () => {
         ['La red bioeléctrica', 'Los tejidos son redes conectadas por gap junctions que comparten información eléctrica; una señal viaja a puntos distantes en cuestión de segundos. Por eso el cuerpo se lee como una red continua, no como puntos sueltos.'],
         ['El órgano como sistema con una meta', 'Cada órgano defiende un punto de calibración. La enfermedad no es un error: es una respuesta que se quedó activa cuando ya no hacía falta. Regular no es corregir el síntoma — es devolverle la señal para recalibrarse.'],
         ['Caso ejemplar: el Ojo Adaptativo', 'Por qué un niño se vuelve miope, leído en cuatro niveles de razonamiento clínico. El caso que muestra, en vivo, cómo cambia la pregunta frente a cualquier paciente.'],
-        ['Salud y mantenimiento', 'La Regulación Bioeléctrica sirve tanto para quien está enfermo como para quien quiere mantenerse sano (salutogénesis y carga alostática). Sin dogma: se distingue lo demostrado, lo plausible y lo que falta por probar.'],
+        ['Salud y mantenimiento', 'La Regulación Bioeléctrica sirve tanto para quien está enfermo como para quien quiere mantenerse sano: salutogénesis y carga alostática, el marco de la prevención y el cuidado a largo plazo.'],
       ],
     },
     {
@@ -57,7 +57,7 @@ const RegulacionBioelectrica: React.FC = () => {
       resultado: 'Reconoces los ejes de regulación y priorizas con criterio cuando el paciente presenta varios.',
       temas: [
         ['El eje inflamatorio', 'El sistema inmune y por qué el problema no es inflamar, sino no resolver. Cómo se lee y cómo se regula el estado inflamatorio.'],
-        ['El eje de biotransformación', 'El hígado y la carga ambiental. Honestidad del método: aquí no hay un nodo bioeléctrico literal — se dice, no se inventa.'],
+        ['El eje de biotransformación', 'El hígado y la carga ambiental. A diferencia de otros ejes, aquí el trabajo es sobre el circuito molecular del órgano, no sobre un nodo bioeléctrico literal.'],
         ['El eje redox', 'La deriva oxidativa del medio interno: el eje de fondo, el del largo plazo, y cómo cuidarlo.'],
         ['El criterio clínico', 'Perfiles combinados y jerarquía: cuál eje se atiende primero y por qué. Este es el módulo que te da criterio para trabajar con orden y sin dispersarte.'],
         ['Prácticas', 'Sesión completa supervisada: lectura del perfil bioeléctrico y aplicación, en dos rondas.'],
