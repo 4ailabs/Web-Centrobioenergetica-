@@ -120,7 +120,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         >
           <div className="flex flex-col sm:flex-row">
             <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px]">
-              <img src="/images/courses/regulacion-bioelectrica/Fondo.jpg" alt="Regulación Bioeléctrica" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+              <img src="/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.png" alt="Mapa bioeléctrico del cuerpo — Regulación Bioeléctrica" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
             </div>
             <div className="sm:w-1/2 p-5 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
