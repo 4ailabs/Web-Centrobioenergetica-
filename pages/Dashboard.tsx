@@ -18,7 +18,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
   const navigate = useNavigate();
 
   // Solo cursos que ya están disponibles (con videos), no los futuros
-  const activeCourseIds = [109, 104, 107, 108, 102, 101, 103]; // Crania, Reset Hormonal, Resonantia, Mascotas, Set Point, Aminoácidos, Bioenergética V4
+  const activeCourseIds = [109, 104, 107, 108, 102, 101, 103, 105]; // Crania, Reset Hormonal, Resonantia, Mascotas, Set Point, Aminoácidos, Bioenergética V4, Actos que Mueven
   const courses = allCourses.filter(c => activeCourseIds.includes(c.id));
 
   const goToCourse = (course: Course) => {
@@ -57,61 +57,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
-      {/* Disponible — Reset Hormonal */}
-      <div className="px-6 lg:px-0 pb-8">
-        <div
-          onClick={() => navigate('/course/104')}
-          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
-        >
-          <div className="flex flex-col sm:flex-row">
-            <div className="sm:w-1/2 overflow-hidden aspect-[16/9] sm:aspect-auto sm:min-h-[200px]">
-              <img src="/images/courses/reset-hormonal/reset_hormonal.jpg" alt="El Reset Hormonal" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" />
-            </div>
-            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Disponible</span>
-                <span className="text-[11px] text-neutral-400">Curso · 3 videos</span>
-              </div>
-              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
-                El Reset Hormonal
-              </h2>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
-                Cartografía Hormonal Femenina, protocolos de aplicación y botica del reset.
-              </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Próximamente — Actos que Mueven */}
-      <div className="px-6 lg:px-0 pb-8">
-        <div
-          onClick={() => navigate('/actos-que-mueven')}
-          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
-        >
-          <div className="flex flex-col sm:flex-row">
-            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px]">
-              <img src="/images/courses/actos-que-mueven/ritual_2.png" alt="Actos que Mueven" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
-            </div>
-            <div className="sm:w-1/2 p-5 flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-0.5 text-white text-[10px] font-medium rounded-full" style={{ background: '#8B4513' }}>Próximamente</span>
-                <span className="text-[11px] text-neutral-400">Taller · 2 Sábados</span>
-              </div>
-              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                Actos que <span style={{ color: '#8B4513' }}>Mueven</span>
-              </h2>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">El cuerpo no cambia con lo que entiendes — cambia con lo que haces</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-2">
-                6 y 20 de junio · 10:00 – 18:00 h · Presencial · Cupo: 15 personas
-              </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Próximamente — Regulación Bioeléctrica */}
       <div className="px-6 lg:px-0 pb-8">
         <div
@@ -135,6 +80,42 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                 Julio–Agosto 2026 · Presencial u Online
               </p>
               <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Próximamente — Bioenergética Transgeneracional */}
+      <div className="px-6 lg:px-0 pb-8">
+        <div
+          onClick={() => navigate('/bioenergetica-transgeneracional')}
+          className="group cursor-pointer bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors"
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:w-1/2 p-5 flex flex-col justify-center order-2 sm:order-1">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 text-white text-[10px] font-medium rounded-full" style={{ background: '#B5604A' }}>Beca por invitación</span>
+                <span className="text-[11px] text-neutral-400">4 sesiones · viernes</span>
+              </div>
+              <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5" style={{ fontFamily: 'Georgia, serif' }}>
+                Bioenergética <span style={{ color: '#B5604A' }}>Transgeneracional</span>
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Construye el mapa de tu árbol familiar y aprende a leer en él lo que no es tuyo.</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
+                Formulario de aceptación · Cupo limitado
+              </p>
+              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+            </div>
+            <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px] order-1 sm:order-2 flex items-center justify-center" style={{ background: '#362F29' }}>
+              <svg width="72" height="72" viewBox="0 0 44 44" fill="none">
+                <circle cx="10" cy="8" r="3.5" stroke="#8FA87A" strokeWidth="1.4" />
+                <circle cx="34" cy="8" r="3.5" stroke="#8FA87A" strokeWidth="1.4" />
+                <circle cx="22" cy="24" r="4.2" fill="#8FA87A" opacity="0.18" stroke="#8FA87A" strokeWidth="1.4" />
+                <path d="M10 11.5 V17 H34 V11.5" stroke="#8FA87A" strokeWidth="1.2" strokeLinecap="round" />
+                <path d="M22 17 V19.8" stroke="#8FA87A" strokeWidth="1.2" strokeLinecap="round" />
+                <path d="M22 28.2 V33" stroke="#8FA87A" strokeWidth="1.2" strokeLinecap="round" />
+                <circle cx="22" cy="37.5" r="3" fill="#8FA87A" />
+              </svg>
             </div>
           </div>
         </div>
