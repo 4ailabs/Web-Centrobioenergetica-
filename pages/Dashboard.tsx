@@ -132,7 +132,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
               </h2>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Tu cuerpo es un mapa eléctrico. Aprende a leerlo.</p>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
-                Julio–Agosto 2026 · Presencial u Online · 15 lugares
+                Julio–Agosto 2026 · Presencial u Online
               </p>
               <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
             </div>
