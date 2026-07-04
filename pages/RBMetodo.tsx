@@ -79,7 +79,7 @@ const RBMetodo: React.FC = () => {
             Tu cuerpo es un sistema eléctrico. Cada célula tiene un voltaje. Cada tejido forma una red de células que comparten información eléctrica entre sí. Cuando esa red funciona bien, el cuerpo se mantiene sano. Cuando se desregula, aparecen las condiciones para la enfermedad — muchas veces antes de que cualquier estudio de laboratorio lo detecte.
           </p>
           <p className="text-[14px] leading-relaxed" style={{ color: '#555' }}>
-            La <strong style={{ color: C.black }}>Regulación Bioeléctrica (RB)</strong> es un procedimiento que permite dos cosas: <strong style={{ color: C.teal }}>leer</strong> el estado eléctrico de tus tejidos y <strong style={{ color: C.teal }}>facilitar</strong> que regresen a su estado óptimo. Se hace con campos magnéticos estáticos — imanes de uso clínico aplicados sobre puntos específicos del cuerpo.
+            La <strong style={{ color: C.black }}>Regulación Bioeléctrica (RB)</strong> es un procedimiento que permite dos cosas: <strong style={{ color: C.teal }}>leer</strong> el estado eléctrico de tus tejidos y <strong style={{ color: C.teal }}>facilitar</strong> que regresen a su estado óptimo. Se hace con campos magnéticos estáticos de uso clínico, aplicados sobre puntos específicos del cuerpo.
           </p>
           <p className="text-[14px] leading-relaxed" style={{ color: '#555' }}>
             No es un diagnóstico médico. No identifica enfermedades ni microorganismos. Lo que hace es mapear dónde tu cuerpo está desregulado y ayudarlo a regularse. Es complementario a la medicina convencional, nunca sustituto.
@@ -96,9 +96,9 @@ const RBMetodo: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { n: '1', title: 'Rastreo', color: C.teal, desc: 'El terapeuta pasa un imán por las distintas regiones de tu cuerpo. Cuando encuentra una zona desregulada, un reflejo muscular lo señala. Así se construye un mapa de tu estado bioeléctrico — individualizado, de ese momento.' },
-            { n: '2', title: 'Impactación', color: C.purple, desc: 'Se colocan dos imanes de polaridad opuesta sobre los puntos identificados. Esto modifica las condiciones del microambiente del tejido — pH, distribución de iones, voltaje celular — y facilita que regrese a su rango óptimo.' },
-            { n: '3', title: 'Seguimiento', color: C.amber, desc: 'Se registra el perfil bioeléctrico de cada sesión. En la siguiente, se compara: ¿qué zonas mejoraron? ¿Cuáles persisten? El seguimiento es medible y documentable — no depende de la percepción subjetiva.' },
+            { n: '1', title: 'Leer', color: C.teal, desc: 'El terapeuta explora las distintas regiones del cuerpo con el campo magnético. Cuando encuentra una zona desregulada, un reflejo muscular lo señala. Así se construye el perfil bioeléctrico — individualizado, de ese momento.' },
+            { n: '2', title: 'Regular', color: C.purple, desc: 'Se aplican dos campos magnéticos de polaridad opuesta sobre los nodos identificados. Esto modifica las condiciones del microambiente del tejido — pH, distribución de iones, voltaje celular — y facilita que regrese a su rango óptimo.' },
+            { n: '3', title: 'Mantener', color: C.amber, desc: 'Se registra el perfil bioeléctrico de cada sesión. En la siguiente, se compara: ¿qué ejes mejoraron? ¿Cuáles persisten? El seguimiento es medible y documentable — no depende de la percepción subjetiva.' },
           ].map((step, i) => (
             <div key={i} className="p-5 rounded-xl bg-white border border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-3">
@@ -124,7 +124,7 @@ const RBMetodo: React.FC = () => {
           {[
             { title: 'Lectura por regiones', color: C.teal, desc: 'El cuerpo se explora en 10 regiones anatómicas. No solo puntos memorizados — territorios completos. Esto permite detectar desregulaciones que no están en ningún catálogo.' },
             { title: 'Perfil individualizado', color: C.purple, desc: 'Dos personas con el mismo síntoma pueden tener mapas bioeléctricos completamente diferentes. El perfil es tuyo, no genérico.' },
-            { title: 'No solo para enfermos', color: C.amber, desc: 'Un deportista puede usarlo para optimizar. Una persona sana para prevenir. No necesitas estar enfermo para saber cómo está tu terreno bioeléctrico.' },
+            { title: 'No solo para enfermos', color: C.amber, desc: 'Un deportista puede usarlo para optimizar. Una persona sana para prevenir. No necesitas estar enfermo para saber cómo está tu estado bioeléctrico.' },
             { title: 'Documentable', color: C.coral, desc: 'Cada sesión genera un registro: cuántos nodos, en qué regiones, qué densidad. Se puede comparar entre sesiones. Es seguimiento real, no percepción.' },
             { title: 'Comunicable', color: C.teal, desc: 'El reporte de una sesión de RB usa lenguaje que cualquier médico puede leer. Eso permite colaboración con otros profesionales de salud.' },
           ].map((item, i) => (
@@ -172,7 +172,7 @@ const RBMetodo: React.FC = () => {
         </div>
         <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
           {[
-            { desc: 'Los campos magnéticos estáticos interactúan con canales iónicos de la membrana celular', ref: 'Wu et al., 2022 · Physical Review Applied' },
+            { desc: 'Los campos magnéticos estáticos interactúan con canales iónicos de la membrana celular', ref: 'Wu et al., 2022 · Cells' },
             { desc: 'El voltaje de una célula determina su comportamiento — no solo su genética', ref: 'Levin, 2012–2025 · Cell · Development · BioEssays' },
             { desc: 'El cerebro humano contiene cristales de magnetita que responden a campos magnéticos', ref: 'Kirschvink, 1992 · PNAS' },
             { desc: 'Una señal bioeléctrica viaja entre extremidades del cuerpo en aproximadamente 30 segundos', ref: 'Busse et al., 2018 · Development' },
@@ -185,7 +185,7 @@ const RBMetodo: React.FC = () => {
         </div>
       </div>
 
-      {/* ===== LA HERRAMIENTA: LOS IMANES ===== */}
+      {/* ===== LA HERRAMIENTA: EL CAMPO MAGNÉTICO ===== */}
       <div className="px-6 lg:px-0 pb-10">
         <div className="flex items-center gap-3 mb-5">
           <span className="text-[11px] font-medium uppercase tracking-wider" style={{ color: C.grey }}>La herramienta</span>
@@ -194,13 +194,13 @@ const RBMetodo: React.FC = () => {
 
         <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-5 max-w-2xl">
           <p className="text-[14px] leading-relaxed mb-3" style={{ color: C.black }}>
-            RB utiliza imanes de neodimio de uso clínico — campos magnéticos estáticos en el rango de 0.1 a 0.5 Tesla. Son instrumentos biofísicos con efectos documentados sobre la membrana celular, los canales iónicos y la matriz extracelular.
+            RB utiliza campos magnéticos estáticos de uso clínico (imanes de neodimio) en el rango de 0.1 a 0.5 Tesla. Son instrumentos biofísicos con efectos documentados sobre la membrana celular, los canales iónicos y la matriz extracelular.
           </p>
           <p className="text-[13px] leading-relaxed mb-3" style={{ color: '#555' }}>
-            Se aplican en pares de polaridad opuesta sobre los nodos que el rastreo identificó. Un polo norte y un polo sur, colocados simultáneamente. La impactación dura entre 15 y 30 minutos por par. Es el gesto clínico central de RB — y lo que aprenderás a ejecutar en la formación.
+            Se aplican en polaridad opuesta sobre los dos nodos de un dipolo. Un polo norte y un polo sur, colocados simultáneamente. La aplicación dura entre 15 y 30 minutos. Es el gesto clínico central de RB — y lo que aprenderás a ejecutar en la formación.
           </p>
           <p className="text-[13px] leading-relaxed" style={{ color: '#555' }}>
-            Los imanes son la herramienta. Lo que los hace útiles es saber dónde colocarlos, por qué en ese punto, y qué efecto esperar. Eso es lo que enseña el curso.
+            El campo magnético es la herramienta. Lo que lo hace útil es saber dónde aplicarlo, por qué en ese punto, y qué efecto esperar. Eso es lo que enseña el curso.
           </p>
         </div>
       </div>
@@ -223,21 +223,21 @@ const RBMetodo: React.FC = () => {
           <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
             <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>El voltaje celular como señal instructiva</h3>
             <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              Cada célula tiene un voltaje que determina su comportamiento — no solo su genética. Investigadores de Tufts University lo han demostrado: modificar el voltaje de un grupo de células cambia lo que hacen, sin tocar su ADN. Cuando impactas con imanes, estás influyendo en esa señal. Saber esto te permite explicar a cualquier médico lo que haces y por qué.
+              Cada célula tiene un voltaje que determina su comportamiento — no solo su genética. Michael Levin, en la Universidad de Tufts, lo ha demostrado: modificar el voltaje de un grupo de células cambia lo que hacen, sin tocar su ADN. Cuando aplicas el campo magnético, estás influyendo en esa señal. Saber esto te permite explicar a cualquier médico lo que haces y por qué.
             </p>
           </div>
 
           <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Las redes bioeléctricas y por qué existen los pares</h3>
+            <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Las redes bioeléctricas y por qué existen los dipolos</h3>
             <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              Los tejidos son redes de células conectadas que comparten información eléctrica. Cuando una zona se desregula, la señal viaja por la red a puntos distantes. Por eso el rastreo encuentra pares: dos nodos de la misma red con estados bioeléctricos diferentes. Esto es lo que vas a detectar y corregir.
+              Los tejidos son redes de células conectadas que comparten información eléctrica. Cuando una zona se desregula, la señal viaja por la red a puntos distantes. Por eso el rastreo encuentra dipolos: dos nodos de la misma red con estados bioeléctricos diferentes. Esto es lo que vas a detectar y regular.
             </p>
           </div>
 
           <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
             <h3 className="text-[13px] font-semibold mb-2" style={{ color: C.black }}>Cada tejido tiene su rango — no hay un número universal</h3>
             <p className="text-xs leading-relaxed" style={{ color: C.grey }}>
-              La sangre, el músculo, el estómago, el pulmón — cada uno tiene su rango óptimo diferente. No existe un "valor normal" único para todo el cuerpo. La impactación facilita que cada tejido regrese a su rango propio. Aprender a respetar esa especificidad es parte fundamental de la formación.
+              La sangre, el músculo, el estómago, el pulmón — cada uno tiene su rango óptimo diferente. No existe un "valor normal" único para todo el cuerpo. La aplicación facilita que cada tejido regrese a su rango propio. Aprender a respetar esa especificidad es parte fundamental de la formación.
             </p>
           </div>
         </div>
@@ -258,7 +258,7 @@ const RBMetodo: React.FC = () => {
             },
             {
               q: '¿En qué se diferencia de otros cursos de biomagnetismo?',
-              a: 'La técnica es la misma: rastreo e impactación con imanes. Lo que cambió es el fundamento — de "pH y resonancia vibracional" a matriz extracelular, voltaje celular y redes bioeléctricas. Publicado en revistas indexadas. Además, RB incluye el rastreo por 10 regiones anatómicas, que no se enseña en la formación clásica.'
+              a: 'La técnica se conserva: lectura y aplicación con campos magnéticos. Lo que cambia es el fundamento y la forma de razonar — de una lista de puntos a matriz extracelular, voltaje celular, redes bioeléctricas y ejes de regulación, con evidencia publicada en revistas indexadas. Antes de tocar al paciente, se razona qué eje trabajar.'
             },
             {
               q: 'Ya tomé un curso de Par Biomagnético. ¿Me sirve?',
@@ -266,19 +266,19 @@ const RBMetodo: React.FC = () => {
             },
             {
               q: '¿Puedo ejercer al terminar?',
-              a: 'Sí. Al completar los 4 módulos recibes certificación del Instituto, protocolos, atlas de puntos por regiones, y acceso al grupo de supervisión mensual. Sales con todo lo necesario para hacer sesiones completas.'
+              a: 'Sí. Al completar los 4 módulos recibes certificación del Instituto, el Manual del Cuerpo Eléctrico, las fichas de los ejes de regulación, y acceso al grupo de supervisión mensual. Sales con todo lo necesario para hacer sesiones completas.'
             },
             {
               q: '¿El curso es presencial o en línea?',
-              a: 'Ambos. Presencial en Ciudad de México (15 lugares) y en línea en vivo (cupo abierto). Ambas modalidades reciben el mismo contenido y certificación. La práctica de rastreo presencial se coordina en sesiones complementarias para alumnos en línea.'
+              a: 'Ambos. Presencial en Ciudad de México y en línea en vivo. Ambas modalidades reciben el mismo contenido y certificación. La práctica presencial se coordina en sesiones complementarias para alumnos en línea.'
             },
             {
               q: '¿Tiene base científica real?',
-              a: 'Los mecanismos por los cuales un campo magnético interactúa con los tejidos están publicados en Physical Review Applied, Cell, PNAS y Development. Lo que aún falta por verificar es la configuración específica de dos imanes opuestos simultáneos. Eso lo decimos abiertamente — la honestidad sobre lo que no sabemos es parte de la formación.'
+              a: 'Los mecanismos por los cuales un campo magnético interactúa con los tejidos están publicados en Cell, Frontiers, PNAS y Development. La configuración clínica específica —dos campos opuestos aplicados simultáneamente— aún está en investigación.'
             },
             {
               q: '¿Qué relación tiene con el Dr. Goiz y el Par Biomagnético?',
-              a: 'Conservamos la técnica clínica del Dr. Goiz íntegramente. Actualizamos el marco teórico con la ciencia disponible hoy. El Dr. Ojeda fue el único que Goiz autorizó para dar el diplomado en la Universidad Autónoma Chapingo. RB es la evolución natural del biomagnetismo.'
+              a: 'Se conserva la técnica clínica del Dr. Goiz y se le da un marco científico y un método de razonamiento propios, con la ciencia disponible hoy. El Dr. Ojeda fue el único que Goiz autorizó para dar el diplomado en la Universidad Autónoma Chapingo. La Regulación Bioeléctrica es un sistema clínico con identidad propia, no una versión con otro nombre.'
             },
           ].map((item, i) => (
             <details key={i} className="group bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
@@ -321,7 +321,7 @@ const RBMetodo: React.FC = () => {
               <span style={{ color: C.black }}>El Cuerpo </span><span style={{ color: C.teal }}>Eléctrico</span>
             </h2>
             <p className="text-xs mb-1" style={{ color: C.grey }}>Formación en RB · 4 sábados · Presencial y en línea</p>
-            <p className="text-xs mb-3" style={{ color: C.grey }}>$2,000 MXN por módulo · $7,200 pago único</p>
+            <p className="text-xs mb-3" style={{ color: C.grey }}>$2,150 MXN por módulo · $8,600 pago único</p>
             <div className="flex items-center gap-1 text-sm font-medium" style={{ color: C.teal }}>
               Ver programa completo <ArrowRight className="w-4 h-4" />
             </div>

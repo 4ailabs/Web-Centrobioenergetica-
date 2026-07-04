@@ -30,44 +30,48 @@ const RegulacionBioelectrica: React.FC = () => {
 
   const modulos = [
     {
-      n: '1', fecha: '11 de julio', titulo: 'El mapa eléctrico', accent: T,
-      resultado: 'Entiendes por qué funciona lo que vas a hacer — y puedes explicarlo.',
+      n: '1', fecha: '11 de julio', titulo: 'El Cuerpo Eléctrico', accent: T,
+      resultado: 'Entiendes por qué el cuerpo es eléctrico y qué significa regular — y puedes explicarlo.',
       temas: [
-        ['Matriz extracelular', 'Entre tus células hay un sistema activo con carga eléctrica negativa que regula la comunicación celular, la distribución de iones y el microambiente de cada tejido. Cuando esa carga se altera — por inflamación, acidosis o estrés sostenido — el terreno cambia y se crean las condiciones para la enfermedad. Esto ocurre antes de que aparezcan síntomas clínicos.'],
-        ['Voltaje celular', 'Cada célula tiene un voltaje que no es un subproducto del metabolismo — es una señal que le dice a la célula qué hacer. Investigadores de Tufts University demostraron que modificar el voltaje de un grupo de células produce órganos funcionales sin tocar el ADN. Cuando impactas con imanes, estás influyendo en esa señal.'],
-        ['Redes bioeléctricas', 'Los tejidos no son colecciones de células sueltas. Son redes conectadas por gap junctions que comparten información eléctrica como un colectivo. Cuando una zona se desregula, la señal se propaga a puntos distantes en aproximadamente 30 segundos. Esto explica por qué el rastreo encuentra pares de puntos conectados.'],
-        ['Imanes y tejido', 'Los campos magnéticos estáticos de 0.1–0.5 T interactúan directamente con canales de calcio tipo T en la membrana celular, modifican el pH del colágeno de la matriz extracelular, y actúan sobre la magnetita biogénica presente en el cerebro humano. Todo documentado en Physical Review Applied, PNAS y Frontiers in Immunology.'],
-        ['Orígenes honestos', 'De dónde viene esta técnica: Becker y la bioelectricidad documentada, Goiz y las correlaciones clínicas de 35 años, y lo que se dice de Broeringmeyer que no se puede verificar. Qué se sostiene ante la ciencia actual y qué necesitó actualización. Sin dogma.'],
+        ['La matriz extracelular', 'Entre tus células hay un sistema activo con carga eléctrica que regula la comunicación celular, la distribución de iones y el microambiente de cada tejido. Cuando esa carga se altera —por inflamación, acidosis o estrés sostenido— se crean las condiciones para la enfermedad, antes de que aparezcan los síntomas.'],
+        ['El voltaje de la célula (Vmem)', 'Cada célula mantiene un voltaje que no es un subproducto del metabolismo: es una señal que le indica qué hacer. Michael Levin, en la Universidad de Tufts, demostró que modificar ese voltaje cambia el comportamiento del tejido sin tocar el ADN.'],
+        ['La red bioeléctrica', 'Los tejidos son redes conectadas por gap junctions que comparten información eléctrica; una señal viaja a puntos distantes en cuestión de segundos. Por eso el cuerpo se lee como una red continua, no como puntos sueltos.'],
+        ['El órgano como sistema con una meta', 'Cada órgano defiende un punto de calibración. La enfermedad no es un error: es una respuesta que se quedó activa cuando ya no hacía falta. Regular no es corregir el síntoma — es devolverle la señal para recalibrarse.'],
+        ['Caso ejemplar: el Ojo Adaptativo', 'Por qué un niño se vuelve miope, leído en cuatro niveles de razonamiento clínico. El caso que muestra, en vivo, cómo cambia la pregunta frente a cualquier paciente.'],
+        ['Salud y mantenimiento', 'La Regulación Bioeléctrica sirve tanto para quien está enfermo como para quien quiere mantenerse sano: salutogénesis y carga alostática, el marco de la prevención y el cuidado a largo plazo.'],
       ],
     },
     {
-      n: '2', fecha: '25 de julio', titulo: 'El rastreo', accent: PURPLE,
-      resultado: 'Puedes leer el estado bioeléctrico del cuerpo y generar un perfil por regiones.',
+      n: '2', fecha: '25 de julio', titulo: 'La lectura del cuerpo', accent: PURPLE,
+      resultado: 'Lees un perfil bioeléctrico, aplicas con seguridad, y trabajas los primeros ejes de regulación.',
       temas: [
-        ['Qué detecta el rastreo', 'No detecta microorganismos — eso corresponde al laboratorio. Detecta el estado bioeléctrico del terreno tisular: dónde se desvió del rango óptimo, con qué patrón, en qué regiones. Dos pacientes con el mismo diagnóstico pueden tener mapas completamente diferentes.'],
-        ['Iliopsoas como sensor', 'Este músculo tiene inervación dual — somática y simpática — con fusión fascial directa con la cadena ganglionar simpática lumbar y continuidad con el diafragma. Es simultáneamente músculo voluntario y sensor del sistema nervioso autónomo. El Dr. Ojeda demuestra en vivo cómo se detecta la respuesta.'],
-        ['4 capas de profundidad', 'El rastreo tiene niveles: ruta base (puntos del catálogo clásico), territorio anatómico (regiones completas), razonamiento clínico (exploración dirigida por la historia del paciente), y somatoemocional (huellas de estrés sostenido en el cuerpo). Cada capa exige mayor formación del terapeuta.'],
-        ['Rastreo por regiones', 'Los 359 dipolos del catálogo reorganizados en 10 regiones anatómicas que se exploran como territorios completos. Puedes detectar nodos de desregulación que no están en ningún catálogo pero que son relevantes para ese paciente. El resultado es un perfil bioeléctrico por densidad regional.'],
+        ['El instrumento', 'Qué es el campo magnético estático (0.1–0.5 T) y cómo interactúa con el tejido: los canales iónicos de la membrana, el microambiente de la matriz, y la magnetita del tejido cerebral. Qué hace y qué no. Seguridad, contraindicaciones y límites.'],
+        ['El iliopsoas como sensor', 'Este músculo tiene inervación dual —somática y simpática— con fusión fascial con la cadena simpática lumbar y continuidad con el diafragma. Es músculo voluntario y sensor del sistema nervioso autónomo a la vez. El Dr. Ojeda demuestra en vivo cómo se lee la respuesta.'],
+        ['Nodo, dipolo y perfil bioeléctrico', 'La nomenclatura del método: el nodo (dónde el estado eléctrico se salió de su rango), el dipolo (dos nodos de la misma red) y el perfil bioeléctrico (el mapa del paciente). Cada tejido tiene su propio rango; no existe un valor universal.'],
+        ['Los primeros ejes de regulación', 'El eje del estrés —transversal, el que se atiende primero—, el eje intestinal (barrera y microbiota) y el eje metabólico-energético (los 5 tipos de fatiga). Cómo se leen y cómo se regulan.'],
+        ['Prácticas', 'Cada participante realiza la lectura del perfil bioeléctrico y la aplicación con otro compañero, con supervisión directa del Dr. Ojeda.'],
       ],
     },
     {
-      n: '3', fecha: '8 de agosto', titulo: 'La impactación', accent: AMBER,
-      resultado: 'Haces sesiones completas y conoces exactamente dónde están tus límites.',
+      n: '3', fecha: '8 de agosto', titulo: 'Los ejes de regulación', accent: AMBER,
+      resultado: 'Reconoces los ejes de regulación y priorizas con criterio cuando el paciente presenta varios.',
       temas: [
-        ['Qué hace la impactación', 'Dos imanes de polaridad opuesta colocados sobre los nodos identificados. Modifican las condiciones electroquímicas del microambiente tisular — pH, distribución iónica, voltaje celular, polarización de macrófagos — y facilitan que el tejido regrese a su rango óptimo. Cada tejido tiene su propio rango; no existe un valor universal.'],
-        ['Protocolos de aplicación', 'Posición exacta de los imanes, tiempos de impactación, secuencia (por cuál par empezar), intensidad de los campos. Cómo priorizar la impactación según el perfil por regiones del paciente. Cuándo repetir y cuándo esperar.'],
-        ['Práctica completa supervisada', 'Cada participante realiza una sesión completa con otro compañero: rastreo por regiones, registro del perfil, selección de pares, impactación, y segundo rastreo para verificar cambios. Dos rondas de práctica con supervisión directa del Dr. Ojeda.'],
-        ['Límites y contraindicaciones', 'La impactación aborda el estado del terreno, no necesariamente la causa de su alteración. Si los factores persisten, el patrón puede reaparecer. Cuándo referir al médico. Cuándo pedir laboratorio. Contraindicaciones específicas. Lo que esta herramienta no puede hacer.'],
+        ['El eje inflamatorio', 'El sistema inmune y por qué el problema no es inflamar, sino no resolver. Cómo se lee y cómo se regula el estado inflamatorio.'],
+        ['El eje de biotransformación', 'El hígado y la carga ambiental. A diferencia de otros ejes, aquí el trabajo es sobre el circuito molecular del órgano, no sobre un nodo bioeléctrico literal.'],
+        ['El eje redox', 'La deriva oxidativa del medio interno: el eje de fondo, el del largo plazo, y cómo cuidarlo.'],
+        ['El criterio clínico', 'Perfiles combinados y jerarquía: cuál eje se atiende primero y por qué. Este es el módulo que te da criterio para trabajar con orden y sin dispersarte.'],
+        ['Prácticas', 'Sesión completa supervisada: lectura del perfil bioeléctrico y aplicación, en dos rondas.'],
       ],
     },
     {
-      n: '4', fecha: '22 de agosto', titulo: 'La clínica', accent: CORAL,
-      resultado: 'Puedes ejercer, documentar tu trabajo, y colaborar con otros profesionales.',
+      n: '4', fecha: '22 de agosto', titulo: 'La sesión completa', accent: CORAL,
+      resultado: 'Conduces una sesión completa, ofreces planes de mantenimiento, y documentas tu trabajo.',
       temas: [
-        ['Casos clínicos reales', 'El Dr. Ojeda presenta 4-5 casos reales anonimizados. Para cada caso: historia clínica breve, los participantes proponen su rastreo e interpretación, y el Dr. Ojeda revela su perfil bioeléctrico y el resultado. Discusión grupal sobre qué habrían hecho diferente.'],
-        ['Supervisión en vivo', '3 participantes realizan una sesión completa de RB frente al grupo — rastreo por regiones, interpretación, impactación. El Dr. Ojeda supervisa en tiempo real: puede interrumpir, corregir, ampliar. Feedback inmediato del grupo y del instructor.'],
-        ['Documentación profesional', 'Cómo escribir un reporte de sesión que un médico pueda leer y respetar. La diferencia entre decir "le salió Brucella" y "desregulación bioeléctrica predominante en territorio digestivo." Cómo explicar RB a colegas y a otros profesionales de salud.'],
-        ['Certificación', 'Entrega de certificados del Instituto Centrobioenergetica. Acceso al grupo de supervisión mensual con el Dr. Ojeda. Conexión con la comunidad de terapeutas RB formados con el mismo estándar.'],
+        ['La sesión de mantenimiento', 'El mantenimiento como formato clínico propio: periodicidad, lenguaje al paciente, registro por eje. La persona sana también se atiende (salutogénesis aplicada).'],
+        ['Casos clínicos', 'El Dr. Ojeda presenta casos reales anonimizados. Los participantes proponen su lectura e interpretación, y se discute en grupo la integración de los ejes.'],
+        ['Estrategias y mapas', 'Integración de los ejes de regulación en el paciente real: cómo combinar y priorizar, leyendo el mapa completo del perfil bioeléctrico.'],
+        ['Supervisión en vivo', 'Sesiones completas de RB frente al grupo, con supervisión en tiempo real del Dr. Ojeda: puede interrumpir, corregir y ampliar.'],
+        ['Documentación profesional', 'Cómo escribir un reporte de sesión que un médico pueda leer y respetar, y cómo explicar la Regulación Bioeléctrica a otros profesionales de la salud.'],
       ],
     },
   ];
@@ -85,7 +89,7 @@ const RegulacionBioelectrica: React.FC = () => {
 
       {/* ===== HERO — imagen + overlay ===== */}
       <div className="relative overflow-hidden rounded-xl mx-6 lg:mx-0" style={{ minHeight: 240 }}>
-        <img src="/images/courses/regulacion-bioelectrica/Fondo.jpg" alt="Regulación Bioeléctrica" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.png" alt="Mapa bioeléctrico del cuerpo — Regulación Bioeléctrica" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center' }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(13,27,31,0.7) 0%, rgba(13,27,31,0.3) 100%)' }} />
         <div className="relative z-10 flex flex-col justify-center py-10 px-8" style={{ minHeight: 240 }}>
           <Dipolo size={48} color="#5DCAA5" />
@@ -105,10 +109,10 @@ const RegulacionBioelectrica: React.FC = () => {
           El Cuerpo <span style={{ color: T }}>Eléctrico</span>
         </h1>
         <p className="mt-2 text-[13px] leading-relaxed" style={{ color: '#555' }}>
-          Formación profesional en <strong style={{ color: BK }}>Regulación Bioeléctrica (RB)</strong> — un método de evaluación y regulación del estado bioeléctrico de los tejidos del cuerpo humano con campos magnéticos estáticos. Es la evolución del Par Biomagnético con fundamento biofísico publicado en revistas como <em>Physical Review Applied</em>, <em>Cell</em> y <em>PNAS</em>.
+          Formación profesional en <strong style={{ color: BK }}>Regulación Bioeléctrica (RB)</strong> — un método de evaluación y regulación del estado bioeléctrico de los tejidos del cuerpo humano mediante campos magnéticos estáticos, con fundamento en la ciencia contemporánea de la bioelectricidad (Robert Becker; Michael Levin, Tufts; publicado en revistas como <em>Cell</em>, <em>Frontiers</em> y <em>PNAS</em>).
         </p>
         <p className="mt-2 text-[13px] leading-relaxed" style={{ color: '#555' }}>
-          En 4 sábados aprendes a leer el mapa bioeléctrico del cuerpo con imanes, rastrear por 10 regiones anatómicas, aplicar protocolos de impactación, y documentar tu trabajo en lenguaje que cualquier médico pueda leer. Con práctica supervisada por el Dr. Miguel Ojeda Rios.
+          En 4 sábados aprendes a leer el perfil bioeléctrico del cuerpo, a razonar por <strong style={{ color: BK }}>ejes de regulación</strong>, y a aplicar con criterio y seguridad — documentando tu trabajo en lenguaje que cualquier médico pueda leer. Desde cero, con práctica supervisada por el Dr. Miguel Ojeda Rios.
         </p>
         <button onClick={() => navigate('/rb')} className="mt-3 flex items-center gap-1.5 text-sm font-medium" style={{ color: T }}>
           Conoce el método detrás de este curso
@@ -140,18 +144,18 @@ const RegulacionBioelectrica: React.FC = () => {
       <div className="px-6 lg:px-0 pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-5 rounded-xl" style={{ background: '#fff', border: `1.5px solid ${T}30` }}>
-            <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: T }}>Modalidad Formación</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: T }}>Empiezas de cero</span>
             <p className="mt-2 text-[13px] leading-relaxed" style={{ color: '#555' }}>
-              Nunca has rastreado. Aprendes RB desde cero con el marco biofísico actualizado. Al terminar, haces sesiones completas.
+              No necesitas conocimientos previos. Aprendes la Regulación Bioeléctrica desde los fundamentos, con el marco científico actualizado. Al terminar, conduces sesiones completas.
             </p>
             <p className="mt-2 text-[11px]" style={{ color: GR }}>Requisitos: ninguno</p>
           </div>
           <div className="p-5 rounded-xl" style={{ background: '#fff', border: `1.5px solid ${T}30` }}>
-            <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: T }}>Modalidad Actualización</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: T }}>Ya trabajas el cuerpo</span>
             <p className="mt-2 text-[13px] leading-relaxed" style={{ color: '#555' }}>
-              Ya rastrean. Vienes por el fundamento biofísico, el rastreo por regiones, y la forma de comunicar tu trabajo profesionalmente.
+              Ganas el porqué y el método que le falta a tu oficio: el fundamento científico, el razonamiento por ejes de regulación, y la forma de comunicar tu trabajo profesionalmente.
             </p>
-            <p className="mt-2 text-[11px]" style={{ color: GR }}>Requisitos: curso previo de Par Biomagnético</p>
+            <p className="mt-2 text-[11px]" style={{ color: GR }}>Requisitos: ninguno · experiencia previa deseable, no indispensable</p>
           </div>
         </div>
       </div>
@@ -161,7 +165,7 @@ const RegulacionBioelectrica: React.FC = () => {
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] font-medium uppercase tracking-wider" style={{ color: GR }}>Programa</span>
           <div className="h-px flex-1" style={{ background: CR }} />
-          <span className="text-[11px]" style={{ color: GR }}>4 módulos · 18 temas</span>
+          <span className="text-[11px]" style={{ color: GR }}>4 módulos · 21 temas</span>
         </div>
 
         <div className="space-y-4">
@@ -215,8 +219,8 @@ const RegulacionBioelectrica: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { cat: 'Atlas y materiales', accent: T, items: ['Atlas nuevo de puntos por regiones anatómicas', 'Catálogo de 359 pares por 10 regiones', '29 Principios del Biomagnetismo 2026'] },
-            { cat: 'Protocolos', accent: PURPLE, items: ['Protocolo de rastreo por regiones', 'Protocolo de impactación', 'Guía de documentación clínica'] },
+            { cat: 'Materiales', accent: T, items: ['Manual del Cuerpo Eléctrico', 'Fichas clínicas de los ejes de regulación', 'Biblioteca de grabaciones de los módulos'] },
+            { cat: 'Método', accent: PURPLE, items: ['Protocolo de lectura del perfil bioeléctrico', 'Guía de aplicación con seguridad', 'Guía de documentación clínica'] },
             { cat: 'Evidencia', accent: AMBER, items: ['Tabla de evidencia científica del mecanismo'] },
             { cat: 'Comunidad', accent: CORAL, items: ['Certificación del Instituto Centrobioenergetica', 'Grupo de supervisión mensual con el Dr. Ojeda'] },
           ].map((group, gi) => (
