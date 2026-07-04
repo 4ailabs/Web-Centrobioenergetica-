@@ -30,6 +30,7 @@ import Resonantia from './pages/Resonantia';
 import Crania from './pages/Crania';
 import RegulacionBioelectrica from './pages/RegulacionBioelectrica';
 import RBMetodo from './pages/RBMetodo';
+import BioenergeticaTransgeneracional from './pages/BioenergeticaTransgeneracional';
 import TestHormonal from './pages/TestHormonal';
 import TestVinculoAnimal from './pages/TestVinculoAnimal';
 
@@ -135,6 +136,7 @@ const AppContent: React.FC = () => {
                 <Route path="/crania" element={<Crania />} />
                 <Route path="/regulacion-bioelectrica" element={<RegulacionBioelectrica />} />
                 <Route path="/rb" element={<RBMetodo />} />
+                <Route path="/bioenergetica-transgeneracional" element={<BioenergeticaTransgeneracional />} />
                 <Route path="/test-hormonal" element={<TestHormonal />} />
                 <Route path="/test-vinculo-animal" element={<TestVinculoAnimal />} />
                 <Route path="/course/:courseId" element={
