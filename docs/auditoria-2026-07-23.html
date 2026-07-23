@@ -1,0 +1,258 @@
+<title>Auditoría técnica — Instituto Centrobioenergética</title>
+<style>
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --ink:#26221B; --ink-soft:#5C564C; --ink-mute:#8A8377;
+  --line:#E6E1D8; --accent:#5F7A4E; --accent-ink:#48613A; --accent-soft:#EEF2E9;
+  --critical:#A8321F; --critical-bg:#F7E8E4; --high:#B06A1D; --high-bg:#F6EDDF;
+  --med:#8A7A22; --med-bg:#F3F0DE; --low:#6E6A60; --low-bg:#ECEAE4;
+  --code-bg:#F1EEE7;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#171410; --surface:#201C16; --ink:#EBE6DC; --ink-soft:#B5AEA1; --ink-mute:#847D70;
+    --line:#352F27; --accent:#8FAA7C; --accent-ink:#A8C295; --accent-soft:#25301F;
+    --critical:#E07B66; --critical-bg:#3A1F19; --high:#DBA05B; --high-bg:#372A18;
+    --med:#C9B65A; --med-bg:#33301A; --low:#9B948A; --low-bg:#2B2822;
+    --code-bg:#2A251E;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171410; --surface:#201C16; --ink:#EBE6DC; --ink-soft:#B5AEA1; --ink-mute:#847D70;
+  --line:#352F27; --accent:#8FAA7C; --accent-ink:#A8C295; --accent-soft:#25301F;
+  --critical:#E07B66; --critical-bg:#3A1F19; --high:#DBA05B; --high-bg:#372A18;
+  --med:#C9B65A; --med-bg:#33301A; --low:#9B948A; --low-bg:#2B2822;
+  --code-bg:#2A251E;
+}
+:root[data-theme="light"]{
+  --bg:#FBFAF7; --surface:#FFFFFF; --ink:#26221B; --ink-soft:#5C564C; --ink-mute:#8A8377;
+  --line:#E6E1D8; --accent:#5F7A4E; --accent-ink:#48613A; --accent-soft:#EEF2E9;
+  --critical:#A8321F; --critical-bg:#F7E8E4; --high:#B06A1D; --high-bg:#F6EDDF;
+  --med:#8A7A22; --med-bg:#F3F0DE; --low:#6E6A60; --low-bg:#ECEAE4;
+  --code-bg:#F1EEE7;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px 96px}
+.serif{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+header.doc{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px}
+h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(28px,4.5vw,40px);
+  line-height:1.15;margin:.35em 0 .3em;font-weight:600;text-wrap:balance}
+.meta{color:var(--ink-mute);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 18px}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:24px;font-weight:600;
+  margin:2.4em 0 .6em;padding-top:.8em;border-top:1px solid var(--line);text-wrap:balance}
+h3{font-size:16.5px;margin:1.6em 0 .4em;font-weight:650}
+p{margin:.55em 0;color:var(--ink-soft)}
+p.lead{font-size:18px;color:var(--ink);max-width:64ch}
+strong{color:var(--ink)}
+code{font:13px/1.5 ui-monospace,"SF Mono",Menlo,monospace;background:var(--code-bg);
+  padding:1.5px 5px;border-radius:4px;color:var(--ink);white-space:nowrap}
+a{color:var(--accent-ink)}
+.chip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:2.5px 9px;border-radius:99px;vertical-align:2px}
+.c-crit{color:var(--critical);background:var(--critical-bg)}
+.c-high{color:var(--high);background:var(--high-bg)}
+.c-med{color:var(--med);background:var(--med-bg)}
+.c-low{color:var(--low);background:var(--low-bg)}
+.scorebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:28px 0 8px}
+.score{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.score .n{font-family:Georgia,serif;font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.score .l{font-size:12.5px;color:var(--ink-mute);margin-top:2px}
+.score .d{font-size:12.5px;color:var(--ink-soft);margin-top:6px}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:16px 18px;margin:12px 0}
+.finding h4{margin:0 0 4px;font-size:15.5px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.finding p{font-size:14.5px;margin:.4em 0}
+.finding .fix{font-size:14px;color:var(--ink);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.finding .fix::before{content:"Mejora propuesta — ";font-weight:650;color:var(--accent-ink)}
+.files{font-size:12.5px;color:var(--ink-mute);margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0}
+th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);
+  font-weight:600;padding:8px 12px;border-bottom:1.5px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.tscroll{overflow-x:auto}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.phase h3{margin:0 0 2px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.phase .t{font-size:13px;color:var(--ink-mute);font-weight:500}
+.phase ol{margin:10px 0 2px;padding-left:22px;font-size:14.5px;color:var(--ink-soft)}
+.phase li{margin:5px 0}
+.callout{background:var(--critical-bg);border:1px solid color-mix(in srgb,var(--critical) 30%,transparent);
+  border-radius:10px;padding:16px 20px;margin:22px 0}
+.callout p{color:var(--ink);font-size:15px}
+.good{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  border-radius:10px;padding:16px 20px;margin:22px 0}
+.good p{font-size:14.5px}
+ul.tight{font-size:14.5px;color:var(--ink-soft);padding-left:20px}
+ul.tight li{margin:4px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--ink-mute)}
+</style>
+
+<div class="wrap">
+<header class="doc">
+  <div class="eyebrow">Auditoría técnica y de diseño</div>
+  <h1>Instituto Centrobioenergética — estado del sitio y plan de mejora</h1>
+  <div class="meta">
+    <span>23 de julio de 2026</span>
+    <span>React 19 · Vite 6 · Tailwind 4 · Express/Prisma · Vercel</span>
+    <span>4 auditorías: seguridad · rendimiento/SEO · diseño/UX · arquitectura</span>
+  </div>
+</header>
+
+<p class="lead">El sitio tiene una base de diseño con criterio y una arquitectura razonable en su núcleo, pero hoy opera con <strong>tres riesgos que anulan su propósito comercial</strong>: es invisible para Google, el contenido de pago es accesible sin cuenta, y la autenticación puede comprometerse si falta una variable de entorno. Alrededor de eso hay una deuda clara pero abordable: la mitad de las páginas de venta ignoran el sistema de diseño propio, y el proyecto arrastra unas 2.500 líneas de código muerto.</p>
+
+<div class="scorebar">
+  <div class="score"><div class="n">33</div><div class="l">hallazgos verificados</div><div class="d">7 críticos · 11 altos</div></div>
+  <div class="score"><div class="n">531 KB</div><div class="l">bundle JS único</div><div class="d">sin code-splitting en 24 rutas</div></div>
+  <div class="score"><div class="n">26 MB</div><div class="l">imágenes sin optimizar</div><div class="d">banners de hasta 4,2 MB, 0 WebP</div></div>
+  <div class="score"><div class="n">4/10</div><div class="l">consistencia de diseño</div><div class="d">núcleo sólido, 5 páginas fuera del sistema</div></div>
+</div>
+
+<div class="callout">
+  <p><strong>El hallazgo que anula todo lo demás:</strong> <code>index.html:14</code> lleva <code>&lt;meta name="robots" content="noindex, nofollow"&gt;</code>. Todo el sitio está excluido de Google. Para un negocio que vende cursos, ninguna otra mejora SEO o de conversión tiene efecto mientras esa línea exista. (Si es deliberado porque el sitio “real” vive en Framer y esta app solo se embebe, hay que documentarlo; si no, corregirlo hoy.)</p>
+</div>
+
+<h2>1 · Hallazgos críticos</h2>
+
+<div class="finding">
+  <h4><span class="chip c-crit">Crítica</span> Sitio completo marcado <code>noindex, nofollow</code></h4>
+  <p>Confirmado también en el build de producción. Además no existe meta description, ni etiquetas Open Graph, ni canonical, ni <code>sitemap.xml</code>/<code>robots.txt</code>, y las 24 rutas comparten el mismo título estático (cero usos de <code>document.title</code> en el repo). Al compartir un curso por WhatsApp no aparece ni imagen ni descripción.</p>
+  <div class="files">index.html:14-15 · public/ · pages/*</div>
+  <p class="fix">Quitar la meta robots, añadir description + OG + canonical, crear sitemap/robots, y un hook <code>usePageMeta</code> por ruta. Medio día de trabajo, impacto total.</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-crit">Crítica</span> Los videos de pago se pueden ver sin cuenta</h4>
+  <p>Los 19 <code>cloudflareStreamId</code> viajan en el bundle JS público y el embed usa <code>iframe.videodelivery.net/&lt;uid&gt;</code> sin URL firmada. El control de acceso (<code>hasAccess</code>) se calcula solo en el navegador: cualquiera puede extraer los UIDs del bundle y reproducir todos los cursos. El candado es cosmético.</p>
+  <div class="files">data/mockData.ts · pages/CourseDetail.tsx:52-71 · lib/cloudflare-stream.ts:95</div>
+  <p class="fix">Activar <code>requireSignedURLs</code> en Cloudflare Stream y emitir tokens firmados desde <code>api/</code> tras verificar JWT + inscripción; sacar los UIDs del bundle.</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-crit">Crítica</span> <code>JWT_SECRET</code> con fallback público en 7 archivos</h4>
+  <p><code>process.env.JWT_SECRET || 'your-secret-key-change-in-production'</code>: si la variable falta en Vercel (p. ej. en un preview), cualquiera puede firmar sus propios tokens de admin. Peor aún: <code>api/health.ts</code> publica sin autenticación si <code>JWT_SECRET</code> está definida o no, confirmándole al atacante cuándo el fallback está activo. Tokens de 30 días guardados en <code>localStorage</code> amplifican el daño de cualquier XSS.</p>
+  <div class="files">api/users.ts:6 · api/auth/me.ts:5 · server/middleware/auth.ts:5 · api/health.ts:18 · contexts/AuthContext.tsx:44</div>
+  <p class="fix">Eliminar el fallback (fallar en arranque si falta), centralizar en un módulo, rotar el secreto, acortar la expiración y proteger o vaciar <code>/api/health</code>.</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-crit">Crítica</span> Claves de API camino del bundle público</h4>
+  <p><code>VITE_CLOUDFLARE_API_TOKEN</code> se lee con <code>import.meta.env</code> (todo <code>VITE_*</code> se incrusta en el JS del cliente) y <code>vite.config.ts</code> inyecta <code>GEMINI_API_KEY</code> vía <code>define</code>. Hoy la clave Gemini no se filtra solo porque <code>geminiService.ts</code> está roto y sin usar — es una mina esperando el primer import.</p>
+  <div class="files">lib/cloudflare-stream.ts:65-66 · vite.config.ts:20-23 · services/geminiService.ts</div>
+  <p class="fix">Mover toda llamada con token a funciones en <code>api/</code>, eliminar los <code>define</code> y el prefijo <code>VITE_</code> de secretos, y rotar ambas claves por precaución.</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-crit">Crítica</span> 26 MB de imágenes y un solo bundle de 531 KB</h4>
+  <p><code>public/images</code> pesa 26 MB (banner de Resonantia: 4,2 MB; imagen de la home: 1,1 MB; cero WebP/AVIF). Las 24 páginas se importan estáticamente — quien visita la home descarga también el panel de admin y dos tests de ~730 líneas cada uno. Ningún <code>&lt;img&gt;</code> lleva <code>loading="lazy"</code> ni dimensiones (el componente <code>LazyImage</code> existe pero solo lo usa 1 componente).</p>
+  <div class="files">public/images/ · App.tsx:8-35 · components/LazyImage.tsx</div>
+  <p class="fix">Convertir a WebP (~90% menos peso), <code>React.lazy</code> por ruta (chunk inicial estimado −40/60%), y <code>loading="lazy"</code> + dimensiones en todas las imágenes.</p>
+</div>
+
+<h2>2 · Seguridad y backend</h2>
+<div class="tscroll"><table>
+<tr><th>Hallazgo</th><th>Sev.</th><th>Detalle y mejora</th></tr>
+<tr><td>Registro auto-aprobado</td><td><span class="chip c-high">Alta</span></td><td>El registro público crea usuarios con <code>approved: true</code> (contradiciendo el <code>@default(false)</code> del schema) pero muestra “pendiente de aprobación”. Cualquiera entra de inmediato. Decidir el flujo y alinear código y mensaje. <span class="files">server/services/auth.service.ts:63</span></td></tr>
+<tr><td>CORS abierto a todos</td><td><span class="chip c-high">Alta</span></td><td><code>Access-Control-Allow-Origin: *</code> en todos los endpoints, incluidos login y admin. Restringir a la lista blanca de dominios que ya existe en <code>server/index.ts:21-29</code>. <span class="files">api/*.ts · vercel.json:10</span></td></tr>
+<tr><td>Endpoint <code>/diagnose</code></td><td><span class="chip c-high">Alta</span></td><td>Revela si un email existe, si está aprobado y si una contraseña es válida — un oráculo de credential stuffing. Eliminarlo por completo. <span class="files">server/services/auth.service.ts:134-188</span></td></tr>
+<tr><td>Sin rate limiting</td><td><span class="chip c-high">Alta</span></td><td>Login y registro sin ningún límite: fuerza bruta viable. Añadir rate limiting (Upstash/Vercel KV). <span class="files">api/login.ts · api/register.ts</span></td></tr>
+<tr><td>Admin <code>admin123</code> en el repo</td><td><span class="chip c-med">Media</span></td><td>Seed y scripts crean/resetean el admin con contraseñas publicadas en el repositorio. Verificar el admin de producción y exigir contraseña por variable de entorno. <span class="files">prisma/seed.ts:8 · scripts/create-admin.ts:20</span></td></tr>
+<tr><td>Headers de seguridad</td><td><span class="chip c-med">Media</span></td><td>Sin HSTS, <code>nosniff</code>, <code>Referrer-Policy</code> ni CSP de scripts; <code>X-Frame-Options</code> con valor vacío. Completar en <code>vercel.json</code>. <span class="files">vercel.json:18</span></td></tr>
+<tr><td>Dos backends paralelos</td><td><span class="chip c-med">Media</span></td><td><code>api/</code> (serverless) y <code>server/</code> (Express) duplican la lógica con validaciones divergentes, y dos handlers instancian su propio <code>PrismaClient</code> en vez del singleton. Consolidar en los servicios compartidos. <span class="files">api/ vs server/ · lib/prisma.ts</span></td></tr>
+</table></div>
+
+<div class="good"><p><strong>Lo que sí está bien:</strong> no hay ningún <code>.env</code> commiteado; las contraseñas se hashean con bcrypt; el login responde mensajes genéricos; y la autorización de admin se revalida en el backend contra la base de datos (los guards del cliente son solo UX, como debe ser).</p></div>
+
+<h2>3 · Diseño y experiencia de usuario</h2>
+<p>Existe una dirección clara y de buen gusto — minimalismo cálido con terracota y salvia, tokens CSS bien diseñados, un template <code>ProgramPage</code> excelente — pero <strong>solo la mitad del producto la sigue</strong>. Calificación por dimensión: consistencia 4, jerarquía tipográfica 4, tokens 3, componentes 5, dark mode 4.</p>
+
+<div class="finding">
+  <h4><span class="chip c-high">Alta</span> Cuatro páginas de venta reimplementan todo desde cero</h4>
+  <p>Resonantia, Regulación Bioeléctrica, Bioenergética Transgeneracional y Actos que Mueven (más RBMetodo en parte) duplican con estilos inline (~50-70 <code>style={{}}</code> por página) el mismo esqueleto que <code>ProgramPage</code> ya resuelve: acordeón de módulos ×4, CTA de WhatsApp ×7 (con un SVG de ~1.900 caracteres copiado en 7 archivos), paletas locales repetidas. Consecuencias directas: <strong>dark mode roto</strong> (páginas blancas cegadoras, o cards blancos sobre fondo oscuro en Resonantia), <strong>sin CTA sticky en móvil</strong> en las páginas más largas (quien no llega al final del scroll nunca ve el botón de inscripción), y 76 colores hex hardcodeados que ignoran los tokens.</p>
+  <div class="files">pages/Resonantia.tsx (332 líneas) · RegulacionBioelectrica.tsx (276) · BioenergeticaTransgeneracional.tsx (247) · ActosQueMueven.tsx (312) vs components/ProgramPage.tsx</div>
+  <p class="fix">Extender <code>ProgramPage</code> (hero oscuro, precios, grupos de entregables) y migrar las 4 páginas: quedarían en ~80–150 líneas de datos cada una, con dark mode y CTA sticky gratis. Es la mejora con mejor relación impacto/esfuerzo de todo el proyecto.</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-high">Alta</span> Fechas vencidas presentadas como próximas</h4>
+  <p>Con fecha actual 23-jul-2026: Crania anuncia “25 de abril de 2026” con badge “Disponible”; Reset Hormonal “Sábado 16 de mayo”; Taller de Mascotas “Viernes 27 de marzo”; Resonantia “Sábado 11 de abril”. Fechas caducas en páginas de inscripción activas erosionan la confianza justo donde se pide el dinero.</p>
+  <div class="files">pages/Crania.tsx:10 · ResetHormonal.tsx:34 · TallerMascotas.tsx:9 · Resonantia.tsx:114</div>
+  <p class="fix">Centralizar fecha + estado (<em>próximo / en curso / grabación disponible</em>) en <code>data/</code> y que el CTA cambie solo (“Inscribirme” → “Pedir acceso a la grabación”).</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-high">Alta</span> Tres sistemas tipográficos en conflicto</h4>
+  <p>La documentación declara “Inter, ✅ completado” — Inter no se importa en ningún sitio. Tailwind define Outfit + Newsreader; <code>fonts.css</code> fuerza los headings a “Fraunces”, que tampoco se importa (caen a Georgia); y las páginas de venta hardcodean Cormorant Garamond o Georgia inline. Además la carga vía <code>@import</code> de 3 familias (~20 variantes) bloquea el render, sin <code>preconnect</code>.</p>
+  <div class="files">FONT_SYSTEM.md · public/styles/fonts.css:7 · index.css:1,73-81 · tailwind.config.js:46-50</div>
+  <p class="fix">Dos familias oficiales (Outfit UI + Newsreader display), borrar <code>fonts.css</code> y los .md obsoletos, cargar solo los pesos usados vía <code>&lt;link&gt;</code> con preconnect.</p>
+</div>
+
+<div class="finding">
+  <h4><span class="chip c-med">Media</span> Detalles que restan pulido</h4>
+  <p>Sin escala de headings común (el H1 va de 20px a 36px según la página; la home ni siquiera tiene H1 — el titular es un <code>&lt;p&gt;</code>); cuerpo de venta a 11-12px para una audiencia de 35-60 años; fondos de página casi-iguales-pero-distintos al token del shell; precios visibles solo en Resonantia (asimetría que hace parecer que otros cursos los esconden); enlaces legales del footer apuntando a <code>#</code> (pendiente legal, no solo estético); y los programas en venta no aparecen en el menú lateral — solo se descubren desde banners de la home.</p>
+</div>
+
+<h2>4 · Accesibilidad</h2>
+<ul class="tight">
+<li><strong>Cero atributos ARIA en toda la app</strong> (grep: 0 <code>aria-label</code>, 0 <code>role</code>): hamburguesa, botón de cerrar búsqueda y colapsar sidebar son icon-only sin nombre accesible.</li>
+<li><strong>Un usuario de teclado no puede abrir ningún curso</strong>: las tarjetas son <code>&lt;div onClick&gt;</code> sin <code>tabIndex</code> ni rol, y la navegación son <code>&lt;a href="#"&gt;</code> (que además rompen cmd+click y son invisibles para crawlers — arreglar con <code>&lt;Link&gt;</code> resuelve SEO y teclado a la vez).</li>
+<li><strong>Modal de búsqueda</strong> sin <code>role="dialog"</code>, sin focus trap, Escape solo funciona con el foco en el input, y el foco no se devuelve al cerrar.</li>
+<li><strong>Contrastes que incumplen WCAG AA</strong> (ratios calculados): <code>--text-muted</code> 3,25:1 en claro y 3,46:1 en oscuro; el subtítulo de la home a ~2,5:1; enlaces <code>text-primary-600</code> a 4,18:1. Subir muted y usar <code>primary-700</code> en enlaces.</li>
+<li><strong>Sin <code>prefers-reduced-motion</code></strong> en todo el repo, con un fade que remonta el árbol completo en cada navegación (y que además se dispara de forma inconsistente por el bug de <code>activePage</code>).</li>
+</ul>
+
+<h2>5 · Arquitectura y calidad de código</h2>
+<div class="tscroll"><table>
+<tr><th>Hallazgo</th><th>Sev.</th><th>Detalle y mejora</th></tr>
+<tr><td>El build no valida tipos</td><td><span class="chip c-high">Alta</span></td><td>Hay 2 errores TS reales en <code>main</code> hoy: <code>Resonantia.tsx:37</code> referencia <code>AZ</code> fuera de scope (ReferenceError latente que rompería la página) y <code>geminiService.ts</code> importa un paquete no instalado. Añadir <code>tsc --noEmit</code> al build y activar <code>strict</code> (hoy desactivado; los tipos de React llegan por un <code>@types/react-router-dom</code> v5 obsoleto).</td></tr>
+<tr><td>~2.500 líneas de código muerto</td><td><span class="chip c-high">Alta</span></td><td>Ecosistema Wellkitt completo sin ruta (424+133 líneas + CartContext + 6 componentes), News importado sin ruta, <code>CourseDetailPage.tsx</code> demo sin usar, servicios Gemini/analytics sin imports, capa Framer vestigial, <code>framer-motion</code> instalado sin un solo uso. Un commit de limpieza dedicado (git conserva todo).</td></tr>
+<tr><td>Estado <code>activePage</code> duplica al router</td><td><span class="chip c-high">Alta</span></td><td>String manual en el contexto + <code>PAGE_MAP</code> + callbacks del Dashboard + props del Sidebar que nunca se usan (el activo real se calcula con <code>pathname</code>). Su único consumidor es la animación de página, y falla. Eliminar todo y usar <code>useLocation().pathname</code>.</td></tr>
+<tr><td>Sidebar montado dos veces</td><td><span class="chip c-med">Media</span></td><td><code>App.tsx</code> lo renderiza en dos wrappers responsive, pero el componente ya gestiona internamente móvil y desktop: DOM duplicado y dos estados de menú independientes. Montarlo una vez.</td></tr>
+<tr><td>Datos estáticos disfrazados de estado</td><td><span class="chip c-med">Media</span></td><td>Cursos/servicios/apps viven en el reducer sin ninguna acción que los modifique, con “selectores memoizados” que no memoizan nada. Exportarlos como constantes (o React Query contra la API que ya existe) y dejar el contexto solo para UI.</td></tr>
+<tr><td>Tipos silenciados y magia dispersa</td><td><span class="chip c-med">Media</span></td><td><code>as Course[]</code> encubre niveles inválidos (<code>'Básico'</code> no existe en la unión); dos tipos <code>Product</code> incompatibles; IDs de curso hardcodeados en la UI (<code>course.id === 103</code>). <code>satisfies</code>, unificar tipos y mover flags al modelo.</td></tr>
+<tr><td>Sin ErrorBoundary</td><td><span class="chip c-med">Media</span></td><td>Cualquier error de render (como el <code>AZ</code> de Resonantia) deja la pantalla en blanco. Añadir un boundary global y por ruta.</td></tr>
+</table></div>
+
+<h2>6 · Plan de acción priorizado</h2>
+
+<div class="phase">
+  <h3><span>Fase 1 — Fugas críticas</span><span class="t">≈ 1–2 días · máximo impacto</span></h3>
+  <ol>
+    <li>Quitar <code>noindex,nofollow</code> + meta description, OG, canonical, sitemap y robots.txt.</li>
+    <li>Eliminar el fallback de <code>JWT_SECRET</code>, rotar el secreto, vaciar <code>/api/health</code>, borrar <code>/diagnose</code>.</li>
+    <li>Sacar <code>VITE_CLOUDFLARE_API_TOKEN</code> y <code>GEMINI_API_KEY</code> del cliente; rotar ambas.</li>
+    <li>Decidir y corregir el flujo de aprobación de registro; verificar que el admin de producción no use <code>admin123</code>.</li>
+    <li>Corregir las fechas vencidas de los 4 programas (o su estado).</li>
+    <li>Arreglar los 2 errores de TypeScript y añadir <code>tsc --noEmit</code> al build.</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <h3><span>Fase 2 — Rendimiento y confianza</span><span class="t">≈ 3–5 días</span></h3>
+  <ol>
+    <li>Convertir las imágenes &gt;500 KB a WebP (26 MB → ~2 MB) y añadir <code>loading="lazy"</code> + dimensiones.</li>
+    <li><code>React.lazy</code> por ruta (mínimo: admin, tests, CourseDetail) + ErrorBoundary.</li>
+    <li>URLs firmadas de Cloudflare Stream servidas desde la API (protege el catálogo de pago).</li>
+    <li>Cerrar CORS a lista blanca, completar headers de seguridad, rate limiting en auth.</li>
+    <li>Commit de limpieza: código muerto, docs obsoletos, dependencia framer-motion.</li>
+    <li>Navegación con <code>&lt;Link&gt;/&lt;NavLink&gt;</code>, un solo Sidebar, eliminar <code>activePage</code>.</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <h3><span>Fase 3 — Sistema de diseño unificado</span><span class="t">≈ 1–2 semanas</span></h3>
+  <ol>
+    <li>Extender <code>ProgramPage</code> y migrar las 4 páginas de venta bespoke (−700/800 líneas, dark mode y CTA sticky incluidos).</li>
+    <li>Primitivas faltantes: <code>Button</code> (con variante WhatsApp), <code>Badge</code>, <code>ModuleAccordion</code>, <code>HorizontalCourseCard</code>; lint que prohíba hex inline.</li>
+    <li>Consolidar tipografía en 2 familias y una escala de headings; clase <code>dark</code> en <code>&lt;html&gt;</code>.</li>
+    <li>Accesibilidad: ARIA en icon-buttons, modal de búsqueda accesible, contrastes AA, <code>prefers-reduced-motion</code>.</li>
+    <li><code>usePageMeta</code> por ruta + ficha pública de cada curso (temario/precio fuera del login) + páginas legales reales.</li>
+    <li>Consolidar los dos backends en una sola capa de servicios con validación de esquema (Zod) y el singleton de Prisma.</li>
+  </ol>
+</div>
+
+<footer>Auditoría realizada sobre el código real del repositorio (rama <code>main</code>, commit e0bf36e) por 4 revisiones independientes con verificación cruzada: seguridad/backend, rendimiento/SEO/accesibilidad, diseño/UX y arquitectura frontend. Todos los hallazgos citan archivo y línea.</footer>
+</div>
