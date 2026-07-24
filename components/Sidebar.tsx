@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { DashboardIcon, CoursesIcon, AboutUsIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon, ClinicalServicesIcon } from './Icons';
-import { LogIn, LogOut, Shield, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { LogIn, LogOut, Shield, PanelLeftClose, PanelLeftOpen, Compass } from 'lucide-react';
 import { useUIState, useAppDispatch } from '../contexts/AppContext';
 
 import UserProfile from './UserProfile';
@@ -105,6 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
             <div className="space-y-0.5 py-2">
               <SidebarNavItem icon={<DashboardIcon className={iconSize} />} label="Panel" to="/" active={location.pathname === '/'} onClick={closeMobileMenu} mobile />
               <SidebarNavItem icon={<CoursesIcon className={iconSize} />} label="Cursos" to="/cursos" active={location.pathname === '/cursos'} onClick={closeMobileMenu} mobile />
+              <SidebarNavItem icon={<Compass className={iconSize} />} label="Descubrir" to="/descubrir" active={location.pathname.startsWith('/descubrir')} onClick={closeMobileMenu} mobile />
               <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios Clínicos" to="/servicios" active={location.pathname === '/servicios'} onClick={closeMobileMenu} mobile />
               <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" to="/calendario" active={location.pathname === '/calendario'} onClick={closeMobileMenu} mobile />
               <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Sobre Nosotros" to="/sobre-nosotros" active={location.pathname === '/sobre-nosotros'} onClick={closeMobileMenu} mobile />
@@ -162,6 +163,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
           <div className="space-y-0.5 flex-grow">
             <SidebarNavItem icon={<DashboardIcon className={iconSize} />} label="Panel" to="/" active={location.pathname === '/'} collapsed={collapsed} />
             <SidebarNavItem icon={<CoursesIcon className={iconSize} />} label="Cursos" to="/cursos" active={location.pathname === '/cursos'} collapsed={collapsed} />
+            <SidebarNavItem icon={<Compass className={iconSize} />} label="Descubrir" to="/descubrir" active={location.pathname.startsWith('/descubrir')} collapsed={collapsed} />
             <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios" to="/servicios" active={location.pathname === '/servicios'} collapsed={collapsed} />
             <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" to="/calendario" active={location.pathname === '/calendario'} collapsed={collapsed} />
             <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Nosotros" to="/sobre-nosotros" active={location.pathname === '/sobre-nosotros'} collapsed={collapsed} />
