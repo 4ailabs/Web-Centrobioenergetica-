@@ -592,21 +592,33 @@ export const MOCK_DATA = {
       title: '¿Qué es el cuerpo eléctrico? Por qué tu cuerpo se puede leer como un mapa',
       description: 'Entre tus células hay un sistema con carga eléctrica que regula la comunicación de cada tejido. Entenderlo cambia la pregunta que le hacemos al cuerpo.',
       category: 'Regulación Bioeléctrica',
-      content: `Estamos acostumbrados a pensar el cuerpo en términos químicos: hormonas, nutrientes, medicamentos. Pero hay otra capa, más antigua y más rápida, que organiza todo lo demás: la capa eléctrica.
+      content: `Estamos acostumbrados a pensar el cuerpo en términos químicos: hormonas, nutrientes, medicamentos. Y no está mal — es la capa en la que se mueve buena parte de la medicina moderna. Pero hay otra capa, más antigua y más rápida, que organiza todo lo demás y que solemos pasar por alto: la capa eléctrica.
+
+No hablamos de metáforas. La bioelectricidad es un campo de investigación con nombres, laboratorios y publicaciones. Robert Becker abrió el camino a mediados del siglo pasado estudiando cómo la corriente eléctrica participa en la regeneración de los tejidos. Décadas después, el biólogo Michael Levin, en la Universidad de Tufts, lo llevó al detalle celular con trabajos publicados en revistas como Cell, Frontiers y PNAS.
 
 La matriz que rodea a las células:
-Entre tus células no hay un espacio vacío. Hay un sistema activo, con carga eléctrica, que regula la comunicación celular, la distribución de iones y el microambiente de cada tejido. Cuando esa carga se altera —por inflamación, acidosis o estrés sostenido— se crean las condiciones para la enfermedad, muchas veces antes de que aparezca cualquier síntoma.
+Entre tus células no hay un espacio vacío. Hay un sistema activo, con carga eléctrica, que regula la comunicación celular, la distribución de iones y el microambiente de cada tejido. Es el terreno donde ocurre todo lo demás. Cuando esa carga se altera —por inflamación, acidosis o estrés sostenido— se crean las condiciones para la enfermedad, muchas veces antes de que aparezca cualquier síntoma. Ahí está la oportunidad: leer el terreno antes de que se rompa.
 
 El voltaje de cada célula:
-Cada célula mantiene un voltaje en su membrana. No es un subproducto del metabolismo: es una señal que le indica a la célula qué hacer. El biólogo Michael Levin, en la Universidad de Tufts, demostró que modificar ese voltaje cambia el comportamiento de un tejido sin tocar el ADN. Es decir: la información eléctrica instruye a la biología.
+Cada célula mantiene un voltaje en su membrana, lo que se conoce como Vmem. Durante mucho tiempo se pensó que era simplemente un subproducto del metabolismo, un dato pasivo. Hoy sabemos que es lo contrario: es una señal que le indica a la célula qué hacer. Levin demostró que modificar ese voltaje cambia el comportamiento de un tejido —cómo crece, cómo se organiza, incluso qué forma toma— sin tocar el ADN.
+
+> La información eléctrica no es consecuencia de la biología. En buena medida, la instruye.
 
 El cuerpo como red, no como puntos sueltos:
-Los tejidos están conectados entre sí y comparten información eléctrica; una señal puede viajar a zonas distantes en cuestión de segundos. Por eso, desde este marco, el cuerpo se lee como una red continua y no como una colección de partes aisladas.
+Las células de un tejido están conectadas entre sí por uniones llamadas gap junctions, y a través de ellas comparten información eléctrica. Una señal puede viajar a zonas distantes en cuestión de segundos. Por eso, desde este marco, el cuerpo se lee como una red continua y no como una colección de partes aisladas: lo que ocurre en un punto puede estar sosteniendo lo que se manifiesta en otro, lejos de ahí.
+
+Cada órgano defiende una meta:
+Un órgano no es una pieza pasiva: se comporta como un sistema que defiende un punto de calibración, un rango en el que "sabe" funcionar. Cuando algo lo desafía, responde para volver a ese rango. El problema aparece cuando la respuesta se queda encendida después de que el desafío ya pasó.
+
+Un ejemplo que lo vuelve concreto es el del ojo que se adapta: por qué un niño se vuelve miope puede leerse no como una simple falla óptica, sino como una adaptación del sistema a las condiciones en las que vive. La misma imagen —una respuesta que resolvió algo y luego no se apagó— reaparece en muchos otros cuadros.
 
 Un cambio en la pregunta:
-Cada órgano defiende un punto de calibración. Desde esta mirada, la enfermedad no es un error del cuerpo: muchas veces es una respuesta que se quedó activa cuando ya no hacía falta. La pregunta deja de ser solo "¿qué está roto?" y pasa a ser "¿qué señal se quedó encendida, y cómo ayudo al tejido a recalibrarse?".
+Aquí está el giro que propone este marco. Desde la mirada bioeléctrica, la enfermedad muchas veces no es un error del cuerpo: es una respuesta que se quedó activa cuando ya no hacía falta. La pregunta deja de ser solo "¿qué está roto?" y pasa a ser "¿qué señal se quedó encendida, y cómo ayudo al tejido a recalibrarse?".
 
-Esto no reemplaza a la medicina ni al diagnóstico profesional. Es un marco de lectura —con fundamento en la ciencia contemporánea de la bioelectricidad— que orienta el trabajo de regulación y cuidado a largo plazo.`,
+Ese cambio de pregunta también sirve para quien está sano. No se trata solo de corregir lo que ya falló, sino de cuidar el terreno para que siga funcionando bien: es lo que en fisiología se llama salutogénesis —el estudio de lo que genera salud— frente a la carga que el cuerpo acumula con el tiempo.
+
+Una nota necesaria:
+Esto no reemplaza a la medicina, al diagnóstico ni al tratamiento profesional. Es un marco de lectura, con fundamento en la ciencia contemporánea de la bioelectricidad, que orienta el trabajo de regulación y el cuidado a largo plazo. Entender el cuerpo como un mapa que se puede leer no sustituye al mapa clínico: lo complementa.`,
       imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
       author: 'Dr. Miguel Ojeda Rios',
       readTime: '6 min de lectura',
@@ -619,18 +631,25 @@ Esto no reemplaza a la medicina ni al diagnóstico profesional. Es un marco de l
       title: 'Por qué 128 Hz: la frecuencia que la neurología usa para medir y la terapia usa para intervenir',
       description: 'Un diapasón de 128 Hz entra por el hueso y llega al sistema nervioso antes de que la mente opine. Qué lo hace distinto de "poner música relajante".',
       category: 'Sonido terapéutico',
-      content: `No toda vibración es igual. La frecuencia de 128 Hz tiene una particularidad: es la que la neurología clínica emplea desde hace décadas para evaluar la conducción ósea y explorar la sensibilidad. No es una frecuencia "mística": es una herramienta de medición con historia.
+      content: `No toda vibración es igual, y no todas las frecuencias hacen lo mismo. La de 128 Hz tiene una particularidad que la separa del resto: es la que la neurología clínica emplea desde hace décadas para evaluar la conducción ósea y explorar la sensibilidad. Cuando un neurólogo apoya un diapasón sobre un hueso para valorar cómo viaja la vibración por el cuerpo, usa precisamente esta frecuencia. No es "mística": es una herramienta de medición con historia.
+
+Que la misma frecuencia sirva para medir y para intervenir no es casualidad. Habla de una vía de entrada al cuerpo que es física, medible y repetible.
 
 Del hueso al sistema nervioso:
-Un diapasón de 128 Hz aplicado sobre el cuerpo transmite su vibración a través del hueso y el tejido conectivo hasta el sistema nervioso. Esa vía —la conducción por el tejido, no por el aire— es lo que separa esta práctica de simplemente escuchar un sonido agradable. La vibración llega antes de que la mente tenga tiempo de interpretarla.
+Cuando apoyas un diapasón de 128 Hz sobre el cuerpo, su vibración no entra por el oído: viaja a través del hueso y del tejido conectivo hasta el sistema nervioso. Esa distinción lo cambia todo. Escuchar música relajante es una experiencia que pasa por la interpretación —te gusta, te recuerda algo, te calma—. La vibración por conducción ósea, en cambio, llega al tejido antes de que la mente tenga tiempo de opinar. No le pide permiso a la interpretación.
 
 Tu voz también es un instrumento:
-No hace falta un diapasón para trabajar la vibración. El tarareo (humming) es una de las formas más accesibles: hay evidencia de que aumenta de forma marcada la producción de óxido nítrico nasal, una molécula asociada a la función vascular y respiratoria. Una parte importante del efecto vibratorio puede lograrse con la propia voz.
+Aquí hay una buena noticia: no necesitas comprar nada para empezar. El tarareo —el humming, ese zumbido con la boca cerrada— es una de las formas más accesibles de trabajar la vibración desde dentro. Y no es un decir: hay evidencia de que el tarareo aumenta de forma marcada la producción de óxido nítrico nasal, una molécula asociada a la función vascular y respiratoria. Una parte importante del efecto vibratorio puede lograrse con la propia voz, sin instrumento.
 
 La diferencia está en la secuencia:
-Aquí está la idea central del método: un diapasón sin estructura es relajación; el mismo diapasón dentro de una secuencia con intención se vuelve intervención. Lo que convierte al sonido en una herramienta de regulación no es la frecuencia por sí sola, sino cómo, dónde y en qué orden se aplica.
+Y llegamos a lo esencial, lo que distingue este trabajo de "poner sonidos bonitos". Una frecuencia, por sí sola, relaja. Pero lo que convierte al sonido en una herramienta de regulación no es la frecuencia: es la estructura. Cómo, dónde, en qué puntos y en qué orden se aplica.
 
-Este es contenido educativo. La vibración terapéutica acompaña procesos de bienestar y no sustituye tratamiento médico cuando este es necesario.`,
+> Un diapasón sin secuencia es relajación. El mismo diapasón dentro de una secuencia con intención es intervención.
+
+Por eso este enfoque no consiste en repartir vibración al azar, sino en trabajar con un método: puntos concretos del cuerpo, un orden, una intención clara. La misma herramienta, usada con estructura, deja de ser un rato agradable para convertirse en trabajo sobre el sistema nervioso.
+
+Una nota necesaria:
+Este es contenido educativo. La vibración terapéutica acompaña procesos de bienestar y regulación; no sustituye el tratamiento médico cuando este es necesario, ni pretende reemplazar un diagnóstico.`,
       imageUrl: '/images/courses/resonantia/Resonantia.webp',
       author: 'Dr. Miguel Ojeda Rios',
       readTime: '5 min de lectura',
@@ -643,18 +662,25 @@ Este es contenido educativo. La vibración terapéutica acompaña procesos de bi
       title: 'El cuerpo no distingue entre una experiencia real y un acto ritual',
       description: 'Hay cosas que la mente ya entendió pero el cuerpo no soltó. Por qué un acto físico con suficiente carga sensorial logra lo que entenderlo no basta para mover.',
       category: 'Rituales terapéuticos',
-      content: `Casi todos hemos vivido esto: entendemos perfectamente lo que nos pasó, podemos explicarlo con claridad, y aun así algo sigue apretado en el cuerpo. La comprensión llegó, pero el cambio no.
+      content: `Casi todos hemos vivido esto: entendemos perfectamente lo que nos pasó. Podemos explicarlo con claridad, ponerle nombre, incluso aconsejar a otro que atraviesa lo mismo. Y sin embargo, algo sigue apretado en el cuerpo. La comprensión llegó hace tiempo; el cambio, no. Es una de las experiencias más frustrantes que existen: saber, y que saber no baste.
 
 Por qué entender no siempre alcanza:
-La mente trabaja con palabras y significados. El cuerpo trabaja con experiencias. Cuando algo nos marcó, no quedó guardado como una idea, sino como una huella sensorial: una tensión, un gesto, una forma de respirar. Y esa huella no se disuelve con una explicación, por correcta que sea.
+La razón es más sencilla de lo que parece, y tiene que ver con dos lenguajes distintos. La mente trabaja con palabras y significados. El cuerpo trabaja con experiencias. Cuando algo nos marcó, no quedó guardado como una idea ordenada, sino como una huella sensorial: una tensión en los hombros, un gesto que se repite, una forma de respirar cuando aparece cierto tema. Y esa huella no vive en el terreno de las palabras, así que no se disuelve con una explicación, por correcta que sea. Le hablamos en un idioma que no es el suyo.
 
 Lo que hace un acto ritual:
-Un acto físico —romper una pieza de cerámica y repararla con oro, enterrar una carta y sembrar encima, sostener una piedra y luego soltarla— tiene una cualidad que la conversación no tiene: es irreversible y sucede en el cuerpo. Con suficiente carga sensorial, el sistema nervioso lo registra como una experiencia real, no como un símbolo. Y a partir de esa experiencia, algo puede recalibrarse.
+Aquí entra otra vía. Un acto físico —romper una pieza de cerámica y repararla con oro, escribir una carta y enterrarla para sembrar una semilla encima, sostener una piedra pesada y después soltarla— tiene una cualidad que la conversación no tiene: es irreversible y sucede en el cuerpo, no en la cabeza. La cerámica rota no vuelve a estar entera. La semilla queda en la tierra. El cuerpo estuvo ahí, hizo el gesto, sintió el peso.
+
+> El cuerpo no distingue entre una experiencia real y una experiencia ritual con suficiente carga sensorial.
+
+Con suficiente carga sensorial —peso, textura, temperatura, esfuerzo, gesto— el sistema nervioso registra el acto como una experiencia real, no como un símbolo que hay que interpretar. Y a partir de esa experiencia, algo puede recalibrarse en el mismo idioma en que quedó grabado.
 
 No necesitas creerlo:
-Esta es quizá la parte más contraintuitiva. No hace falta convicción previa ni interpretación. No se trata de "creer" que el acto funciona: se trata de hacerlo con presencia. El cuerpo hace el resto. Lo que la gente reporta después no suele ser una idea nueva, sino una sensación: "algo se movió".
+Esta es quizá la parte más contraintuitiva, y la más liberadora. No hace falta convicción previa. No hace falta "sentir la energía" ni entender la teoría antes de empezar. No se trata de creer que el acto funciona: se trata de hacerlo con presencia, de estar de verdad ahí mientras sucede. El cuerpo hace el resto.
 
-Este contenido es educativo y describe un enfoque vivencial de trabajo corporal y emocional. No sustituye atención psicológica ni médica cuando es necesaria.`,
+Por eso, cuando se le pregunta a la gente qué se llevó, casi nunca responde con una idea nueva. Responde con una sensación: "algo se movió", "contacté con algo que no podía alcanzar con la mente", "no necesitaba creerlo, solo sucedió". No cambiaron de opinión. Cambió algo por debajo de la opinión.
+
+Una nota necesaria:
+Este contenido es educativo y describe un enfoque vivencial de trabajo corporal y emocional. No sustituye la atención psicológica ni médica cuando es necesaria; cuando hay heridas profundas, el acompañamiento profesional es parte del cuidado, no una alternativa a él.`,
       imageUrl: '/images/courses/actos-que-mueven/ritual_2.webp',
       author: 'Dr. Miguel Ojeda Rios',
       readTime: '5 min de lectura',
