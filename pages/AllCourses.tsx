@@ -18,8 +18,13 @@ const AllCourses: React.FC = () => {
   const rest = useMemo(() => courses.slice(1), [courses]);
 
   const goToCourse = (course: Course) => {
-    const isEnrolled = !!user?.enrolledCourses?.includes(course.id.toString());
-    navigate(courseHref(course, isEnrolled));
+    // Admin y premium tienen acceso a todo; el resto, según sus cursos asignados
+    const hasAccess = !!user && (
+      user.isAdmin ||
+      user.subscriptionStatus === 'active' ||
+      !!user.enrolledCourses?.includes(course.id.toString())
+    );
+    navigate(courseHref(course, hasAccess));
     handleCourseClick(course.id, course.title);
   };
 

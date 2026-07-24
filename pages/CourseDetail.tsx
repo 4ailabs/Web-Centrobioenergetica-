@@ -116,6 +116,7 @@ const CourseDetail: React.FC = () => {
   }
 
   const hasAccess = isAuthenticated && (
+    user?.isAdmin ||
     user?.enrolledCourses?.includes(courseId || '') ||
     user?.subscriptionStatus === 'active'
   );
