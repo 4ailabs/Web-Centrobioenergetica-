@@ -3,7 +3,7 @@ import { usersService } from '../../server/services/users.service.js';
 import jwt from 'jsonwebtoken';
 import { prisma } from '../../lib/prisma.js';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+import { getJwtSecret } from '../../lib/jwt.js';
 
 async function verifyAdmin(req: VercelRequest): Promise<{ valid: boolean; error?: string; user?: any }> {
   const authHeader = req.headers.authorization;
@@ -11,7 +11,7 @@ async function verifyAdmin(req: VercelRequest): Promise<{ valid: boolean; error?
   if (!token) return { valid: false, error: 'No token provided' };
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string; email: string; isAdmin: boolean };
+    const decoded = jwt.verify(token, getJwtSecret()) as { userId: string; email: string; isAdmin: boolean };
     const user = await prisma.user.findUnique({ where: { id: decoded.userId } });
     if (!user || !user.isAdmin) return { valid: false, error: 'Not authorized' };
     return { valid: true, user };

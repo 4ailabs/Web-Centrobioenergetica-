@@ -7,11 +7,11 @@ const Crania: React.FC = () => (
     slogan="Devuelve el flujo"
     hook="Práctica craneofascial autoaplicada para liberar la tensión acumulada en rostro, cuello, mandíbula y cráneo — con respiración integrada y técnica manual guiada."
     imagen="/images/courses/crania/crania_16_9_webinar.png"
-    fechas="25 de abril de 2026"
-    modalidad="Clase práctica · Online"
+    fechas="Grabación completa disponible"
+    modalidad="Clase práctica · Online · A tu ritmo"
     instructor="Dr. Miguel Ojeda Rios"
     detalles={['Clase práctica · 2 módulos']}
-    badge="Disponible"
+    badge="Grabación disponible"
     accentColor="#1A3A5C"
     modulos={[
       {
@@ -61,8 +61,8 @@ const Crania: React.FC = () => (
     ]}
     entregables={[]}
     requisitos="Ninguno. Solo una silla cómoda y 10 minutos sin interrupciones."
-    whatsappMsg="Hola, quiero acceder a la clase CRANIA — Práctica Craneofascial"
-    ctaLabel="Consultar por WhatsApp"
+    whatsappMsg="Hola, quiero acceso a la grabación de la clase CRANIA — Práctica Craneofascial"
+    ctaLabel="Pedir acceso a la grabación"
   />
 );
 
