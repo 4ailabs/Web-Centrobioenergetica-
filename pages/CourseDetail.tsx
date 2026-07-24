@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -37,6 +37,36 @@ const CourseDetail: React.FC = () => {
 
   const [activeVideo, setActiveVideo] = useState<CourseVideo | null>(null);
   const [completedVideos, setCompletedVideos] = useState<Set<number>>(new Set());
+  const [streamSrc, setStreamSrc] = useState<string | null>(null);
+
+  // Pide a la API un token firmado de reproducción para el video activo.
+  // Si el endpoint falla, cae a la URL sin firmar (deja de funcionar solo
+  // cuando el video tiene activado "Require Signed URLs" en Cloudflare).
+  const activeStreamUid = activeVideo?.cloudflareStreamId;
+  useEffect(() => {
+    if (!activeStreamUid) {
+      setStreamSrc(null);
+      return;
+    }
+    let cancelled = false;
+    setStreamSrc(null);
+    const fallback = getStreamEmbedUrl(activeStreamUid, undefined, { controls: true, autoplay: true });
+    const sessionToken = localStorage.getItem('token');
+    fetch(`/api/stream-token?uid=${encodeURIComponent(activeStreamUid)}`, {
+      headers: sessionToken ? { Authorization: `Bearer ${sessionToken}` } : undefined,
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((d: { token?: string }) => {
+        if (cancelled) return;
+        setStreamSrc(d.token ? getStreamEmbedUrl(d.token, undefined, { controls: true, autoplay: true }) : fallback);
+      })
+      .catch(() => {
+        if (!cancelled) setStreamSrc(fallback);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [activeStreamUid]);
 
   if (!course) {
     return (
@@ -179,12 +209,18 @@ const CourseDetail: React.FC = () => {
             <div>
               <div className="rounded-xl overflow-hidden bg-black aspect-video relative shadow-lg">
                 {activeVideo.cloudflareStreamId ? (
-                  <iframe
-                    src={getStreamEmbedUrl(activeVideo.cloudflareStreamId, undefined, { controls: true, autoplay: true })}
-                    className="absolute inset-0 w-full h-full border-0"
-                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                  />
+                  streamSrc ? (
+                    <iframe
+                      src={streamSrc}
+                      className="absolute inset-0 w-full h-full border-0"
+                      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-6 h-6 rounded-full border-2 border-neutral-600 border-t-white animate-spin" />
+                    </div>
+                  )
                 ) : activeVideo.vimeoId ? (
                   <iframe
                     src={`https://player.vimeo.com/video/${activeVideo.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
