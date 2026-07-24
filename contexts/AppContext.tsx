@@ -13,7 +13,6 @@ interface AppState {
   apps: AppInfo[];
 
   // UI State
-  activePage: string;
   isSearchOpen: boolean;
   searchQuery: string;
   searchResults: SearchResults;
@@ -30,7 +29,6 @@ interface AppState {
 
 // Acciones
 type AppAction =
-  | { type: 'SET_ACTIVE_PAGE'; payload: string }
   | { type: 'TOGGLE_SEARCH_MODAL' }
   | { type: 'CLOSE_SEARCH_MODAL' }
   | { type: 'SET_SEARCH_QUERY'; payload: string }
@@ -47,7 +45,6 @@ const initialState: AppState = {
   products: MOCK_DATA.products,
   news: MOCK_DATA.news,
   apps: MOCK_DATA.apps,
-  activePage: 'Panel',
   isSearchOpen: false,
   searchQuery: '',
   searchResults: {
@@ -65,13 +62,6 @@ const initialState: AppState = {
 // Reducer
 const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
-    case 'SET_ACTIVE_PAGE':
-      return {
-        ...state,
-        activePage: action.payload,
-        isMobileMenuOpen: false, // Cerrar menú móvil al navegar
-      };
-
     case 'TOGGLE_SEARCH_MODAL':
       return {
         ...state,
@@ -96,7 +86,6 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
         ...state,
         searchQuery: action.payload,
         searchResults,
-        activePage: 'Resultados de Búsqueda',
         isSearchOpen: false,
       };
 
@@ -206,11 +195,10 @@ export const useSearchResults = () => {
 export const useUIState = () => {
   const { state } = useApp();
   return useMemo(() => ({
-    activePage: state.activePage,
     isSearchOpen: state.isSearchOpen,
     searchQuery: state.searchQuery,
     isMobileMenuOpen: state.isMobileMenuOpen,
     isDarkMode: state.isDarkMode,
     isSidebarCollapsed: state.isSidebarCollapsed,
-  }), [state.activePage, state.isSearchOpen, state.searchQuery, state.isMobileMenuOpen, state.isDarkMode, state.isSidebarCollapsed]);
+  }), [state.isSearchOpen, state.searchQuery, state.isMobileMenuOpen, state.isDarkMode, state.isSidebarCollapsed]);
 };

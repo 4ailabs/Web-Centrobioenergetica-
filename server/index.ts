@@ -43,7 +43,8 @@ app.use(
         return callback(null, true);
       }
 
-      callback(null, true); // Allow all in production to avoid iframe issues
+      // Orígenes no autorizados: sin headers CORS (el navegador bloquea la respuesta)
+      callback(null, false);
     },
   })
 );
