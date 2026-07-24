@@ -184,7 +184,9 @@ export const MOCK_DATA = {
       level: 'Intermedio' as const,
       imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
       modules: [
-        { id: 1, title: 'El Cuerpo Eléctrico', description: '11 de julio · 10:00 – 18:00 h', order: 1, videos: [{ id: 1, title: 'Módulo 1 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
+        { id: 1, title: 'El Cuerpo Eléctrico', description: '11 de julio · 10:00 – 18:00 h', order: 1, videos: [
+          { id: 1, title: 'Capítulo 1', description: 'Módulo 1 — El Cuerpo Eléctrico.', duration: '', order: 1, cloudflareStreamId: '32a4d7ec68c9fd2a23e7d80728e76da2' },
+        ] },
         { id: 2, title: 'La lectura del cuerpo', description: '25 de julio · 10:00 – 18:00 h', order: 2, videos: [{ id: 2, title: 'Módulo 2 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
         { id: 3, title: 'Los ejes de regulación', description: '8 de agosto · 10:00 – 18:00 h', order: 3, videos: [{ id: 3, title: 'Módulo 3 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
         { id: 4, title: 'La sesión completa', description: '22 de agosto · 10:00 – 18:00 h', order: 4, videos: [{ id: 4, title: 'Módulo 4 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
