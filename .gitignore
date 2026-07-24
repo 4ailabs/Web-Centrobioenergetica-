@@ -43,3 +43,5 @@ dist/
 
 # Backup files
 *.backup
+.vercel
+.env*

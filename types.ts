@@ -39,9 +39,17 @@ export interface NewsArticle {
   category: string;
   author?: string;
   imageUrl: string;
+  readTime?: string;
+  reviewedAt?: string;
+  highlights?: string[];
   createdAt?: string;
   relatedCourseIds?: number[];
   reactions?: Record<string, number>;
+  /** Formato de la pieza; si se omite, es artículo de lectura */
+  contentType?: 'articulo' | 'audio' | 'video' | 'guia';
+  /** MP3 en /public/audio — solo para contentType 'audio' */
+  audioUrl?: string;
+  audioDuration?: string;
 }
 
 export interface CalendarEvent {
