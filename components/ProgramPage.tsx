@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, BookOpen, CheckCircle2, ChevronDown } from 'lucide-react';
+import { WhatsAppIcon } from './Icons';
+import { whatsappLink } from '../lib/whatsapp';
 
 interface ProgramBlock {
   time: string;
@@ -37,6 +39,21 @@ interface ProgramPageProps {
   heroElement?: React.ReactNode;
   titleFont?: string;
   modalidades?: { titulo: string; desc: string }[];
+  /** Cita editorial en cursiva bajo el hook */
+  frase?: string;
+  /** Tarjetas de precio (p. ej. "$1,500 MXN" / "Acceso online") */
+  precios?: { valor: string; etiqueta: string }[];
+  /** Bloque "Para quién" con texto y nota corta opcional */
+  paraQuien?: { texto: string; nota?: string };
+  /** Grupos de entregables con título propio (alternativa a `entregables`) */
+  entregableGroups?: { titulo: string; items: string[] }[];
+  /** Párrafo del método/enfoque, con nota de autoría opcional */
+  metodo?: { texto: string; nota?: string };
+  /** Texto pequeño centrado bajo el botón del CTA */
+  notaCta?: string;
+  /** URL externa para el CTA (p. ej. un formulario). Si se define, el botón
+   *  enlaza ahí en lugar de a WhatsApp y no muestra el icono de WhatsApp. */
+  ctaHref?: string;
 }
 
 const ProgramPage: React.FC<ProgramPageProps> = ({
@@ -60,6 +77,13 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
   heroElement,
   titleFont,
   modalidades,
+  frase,
+  precios,
+  paraQuien,
+  entregableGroups,
+  metodo,
+  notaCta,
+  ctaHref,
 }) => {
   const accent = accentColor || undefined;
   const accentStyle = accent ? { backgroundColor: accent } : undefined;
@@ -91,6 +115,11 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
         <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-xl">
           {hook}
         </p>
+        {frase && (
+          <p className="font-editorial italic text-[15px] leading-relaxed mt-3 max-w-xl" style={accentText || undefined}>
+            {frase}
+          </p>
+        )}
         {metodoLink && (
           <button
             onClick={() => navigate(metodoLink.path)}
@@ -118,6 +147,20 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
         </div>
       </div>
 
+      {/* Precios */}
+      {precios && precios.length > 0 && (
+        <div className="px-6 lg:px-0 pb-6">
+          <div className="flex flex-wrap gap-2">
+            {precios.map((p, i) => (
+              <div key={i} className="px-4 py-2.5 rounded-lg text-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+                <p className={`text-[13px] font-semibold ${accent ? '' : 'text-primary-600'}`} style={accentText}>{p.valor}</p>
+                <p className="text-[12px] text-neutral-500 dark:text-neutral-400">{p.etiqueta}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Details pills */}
       {detalles && detalles.length > 0 && (
         <div className="px-6 lg:px-0 pb-6">
@@ -141,6 +184,19 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
           </div>
         </div>
       ) : null}
+
+      {/* Para quién */}
+      {paraQuien && (
+        <div className="px-6 lg:px-0 pb-8">
+          <div className="p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+            <span className={`text-[11px] font-semibold uppercase tracking-widest ${accent ? '' : 'text-primary-600'}`} style={accentText}>Para quién</span>
+            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">{paraQuien.texto}</p>
+            {paraQuien.nota && (
+              <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">{paraQuien.nota}</p>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Modalidades */}
       {modalidades && modalidades.length > 0 && (
@@ -233,6 +289,40 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
         </div>
       </div>
 
+      {/* What you get — grupos con título */}
+      {entregableGroups && entregableGroups.length > 0 && (
+        <div className="px-6 lg:px-0 pb-8 border-t border-neutral-200 dark:border-neutral-700 pt-8">
+          <h3 className="text-sm font-medium text-neutral-800 dark:text-neutral-100 mb-4">Qué te llevas</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {entregableGroups.map((group, gi) => (
+              <div key={gi} className="p-5 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+                <span className={`text-[11px] font-semibold uppercase tracking-widest ${accent ? '' : 'text-primary-600'}`} style={accentText}>{group.titulo}</span>
+                <div className="mt-3 space-y-2.5">
+                  {group.items.map((item, ii) => (
+                    <div key={ii} className="flex items-start gap-2.5">
+                      <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent ? '' : 'text-primary-600'}`} style={accentText} />
+                      <span className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Método */}
+      {metodo && (
+        <div className="px-6 lg:px-0 pb-8">
+          <div className="p-5 rounded-xl bg-neutral-100 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700">
+            <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">{metodo.texto}</p>
+            {metodo.nota && (
+              <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">{metodo.nota}</p>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* What you get */}
       {entregables.length > 0 && (
         <div className="px-6 lg:px-0 pb-8 border-t border-neutral-200 dark:border-neutral-700 pt-8">
@@ -261,17 +351,18 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       {/* Sticky CTA */}
       <div className="fixed bottom-0 left-0 right-0 lg:relative lg:mt-4 px-6 lg:px-0 pb-5 lg:pb-0 pt-3 bg-gradient-to-t from-[#F9F8F6] dark:from-[#100E12] via-[#F9F8F6]/95 dark:via-[#100E12]/95 to-transparent lg:from-transparent lg:via-transparent lg:bg-none z-30">
         <a
-          href={`https://wa.me/525579076626?text=${encodeURIComponent(whatsappMsg)}`}
+          href={ctaHref || whatsappLink(whatsappMsg)}
           target="_blank"
           rel="noopener noreferrer"
           className={`flex items-center justify-center gap-2 w-full px-5 py-3 text-white rounded-xl font-medium text-sm transition-colors ${accent ? 'hover:opacity-90' : 'bg-primary-600 hover:bg-primary-700'}`}
           style={accentStyle}
         >
-          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-          </svg>
+          {!ctaHref && <WhatsAppIcon className="w-4 h-4" />}
           {ctaLabel}
         </a>
+        {notaCta && (
+          <p className="text-center mt-2.5 text-xs text-neutral-500 dark:text-neutral-400">{notaCta}</p>
+        )}
       </div>
     </div>
   );

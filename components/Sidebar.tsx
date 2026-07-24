@@ -80,6 +80,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-expanded={isMobileMenuOpen}
             className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
           >
             {isMobileMenuOpen ? <XIcon className="w-5 h-5" /> : <MenuIcon className="w-5 h-5" />}
@@ -131,7 +133,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
         {/* Logo + Toggle */}
         <div className={`flex items-center mb-5 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
           {collapsed ? (
-            <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-500" title="Expandir sidebar">
+            <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-500" title="Expandir sidebar" aria-label="Expandir barra lateral">
               <PanelLeftOpen className="w-[18px] h-[18px]" />
             </button>
           ) : (
@@ -143,7 +145,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
                   <span className="text-[10px] text-neutral-400 dark:text-neutral-500 leading-tight">Centrobioenergética</span>
                 </div>
               </div>
-              <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-400" title="Cerrar sidebar">
+              <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-400" title="Cerrar sidebar" aria-label="Colapsar barra lateral">
                 <PanelLeftClose className="w-[16px] h-[16px]" />
               </button>
             </>

@@ -57,7 +57,7 @@ const AppContent: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isSearchOpen, searchQuery, isDarkMode } = useUIState();
+  const { isSearchOpen, searchQuery } = useUIState();
 
   // Navegación directa vía ?page= (usada por el embed de Framer)
   useEffect(() => {
@@ -84,7 +84,7 @@ const AppContent: React.FC = () => {
 
   return (
     <>
-    <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] h-[100dvh] font-sans text-[var(--text-primary)] transition-colors duration-300 flex overflow-hidden`}>
+    <div className="bg-[var(--bg-main)] h-[100dvh] font-sans text-[var(--text-primary)] transition-colors duration-300 flex overflow-hidden">
       {/* Sidebar (gestiona internamente las variantes desktop y móvil) */}
       <Sidebar onSearch={handleSearch} onOpenSearch={handleOpenSearch} />
 
@@ -148,15 +148,14 @@ const AppContent: React.FC = () => {
 
     </div>
 
-    {/* Search Modal — outside flex container for proper z-index */}
+    {/* Search Modal — outside flex container for proper z-index.
+        La clase dark vive en <html>, no necesita wrapper. */}
     {isSearchOpen && (
-      <div className={isDarkMode ? 'dark' : ''}>
-        <Search
-          onSearch={handleSearch}
-          onClose={handleCloseSearch}
-          isOpen={isSearchOpen}
-        />
-      </div>
+      <Search
+        onSearch={handleSearch}
+        onClose={handleCloseSearch}
+        isOpen={isSearchOpen}
+      />
     )}
     </>
   );
