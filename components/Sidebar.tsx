@@ -1,45 +1,52 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { DashboardIcon, CoursesIcon, AboutUsIcon, LogoIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon, YoutubeIcon, ClinicalServicesIcon } from './Icons';
+import { DashboardIcon, CoursesIcon, AboutUsIcon, MenuIcon, XIcon, SearchIcon, CalendarIcon, SunIcon, MoonIcon, ClinicalServicesIcon } from './Icons';
 import { LogIn, LogOut, Shield, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { useUIState, useAppDispatch } from '../contexts/AppContext';
 
 import UserProfile from './UserProfile';
 
 interface SidebarProps {
-  activeItem: string;
-  setActiveItem: (item: string) => void;
   onSearch?: (query: string) => void;
   onOpenSearch?: () => void;
 }
 
-// Nav item that adapts to collapsed state
+// Nav item that adapts to collapsed state. Con `to` es un enlace real
+// (funciona cmd+click, abrir en pestaña, teclado); sin `to` es un botón de acción.
 const SidebarNavItem: React.FC<{
   icon: React.ReactNode;
   label: string;
+  to?: string;
   active?: boolean;
   collapsed?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   mobile?: boolean;
-}> = ({ icon, label, active, collapsed, onClick, mobile }) => (
-  <a
-    href="#"
-    onClick={(e) => { e.preventDefault(); onClick(); }}
-    title={collapsed ? label : undefined}
-    className={`flex items-center ${collapsed ? 'justify-center' : 'gap-3'} ${collapsed ? 'px-0 py-2.5' : 'px-3 py-2.5'} rounded-[6px] transition-colors duration-150 text-[14px] ${active
-      ? 'bg-neutral-200/70 dark:bg-neutral-700/50 text-neutral-800 dark:text-neutral-100 font-medium'
-      : 'text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30'
-    } ${mobile ? 'mobile-nav-item' : ''}`}
-  >
-    <div className={`shrink-0 ${active ? 'text-neutral-800 dark:text-neutral-100' : 'text-neutral-500 dark:text-neutral-500'}`}>
-      {icon}
-    </div>
-    {!collapsed && <span className="truncate">{label}</span>}
-  </a>
-);
+}> = ({ icon, label, to, active, collapsed, onClick, mobile }) => {
+  const className = `flex items-center w-full text-left ${collapsed ? 'justify-center' : 'gap-3'} ${collapsed ? 'px-0 py-2.5' : 'px-3 py-2.5'} rounded-[6px] transition-colors duration-150 text-[14px] ${active
+    ? 'bg-neutral-200/70 dark:bg-neutral-700/50 text-neutral-800 dark:text-neutral-100 font-medium'
+    : 'text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30'
+  } ${mobile ? 'mobile-nav-item' : ''}`;
+  const content = (
+    <>
+      <div className={`shrink-0 ${active ? 'text-neutral-800 dark:text-neutral-100' : 'text-neutral-500 dark:text-neutral-500'}`}>
+        {icon}
+      </div>
+      {!collapsed && <span className="truncate">{label}</span>}
+    </>
+  );
+  return to ? (
+    <Link to={to} onClick={onClick} title={collapsed ? label : undefined} className={className}>
+      {content}
+    </Link>
+  ) : (
+    <button type="button" onClick={onClick} title={collapsed ? label : undefined} className={className}>
+      {content}
+    </button>
+  );
+};
 
-const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, onOpenSearch }) => {
+const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isDarkMode, isSidebarCollapsed } = useUIState();
@@ -56,11 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
     dispatch({ type: 'TOGGLE_SIDEBAR' });
   };
 
-  const handleNavigation = (item: string, path: string) => {
-    setActiveItem(item);
-    navigate(path);
-    setIsMobileMenuOpen(false);
-  };
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const { user, logout } = useAuth();
 
@@ -98,11 +101,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
             </div>
 
             <div className="space-y-0.5 py-2">
-              <SidebarNavItem icon={<DashboardIcon className={iconSize} />} label="Panel" active={location.pathname === '/'} onClick={() => handleNavigation('Panel', '/')} mobile />
-              <SidebarNavItem icon={<CoursesIcon className={iconSize} />} label="Cursos" active={location.pathname === '/cursos'} onClick={() => handleNavigation('Cursos', '/cursos')} mobile />
-              <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios Clínicos" active={location.pathname === '/servicios'} onClick={() => handleNavigation('Servicios Clínicos', '/servicios')} mobile />
-              <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" active={location.pathname === '/calendario'} onClick={() => handleNavigation('Calendario', '/calendario')} mobile />
-              <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Sobre Nosotros" active={location.pathname === '/sobre-nosotros'} onClick={() => handleNavigation('Sobre Nosotros', '/sobre-nosotros')} mobile />
+              <SidebarNavItem icon={<DashboardIcon className={iconSize} />} label="Panel" to="/" active={location.pathname === '/'} onClick={closeMobileMenu} mobile />
+              <SidebarNavItem icon={<CoursesIcon className={iconSize} />} label="Cursos" to="/cursos" active={location.pathname === '/cursos'} onClick={closeMobileMenu} mobile />
+              <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios Clínicos" to="/servicios" active={location.pathname === '/servicios'} onClick={closeMobileMenu} mobile />
+              <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" to="/calendario" active={location.pathname === '/calendario'} onClick={closeMobileMenu} mobile />
+              <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Sobre Nosotros" to="/sobre-nosotros" active={location.pathname === '/sobre-nosotros'} onClick={closeMobileMenu} mobile />
             </div>
 
             <div className="border-t border-neutral-200 dark:border-neutral-800 my-3"></div>
@@ -113,9 +116,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
                 <span>{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
               </button>
               {user ? (
-                <SidebarNavItem icon={<LogOut className={iconSize} />} label="Cerrar Sesión" onClick={() => { logout(); navigate('/'); setIsMobileMenuOpen(false); }} mobile />
+                <SidebarNavItem icon={<LogOut className={iconSize} />} label="Cerrar Sesión" onClick={() => { logout(); navigate('/'); closeMobileMenu(); }} mobile />
               ) : (
-                <SidebarNavItem icon={<LogIn className={iconSize} />} label="Iniciar Sesión" active={location.pathname === '/login'} onClick={() => { handleNavigation('Login', '/login'); setIsMobileMenuOpen(false); }} mobile />
+                <SidebarNavItem icon={<LogIn className={iconSize} />} label="Iniciar Sesión" to="/login" active={location.pathname === '/login'} onClick={closeMobileMenu} mobile />
               )}
             </div>
           </nav>
@@ -155,16 +158,16 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
 
           {/* Main nav */}
           <div className="space-y-0.5 flex-grow">
-            <SidebarNavItem icon={<DashboardIcon className={iconSize} />} label="Panel" active={location.pathname === '/'} collapsed={collapsed} onClick={() => handleNavigation('Panel', '/')} />
-            <SidebarNavItem icon={<CoursesIcon className={iconSize} />} label="Cursos" active={location.pathname === '/cursos'} collapsed={collapsed} onClick={() => handleNavigation('Cursos', '/cursos')} />
-            <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios" active={location.pathname === '/servicios'} collapsed={collapsed} onClick={() => handleNavigation('Servicios Clínicos', '/servicios')} />
-            <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" active={location.pathname === '/calendario'} collapsed={collapsed} onClick={() => handleNavigation('Calendario', '/calendario')} />
-            <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Nosotros" active={location.pathname === '/sobre-nosotros'} collapsed={collapsed} onClick={() => handleNavigation('Sobre Nosotros', '/sobre-nosotros')} />
+            <SidebarNavItem icon={<DashboardIcon className={iconSize} />} label="Panel" to="/" active={location.pathname === '/'} collapsed={collapsed} />
+            <SidebarNavItem icon={<CoursesIcon className={iconSize} />} label="Cursos" to="/cursos" active={location.pathname === '/cursos'} collapsed={collapsed} />
+            <SidebarNavItem icon={<ClinicalServicesIcon className={iconSize} />} label="Servicios" to="/servicios" active={location.pathname === '/servicios'} collapsed={collapsed} />
+            <SidebarNavItem icon={<CalendarIcon className={iconSize} />} label="Calendario" to="/calendario" active={location.pathname === '/calendario'} collapsed={collapsed} />
+            <SidebarNavItem icon={<AboutUsIcon className={iconSize} />} label="Nosotros" to="/sobre-nosotros" active={location.pathname === '/sobre-nosotros'} collapsed={collapsed} />
 
             {user?.isAdmin && (
               <>
                 <div className="border-t border-neutral-200 dark:border-neutral-800 my-3"></div>
-                <SidebarNavItem icon={<Shield className={iconSize} />} label="Admin" active={location.pathname === '/admin'} collapsed={collapsed} onClick={() => handleNavigation('Panel Admin', '/admin')} />
+                <SidebarNavItem icon={<Shield className={iconSize} />} label="Admin" to="/admin" active={location.pathname === '/admin'} collapsed={collapsed} />
               </>
             )}
           </div>
@@ -174,19 +177,19 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, setActiveItem, onSearch, 
 
           {/* Bottom */}
           <div className="space-y-0.5">
-            <a
-              href="#"
-              onClick={(e) => { e.preventDefault(); toggleTheme(); }}
+            <button
+              type="button"
+              onClick={toggleTheme}
               title={collapsed ? (isDarkMode ? 'Modo Claro' : 'Modo Oscuro') : undefined}
-              className={`flex items-center ${collapsed ? 'justify-center' : 'gap-3'} ${collapsed ? 'px-0' : 'px-3'} py-2.5 rounded-lg transition-colors duration-150 text-[14px] text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30`}
+              className={`flex items-center w-full text-left ${collapsed ? 'justify-center' : 'gap-3'} ${collapsed ? 'px-0' : 'px-3'} py-2.5 rounded-lg transition-colors duration-150 text-[14px] text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30`}
             >
               <span className="text-neutral-500 shrink-0">{isDarkMode ? <SunIcon className={iconSize} /> : <MoonIcon className={iconSize} />}</span>
               {!collapsed && <span>{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>}
-            </a>
+            </button>
             {user ? (
               <SidebarNavItem icon={<LogOut className={iconSize} />} label="Salir" collapsed={collapsed} onClick={() => { logout(); navigate('/'); }} />
             ) : (
-              <SidebarNavItem icon={<LogIn className={iconSize} />} label="Entrar" active={location.pathname === '/login'} collapsed={collapsed} onClick={() => handleNavigation('Login', '/login')} />
+              <SidebarNavItem icon={<LogIn className={iconSize} />} label="Entrar" to="/login" active={location.pathname === '/login'} collapsed={collapsed} />
             )}
           </div>
         </nav>

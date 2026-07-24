@@ -1,8 +1,8 @@
 import React, { useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
 import { AuthProvider } from './contexts/AuthContext';
-import { getUrlParams, isInIframe } from './utils/framerIntegration';
+import { getUrlParams } from './utils/framerIntegration';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -41,32 +41,33 @@ const PageLoader: React.FC = () => (
   </div>
 );
 
-const PAGE_MAP: Record<string, string> = {
-  'cursos': 'Cursos',
-  'servicios': 'Servicios Clínicos',
-  // 'noticias': 'Noticias',
-  'sobre-nosotros': 'Sobre Nosotros',
-  'aplicaciones': 'Aplicaciones',
-  'calendario': 'Calendario',
-  'wellvibe-media': 'Wellvibe Media',
-  'panel': 'Panel'
+// Rutas accesibles vía ?page= (deep-linking desde el embed de Framer)
+const PAGE_PATHS: Record<string, string> = {
+  'cursos': '/cursos',
+  'servicios': '/servicios',
+  'sobre-nosotros': '/sobre-nosotros',
+  'aplicaciones': '/aplicaciones',
+  'calendario': '/calendario',
+  'wellvibe-media': '/wellvibe-media',
+  'panel': '/'
 };
 
 // Componente interno que usa el contexto
 const AppContent: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { activePage, isSearchOpen, searchQuery, isDarkMode } = useUIState();
+  const location = useLocation();
+  const { isSearchOpen, searchQuery, isDarkMode } = useUIState();
 
-  // Manejar parámetros de URL para navegación directa
+  // Navegación directa vía ?page= (usada por el embed de Framer)
   useEffect(() => {
-    const params = getUrlParams();
-    const page = params.page;
-
-    if (page && PAGE_MAP[page]) {
-      dispatch({ type: 'SET_ACTIVE_PAGE', payload: PAGE_MAP[page] });
+    const page = getUrlParams().page;
+    if (page && PAGE_PATHS[page]) {
+      navigate(PAGE_PATHS[page], { replace: true });
     }
-  }, [dispatch]);
+    // Solo al montar: el parámetro viene de la URL de entrada
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSearch = (query: string) => {
     dispatch({ type: 'PERFORM_SEARCH', payload: query });
@@ -81,55 +82,25 @@ const AppContent: React.FC = () => {
     dispatch({ type: 'CLOSE_SEARCH_MODAL' });
   };
 
-  const handleSetActivePage = (page: string) => {
-    dispatch({ type: 'SET_ACTIVE_PAGE', payload: page });
-  };
-
   return (
     <>
     <div className={`${isDarkMode ? 'dark' : ''} bg-[var(--bg-main)] h-[100dvh] font-sans text-[var(--text-primary)] transition-colors duration-300 flex overflow-hidden`}>
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block shrink-0">
-        <Sidebar
-          activeItem={activePage}
-          setActiveItem={handleSetActivePage}
-          onSearch={handleSearch}
-          onOpenSearch={handleOpenSearch}
-        />
-      </div>
-
-      {/* Mobile Sidebar (floating) */}
-      <div className="lg:hidden">
-        <Sidebar
-          activeItem={activePage}
-          setActiveItem={handleSetActivePage}
-          onSearch={handleSearch}
-          onOpenSearch={handleOpenSearch}
-        />
-      </div>
+      {/* Sidebar (gestiona internamente las variantes desktop y móvil) */}
+      <Sidebar onSearch={handleSearch} onOpenSearch={handleOpenSearch} />
 
       {/* Main Content + Fixed Footer */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <main className="flex-1 overflow-y-auto overflow-x-hidden overscroll-none">
           <div className="p-2 lg:p-8">
-            <div key={activePage} className="animate-fade-in">
+            <div key={location.pathname} className="animate-fade-in">
               <ErrorBoundary>
               <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={
                   <Dashboard
-                    onNavigateToCourses={() => {
-                      handleSetActivePage('Cursos');
-                      navigate('/cursos');
-                    }}
-                    onNavigateToAbout={() => {
-                      handleSetActivePage('Sobre Nosotros');
-                      navigate('/sobre-nosotros');
-                    }}
-                    onNavigateToApps={() => {
-                      handleSetActivePage('Aplicaciones');
-                      navigate('/aplicaciones');
-                    }}
+                    onNavigateToCourses={() => navigate('/cursos')}
+                    onNavigateToAbout={() => navigate('/sobre-nosotros')}
+                    onNavigateToApps={() => navigate('/aplicaciones')}
                   />
                 } />
                 <Route path="/cursos" element={<AllCourses />} />
