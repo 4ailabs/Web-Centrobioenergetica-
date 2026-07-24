@@ -4,6 +4,7 @@ import { useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
 import type { CourseVideo } from '../types';
 import { getStreamEmbedUrl } from '../lib/cloudflare-stream';
+import { API_BASE } from '../lib/api';
 import { Play, CheckCircle2, X, Lock, AlertCircle, ArrowLeft, BookOpen, ExternalLink } from 'lucide-react';
 
 const Roseton: React.FC<{ size?: number }> = ({ size = 24 }) => (
@@ -37,7 +38,42 @@ const CourseDetail: React.FC = () => {
 
   const [activeVideo, setActiveVideo] = useState<CourseVideo | null>(null);
   const [completedVideos, setCompletedVideos] = useState<Set<number>>(new Set());
+  const [lastVideoId, setLastVideoId] = useState<number | null>(null);
   const [streamSrc, setStreamSrc] = useState<string | null>(null);
+
+  const authHeaders = (): Record<string, string> => {
+    const token = localStorage.getItem('token');
+    return token ? { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
+  };
+
+  // Hidrata el progreso guardado del alumno (antes vivía solo en memoria
+  // y se perdía al recargar la página).
+  const courseIdNum = course?.id;
+  useEffect(() => {
+    if (!courseIdNum || !localStorage.getItem('token')) return;
+    let cancelled = false;
+    fetch(`${API_BASE}/api/progress?courseId=${courseIdNum}`, { headers: authHeaders() })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d: { completedVideoIds?: number[]; lastVideoId?: number | null }) => {
+        if (cancelled) return;
+        if (Array.isArray(d.completedVideoIds)) setCompletedVideos(new Set(d.completedVideoIds));
+        if (typeof d.lastVideoId === 'number') setLastVideoId(d.lastVideoId);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [courseIdNum]);
+
+  const saveProgress = (videoId: number, completed?: boolean) => {
+    if (!courseIdNum || !localStorage.getItem('token')) return;
+    const moduleId = course?.modules?.find((m) => m.videos.some((v) => v.id === videoId))?.id;
+    fetch(`${API_BASE}/api/progress`, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ courseId: courseIdNum, videoId, moduleId, ...(typeof completed === 'boolean' ? { completed } : {}) }),
+    }).catch(() => {});
+  };
 
   // Pide a la API un token firmado de reproducción para el video activo.
   // Si el endpoint falla, cae a la URL sin firmar (deja de funcionar solo
@@ -94,20 +130,28 @@ const CourseDetail: React.FC = () => {
   const openVideo = (video: CourseVideo) => {
     if (!hasAccess) {
       if (!isAuthenticated) navigate('/login');
-      else alert('No tienes acceso a este curso. Contacta al administrador.');
       return;
     }
     setActiveVideo(video);
+    setLastVideoId(video.id);
+    saveProgress(video.id);
   };
 
   const toggleVideoCompletion = (videoId: number) => {
+    const willComplete = !completedVideos.has(videoId);
     setCompletedVideos(prev => {
       const newSet = new Set(prev);
       if (newSet.has(videoId)) newSet.delete(videoId);
       else newSet.add(videoId);
       return newSet;
     });
+    saveProgress(videoId, willComplete);
   };
+
+  const lastVideo = useMemo(() => {
+    if (lastVideoId == null) return null;
+    return course.modules?.flatMap(m => m.videos).find(v => v.id === lastVideoId) ?? null;
+  }, [course, lastVideoId]);
 
   const Playlist = () => (
     <div className="space-y-5">
@@ -330,6 +374,19 @@ const CourseDetail: React.FC = () => {
                         style={{ width: `${progressPct}%` }}
                       />
                     </div>
+                  </div>
+                )}
+
+                {/* Continuar donde te quedaste */}
+                {hasAccess && lastVideo && (
+                  <div className="mt-4 pl-11">
+                    <button
+                      onClick={() => openVideo(lastVideo)}
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-xs font-medium rounded-lg transition-colors"
+                    >
+                      <Play className="w-3.5 h-3.5 fill-current" />
+                      Continuar con: {lastVideo.title}
+                    </button>
                   </div>
                 )}
 

@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
 import { AboutUsIcon, AppsIcon, CoursesIcon } from '../components/Icons';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin, Play } from 'lucide-react';
+import { API_BASE } from '../lib/api';
 import { handleCourseClick } from '../utils/framerIntegration';
 import { MOCK_DATA } from '../data/mockData';
 import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_BADGE_CLASS, courseHref } from '../data/catalog';
@@ -29,6 +30,29 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
     handleCourseClick(course.id, course.title);
   };
 
+  // "Continuar donde te quedaste": el último video visto según la API de progreso
+  const [continueTarget, setContinueTarget] = useState<{ course: Course; videoTitle: string } | null>(null);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!user || !token) {
+      setContinueTarget(null);
+      return;
+    }
+    let cancelled = false;
+    fetch(`${API_BASE}/api/progress`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d: { lastWatched?: { courseId: number | null; videoId: number | null } | null }) => {
+        if (cancelled || !d.lastWatched?.courseId) return;
+        const lastCourse = allCourses.find((c) => c.id === d.lastWatched!.courseId);
+        const lastVideo = lastCourse?.modules?.flatMap((m) => m.videos).find((v) => v.id === d.lastWatched!.videoId);
+        if (lastCourse) setContinueTarget({ course: lastCourse, videoTitle: lastVideo?.title ?? '' });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [user, allCourses]);
+
   const upcomingEvents = useMemo(() => {
     const now = Date.now();
     return MOCK_DATA.events
@@ -39,6 +63,25 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
 
   return (
     <div className="w-full pt-[72px] lg:pt-0 pb-16">
+
+      {/* ── CONTINUAR (solo alumnos con progreso) ── */}
+      {continueTarget && (
+        <div className="px-6 lg:px-0 pt-4">
+          <button
+            onClick={() => navigate(`/course/${continueTarget.course.id}`)}
+            className="w-full flex items-center justify-between gap-4 p-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white transition-colors text-left group"
+          >
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-white/70">Continúa donde te quedaste</p>
+              <p className="text-sm font-medium mt-0.5 truncate">
+                {continueTarget.course.title}
+                {continueTarget.videoTitle ? ` — ${continueTarget.videoTitle}` : ''}
+              </p>
+            </div>
+            <Play className="w-4 h-4 fill-current shrink-0 group-hover:scale-110 transition-transform" />
+          </button>
+        </div>
+      )}
 
       {/* ── HERO ── */}
       <div className="px-6 lg:px-0 pt-4 lg:pt-6 pb-4">
