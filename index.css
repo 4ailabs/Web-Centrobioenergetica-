@@ -73,14 +73,18 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-sans tracking-tight;
-  font-weight: 600;
+/* En @layer base para que utilidades como font-editorial puedan
+   sobreescribir la familia en headings concretos. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans tracking-tight;
+    font-weight: 600;
+  }
 }
 
 /* Respeta la preferencia del usuario de reducir movimiento */
