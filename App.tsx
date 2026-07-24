@@ -14,6 +14,7 @@ import Search from './pages/Search';
 // Carga diferida: cada página se descarga solo cuando se visita,
 // en lugar de incluirse todas en el bundle inicial.
 const AllCourses = lazy(() => import('./pages/AllCourses'));
+const Descubrir = lazy(() => import('./pages/Descubrir'));
 const CourseDetail = lazy(() => import('./pages/CourseDetail'));
 const ClinicalServices = lazy(() => import('./pages/ClinicalServices'));
 const Login = lazy(() => import('./pages/Login'));
@@ -44,6 +45,7 @@ const PageLoader: React.FC = () => (
 // Rutas accesibles vía ?page= (deep-linking desde el embed de Framer)
 const PAGE_PATHS: Record<string, string> = {
   'cursos': '/cursos',
+  'descubrir': '/descubrir',
   'servicios': '/servicios',
   'sobre-nosotros': '/sobre-nosotros',
   'aplicaciones': '/aplicaciones',
@@ -104,6 +106,8 @@ const AppContent: React.FC = () => {
                   />
                 } />
                 <Route path="/cursos" element={<AllCourses />} />
+                <Route path="/descubrir" element={<Descubrir />} />
+                <Route path="/descubrir/:articleId" element={<Descubrir />} />
                 <Route path="/servicios" element={<ClinicalServices />} />
                 <Route path="/sobre-nosotros" element={<AboutUs />} />
                 <Route path="/aplicaciones" element={<Apps />} />
