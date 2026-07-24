@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useMemo, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, useMemo, useEffect, ReactNode } from 'react';
 import { MOCK_DATA, searchData, type SearchResults } from '../data/mockData';
 import type { Course, NewsArticle, AppInfo } from '../types';
 import type { Service, Product } from '../data/mockData';
@@ -131,6 +131,12 @@ const AppContext = createContext<{
 // Provider
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+
+  // La clase `dark` vive en <html> para que alcance a portales, modales y
+  // al propio body — sin necesidad de wrappers por componente.
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', state.isDarkMode);
+  }, [state.isDarkMode]);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
 

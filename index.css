@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* Las fuentes se cargan desde index.html con <link> + preconnect
+   (evita la cadena render-blocking de @import). */
 @import "tailwindcss";
 @config "./tailwind.config.js";
 
@@ -16,7 +17,8 @@
   /* Colors - Text (warm, not pure black — like Perplexity) */
   --text-primary: #3D3B37;
   --text-secondary: #6B6963;
-  --text-muted: #8C8A84;
+  /* ≥4.5:1 sobre --bg-main (WCAG AA texto normal) */
+  --text-muted: #6F6C66;
 
   /* Colors - Borders */
   --border-light: #e8e6e1;
@@ -43,7 +45,8 @@
   /* Colors - Text (warm light, not pure white) */
   --text-primary: #DEDBD6;
   --text-secondary: #9E9B95;
-  --text-muted: #6B6862;
+  /* ≥4.5:1 sobre --bg-main oscuro (WCAG AA) */
+  --text-muted: #918D85;
 
   /* Colors - Borders */
   --border-light: rgba(222, 219, 214, 0.08);
@@ -80,6 +83,18 @@ h6 {
   font-weight: 600;
 }
 
+/* Respeta la preferencia del usuario de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Custom Utilities or Global Styles */
 .line-clamp-3 {
   display: -webkit-box;
@@ -105,8 +120,9 @@ h6 {
     text-size-adjust: 100%;
   }
 
-  /* Optimizar áreas táctiles - mínimo 44x44px según Apple HIG */
-  button, a, .clickable {
+  /* Optimizar áreas táctiles - mínimo 44x44px según Apple HIG.
+     Solo controles de nav/botones: aplicarlo a todo <a> deforma enlaces inline. */
+  button, .mobile-nav-item, .clickable {
     min-height: 44px;
     min-width: 44px;
   }
