@@ -588,6 +588,81 @@ export const MOCK_DATA = {
 
   news: [
     {
+      id: 20,
+      title: '¿Qué es el cuerpo eléctrico? Por qué tu cuerpo se puede leer como un mapa',
+      description: 'Entre tus células hay un sistema con carga eléctrica que regula la comunicación de cada tejido. Entenderlo cambia la pregunta que le hacemos al cuerpo.',
+      category: 'Regulación Bioeléctrica',
+      content: `Estamos acostumbrados a pensar el cuerpo en términos químicos: hormonas, nutrientes, medicamentos. Pero hay otra capa, más antigua y más rápida, que organiza todo lo demás: la capa eléctrica.
+
+La matriz que rodea a las células:
+Entre tus células no hay un espacio vacío. Hay un sistema activo, con carga eléctrica, que regula la comunicación celular, la distribución de iones y el microambiente de cada tejido. Cuando esa carga se altera —por inflamación, acidosis o estrés sostenido— se crean las condiciones para la enfermedad, muchas veces antes de que aparezca cualquier síntoma.
+
+El voltaje de cada célula:
+Cada célula mantiene un voltaje en su membrana. No es un subproducto del metabolismo: es una señal que le indica a la célula qué hacer. El biólogo Michael Levin, en la Universidad de Tufts, demostró que modificar ese voltaje cambia el comportamiento de un tejido sin tocar el ADN. Es decir: la información eléctrica instruye a la biología.
+
+El cuerpo como red, no como puntos sueltos:
+Los tejidos están conectados entre sí y comparten información eléctrica; una señal puede viajar a zonas distantes en cuestión de segundos. Por eso, desde este marco, el cuerpo se lee como una red continua y no como una colección de partes aisladas.
+
+Un cambio en la pregunta:
+Cada órgano defiende un punto de calibración. Desde esta mirada, la enfermedad no es un error del cuerpo: muchas veces es una respuesta que se quedó activa cuando ya no hacía falta. La pregunta deja de ser solo "¿qué está roto?" y pasa a ser "¿qué señal se quedó encendida, y cómo ayudo al tejido a recalibrarse?".
+
+Esto no reemplaza a la medicina ni al diagnóstico profesional. Es un marco de lectura —con fundamento en la ciencia contemporánea de la bioelectricidad— que orienta el trabajo de regulación y cuidado a largo plazo.`,
+      imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
+      author: 'Dr. Miguel Ojeda Rios',
+      readTime: '6 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['El cuerpo tiene una capa eléctrica', 'El voltaje instruye al tejido', 'Se lee como una red, no como puntos'],
+      relatedCourseIds: [106],
+    },
+    {
+      id: 21,
+      title: 'Por qué 128 Hz: la frecuencia que la neurología usa para medir y la terapia usa para intervenir',
+      description: 'Un diapasón de 128 Hz entra por el hueso y llega al sistema nervioso antes de que la mente opine. Qué lo hace distinto de "poner música relajante".',
+      category: 'Sonido terapéutico',
+      content: `No toda vibración es igual. La frecuencia de 128 Hz tiene una particularidad: es la que la neurología clínica emplea desde hace décadas para evaluar la conducción ósea y explorar la sensibilidad. No es una frecuencia "mística": es una herramienta de medición con historia.
+
+Del hueso al sistema nervioso:
+Un diapasón de 128 Hz aplicado sobre el cuerpo transmite su vibración a través del hueso y el tejido conectivo hasta el sistema nervioso. Esa vía —la conducción por el tejido, no por el aire— es lo que separa esta práctica de simplemente escuchar un sonido agradable. La vibración llega antes de que la mente tenga tiempo de interpretarla.
+
+Tu voz también es un instrumento:
+No hace falta un diapasón para trabajar la vibración. El tarareo (humming) es una de las formas más accesibles: hay evidencia de que aumenta de forma marcada la producción de óxido nítrico nasal, una molécula asociada a la función vascular y respiratoria. Una parte importante del efecto vibratorio puede lograrse con la propia voz.
+
+La diferencia está en la secuencia:
+Aquí está la idea central del método: un diapasón sin estructura es relajación; el mismo diapasón dentro de una secuencia con intención se vuelve intervención. Lo que convierte al sonido en una herramienta de regulación no es la frecuencia por sí sola, sino cómo, dónde y en qué orden se aplica.
+
+Este es contenido educativo. La vibración terapéutica acompaña procesos de bienestar y no sustituye tratamiento médico cuando este es necesario.`,
+      imageUrl: '/images/courses/resonantia/Resonantia.webp',
+      author: 'Dr. Miguel Ojeda Rios',
+      readTime: '5 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['128 Hz es una frecuencia de medición clínica', 'Entra por el hueso, no por el aire', 'La secuencia convierte sonido en intervención'],
+      relatedCourseIds: [107],
+    },
+    {
+      id: 22,
+      title: 'El cuerpo no distingue entre una experiencia real y un acto ritual',
+      description: 'Hay cosas que la mente ya entendió pero el cuerpo no soltó. Por qué un acto físico con suficiente carga sensorial logra lo que entenderlo no basta para mover.',
+      category: 'Rituales terapéuticos',
+      content: `Casi todos hemos vivido esto: entendemos perfectamente lo que nos pasó, podemos explicarlo con claridad, y aun así algo sigue apretado en el cuerpo. La comprensión llegó, pero el cambio no.
+
+Por qué entender no siempre alcanza:
+La mente trabaja con palabras y significados. El cuerpo trabaja con experiencias. Cuando algo nos marcó, no quedó guardado como una idea, sino como una huella sensorial: una tensión, un gesto, una forma de respirar. Y esa huella no se disuelve con una explicación, por correcta que sea.
+
+Lo que hace un acto ritual:
+Un acto físico —romper una pieza de cerámica y repararla con oro, enterrar una carta y sembrar encima, sostener una piedra y luego soltarla— tiene una cualidad que la conversación no tiene: es irreversible y sucede en el cuerpo. Con suficiente carga sensorial, el sistema nervioso lo registra como una experiencia real, no como un símbolo. Y a partir de esa experiencia, algo puede recalibrarse.
+
+No necesitas creerlo:
+Esta es quizá la parte más contraintuitiva. No hace falta convicción previa ni interpretación. No se trata de "creer" que el acto funciona: se trata de hacerlo con presencia. El cuerpo hace el resto. Lo que la gente reporta después no suele ser una idea nueva, sino una sensación: "algo se movió".
+
+Este contenido es educativo y describe un enfoque vivencial de trabajo corporal y emocional. No sustituye atención psicológica ni médica cuando es necesaria.`,
+      imageUrl: '/images/courses/actos-que-mueven/ritual_2.webp',
+      author: 'Dr. Miguel Ojeda Rios',
+      readTime: '5 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['La comprensión no siempre mueve el cuerpo', 'Un acto irreversible deja huella real', 'No requiere creer: requiere hacer'],
+      relatedCourseIds: [105],
+    },
+    {
       id: 1,
       title: 'Respirar más lento: una práctica de cinco minutos para bajar el ritmo',
       description: 'Una guía breve para hacer una pausa, observar tu respiración y retomar el día con más presencia.',
