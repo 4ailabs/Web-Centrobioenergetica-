@@ -1,8 +1,145 @@
-import React, { useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useNews } from '../contexts/AppContext';
-import { ArrowLeft, ArrowRight, Clock3, Sparkles, Youtube } from 'lucide-react';
+import React, { useMemo, useState, useRef } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNews, useCourses } from '../contexts/AppContext';
+import { useAuth } from '../contexts/AuthContext';
+import { ArrowLeft, ArrowRight, Clock3, Sparkles, Youtube, Play, Pause, Headphones } from 'lucide-react';
+import { courseHref } from '../data/catalog';
 import type { NewsArticle } from '../types';
+
+const CONTENT_TYPE_LABEL: Record<string, string> = {
+  articulo: 'Artículos',
+  audio: 'Audios',
+  video: 'Videos',
+  guia: 'Guías',
+};
+
+// Mini reproductor de audio de marca (sin controles nativos del navegador)
+const AudioPlayer: React.FC<{ src: string }> = ({ src }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const fmt = (s: number) => {
+    if (!Number.isFinite(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+  };
+
+  const toggle = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (playing) el.pause();
+    else el.play();
+  };
+
+  return (
+    <div className="flex items-center gap-3 mt-3">
+      <audio
+        ref={audioRef}
+        src={src}
+        preload="metadata"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+        onTimeUpdate={(e) => setProgress(e.currentTarget.currentTime)}
+        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+      />
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label={playing ? 'Pausar audio' : 'Reproducir audio'}
+        className="w-10 h-10 rounded-full bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center shrink-0 transition-colors"
+      >
+        {playing ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
+      </button>
+      <input
+        type="range"
+        min={0}
+        max={duration || 0}
+        step={1}
+        value={progress}
+        aria-label="Posición del audio"
+        onChange={(e) => {
+          const el = audioRef.current;
+          if (el) el.currentTime = Number(e.target.value);
+        }}
+        className="flex-1 h-1 accent-[var(--primary)] cursor-pointer"
+      />
+      <span className="text-[11px] text-neutral-400 tabular-nums shrink-0">
+        {fmt(progress)} / {fmt(duration)}
+      </span>
+    </div>
+  );
+};
+
+// Tarjeta de audio: se escucha ahí mismo, sin salir del feed
+const AudioCard: React.FC<{ article: NewsArticle }> = ({ article }) => (
+  <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-5">
+    <div className="flex items-center justify-between gap-3">
+      <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400">
+        <Headphones className="w-3.5 h-3.5" /> {article.category}
+      </span>
+      {article.audioDuration && (
+        <span className="inline-flex items-center gap-1 text-[10px] text-neutral-400 shrink-0">
+          <Clock3 className="w-3 h-3" /> {article.audioDuration}
+        </span>
+      )}
+    </div>
+    <h3 className="font-editorial text-lg text-neutral-800 dark:text-neutral-100 leading-snug mt-1.5 mb-1.5">
+      {article.title}
+    </h3>
+    <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed text-[13px] line-clamp-2">
+      {article.description}
+    </p>
+    {article.audioUrl && <AudioPlayer src={article.audioUrl} />}
+  </div>
+);
+
+// "Profundiza en el curso": conecta cada pieza abierta con la formación
+const RelatedCourses: React.FC<{ ids?: number[] }> = ({ ids }) => {
+  const courses = useCourses();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const related = (ids ?? []).map((id) => courses.find((c) => c.id === id)).filter(Boolean);
+  if (related.length === 0) return null;
+  return (
+    <div className="mt-10 space-y-3">
+      {related.map((course) => {
+        if (!course) return null;
+        const hasAccess = !!user && (
+          user.isAdmin ||
+          user.subscriptionStatus === 'active' ||
+          !!user.enrolledCourses?.includes(course.id.toString())
+        );
+        return (
+          <button
+            key={course.id}
+            onClick={() => navigate(courseHref(course, hasAccess))}
+            className="w-full flex items-center gap-4 p-4 rounded-2xl bg-primary-50/80 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800/60 hover:border-primary-300 dark:hover:border-primary-600 transition-colors text-left group"
+          >
+            {course.imageUrl && (
+              <div className="w-20 h-14 rounded-lg overflow-hidden shrink-0 bg-neutral-100 dark:bg-neutral-700">
+                <img src={course.imageUrl} alt={course.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+              </div>
+            )}
+            <div className="min-w-0 flex-1">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400">
+                Profundiza en el curso
+              </span>
+              <p className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 mt-0.5 line-clamp-1 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+                {course.title}
+              </p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">{course.level} · {course.author}</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-primary-600 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        );
+      })}
+    </div>
+  );
+};
 
 // Render del contenido de un artículo: párrafos separados por línea en
 // blanco; líneas que terminan en ':' como subtítulos; listas 1./- nativas.
@@ -127,11 +264,19 @@ const Descubrir: React.FC = () => {
   const news = useNews();
   const { articleId } = useParams<{ articleId?: string }>();
   const [category, setCategory] = useState<string>('Todo');
+  const [contentType, setContentType] = useState<string>('Todo');
 
   const categories = useMemo(() => ['Todo', ...Array.from(new Set(news.map((n) => n.category)))], [news]);
+  const contentTypes = useMemo(
+    () => ['Todo', ...Array.from(new Set(news.map((n) => n.contentType ?? 'articulo')))],
+    [news]
+  );
   const filtered = useMemo(
-    () => (category === 'Todo' ? news : news.filter((n) => n.category === category)),
-    [news, category]
+    () =>
+      news
+        .filter((n) => category === 'Todo' || n.category === category)
+        .filter((n) => contentType === 'Todo' || (n.contentType ?? 'articulo') === contentType),
+    [news, category, contentType]
   );
 
   // ── Vista de lectura ──
@@ -181,6 +326,8 @@ const Descubrir: React.FC = () => {
           </div>
           <ArticleHighlights highlights={article.highlights} />
           {article.content && <ArticleBody content={article.content} />}
+          {article.contentType === 'audio' && article.audioUrl && <AudioPlayer src={article.audioUrl} />}
+          <RelatedCourses ids={article.relatedCourseIds} />
           <p className="text-xs text-neutral-400 mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700 leading-relaxed">
             Contenido educativo del Instituto Centrobioenergética. No sustituye una valoración profesional ni una recomendación personalizada.
           </p>
@@ -225,8 +372,25 @@ const Descubrir: React.FC = () => {
         </div>
       </div>
 
-      {/* Category chips */}
-      <div className="px-6 lg:px-0 pb-6">
+      {/* Filtros: formato (solo si hay más de uno) + categoría */}
+      <div className="px-6 lg:px-0 pb-6 space-y-3">
+        {contentTypes.length > 2 && (
+          <div className="flex flex-wrap gap-2">
+            {contentTypes.map((t) => (
+              <button
+                key={t}
+                onClick={() => setContentType(t)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  contentType === t
+                    ? 'bg-neutral-800 text-white dark:bg-neutral-200 dark:text-neutral-800'
+                    : 'bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:border-neutral-400'
+                }`}
+              >
+                {t === 'Todo' ? 'Todos los formatos' : CONTENT_TYPE_LABEL[t] ?? t}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
@@ -247,7 +411,11 @@ const Descubrir: React.FC = () => {
       {/* Featured */}
       {featured && (
         <div className="px-6 lg:px-0 pb-5">
-          <ArticleCard article={featured} featured />
+          {(featured.contentType ?? 'articulo') === 'audio' ? (
+            <AudioCard article={featured} />
+          ) : (
+            <ArticleCard article={featured} featured />
+          )}
         </div>
       )}
 
@@ -255,9 +423,13 @@ const Descubrir: React.FC = () => {
       {rest.length > 0 && (
         <div className="px-6 lg:px-0 pb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {rest.map((a) => (
-              <ArticleCard key={a.id} article={a} />
-            ))}
+            {rest.map((a) =>
+              (a.contentType ?? 'articulo') === 'audio' ? (
+                <AudioCard key={a.id} article={a} />
+              ) : (
+                <ArticleCard key={a.id} article={a} />
+              )
+            )}
           </div>
         </div>
       )}

@@ -613,6 +613,7 @@ Si aparece mareo, incomodidad o sensación de falta de aire, detén la práctica
       readTime: '5 min de lectura',
       reviewedAt: '24 de julio de 2026',
       highlights: ['Exhalar un poco más largo', 'Soltar hombros y mandíbula', 'Practicar con regularidad'],
+      relatedCourseIds: [107],
       imageUrl: '/images/news/editorial/respiracion-consciente.webp',
     },
     {
@@ -640,6 +641,7 @@ Si las dificultades para dormir son persistentes o afectan tu funcionamiento dia
       readTime: '6 min de lectura',
       reviewedAt: '24 de julio de 2026',
       highlights: ['Crear señales de cierre', 'Reducir estímulos por la noche', 'Priorizar regularidad'],
+      relatedCourseIds: [104],
       imageUrl: '/images/news/editorial/sueno-reparador.webp',
     },
     {
@@ -667,6 +669,7 @@ Esta guía es educativa. Las necesidades cambian según la edad, la actividad f�
       readTime: '7 min de lectura',
       reviewedAt: '24 de julio de 2026',
       highlights: ['Priorizar variedad', 'Combinar grupos de alimentos', 'Cambiar una cosa a la vez'],
+      relatedCourseIds: [101],
       imageUrl: '/images/news/editorial/nutricion-funcional.webp',
     },
     {
@@ -694,6 +697,7 @@ Si estás recuperándote de una lesión o tienes una condición que limita el mo
       readTime: '5 min de lectura',
       reviewedAt: '24 de julio de 2026',
       highlights: ['Mover sin rebotes', 'Respetar el rango cómodo', 'Elegir regularidad'],
+      relatedCourseIds: [106],
       imageUrl: '/images/news/editorial/movimiento-terapeutico.webp',
     },
     {
@@ -721,6 +725,7 @@ Si tienes restricciones de líquidos o una enfermedad renal o cardiaca, consulta
       readTime: '4 min de lectura',
       reviewedAt: '24 de julio de 2026',
       highlights: ['Repartir las tomas', 'Observar señales del cuerpo', 'Beber sin forzar'],
+      relatedCourseIds: [102],
       imageUrl: '/images/news/editorial/hidratacion-inteligente.webp',
     },
     {
@@ -750,6 +755,7 @@ Si una emoción se siente abrumadora o existe riesgo para ti o para alguien más
       readTime: '4 min de lectura',
       reviewedAt: '24 de julio de 2026',
       highlights: ['Nombrar lo que ocurre', 'Respirar antes de actuar', 'Elegir el siguiente paso'],
+      relatedCourseIds: [105],
       imageUrl: '/images/news/editorial/salud-emocional.webp',
     },
   ] as NewsArticle[],
