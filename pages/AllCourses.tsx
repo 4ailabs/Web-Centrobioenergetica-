@@ -1,31 +1,43 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
+import { useAuth } from '../contexts/AuthContext';
 import { handleCourseClick } from '../utils/framerIntegration';
+import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_BADGE_CLASS, courseHref } from '../data/catalog';
 import type { Course } from '../types';
 import { ArrowRight } from 'lucide-react';
 
 const AllCourses: React.FC = () => {
   const allCourses = useCourses();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
-  // Solo cursos disponibles (con videos), no los futuros
-  const activeCourseIds = [106, 109, 104, 102, 101, 103, 107, 108]; // RB, Crania, Reset Hormonal, Set Point, Aminoácidos, Bioenergética V4, Resonantia, Mascotas
-  const courses = allCourses.filter(c => activeCourseIds.includes(c.id));
+  const courses = allCourses.filter(c => ACTIVE_COURSE_IDS.includes(c.id));
 
   const first = useMemo(() => courses[0], [courses]);
   const rest = useMemo(() => courses.slice(1), [courses]);
 
   const goToCourse = (course: Course) => {
-    navigate(`/course/${course.id}`);
+    const isEnrolled = !!user?.enrolledCourses?.includes(course.id.toString());
+    navigate(courseHref(course, isEnrolled));
     handleCourseClick(course.id, course.title);
+  };
+
+  const EstadoBadge: React.FC<{ courseId: number }> = ({ courseId }) => {
+    const meta = COURSE_META[courseId];
+    if (!meta) return null;
+    return (
+      <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS[meta.estado]}`}>
+        {ESTADO_LABEL[meta.estado]}
+      </span>
+    );
   };
 
   return (
     <div className="w-full pt-[72px] lg:pt-0 pb-16">
       {/* Header */}
       <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-10">
-        <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
+        <h1 className="font-editorial text-3xl lg:text-4xl text-neutral-800 dark:text-neutral-100 tracking-tight mb-2 [text-wrap:balance]">
           Nuestros <span className="text-primary-600">cursos</span>
         </h1>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
@@ -52,14 +64,18 @@ const AllCourses: React.FC = () => {
                 )}
               </div>
               <div className="sm:w-1/2 p-6 flex flex-col justify-center">
-                <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-2 group-hover:text-primary-600 transition-colors">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <EstadoBadge courseId={first.id} />
+                  <span className="text-[11px] text-neutral-400">{first.level}</span>
+                </div>
+                <h2 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-2 group-hover:text-primary-600 transition-colors">
                   {first.title}
                 </h2>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4 line-clamp-3">
                   {first.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-neutral-400">{first.lessons} lecciones</span>
+                  <span className="text-xs text-neutral-400">{first.lessons} lecciones · {first.author}</span>
                   <span className="flex items-center gap-1 text-xs font-medium text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity">
                     Ver curso <ArrowRight className="w-3 h-3" />
                   </span>
@@ -94,13 +110,17 @@ const AllCourses: React.FC = () => {
                   )}
                 </div>
                 <div className="p-5">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <EstadoBadge courseId={course.id} />
+                    <span className="text-[11px] text-neutral-400">{course.level}</span>
+                  </div>
                   <h3 className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
                     {course.title}
                   </h3>
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
                     {course.description}
                   </p>
-                  <span className="text-xs text-neutral-400">{course.lessons} lecciones</span>
+                  <span className="text-xs text-neutral-400">{course.lessons} lecciones · {course.author}</span>
                 </div>
               </div>
             ))}
