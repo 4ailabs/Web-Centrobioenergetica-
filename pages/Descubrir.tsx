@@ -141,8 +141,11 @@ const RelatedCourses: React.FC<{ ids?: number[] }> = ({ ids }) => {
   );
 };
 
-// Render del contenido de un artículo: párrafos separados por línea en
-// blanco; líneas que terminan en ':' como subtítulos; listas 1./- nativas.
+// Render del contenido de un artículo. Convenciones del texto:
+//   línea que termina en ':' (y corta) → subtítulo de sección (serif)
+//   línea que empieza con '> '        → cita destacada (pull-quote)
+//   '1. ' / '- '                       → listas ordenadas / de viñetas
+//   línea en blanco                    → separa párrafos
 const ArticleBody: React.FC<{ content: string }> = ({ content }) => {
   const nodes: React.ReactNode[] = [];
   let key = 0;
@@ -151,14 +154,14 @@ const ArticleBody: React.FC<{ content: string }> = ({ content }) => {
 
   const flushList = () => {
     if (listItems.length === 0) return;
-    const items = listItems.map((item, j) => <li key={j}>{item}</li>);
+    const items = listItems.map((item, j) => <li key={j} className="pl-1.5">{item}</li>);
     nodes.push(
       listOrdered ? (
-        <ol key={key++} className="list-decimal pl-5 space-y-1.5 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+        <ol key={key++} className="list-decimal pl-6 space-y-2 text-[16px] leading-relaxed text-neutral-700 dark:text-neutral-300 marker:text-primary-500 marker:font-medium">
           {items}
         </ol>
       ) : (
-        <ul key={key++} className="list-disc pl-5 space-y-1.5 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+        <ul key={key++} className="list-disc pl-6 space-y-2 text-[16px] leading-relaxed text-neutral-700 dark:text-neutral-300 marker:text-primary-400">
           {items}
         </ul>
       )
@@ -184,15 +187,23 @@ const ArticleBody: React.FC<{ content: string }> = ({ content }) => {
       return;
     }
     flushList();
-    if (line.endsWith(':') && line.length < 60) {
+    if (line.startsWith('> ')) {
       nodes.push(
-        <h2 key={key++} className="text-[15px] font-semibold text-neutral-800 dark:text-neutral-100 pt-2">
+        <blockquote key={key++} className="my-8 border-l-2 border-primary-500 pl-5">
+          <p className="font-editorial text-xl lg:text-2xl italic leading-snug text-neutral-800 dark:text-neutral-100 [text-wrap:balance]">
+            {line.slice(2)}
+          </p>
+        </blockquote>
+      );
+    } else if (line.endsWith(':') && line.length < 60) {
+      nodes.push(
+        <h2 key={key++} className="font-editorial text-xl lg:text-2xl text-neutral-800 dark:text-neutral-100 leading-snug pt-6 [text-wrap:balance]">
           {line.slice(0, -1)}
         </h2>
       );
     } else {
       nodes.push(
-        <p key={key++} className="text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+        <p key={key++} className="text-[16px] leading-[1.75] text-neutral-700 dark:text-neutral-300">
           {line}
         </p>
       );
