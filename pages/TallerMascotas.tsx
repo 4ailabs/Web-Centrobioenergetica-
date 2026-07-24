@@ -6,14 +6,15 @@ const TallerMascotas: React.FC = () => (
     titulo="Lo Que Tu Mascota Quiere Decirte"
     hook="Descubre cómo tu mascota refleja tu estado emocional y aprende herramientas concretas para sanar el vínculo con tu animal."
     imagen="/images/courses/taller-mascotas/mascota.png"
-    fechas="Viernes 27 de marzo + Viernes 10 de abril"
-    modalidad="Presencial u Online · 3:00 – 7:00 pm"
+    fechas="Grabación completa disponible"
+    modalidad="Online · A tu ritmo"
     instructor="Dr. Miguel Ojeda Rios"
     detalles={['Taller · 2 Módulos']}
+    badge="Grabación disponible"
     modulos={[
       {
         numero: '1',
-        fecha: 'Viernes 27 de marzo',
+        fecha: 'Grabación',
         titulo: 'Tu Mascota Es Tu Espejo',
         bloques: [
           { time: '', title: 'El espejo invisible', desc: 'La evidencia científica detrás de la sincronización emocional entre mascota y dueño. Cómo el animal doméstico funciona como válvula del sistema familiar y qué mecanismos de transferencia operan entre ambos.' },
@@ -25,7 +26,7 @@ const TallerMascotas: React.FC = () => (
       },
       {
         numero: '2',
-        fecha: 'Viernes 10 de abril',
+        fecha: 'Grabación',
         titulo: 'Sana el Vínculo con Tu Animal',
         bloques: [
           { time: '', title: 'Testimonios vivenciales', desc: 'Ronda de experiencias de las 2 semanas entre módulos. ¿Alguien resolvió algo en su vida y vio cambio en su mascota? Revisión de registros, correlaciones y ajustes a las fórmulas de flores.' },
@@ -46,7 +47,8 @@ const TallerMascotas: React.FC = () => (
     ]}
     requisitos="Ninguno. Solo traer una foto de tu mascota."
     testBanner={{ label: 'Test de Vínculo Animal', sublabel: 'Descubre el patrón de apego entre tú y tu mascota antes del taller — 3 minutos, gratuito.', path: '/test-vinculo-animal' }}
-    whatsappMsg="Hola, quiero inscribirme al taller Lo Que Tu Mascota Quiere Decirte"
+    whatsappMsg="Hola, quiero acceso a la grabación del taller Lo Que Tu Mascota Quiere Decirte"
+    ctaLabel="Pedir acceso a la grabación"
   />
 );
 

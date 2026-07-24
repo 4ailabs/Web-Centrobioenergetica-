@@ -1,8 +1,7 @@
 import { prisma } from '../../lib/prisma.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+import { getJwtSecret } from '../../lib/jwt.js';
 
 interface RegisterUserData {
     email: string;
@@ -60,7 +59,9 @@ export class AuthService {
                 email,
                 password: hashedPassword,
                 name: name || null,
-                approved: true,
+                // Los nuevos registros requieren aprobación de un administrador
+                // desde el panel /admin antes de poder iniciar sesión.
+                approved: false,
             },
             select: {
                 id: true,
@@ -111,7 +112,7 @@ export class AuthService {
                 email: user.email,
                 isAdmin: user.isAdmin,
             },
-            JWT_SECRET,
+            getJwtSecret(),
             { expiresIn: '30d' }
         );
 
@@ -131,61 +132,6 @@ export class AuthService {
         };
     }
 
-    async diagnoseCredentials(email: string, password?: string) {
-        const user = await prisma.user.findUnique({
-            where: { email },
-        });
-
-        if (!user) {
-            return {
-                userExists: false,
-                message: 'El email no está registrado.',
-                action: 'Por favor, regístrate primero.',
-            };
-        }
-
-        if (!user.approved) {
-            return {
-                userExists: true,
-                isApproved: false,
-                message: 'Tu cuenta está pendiente de aprobación.',
-                action: 'Un administrador debe aprobar tu cuenta antes de poder iniciar sesión.',
-            };
-        }
-
-        if (!user.password) {
-            return {
-                userExists: true,
-                isApproved: true,
-                hasPassword: false,
-                message: 'Tu cuenta no tiene contraseña configurada.',
-                action: 'Contacta al administrador para configurar tu contraseña.',
-            };
-        }
-
-        if (password) {
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-
-            if (!isPasswordValid) {
-                return {
-                    userExists: true,
-                    isApproved: true,
-                    hasPassword: true,
-                    isPasswordValid: false,
-                    message: 'La contraseña es incorrecta.',
-                    action: 'Por favor, verifica tu contraseña e intenta de nuevo.',
-                };
-            }
-        }
-
-        return {
-            userExists: true,
-            isApproved: true,
-            hasPassword: true,
-            isPasswordValid: true,
-            message: 'Las credenciales son válidas.',
-        };
-    }
 }
 
 export const authService = new AuthService();

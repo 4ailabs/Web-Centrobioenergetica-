@@ -17,10 +17,8 @@ export default defineConfig(({ mode }) => {
       }
     },
     plugins: [react()],
-    define: {
-      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-    },
+    // Nunca inyectar claves de API vía define: acaban en texto plano en el
+    // bundle público. Las llamadas con secretos van en funciones de api/.
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

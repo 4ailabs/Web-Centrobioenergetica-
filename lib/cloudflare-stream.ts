@@ -62,9 +62,9 @@ export interface CloudflareStreamVideo {
   }
 }
 
-const CLOUDFLARE_ACCOUNT_ID = import.meta.env.VITE_CLOUDFLARE_ACCOUNT_ID
-const CLOUDFLARE_API_TOKEN = import.meta.env.VITE_CLOUDFLARE_API_TOKEN
-const CLOUDFLARE_STREAM_BASE_URL = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/stream`
+// Este módulo se importa desde el cliente: no debe leer tokens de API.
+// Cualquier operación autenticada contra Cloudflare va en una función de api/
+// que lea process.env.CLOUDFLARE_API_TOKEN (sin prefijo VITE_).
 
 /**
  * Get the embed URL for a video (for iframe embedding)

@@ -40,27 +40,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Ruta para diagnóstico
-router.post('/auth/diagnose', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        if (!email) {
-            return res.status(400).json({ error: 'Email es requerido' });
-        }
-
-        const result = await authService.diagnoseCredentials(email, password);
-        return res.json(result);
-    } catch (error: any) {
-        console.error('Error diagnosing:', error);
-        return res.status(500).json({ error: 'Error al diagnosticar' });
-    }
-});
-
-// Ruta para verificar el token actual
-router.get('/auth/me', async (req, res) => {
-    // This route needs authenticateToken middleware applied in main server
-    return res.json({ user: (req as any).user });
-});
+// Nota: /auth/me se define en server/index.ts con el middleware authenticateToken.
+// No añadir aquí una versión sin middleware: la primera coincidencia gana en Express.
 
 export default router;

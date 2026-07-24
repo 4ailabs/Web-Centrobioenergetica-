@@ -1,8 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { prisma } from '../../lib/prisma.js';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+import { getJwtSecret } from '../../lib/jwt.js';
 
 // Middleware para verificar autenticación
 export const authenticateToken = async (
@@ -18,7 +17,7 @@ export const authenticateToken = async (
     }
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET) as {
+        const decoded = jwt.verify(token, getJwtSecret()) as {
             userId: string;
             email: string;
             isAdmin: boolean;

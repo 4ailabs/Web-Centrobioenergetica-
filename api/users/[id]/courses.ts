@@ -1,9 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
+import { getJwtSecret } from '../../../lib/jwt.js';
 
 const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
 // Helper para verificar autenticación y admin
 async function verifyAdmin(req: VercelRequest): Promise<{ valid: boolean; error?: string; user?: any }> {
@@ -15,7 +15,7 @@ async function verifyAdmin(req: VercelRequest): Promise<{ valid: boolean; error?
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string; email: string; isAdmin: boolean };
+    const decoded = jwt.verify(token, getJwtSecret()) as { userId: string; email: string; isAdmin: boolean };
     const user = await prisma.user.findUnique({
       where: { id: decoded.userId },
     });
