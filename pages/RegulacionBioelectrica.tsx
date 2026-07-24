@@ -89,7 +89,7 @@ const RegulacionBioelectrica: React.FC = () => {
 
       {/* ===== HERO — imagen + overlay ===== */}
       <div className="relative overflow-hidden rounded-xl mx-6 lg:mx-0" style={{ minHeight: 240 }}>
-        <img src="/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.png" alt="Mapa bioeléctrico del cuerpo — Regulación Bioeléctrica" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center' }} />
+        <img src="/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp" alt="Mapa bioeléctrico del cuerpo — Regulación Bioeléctrica" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center' }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(13,27,31,0.7) 0%, rgba(13,27,31,0.3) 100%)' }} />
         <div className="relative z-10 flex flex-col justify-center py-10 px-8" style={{ minHeight: 240 }}>
           <Dipolo size={48} color="#5DCAA5" />

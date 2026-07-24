@@ -101,6 +101,8 @@ const WellvibeMedia: React.FC = () => {
                                 <img
                                     src={video.thumbnail}
                                     alt={video.title}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">

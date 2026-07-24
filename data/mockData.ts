@@ -74,7 +74,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 4,
       level: 'Básico-Intermedio' as const,
-      imageUrl: '/images/courses/taller-mascotas/mascota.png',
+      imageUrl: '/images/courses/taller-mascotas/mascota.webp',
       modules: [
         {
           id: 1,
@@ -132,7 +132,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 4,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/resonantia/Resonantia.jpg',
+      imageUrl: '/images/courses/resonantia/Resonantia.webp',
       modules: [
         {
           id: 1,
@@ -182,7 +182,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 4,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/regulacion-bioelectrica/banner.png',
+      imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
       modules: [
         { id: 1, title: 'El Cuerpo Eléctrico', description: '11 de julio · 10:00 – 18:00 h', order: 1, videos: [{ id: 1, title: 'Módulo 1 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
         { id: 2, title: 'La lectura del cuerpo', description: '25 de julio · 10:00 – 18:00 h', order: 2, videos: [{ id: 2, title: 'Módulo 2 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
@@ -198,7 +198,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 2,
       level: 'Básico' as const,
-      imageUrl: '/images/courses/actos-que-mueven/ritual_2.png',
+      imageUrl: '/images/courses/actos-que-mueven/ritual_2.webp',
       modules: [
         {
           id: 1,
@@ -228,7 +228,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 3,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/reset-hormonal/reset_hormonal.jpg',
+      imageUrl: '/images/courses/reset-hormonal/reset_hormonal.webp',
       modules: [
         {
           id: 1,
@@ -272,7 +272,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 4,
       level: 'Avanzado' as const,
-      imageUrl: '/images/courses/setpoint/image.png',
+      imageUrl: '/images/courses/setpoint/image.webp',
       modules: [
         {
           id: 1,
@@ -340,7 +340,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 3,
       level: 'Intermedio' as const,
-      imageUrl: '/images/courses/aminoacidos/Nutricion_aminoacidos_poster.jpg',
+      imageUrl: '/images/courses/aminoacidos/Nutricion_aminoacidos_poster.webp',
       modules: [
         {
           id: 1,
@@ -398,7 +398,7 @@ export const MOCK_DATA = {
       price: 0,
       lessons: 3,
       level: 'Avanzado' as const,
-      imageUrl: '/images/courses/bioenergetica-v4/Bioenergetica.png',
+      imageUrl: '/images/courses/bioenergetica-v4/Bioenergetica.webp',
       modules: [
         {
           id: 1,

@@ -239,7 +239,7 @@ const CourseDetail: React.FC = () => {
                 }}
               >
                 {course.imageUrl && (
-                  <img src={course.imageUrl} alt={course.title} className="w-full h-full object-cover" />
+                  <img src={course.imageUrl} alt={course.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 )}
                 {/* Only a soft bottom fade for play button legibility */}
                 {hasAccess && totalVideos > 0 && (

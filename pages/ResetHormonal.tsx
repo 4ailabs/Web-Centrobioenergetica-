@@ -30,7 +30,7 @@ const ResetHormonal: React.FC = () => (
   <ProgramPage
     titulo="El Reset Hormonal"
     hook="Método de equilibrio para el climaterio y la postmenopausia. Un sistema de regulación femenina con Cartografía Hormonal propia — no es un curso de biomagnetismo, es algo completamente diferente."
-    imagen="/images/courses/reset-hormonal/reset_hormonal.jpg"
+    imagen="/images/courses/reset-hormonal/reset_hormonal.webp"
     fechas="Grabación completa disponible"
     modalidad="Online · A tu ritmo"
     instructor="Dr. Miguel Ojeda Rios"

@@ -6,7 +6,7 @@ const Crania: React.FC = () => (
     titulo="CRANIA"
     slogan="Devuelve el flujo"
     hook="Práctica craneofascial autoaplicada para liberar la tensión acumulada en rostro, cuello, mandíbula y cráneo — con respiración integrada y técnica manual guiada."
-    imagen="/images/courses/crania/crania_16_9_webinar.png"
+    imagen="/images/courses/crania/crania_16_9_webinar.webp"
     fechas="Grabación completa disponible"
     modalidad="Clase práctica · Online · A tu ritmo"
     instructor="Dr. Miguel Ojeda Rios"
