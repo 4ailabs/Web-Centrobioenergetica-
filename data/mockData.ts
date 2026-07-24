@@ -589,164 +589,168 @@ export const MOCK_DATA = {
   news: [
     {
       id: 1,
-      title: 'Respiración Consciente para Regular Estrés y Energía',
-      description: 'Aprende una rutina diaria paso a paso para bajar tensión, mejorar enfoque y sostener energía estable durante la jornada.',
-      category: 'Hábitos de Bienestar',
-      content: `La respiración consciente es una herramienta central en medicina integrativa y bienestar general. Cuando respiramos de forma lenta y diafragmática, favorecemos la respuesta de calma del cuerpo, reducimos la tensión acumulada y recuperamos claridad para tomar mejores decisiones.
+      title: 'Respirar más lento: una práctica de cinco minutos para bajar el ritmo',
+      description: 'Una guía breve para hacer una pausa, observar tu respiración y retomar el día con más presencia.',
+      category: 'Hábitos de bienestar',
+      content: `Cuando el día se acelera, la respiración puede volverse corta y rápida. Esta práctica propone detenerte cinco minutos y recuperar un ritmo más cómodo, sin forzar el cuerpo.
 
-En consulta, muchas personas reportan que su respiración diaria suele ser corta y acelerada. Eso mantiene al cuerpo en estado de alerta y, con el tiempo, se traduce en fatiga, irritabilidad y baja concentración.
+Prueba esta práctica:
+1. Siéntate con ambos pies apoyados en el suelo.
+2. Inhala por la nariz durante cuatro segundos.
+3. Exhala lentamente durante seis segundos.
+4. Repite durante cinco minutos, sin buscar una respiración perfecta.
+5. Si te distraes, vuelve al conteo con amabilidad.
 
-Protocolo sugerido:
-1. Inhala por nariz 4 segundos.
-2. Exhala por nariz 6 segundos.
-3. Repite por 5 minutos, 2 veces al día.
-4. Mantén hombros sueltos y mandíbula relajada.
-5. Si te distraes, vuelve suavemente al conteo.
+Qué puedes observar:
+Al terminar, nota si cambió la tensión de tus hombros, el ritmo de tus pensamientos o tu forma de estar sentado. No necesitas sentir algo extraordinario: reconocer una diferencia pequeña también es información útil.
 
-Beneficios observados:
-- Mejor regulación emocional.
-- Mayor claridad mental.
-- Sensación de energía más estable durante el día.
-- Menos tensión cervical al final de la tarde.
-- Mejor calidad de descanso nocturno.
+Cómo convertirla en hábito:
+Úsala al despertar, antes de una conversación importante o al cerrar la jornada. Vincularla con una actividad que ya haces facilita que se vuelva parte de tu rutina.
 
-Cuándo usarla:
-- Antes de una reunión importante.
-- Al despertar, antes de revisar el celular.
-- Después de comer, para retomar actividades con foco.
-- Antes de dormir, como ritual de cierre del día.
-
-Tip práctico: inicia con 3 minutos y aumenta gradualmente. La constancia vale más que la duración.`,
-      imageUrl: '/images/news/respiracion-consciente.svg',
+Cuida esto:
+Si aparece mareo, incomodidad o sensación de falta de aire, detén la práctica y vuelve a tu respiración natural. La intención es acompañar al cuerpo, no exigirle.`,
+      author: 'Equipo editorial',
+      readTime: '5 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['Exhalar un poco más largo', 'Soltar hombros y mandíbula', 'Practicar con regularidad'],
+      imageUrl: '/images/news/editorial/respiracion-consciente.webp',
     },
     {
       id: 2,
-      title: 'Sueño Reparador: Rutina Nocturna desde la Medicina Integrativa',
-      description: 'Descubre una rutina nocturna completa para conciliar mejor el sueño, recuperarte más rápido y despertar con más energía.',
-      category: 'Descanso y Recuperación',
-      content: `Dormir bien es una base del bienestar integral. Desde un enfoque natural, recomendamos una rutina de cierre diario que combine hábitos sencillos, repetibles y adaptables a distintos estilos de vida.
+      title: 'Una rutina nocturna de 20 minutos para preparar el descanso',
+      description: 'Un ritual de cierre sencillo para bajar el ritmo y crear señales claras de que el día terminó.',
+      category: 'Descanso y recuperación',
+      content: `Dormir no siempre empieza cuando apagas la luz. Para muchas personas, el descanso se prepara durante la última parte del día, con señales repetibles y menos estímulos.
 
-El cuerpo responde mejor cuando recibe señales claras de que el día terminó. Por eso, más que buscar "dormir de golpe", la clave está en preparar gradualmente al sistema nervioso.
+Prueba esta rutina:
+1. Dedica cinco minutos a estirar suavemente cuello, hombros y piernas.
+2. Deja el teléfono fuera de la cama y prepara lo que necesitarás por la mañana.
+3. Reserva diez minutos para leer, escribir o hacer una actividad tranquila.
+4. Cierra con cinco minutos de respiración lenta o silencio.
 
-Checklist nocturno:
-- Cenar ligero 2-3 horas antes de dormir.
-- Reducir pantallas 60 minutos antes.
-- Tomar una infusión relajante (sin cafeína).
-- Respiración lenta durante 3 minutos en cama.
-- Mantener habitación oscura, fresca y silenciosa.
-- Evitar conversaciones estresantes al cierre del día.
+Qué revisar:
+Durante una semana, observa la hora de la cena, el consumo de cafeína, la luz de la habitación y las preocupaciones que llevas a la cama. No busques hacerlo perfecto; busca reconocer patrones.
 
-Mini rutina sugerida (20 minutos):
-1. 5 min de estiramientos suaves.
-2. 10 min de higiene nocturna sin pantallas.
-3. 5 min de respiración o lectura tranquila.
+Una rutina flexible:
+Si una noche no puedes cumplir los veinte minutos, conserva una sola señal de cierre. La regularidad suele ser más útil que una rutina extensa que no puedes sostener.
 
-Cuando el descanso mejora, también se beneficia la digestión, la regulación del apetito, la memoria y la capacidad de concentración al día siguiente.
-
-Recomendación práctica: mantén horarios similares entre semana y fin de semana para estabilizar tu ritmo circadiano.`,
-      imageUrl: '/images/news/sueno-reparador.svg',
+Cuida esto:
+Si las dificultades para dormir son persistentes o afectan tu funcionamiento diario, consulta con un profesional de salud para valorar tu caso.`,
+      author: 'Equipo editorial',
+      readTime: '6 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['Crear señales de cierre', 'Reducir estímulos por la noche', 'Priorizar regularidad'],
+      imageUrl: '/images/news/editorial/sueno-reparador.webp',
     },
     {
       id: 3,
-      title: 'Alimentación Antiinflamatoria: Guía Básica para Empezar',
-      description: 'Una guía extendida para organizar tus comidas con enfoque antiinflamatorio y sostener resultados sin dietas extremas.',
-      category: 'Nutrición Funcional',
-      content: `La alimentación antiinflamatoria no es una dieta estricta; es una forma de comer enfocada en calidad, variedad y equilibrio. Su objetivo es disminuir la carga inflamatoria diaria que puede manifestarse como cansancio, digestión pesada, antojos o hinchazón.
+      title: 'Cómo armar un plato variado sin dietas extremas',
+      description: 'Una guía práctica para organizar tus comidas con variedad, calidad y equilibrio, sin convertirlas en una lista de prohibiciones.',
+      category: 'Nutrición funcional',
+      content: `Comer mejor no tiene que empezar con una dieta rígida. Una forma más sostenible es revisar la variedad del plato y hacer cambios pequeños que puedas repetir.
 
-En lugar de prohibir alimentos, se priorizan combinaciones que ayuden al cuerpo a recuperarse mejor: fibra, grasas saludables, proteína de calidad e hidratación suficiente.
+Arma tu plato:
+- Usa aproximadamente la mitad para vegetales variados.
+- Añade una fuente de proteína, como huevo, pescado, leguminosas o pollo.
+- Completa con un carbohidrato que disfrutes, como camote, quinoa o arroz integral.
+- Agrega grasas y sabor con aguacate, nueces, aceite de oliva o especias.
 
-Recomendaciones iniciales:
-1. Prioriza alimentos frescos y de temporada.
-2. Incluye grasas saludables (aguacate, nueces, aceite de oliva).
-3. Aumenta vegetales de colores en cada comida.
-4. Reduce ultraprocesados, azúcares y exceso de harinas refinadas.
-5. Incluye fuentes de omega-3 2 a 3 veces por semana.
-6. Mantén horarios regulares de comida.
+Empieza por una comida:
+Durante siete días, mejora solo el desayuno o la cena. Observa saciedad, digestión, energía y facilidad para sostener el cambio. Una modificación realista puede enseñarte más que un plan perfecto que abandonas.
 
-Ejemplo de plato funcional:
-- Mitad del plato: vegetales variados.
-- Un cuarto: proteína (huevo, pescado, leguminosas o pollo).
-- Un cuarto: carbohidrato de calidad (camote, quinoa, arroz integral).
-- Extra: aceite de oliva y especias como cúrcuma o jengibre.
+Qué evitar en el lenguaje:
+No necesitas clasificar los alimentos como "buenos" o "malos" para tomar decisiones. Conviene hablar de frecuencia, variedad, contexto y preferencias personales.
 
-En pocas semanas, muchas personas perciben mejor digestión, menos fatiga y mayor estabilidad en su energía.
-
-Tip clave: empieza por mejorar desayuno y cena. Dos cambios sostenidos generan más impacto que diez cambios imposibles de mantener.`,
-      imageUrl: '/images/news/nutricion-funcional.svg',
+Cuida esto:
+Esta guía es educativa. Las necesidades cambian según la edad, la actividad física y las condiciones de salud. Para una recomendación individual, consulta con un profesional de nutrición.`,
+      author: 'Equipo editorial',
+      readTime: '7 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['Priorizar variedad', 'Combinar grupos de alimentos', 'Cambiar una cosa a la vez'],
+      imageUrl: '/images/news/editorial/nutricion-funcional.webp',
     },
     {
       id: 4,
-      title: 'Movimiento Suave: 15 Minutos para Activar Circulación',
-      description: 'Te compartimos una secuencia más completa de movilidad consciente para liberar rigidez y elevar tu energía en pocos minutos.',
-      category: 'Movimiento Terapéutico',
-      content: `No necesitas entrenamientos largos para sentir cambios. Una rutina suave de movilidad articular y estiramientos conscientes durante 15 minutos puede mejorar circulación, postura y energía.
+      title: '15 minutos de movilidad para empezar con menos rigidez',
+      description: 'Una secuencia amable para despertar articulaciones, cambiar de postura y volver al cuerpo sin exigencia.',
+      category: 'Movimiento terapéutico',
+      content: `Si pasas muchas horas sentado o despiertas con el cuerpo rígido, una secuencia breve puede ayudarte a empezar con más atención. La prioridad no es la intensidad: es moverte dentro de un rango cómodo.
 
-Este tipo de movimiento es ideal para personas que pasan muchas horas sentadas, con estrés acumulado o con sensación de rigidez al despertar. Lo importante no es la intensidad, sino la regularidad y la calidad del movimiento.
+Secuencia de 15 minutos:
+- Cuello y hombros: tres minutos.
+- Columna y cadera: cinco minutos.
+- Piernas y tobillos: cinco minutos.
+- Respiración y pausa final: dos minutos.
 
-Secuencia sugerida:
-- Cuello y hombros (3 min).
-- Columna y cadera (5 min).
-- Piernas y tobillos (5 min).
-- Respiración final (2 min).
+Cómo practicarla:
+Haz cada movimiento de forma lenta y reduce el rango si aparece molestia. Puedes usar una pared o una silla para sentirte estable. Al final, anota una palabra sobre cómo se siente tu cuerpo.
 
-Pautas para hacerlo bien:
-- Mueve lento, sin dolor y sin rebotes.
-- Coordina cada movimiento con respiración nasal.
-- Mantén atención en la postura y en cómo se siente tu cuerpo.
+Hazla sostenible:
+Elige un momento fijo, como después de levantarte o antes de terminar la jornada. Si solo tienes cinco minutos, conserva un movimiento de cada bloque y vuelve a la práctica al día siguiente.
 
-Resultados esperados tras 2-3 semanas:
-- Menor tensión muscular.
-- Mejor postura al caminar o trabajar.
-- Más energía al inicio del día.
-
-La clave está en la constancia: poco tiempo, todos los días.`,
-      imageUrl: '/images/news/movimiento-terapeutico.svg',
+Cuida esto:
+Si estás recuperándote de una lesión o tienes una condición que limita el movimiento, busca orientación profesional antes de iniciar una rutina nueva.`,
+      author: 'Equipo editorial',
+      readTime: '5 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['Mover sin rebotes', 'Respetar el rango cómodo', 'Elegir regularidad'],
+      imageUrl: '/images/news/editorial/movimiento-terapeutico.webp',
     },
     {
       id: 5,
-      title: 'Hidratación Inteligente: Más que Tomar Agua',
-      description: 'Conoce cómo hidratarte mejor durante el día para apoyar digestión, circulación, piel y rendimiento mental.',
-      category: 'Hábitos de Bienestar',
-      content: `La hidratación adecuada es una base silenciosa del bienestar. No se trata solo de cantidad, sino de distribución durante el día y de acompañarla con minerales naturales en la alimentación.
+      title: 'Cómo repartir los líquidos durante el día',
+      description: 'Una guía sencilla para observar tus señales de sed y acompañar el agua con hábitos cotidianos.',
+      category: 'Hábitos de bienestar',
+      content: `Hidratarte mejor no consiste en perseguir una cifra idéntica todos los días. El clima, la actividad, la alimentación y tu estado de salud cambian lo que necesitas.
 
-Señales frecuentes de hidratación insuficiente:
-- Cansancio temprano.
-- Dolor de cabeza leve.
-- Piel seca.
-- Baja concentración.
-- Estreñimiento ocasional.
+Distribuye tus tomas:
+1. Empieza el día con un vaso de agua si te resulta cómodo.
+2. Lleva una botella medible y toma pequeñas cantidades a lo largo de la jornada.
+3. Ajusta tu consumo si hace calor o realizas actividad física.
+4. Incluye alimentos ricos en agua, como frutas, verduras y sopas.
 
-Estrategia práctica:
-1. Toma un vaso de agua al despertar.
-2. Distribuye tomas pequeñas cada 2-3 horas.
-3. Aumenta consumo en días de calor o actividad física.
-4. Incluye frutas y verduras ricas en agua.
+Mira el contexto:
+La sed, la boca seca, el dolor de cabeza y la orina más concentrada pueden orientarte, pero no sustituyen una valoración. No hace falta beber de manera forzada para cumplir una meta.
 
-Tip simple: usa una botella medible para visualizar tu avance diario sin obsesionarte.`,
-      imageUrl: '/images/news/hidratacion-inteligente.svg',
+Un hábito fácil:
+Deja agua disponible en los lugares donde pasas más tiempo. La visibilidad y la comodidad suelen ayudar más que una regla complicada.
+
+Cuida esto:
+Si tienes restricciones de líquidos o una enfermedad renal o cardiaca, consulta con tu equipo de salud antes de cambiar de forma importante tu consumo.`,
+      author: 'Equipo editorial',
+      readTime: '4 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['Repartir las tomas', 'Observar señales del cuerpo', 'Beber sin forzar'],
+      imageUrl: '/images/news/editorial/hidratacion-inteligente.webp',
     },
     {
       id: 6,
-      title: 'Gestión Emocional Cotidiana con Micro-Pausas',
-      description: 'Una metodología breve para regular emociones durante el día sin detener por completo tus actividades.',
-      category: 'Salud Emocional',
-      content: `La salud emocional no se trabaja solo en momentos de crisis. Integrar micro-pausas de 1 a 3 minutos durante el día ayuda a reducir sobrecarga mental y prevenir reacciones impulsivas.
+      title: 'Micro-pausas: tres pasos para responder con más calma',
+      description: 'Una práctica breve para interrumpir el piloto automático y elegir el siguiente paso con más claridad.',
+      category: 'Salud emocional',
+      content: `No siempre puedes detener lo que ocurre durante el día. Sí puedes crear un pequeño espacio antes de responder. Una micro-pausa dura entre uno y tres minutos y puede ocurrir entre dos tareas.
 
-Método 3R:
-1. Reconocer: nombra lo que estás sintiendo.
-2. Respirar: realiza 6 respiraciones lentas.
-3. Reencuadrar: elige una acción pequeña y posible.
+Método de tres pasos:
+1. Reconocer: ponle nombre a lo que sientes, sin convertirlo en una etiqueta sobre ti.
+2. Respirar: haz seis respiraciones lentas y permite que los hombros bajen.
+3. Elegir: decide qué necesitas hacer ahora, no qué tendrías que resolver para siempre.
 
-Ejemplos de micro-pausas:
+Cuándo probarla:
 - Antes de responder un mensaje difícil.
 - Al terminar una reunión intensa.
-- Antes de comer, para cortar el piloto automático.
+- Antes de comer, si notas que estás en piloto automático.
+- Al cambiar de una tarea a otra.
 
-Beneficios esperados:
-- Menos reactividad emocional.
-- Mejor comunicación.
-- Más sensación de control y calma interna.`,
-      imageUrl: '/images/news/salud-emocional.svg',
+Una pausa posible:
+Puedes practicarla mientras esperas que hierva el agua o antes de abrir una nueva pestaña. No tiene que verse perfecta; solo necesita darte un momento de elección.
+
+Cuida esto:
+Si una emoción se siente abrumadora o existe riesgo para ti o para alguien más, busca apoyo profesional y una red de confianza. Regular no significa hacerlo todo a solas.`,
+      author: 'Equipo editorial',
+      readTime: '4 min de lectura',
+      reviewedAt: '24 de julio de 2026',
+      highlights: ['Nombrar lo que ocurre', 'Respirar antes de actuar', 'Elegir el siguiente paso'],
+      imageUrl: '/images/news/editorial/salud-emocional.webp',
     },
   ] as NewsArticle[],
 

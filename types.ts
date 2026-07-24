@@ -39,6 +39,9 @@ export interface NewsArticle {
   category: string;
   author?: string;
   imageUrl: string;
+  readTime?: string;
+  reviewedAt?: string;
+  highlights?: string[];
   createdAt?: string;
   relatedCourseIds?: number[];
   reactions?: Record<string, number>;
