@@ -588,6 +588,18 @@ export const MOCK_DATA = {
 
   news: [
     {
+      id: 23,
+      title: 'Escucha: el cuerpo eléctrico, en voz del Dr. Ojeda',
+      description: 'Una cápsula de dos minutos para entender por qué tu cuerpo tiene una capa eléctrica que organiza todo lo demás — narrada por el Dr. Miguel Ojeda Rios.',
+      category: 'Regulación Bioeléctrica',
+      contentType: 'audio',
+      audioUrl: '/audio/descubrir/cuerpo-electrico.mp3',
+      audioDuration: '2:24',
+      imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
+      author: 'Dr. Miguel Ojeda Rios',
+      relatedCourseIds: [106],
+    },
+    {
       id: 20,
       title: '¿Qué es el cuerpo eléctrico? Por qué tu cuerpo se puede leer como un mapa',
       description: 'Entre tus células hay un sistema con carga eléctrica que regula la comunicación de cada tejido. Entenderlo cambia la pregunta que le hacemos al cuerpo.',
