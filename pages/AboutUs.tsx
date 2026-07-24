@@ -21,7 +21,7 @@ const AboutUs: React.FC = () => {
       {/* Imagen del instituto */}
       <div className="px-6 lg:px-0 pb-10">
         <div className="rounded-xl overflow-hidden aspect-[2.5/1] bg-neutral-100 dark:bg-neutral-800">
-          <img src="/images/imagenes_instituto/clases.png" alt="Alumnos del Instituto Centrobioenergética en clase" className="w-full h-full object-cover" />
+          <img src="/images/imagenes_instituto/clases.webp" alt="Alumnos del Instituto Centrobioenergética en clase" loading="lazy" decoding="async" className="w-full h-full object-cover" />
         </div>
       </div>
 

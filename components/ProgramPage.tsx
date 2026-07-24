@@ -137,7 +137,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       ) : imagen ? (
         <div className="px-6 lg:px-0 pb-10">
           <div className="rounded-xl overflow-hidden aspect-video bg-neutral-100 dark:bg-neutral-800">
-            <img src={imagen} alt={titulo} className="w-full h-full object-cover" />
+            <img src={imagen} alt={titulo} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </div>
         </div>
       ) : null}

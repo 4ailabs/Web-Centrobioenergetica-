@@ -5,7 +5,7 @@ const TallerMascotas: React.FC = () => (
   <ProgramPage
     titulo="Lo Que Tu Mascota Quiere Decirte"
     hook="Descubre cómo tu mascota refleja tu estado emocional y aprende herramientas concretas para sanar el vínculo con tu animal."
-    imagen="/images/courses/taller-mascotas/mascota.png"
+    imagen="/images/courses/taller-mascotas/mascota.webp"
     fechas="Grabación completa disponible"
     modalidad="Online · A tu ritmo"
     instructor="Dr. Miguel Ojeda Rios"

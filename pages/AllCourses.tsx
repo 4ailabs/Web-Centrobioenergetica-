@@ -46,6 +46,7 @@ const AllCourses: React.FC = () => {
                   <img
                     src={first.imageUrl}
                     alt={first.title}
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 )}
@@ -84,6 +85,8 @@ const AllCourses: React.FC = () => {
                     <img
                       src={course.imageUrl}
                       alt={course.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   ) : (

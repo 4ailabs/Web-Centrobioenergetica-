@@ -1,38 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { getUrlParams, isInIframe } from './utils/framerIntegration';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
-import Dashboard from './pages/Dashboard';
-import AllCourses from './pages/AllCourses';
-import CourseDetail from './pages/CourseDetail';
-import ClinicalServices from './pages/ClinicalServices';
-import Login from './pages/Login';
-import Register from './pages/Register';
-// import Wellkitt from './pages/Wellkitt'; // Temporalmente deshabilitado
-// import WellkittCategory from './pages/WellkittCategory'; // Temporalmente deshabilitado
-import News from './pages/News';
-import AboutUs from './pages/AboutUs';
-import Apps from './pages/Apps';
-import SearchResults from './pages/SearchResults';
-import Search from './pages/Search';
-import CalendarPage from './pages/CalendarPage';
-import WellvibeMedia from './pages/WellvibeMedia';
+import ErrorBoundary from './components/ErrorBoundary';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
-import AdminDashboard from './pages/AdminDashboard';
-import TallerMascotas from './pages/TallerMascotas';
-import ResetHormonal from './pages/ResetHormonal';
-import ActosQueMueven from './pages/ActosQueMueven';
-import Resonantia from './pages/Resonantia';
-import Crania from './pages/Crania';
-import RegulacionBioelectrica from './pages/RegulacionBioelectrica';
-import RBMetodo from './pages/RBMetodo';
-import BioenergeticaTransgeneracional from './pages/BioenergeticaTransgeneracional';
-import TestHormonal from './pages/TestHormonal';
-import TestVinculoAnimal from './pages/TestVinculoAnimal';
+import Dashboard from './pages/Dashboard';
+import Search from './pages/Search';
+
+// Carga diferida: cada página se descarga solo cuando se visita,
+// en lugar de incluirse todas en el bundle inicial.
+const AllCourses = lazy(() => import('./pages/AllCourses'));
+const CourseDetail = lazy(() => import('./pages/CourseDetail'));
+const ClinicalServices = lazy(() => import('./pages/ClinicalServices'));
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const Apps = lazy(() => import('./pages/Apps'));
+const SearchResults = lazy(() => import('./pages/SearchResults'));
+const CalendarPage = lazy(() => import('./pages/CalendarPage'));
+const WellvibeMedia = lazy(() => import('./pages/WellvibeMedia'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const TallerMascotas = lazy(() => import('./pages/TallerMascotas'));
+const ResetHormonal = lazy(() => import('./pages/ResetHormonal'));
+const ActosQueMueven = lazy(() => import('./pages/ActosQueMueven'));
+const Resonantia = lazy(() => import('./pages/Resonantia'));
+const Crania = lazy(() => import('./pages/Crania'));
+const RegulacionBioelectrica = lazy(() => import('./pages/RegulacionBioelectrica'));
+const RBMetodo = lazy(() => import('./pages/RBMetodo'));
+const BioenergeticaTransgeneracional = lazy(() => import('./pages/BioenergeticaTransgeneracional'));
+const TestHormonal = lazy(() => import('./pages/TestHormonal'));
+const TestVinculoAnimal = lazy(() => import('./pages/TestVinculoAnimal'));
+
+const PageLoader: React.FC = () => (
+  <div className="flex items-center justify-center py-24">
+    <div className="w-6 h-6 rounded-full border-2 border-neutral-300 dark:border-neutral-600 border-t-primary-600 animate-spin" />
+  </div>
+);
 
 const PAGE_MAP: Record<string, string> = {
   'cursos': 'Cursos',
@@ -106,6 +113,8 @@ const AppContent: React.FC = () => {
         <main className="flex-1 overflow-y-auto overflow-x-hidden overscroll-none">
           <div className="p-2 lg:p-8">
             <div key={activePage} className="animate-fade-in">
+              <ErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={
                   <Dashboard
@@ -156,6 +165,8 @@ const AppContent: React.FC = () => {
                 } />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
+              </Suspense>
+              </ErrorBoundary>
             </div>
           </div>
         </main>
