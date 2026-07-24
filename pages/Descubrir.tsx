@@ -2,7 +2,7 @@ import React, { useMemo, useState, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useNews, useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
-import { ArrowLeft, ArrowRight, Clock3, Sparkles, Youtube, Play, Pause, Headphones } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock3, Youtube, Play, Pause, Headphones } from 'lucide-react';
 import { courseHref } from '../data/catalog';
 import type { NewsArticle } from '../types';
 
@@ -244,15 +244,19 @@ const ArticleCard: React.FC<{ article: NewsArticle; featured?: boolean }> = ({ a
 const ArticleHighlights: React.FC<{ highlights?: string[] }> = ({ highlights }) => {
   if (!highlights?.length) return null;
   return (
-    <aside className="rounded-2xl bg-primary-50/80 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800/60 p-5 my-8">
-      <div className="flex items-center gap-2 text-primary-800 dark:text-primary-300 mb-3">
-        <Sparkles className="w-4 h-4" />
-        <h2 className="text-sm font-semibold">En breve</h2>
-      </div>
-      <ul className="grid gap-2 sm:grid-cols-3">
-        {highlights.map((highlight) => (
-          <li key={highlight} className="text-[13px] leading-relaxed text-primary-900/75 dark:text-primary-100/80 pl-3 border-l border-primary-300 dark:border-primary-700">
-            {highlight}
+    <aside className="my-8 border-y border-neutral-200 dark:border-neutral-700 py-6">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400 dark:text-neutral-500 mb-4">
+        Claves del artículo
+      </p>
+      <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-3">
+        {highlights.map((highlight, i) => (
+          <li key={highlight} className="flex gap-3">
+            <span className="font-editorial text-lg leading-none text-primary-600 dark:text-primary-400 tabular-nums pt-0.5">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span className="text-[13.5px] leading-relaxed text-neutral-600 dark:text-neutral-300">
+              {highlight}
+            </span>
           </li>
         ))}
       </ul>
@@ -355,8 +359,8 @@ const Descubrir: React.FC = () => {
       <div className="px-6 lg:px-0 pt-8 lg:pt-10 pb-6">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-400 mb-3">
-              <Sparkles className="w-3.5 h-3.5" /> Una pausa para volver a ti
+            <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-400 mb-3">
+              Contenido del instituto
             </span>
             <h1 className="font-editorial text-3xl lg:text-4xl text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
               Descubrir
