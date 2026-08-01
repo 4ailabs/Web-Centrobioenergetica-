@@ -124,6 +124,18 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: 'Herramientas y aplicaciones clínicas del Instituto Centrobioenergética.',
   },
 
+  // ── Legales ──
+  '/aviso-de-privacidad': {
+    title: 'Aviso de privacidad',
+    description:
+      'Qué datos personales recaba el Instituto Centrobioenergética, para qué los usa y cómo ejercer tus derechos ARCO.',
+  },
+  '/terminos-y-condiciones': {
+    title: 'Términos y condiciones',
+    description:
+      'Reglas de uso de la plataforma del Instituto Centrobioenergética: cuentas, acceso a los cursos, contenidos y responsabilidades.',
+  },
+
   // ── Tests ──
   '/test-hormonal': {
     title: 'Test hormonal',

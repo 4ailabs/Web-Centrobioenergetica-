@@ -31,6 +31,8 @@
     { "source": "/sobre-nosotros", "destination": "/sobre-nosotros/index.html" },
     { "source": "/calendario", "destination": "/calendario/index.html" },
     { "source": "/aplicaciones", "destination": "/aplicaciones/index.html" },
+    { "source": "/aviso-de-privacidad", "destination": "/aviso-de-privacidad/index.html" },
+    { "source": "/terminos-y-condiciones", "destination": "/terminos-y-condiciones/index.html" },
     { "source": "/test-hormonal", "destination": "/test-hormonal/index.html" },
     { "source": "/test-vinculo-animal", "destination": "/test-vinculo-animal/index.html" },
     { "source": "/((?!api|assets|images|favicon).*)", "destination": "/index.html" }
