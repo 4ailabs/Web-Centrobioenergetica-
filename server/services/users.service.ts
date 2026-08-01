@@ -24,28 +24,49 @@ export class UsersService {
             orderBy: { createdAt: 'desc' },
         });
 
-        // Map users to include enrollment data
-        const mappedUsers = await Promise.all(
-            users.map(async (u) => {
-                const enrollments = await prisma.progress.findMany({
-                    where: { userId: u.id },
-                    select: { courseId: true },
-                    distinct: ['courseId'],
-                });
+        // Una sola consulta para todas las inscripciones y su actividad, en
+        // lugar de una por usuario. La fila sin `videoId` es la inscripción;
+        // las que sí lo tienen indican que el alumno abrió ese curso.
+        const filas = await prisma.progress.findMany({
+            where: { courseId: { not: null } },
+            select: { userId: true, courseId: true, videoId: true, completed: true },
+        });
 
-                return {
-                    ...u,
-                    registeredAt: u.createdAt.toISOString(),
-                    subscriptionStatus: u.premiumUnlocked ? 'active' : 'inactive',
-                    enrolledCourses: enrollments
-                        .map((e) => e.courseId?.toString() || '')
-                        .filter(Boolean),
-                    totalXP: u.totalXP,
-                };
-            })
-        );
+        const porUsuario = new Map<string, Map<number, { vistos: number; completados: number }>>();
+        for (const fila of filas) {
+            if (fila.courseId === null) continue;
+            let cursos = porUsuario.get(fila.userId);
+            if (!cursos) {
+                cursos = new Map();
+                porUsuario.set(fila.userId, cursos);
+            }
+            let datos = cursos.get(fila.courseId);
+            if (!datos) {
+                datos = { vistos: 0, completados: 0 };
+                cursos.set(fila.courseId, datos);
+            }
+            if (fila.videoId !== null) {
+                datos.vistos += 1;
+                if (fila.completed) datos.completados += 1;
+            }
+        }
 
-        return mappedUsers;
+        return users.map((u) => {
+            const cursos = porUsuario.get(u.id) ?? new Map();
+            const actividadPorCurso: Record<string, { vistos: number; completados: number }> = {};
+            for (const [courseId, datos] of cursos) {
+                actividadPorCurso[courseId.toString()] = datos;
+            }
+
+            return {
+                ...u,
+                registeredAt: u.createdAt.toISOString(),
+                subscriptionStatus: u.premiumUnlocked ? 'active' : 'inactive',
+                enrolledCourses: Array.from(cursos.keys()).map((id) => id.toString()),
+                actividadPorCurso,
+                totalXP: u.totalXP,
+            };
+        });
     }
 
     async createUser(data: CreateUserData) {
