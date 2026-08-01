@@ -62,24 +62,43 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).json({ error: 'courseIds must be an array' });
       }
 
-      // Primero eliminar todos los progress existentes para cursos
-      await prisma.progress.deleteMany({
-        where: {
-          userId: userId,
-          courseId: { not: null }
-        }
-      });
+      // Actualización diferencial. La inscripción y el avance del alumno
+      // viven en las mismas filas de `progress`, así que reemplazarlas en
+      // bloque borraba el progreso de los cursos que el alumno conserva.
+      // Solo se crean los cursos añadidos y se borran los retirados; los
+      // que permanecen no se tocan.
+      const solicitados = courseIds
+        .map((courseId: string) => parseInt(courseId, 10))
+        .filter((courseId: number) => Number.isFinite(courseId));
 
-      // Crear nuevos registros de progreso para cada curso
-      if (courseIds.length > 0) {
+      const inscripcionesActuales = await prisma.progress.findMany({
+        where: { userId: userId, courseId: { not: null } },
+        select: { courseId: true },
+        distinct: ['courseId'],
+      });
+      const actuales = inscripcionesActuales
+        .map((p) => p.courseId)
+        .filter((courseId): courseId is number => courseId !== null);
+
+      const aInscribir = solicitados.filter((courseId) => !actuales.includes(courseId));
+      const aRetirar = actuales.filter((courseId) => !solicitados.includes(courseId));
+
+      if (aInscribir.length > 0) {
         await prisma.progress.createMany({
-          data: courseIds.map((courseId: string) => ({
+          data: aInscribir.map((courseId) => ({
             userId: userId,
-            courseId: parseInt(courseId),
+            courseId,
             completed: false,
             progress: 0,
           })),
           skipDuplicates: true,
+        });
+      }
+
+      // Retirar un curso sí elimina su avance: es lo que significa quitarlo.
+      if (aRetirar.length > 0) {
+        await prisma.progress.deleteMany({
+          where: { userId: userId, courseId: { in: aRetirar } },
         });
       }
 
