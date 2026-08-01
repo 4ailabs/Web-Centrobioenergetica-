@@ -14,7 +14,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
             <div className="flex items-center justify-center min-h-[50vh]">
                 <div className="text-center">
                     <div className="w-10 h-10 border-2 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-                    <p className="text-neutral-500 dark:text-neutral-400 text-sm">Verificando acceso...</p>
+                    <p className="text-neutral-600 dark:text-neutral-400 text-sm">Verificando acceso...</p>
                 </div>
             </div>
         );

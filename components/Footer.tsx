@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             Los enlaces legales tienen que estar aquí también: antes solo
             existían en escritorio, y desde el móvil no había forma de
             llegar al aviso de privacidad. */}
-        <div className="flex lg:hidden flex-col gap-1.5 text-[11px] text-neutral-500 dark:text-neutral-400">
+        <div className="flex lg:hidden flex-col gap-1.5 text-[11px] text-neutral-600 dark:text-neutral-400">
           <div className="flex items-center gap-3">
             <Link to="/aviso-de-privacidad" className="hover:text-primary-600 transition-colors">
               Aviso de privacidad
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
 
         {/* Desktop Layout */}
         <div className="hidden lg:flex justify-between items-center">
-          <div className="flex items-center space-x-4 text-xs text-neutral-500 dark:text-neutral-400">
+          <div className="flex items-center space-x-4 text-xs text-neutral-600 dark:text-neutral-400">
             {/* Antes eran tres enlaces a href="#": no llevaban a ninguna parte.
                 La página de cookies desapareció a propósito — el sitio no usa
                 cookies, y lo que sí guarda en el navegador se explica dentro
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             </Link>
           </div>
 
-          <div className="text-xs text-neutral-500 dark:text-neutral-400">
+          <div className="text-xs text-neutral-600 dark:text-neutral-400">
             © 2026 Instituto Centrobioenergética
           </div>
 
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
             href="https://youtube.com/@wellvibe-media?si=_Af33Bp7qJ08vz2u"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-primary-600 transition-colors"
+            className="flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors"
           >
             <YoutubeIcon className="w-3 h-3" />
             <span>YouTube</span>

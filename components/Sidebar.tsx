@@ -115,7 +115,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
 
             <div className="space-y-0.5">
               <button onClick={toggleTheme} className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-[14px] text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors">
-                <span className="text-neutral-500">{isDarkMode ? <SunIcon className={iconSize} /> : <MoonIcon className={iconSize} />}</span>
+                <span className="text-neutral-600 dark:text-neutral-400">{isDarkMode ? <SunIcon className={iconSize} /> : <MoonIcon className={iconSize} />}</span>
                 <span>{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>
               </button>
               {user ? (
@@ -134,7 +134,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
         {/* Logo + Toggle */}
         <div className={`flex items-center mb-5 ${collapsed ? 'justify-center' : 'justify-between px-2'}`}>
           {collapsed ? (
-            <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-500" title="Expandir sidebar" aria-label="Expandir barra lateral">
+            <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-600 dark:text-neutral-400" title="Expandir sidebar" aria-label="Expandir barra lateral">
               <PanelLeftOpen className="w-[18px] h-[18px]" />
             </button>
           ) : (
@@ -143,10 +143,13 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
                 <img src="/logo-instituto.svg" alt="Instituto Centrobioenergética" className="h-7 w-7" />
                 <div className="flex flex-col">
                   <span className="text-[11px] font-medium text-neutral-800 dark:text-neutral-100 leading-tight">Instituto</span>
-                  <span className="text-[10px] text-neutral-400 dark:text-neutral-500 leading-tight">Centrobioenergética</span>
+                  <span className="text-[10px] text-neutral-600 dark:text-neutral-500 leading-tight">Centrobioenergética</span>
                 </div>
               </div>
-              <button onClick={toggleSidebar} className="p-1.5 rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-400" title="Cerrar sidebar" aria-label="Colapsar barra lateral">
+              {/* 36×36 y no p-1.5: por debajo de esa medida el dedo falla en
+                  pantallas táctiles. El icono sigue igual de pequeño; lo que
+                  crece es la zona que responde al toque. */}
+              <button onClick={toggleSidebar} className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30 transition-colors text-neutral-600 dark:text-neutral-400" title="Cerrar sidebar" aria-label="Colapsar barra lateral">
                 <PanelLeftClose className="w-[16px] h-[16px]" />
               </button>
             </>
@@ -187,7 +190,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSearch, onOpenSearch }) => {
               title={collapsed ? (isDarkMode ? 'Modo Claro' : 'Modo Oscuro') : undefined}
               className={`flex items-center w-full text-left ${collapsed ? 'justify-center' : 'gap-3'} ${collapsed ? 'px-0' : 'px-3'} py-2.5 rounded-lg transition-colors duration-150 text-[14px] text-neutral-700 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-700/30`}
             >
-              <span className="text-neutral-500 shrink-0">{isDarkMode ? <SunIcon className={iconSize} /> : <MoonIcon className={iconSize} />}</span>
+              <span className="text-neutral-600 dark:text-neutral-400 shrink-0">{isDarkMode ? <SunIcon className={iconSize} /> : <MoonIcon className={iconSize} />}</span>
               {!collapsed && <span>{isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}</span>}
             </button>
             {user ? (

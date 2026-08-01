@@ -95,7 +95,7 @@ const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
         </g>
       </svg>
       <div className="mt-5 text-center">
-        <div ref={txt1Ref} className="text-[9px] tracking-[4px] font-medium text-neutral-400" style={{ opacity: 0 }}>
+        <div ref={txt1Ref} className="text-[9px] tracking-[4px] font-medium text-neutral-600 dark:text-neutral-400" style={{ opacity: 0 }}>
           INSTITUTO
         </div>
         <div ref={txt2Ref} className="text-[13px] tracking-[1.8px] font-medium text-primary-600 mt-1" style={{ opacity: 0 }}>
@@ -154,7 +154,7 @@ const Login: React.FC = () => {
 
               <div className="text-center mb-6">
                 <h1 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-1">Bienvenido</h1>
-                <p className="text-neutral-500 dark:text-neutral-400 text-xs">Inicia sesión en tu cuenta</p>
+                <p className="text-neutral-600 dark:text-neutral-400 text-xs">Inicia sesión en tu cuenta</p>
               </div>
 
               {error && (
@@ -212,7 +212,8 @@ const Login: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="text-neutral-400 hover:text-primary-600 transition-colors"
+                      aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                      className="text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -229,7 +230,7 @@ const Login: React.FC = () => {
               </form>
 
               <div className="mt-6 text-center border-t border-neutral-200 dark:border-neutral-700 pt-5">
-                <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                <p className="text-xs text-neutral-600 dark:text-neutral-400">
                   ¿No tienes una cuenta?{' '}
                   <Link to="/register" className="text-primary-600 font-medium hover:text-primary-700 transition-colors">
                     Regístrate aquí

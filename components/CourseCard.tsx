@@ -39,13 +39,13 @@ const CourseCard: React.FC<CourseCardProps> = memo(({ course, onCourseClick }) =
         <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-50 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors line-clamp-2">
           {course.title}
         </h3>
-        <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
+        <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
           {course.description}
         </p>
         {/* Un curso que aún no se imparte tiene 0 lecciones: mejor no decir nada
             que anunciar un cero. */}
         {course.lessons > 0 && (
-          <span className="text-xs text-neutral-400 dark:text-neutral-500">{course.lessons} lecciones</span>
+          <span className="text-xs text-neutral-600 dark:text-neutral-500">{course.lessons} lecciones</span>
         )}
       </div>
     </div>

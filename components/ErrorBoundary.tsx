@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component<Props, State> {
           <p className="text-lg font-medium text-neutral-800 dark:text-neutral-100">
             Algo salió mal al mostrar esta página
           </p>
-          <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400 max-w-sm">
+          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 max-w-sm">
             El resto del sitio sigue funcionando. Vuelve al inicio e intenta de nuevo.
           </p>
           <button

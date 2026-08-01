@@ -96,7 +96,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
     <div className="w-full pt-[72px] lg:pt-0 pb-28 lg:pb-16 overflow-x-hidden">
       {/* Back */}
       <div className="px-6 lg:px-0 pt-6 pb-8">
-        <button onClick={() => navigate('/')} className="flex items-center gap-2 text-neutral-400 hover:text-primary-600 transition-colors text-sm">
+        <button onClick={() => navigate('/')} className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors text-sm">
           <ArrowLeft className="w-4 h-4" /> Volver
         </button>
       </div>
@@ -112,7 +112,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
             {slogan}
           </p>
         )}
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-xl">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xl">
           {hook}
         </p>
         {frase && (
@@ -141,7 +141,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
           <p className={`text-sm font-medium mt-1 ${accent ? '' : 'text-primary-600'}`} style={accentText}>
             {modalidad}
           </p>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
             {instructor}
           </p>
         </div>
@@ -154,7 +154,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
             {precios.map((p, i) => (
               <div key={i} className="px-4 py-2.5 rounded-lg text-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
                 <p className={`text-[13px] font-semibold ${accent ? '' : 'text-primary-600'}`} style={accentText}>{p.valor}</p>
-                <p className="text-[12px] text-neutral-500 dark:text-neutral-400">{p.etiqueta}</p>
+                <p className="text-[12px] text-neutral-600 dark:text-neutral-400">{p.etiqueta}</p>
               </div>
             ))}
           </div>
@@ -166,7 +166,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
         <div className="px-6 lg:px-0 pb-6">
           <div className="flex flex-wrap gap-2">
             {detalles.map((d, i) => (
-              <span key={i} className="text-xs text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 rounded-lg">{d}</span>
+              <span key={i} className="text-xs text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 rounded-lg">{d}</span>
             ))}
           </div>
         </div>
@@ -192,7 +192,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
             <span className={`text-[11px] font-semibold uppercase tracking-widest ${accent ? '' : 'text-primary-600'}`} style={accentText}>Para quién</span>
             <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">{paraQuien.texto}</p>
             {paraQuien.nota && (
-              <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">{paraQuien.nota}</p>
+              <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400">{paraQuien.nota}</p>
             )}
           </div>
         </div>
@@ -202,14 +202,14 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       {modalidades && modalidades.length > 0 && (
         <div className="px-6 lg:px-0 pb-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Dos modalidades</span>
+            <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Dos modalidades</span>
             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {modalidades.map((m, i) => (
               <div key={i} className={`p-4 rounded-xl border ${accent ? '' : 'border-primary-600/20'}`} style={accent ? { borderColor: accent + '30', backgroundColor: accent + '08' } : undefined}>
                 <h3 className={`text-[13px] font-semibold mb-1.5 ${accent ? '' : 'text-primary-600'}`} style={accentText}>{m.titulo}</h3>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">{m.desc}</p>
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{m.desc}</p>
               </div>
             ))}
           </div>
@@ -225,7 +225,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
           >
             <div>
               <p className="text-sm font-semibold text-primary-700 dark:text-primary-400">{testBanner.label}</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{testBanner.sublabel}</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5">{testBanner.sublabel}</p>
             </div>
             <svg className="w-5 h-5 text-primary-500 shrink-0 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -237,9 +237,9 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       {/* Program — Domestika/Coursera style accordion */}
       <div className="px-6 lg:px-0 pb-10">
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Programa</span>
+          <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Programa</span>
           <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
-          <span className="text-[11px] text-neutral-400">{modulos.length} módulos · {modulos.reduce((acc, m) => acc + m.bloques.filter(b => b.desc).length, 0)} temas</span>
+          <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{modulos.length} módulos · {modulos.reduce((acc, m) => acc + m.bloques.filter(b => b.desc).length, 0)} temas</span>
         </div>
 
         <div className="space-y-3">
@@ -257,9 +257,9 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
                   <span className={`text-2xl font-semibold leading-none w-8 text-center shrink-0 ${accent ? '' : 'text-primary-600'}`} style={accentText}>{modulo.numero}</span>
                   <div className="flex-1 min-w-0">
                     <h2 className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug">{modulo.titulo}</h2>
-                    <p className="text-[11px] text-neutral-400 mt-0.5">{modulo.fecha} · {temaCount} temas</p>
+                    <p className="text-[11px] text-neutral-600 dark:text-neutral-400 mt-0.5">{modulo.fecha} · {temaCount} temas</p>
                   </div>
-                  <ChevronDown className={`w-4 h-4 text-neutral-400 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 text-neutral-600 dark:text-neutral-400 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Expanded content — topic list */}
@@ -267,10 +267,10 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
                   <div className="border-t border-neutral-100 dark:border-neutral-700">
                     {modulo.bloques.filter(b => b.desc).map((block, i) => (
                       <div key={i} className="flex gap-3 px-4 py-3 border-b border-neutral-50 dark:border-neutral-700/50 last:border-0">
-                        <span className="text-[11px] text-neutral-400 font-medium w-5 text-right shrink-0 pt-0.5">{i + 1}</span>
+                        <span className="text-[11px] text-neutral-600 dark:text-neutral-400 font-medium w-5 text-right shrink-0 pt-0.5">{i + 1}</span>
                         <div className="flex-1 min-w-0">
                           <h3 className="font-editorial text-[14px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug">{block.title}</h3>
-                          <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mt-1">{block.desc}</p>
+                          <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1">{block.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -317,7 +317,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
           <div className="p-5 rounded-xl bg-neutral-100 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700">
             <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">{metodo.texto}</p>
             {metodo.nota && (
-              <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">{metodo.nota}</p>
+              <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400">{metodo.nota}</p>
             )}
           </div>
         </div>
@@ -342,8 +342,8 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       {requisitos && (
         <div className="px-6 lg:px-0 pb-8">
           <div className="flex items-start gap-2.5">
-            <BookOpen className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
-            <p className="text-xs text-neutral-500 dark:text-neutral-400"><span className="font-medium text-neutral-700 dark:text-neutral-300">Requisitos:</span> {requisitos}</p>
+            <BookOpen className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 shrink-0 mt-0.5" />
+            <p className="text-xs text-neutral-600 dark:text-neutral-400"><span className="font-medium text-neutral-700 dark:text-neutral-300">Requisitos:</span> {requisitos}</p>
           </div>
         </div>
       )}
@@ -361,7 +361,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
           {ctaLabel}
         </a>
         {notaCta && (
-          <p className="text-center mt-2.5 text-xs text-neutral-500 dark:text-neutral-400">{notaCta}</p>
+          <p className="text-center mt-2.5 text-xs text-neutral-600 dark:text-neutral-400">{notaCta}</p>
         )}
       </div>
     </div>

@@ -39,7 +39,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                     </h2>
                     <button
                         onClick={onClose}
-                        className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors text-neutral-500"
+                        className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors text-neutral-600 dark:text-neutral-400"
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -89,7 +89,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                                 <button
                                     type="button"
                                     onClick={onTogglePassword}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-neutral-600 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
                                 >
                                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                                 </button>

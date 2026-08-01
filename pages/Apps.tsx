@@ -21,7 +21,7 @@ const Apps: React.FC = () => {
     <div className="w-full lg:pt-12 pt-[72px] sm:pt-8 px-6">
       <header className="mb-8 lg:mb-12 max-w-6xl mx-auto">
         <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight">Aplicaciones</h1>
-        <p className="text-lg text-neutral-500 dark:text-neutral-400 mt-3">Herramientas para tu desarrollo integral</p>
+        <p className="text-lg text-neutral-600 dark:text-neutral-400 mt-3">Herramientas para tu desarrollo integral</p>
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-6xl mx-auto">

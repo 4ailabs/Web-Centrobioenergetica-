@@ -89,7 +89,7 @@ const ResetPasswordModal: React.FC<{
                         <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
                             {listo ? 'Contraseña restablecida' : 'Restablecer contraseña'}
                         </h2>
-                        <p className="text-xs text-neutral-500 truncate">{user?.name || user?.email}</p>
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400 truncate">{user?.name || user?.email}</p>
                     </div>
                 </div>
 
@@ -366,7 +366,7 @@ const AdminDashboard: React.FC = () => {
                         <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight">
                             Panel de Administración
                         </h1>
-                        <p className="text-neutral-500 dark:text-neutral-400 text-sm font-normal">{users.length} personas · {MOCK_DATA.courses.filter(c => ACTIVE_COURSE_IDS.includes(c.id)).length} cursos</p>
+                        <p className="text-neutral-600 dark:text-neutral-400 text-sm font-normal">{users.length} personas · {MOCK_DATA.courses.filter(c => ACTIVE_COURSE_IDS.includes(c.id)).length} cursos</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -395,7 +395,7 @@ const AdminDashboard: React.FC = () => {
                         className={`px-4 py-2.5 text-[13.5px] -mb-px border-b-2 transition-colors ${
                             seccion === clave
                                 ? 'border-primary-600 text-neutral-800 dark:text-neutral-100 font-semibold'
-                                : 'border-transparent text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300'
+                                : 'border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'
                         }`}
                     >
                         {etiqueta}
@@ -435,7 +435,7 @@ const AdminDashboard: React.FC = () => {
                                             <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 truncate">
                                                 {u.name || 'Sin nombre'}
                                             </p>
-                                            <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{u.email}</p>
+                                            <p className="text-xs text-neutral-600 dark:text-neutral-400 truncate">{u.email}</p>
                                         </div>
                                         <div className="flex items-center gap-2 shrink-0">
                                             <button
@@ -462,7 +462,7 @@ const AdminDashboard: React.FC = () => {
             {/* Search + Filters */}
             <div className="mb-6 space-y-3">
                 <div className="relative max-w-md">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-600 dark:text-neutral-400" />
                     <input
                         type="text"
                         placeholder="Buscar por nombre o email..."
@@ -492,7 +492,7 @@ const AdminDashboard: React.FC = () => {
                                     </option>
                                 ))}
                         </select>
-                        <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 pointer-events-none" />
+                        <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 pointer-events-none" />
                     </div>
                 </div>
 
@@ -506,7 +506,7 @@ const AdminDashboard: React.FC = () => {
                     </p>
                 )}
                 {filterCourseId === 'all' && filteredUsers.length !== users.length && (
-                    <p className="text-xs text-neutral-400">
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400">
                         {filteredUsers.length} de {users.length} personas
                     </p>
                 )}
@@ -532,7 +532,7 @@ const AdminDashboard: React.FC = () => {
                         className="px-5 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-700 text-[13px] font-medium text-neutral-600 dark:text-neutral-300 hover:border-neutral-400 transition-colors min-h-[40px]"
                     >
                         Mostrar {Math.min(LOTE_USUARIOS, quedanPorMostrar)} más
-                        <span className="text-neutral-400"> · quedan {quedanPorMostrar}</span>
+                        <span className="text-neutral-600 dark:text-neutral-400"> · quedan {quedanPorMostrar}</span>
                     </button>
                 </div>
             )}

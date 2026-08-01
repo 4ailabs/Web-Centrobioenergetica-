@@ -143,7 +143,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                     <h2 className="text-[17px] font-semibold text-neutral-800 dark:text-neutral-100">
                         {resultado ? 'Acceso concedido' : 'Dar acceso'}
                     </h2>
-                    <button onClick={cerrar} aria-label="Cerrar" className="p-2 -mr-2 rounded-lg text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700">
+                    <button onClick={cerrar} aria-label="Cerrar" className="p-2 -mr-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -159,7 +159,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                         </div>
 
                         <div>
-                            <span className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-2">
+                            <span className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-2">
                                 Mensaje para enviarle
                             </span>
                             <pre className="whitespace-pre-wrap text-[13.5px] leading-relaxed text-neutral-700 dark:text-neutral-300 bg-neutral-50 dark:bg-neutral-900/40 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4 font-sans">
@@ -185,7 +185,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                         </div>
 
                         {resultado.password && (
-                            <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                            <p className="text-[12px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                                 Guarda o envía la contraseña ahora: por seguridad no vuelve a mostrarse. Si se pierde,
                                 puedes generar otra desde la ficha de la persona.
                             </p>
@@ -202,7 +202,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                     /* ── Formulario ── */
                     <div className="p-5 space-y-5">
                         <div>
-                            <label htmlFor="ga-email" className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-2">
+                            <label htmlFor="ga-email" className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-2">
                                 1 · Correo de la persona
                             </label>
                             <input
@@ -218,7 +218,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                                 <p className="mt-2 text-[13px] text-salvia-600 dark:text-salvia-400 font-medium">
                                     Ya tiene cuenta: {existente.name || existente.email}
                                     {existente.enrolledCourses && existente.enrolledCourses.length > 0 && (
-                                        <span className="text-neutral-500 dark:text-neutral-400 font-normal">
+                                        <span className="text-neutral-600 dark:text-neutral-400 font-normal">
                                             {' '}· {existente.enrolledCourses.length} curso{existente.enrolledCourses.length > 1 ? 's' : ''} ya asignado{existente.enrolledCourses.length > 1 ? 's' : ''}
                                         </span>
                                     )}
@@ -226,7 +226,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                             )}
                             {esNuevo && (
                                 <div className="mt-3">
-                                    <label htmlFor="ga-nombre" className="block text-[12px] text-neutral-500 dark:text-neutral-400 mb-1.5">
+                                    <label htmlFor="ga-nombre" className="block text-[12px] text-neutral-600 dark:text-neutral-400 mb-1.5">
                                         No tiene cuenta todavía — se creará con este nombre
                                     </label>
                                     <input
@@ -242,7 +242,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                         </div>
 
                         <div>
-                            <span className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-2">
+                            <span className="block text-[11px] font-semibold uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-2">
                                 2 · Cursos
                             </span>
                             <div className="space-y-2">
@@ -269,7 +269,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                                                 {nombreCorto(curso.title)}
                                             </span>
                                             {yaLoTiene && (
-                                                <span className="text-[11px] text-neutral-400 shrink-0">ya lo tiene</span>
+                                                <span className="text-[11px] text-neutral-600 dark:text-neutral-400 shrink-0">ya lo tiene</span>
                                             )}
                                         </label>
                                     );
@@ -288,7 +288,7 @@ const GrantAccessModal: React.FC<GrantAccessModalProps> = ({
                         >
                             {guardando ? 'Dando acceso…' : esNuevo ? 'Crear cuenta y dar acceso' : 'Dar acceso'}
                         </button>
-                        <p className="text-[12px] text-neutral-500 dark:text-neutral-400 text-center leading-relaxed">
+                        <p className="text-[12px] text-neutral-600 dark:text-neutral-400 text-center leading-relaxed">
                             Nunca se retira un curso que la persona ya tuviera.
                         </p>
                     </div>

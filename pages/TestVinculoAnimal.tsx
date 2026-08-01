@@ -368,20 +368,20 @@ const TestVinculoAnimal: React.FC = () => {
     <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex items-center justify-center px-6 bg-[var(--bg-main)]">
       <div className="max-w-lg w-full">
         <div className="text-center mb-8">
-          <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3">
+          <span className="inline-block text-[11px] font-medium uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-3">
             Instituto Centrobioenergetica
           </span>
           <h1 className="text-2xl lg:text-3xl font-editorial font-medium text-neutral-800 dark:text-neutral-100 leading-tight mb-3">
             Test de Vínculo Animal
           </h1>
-          <p className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
+          <p className="text-[15px] text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
             10 preguntas para identificar el patrón de vínculo entre tú y tu animal. Al final recibes tu perfil con interpretación clínica.
           </p>
         </div>
 
         {/* Species selector */}
         <div className="mb-6">
-          <p className="text-[12px] font-medium uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3 text-center">
+          <p className="text-[12px] font-medium uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-3 text-center">
             ¿Con qué animal vives?
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -413,7 +413,7 @@ const TestVinculoAnimal: React.FC = () => {
                 <span className="text-[12px] font-medium uppercase tracking-wider" style={{ color: sec.color }}>{sec.label}</span>
                 <p className="text-[14px] text-neutral-600 dark:text-neutral-300">{sec.desc}</p>
               </div>
-              <span className="text-[12px] text-neutral-400">{sec.count}</span>
+              <span className="text-[12px] text-neutral-600 dark:text-neutral-400">{sec.count}</span>
             </div>
           ))}
         </div>
@@ -426,21 +426,21 @@ const TestVinculoAnimal: React.FC = () => {
           >
             {species ? `Comenzar con ${speciesLabels[species]}` : 'Selecciona tu animal para comenzar'}
           </button>
-          <p className="text-[12px] text-neutral-400 text-center">
+          <p className="text-[12px] text-neutral-600 dark:text-neutral-400 text-center">
             Tiempo estimado: 3 minutos · Procesado en tu dispositivo
           </p>
 
           {/* Scientific basis */}
           <div className="mt-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg p-5 border border-neutral-100 dark:border-neutral-700">
-            <p className="text-[12px] font-medium uppercase tracking-widest text-neutral-400 mb-3">Base científica</p>
+            <p className="text-[12px] font-medium uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-3">Base científica</p>
             <div className="space-y-2">
-              <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 <span className="font-medium text-neutral-700 dark:text-neutral-200">Eje de ansiedad:</span> Adaptado del Pet Attachment Questionnaire (PAQ) — subescala de ansiedad. Validado en múltiples especies.
               </p>
-              <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 <span className="font-medium text-neutral-700 dark:text-neutral-200">Eje de conexión:</span> Adaptado del B-LAPS (Lexington Attachment to Pets Scale) y del Secure Base Test de Ainsworth aplicado a animales (Vitale et al. 2019, Keeling et al. 2009).
               </p>
-              <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 <span className="font-medium text-neutral-700 dark:text-neutral-200">Modelo 2D:</span> Los cuatro perfiles de vínculo derivan del modelo Ansiedad × Evitación de la teoría del apego (Bowlby, Ainsworth), adaptado a la díada dueño-animal.
               </p>
             </div>
@@ -467,18 +467,18 @@ const TestVinculoAnimal: React.FC = () => {
           <div className="flex items-center justify-between mb-8">
             <button
               onClick={() => navigate('/taller-mascotas')}
-              className="flex items-center gap-2 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]"
+              className="flex items-center gap-2 text-neutral-600 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]"
             >
               <ArrowLeft className="w-4 h-4" /> Volver al taller
             </button>
-            <span className="text-[11px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            <span className="text-[11px] uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
               {species ? `${speciesEmoji[species]} ${speciesLabels[species!]}` : ''}
             </span>
           </div>
 
           {/* Profile header */}
           <div className="mb-2">
-            <p className="text-[12px] uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400" style={{ letterSpacing: 3 }}>
+            <p className="text-[12px] uppercase tracking-widest mb-2 text-neutral-600 dark:text-neutral-400" style={{ letterSpacing: 3 }}>
               Test de Vínculo Animal
             </p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
@@ -495,7 +495,7 @@ const TestVinculoAnimal: React.FC = () => {
 
           {/* 2D Axis bars */}
           <div className="py-6 border-b border-neutral-200 dark:border-neutral-700">
-            <h3 className="text-[12px] font-medium uppercase tracking-widest mb-5 text-neutral-500 dark:text-neutral-400">
+            <h3 className="text-[12px] font-medium uppercase tracking-widest mb-5 text-neutral-600 dark:text-neutral-400">
               Perfil por eje
             </h3>
             <div className="space-y-5">
@@ -505,7 +505,7 @@ const TestVinculoAnimal: React.FC = () => {
                   <span className="text-[13px] font-medium text-neutral-700 dark:text-neutral-200">Ansiedad de vínculo</span>
                   <div className="flex items-center gap-2">
                     <span className="text-[12px]" style={{ color: COLOR.terracota }}>{anxLabel}</span>
-                    <span className="text-[12px] text-neutral-400">{result.anxietyScore}/20</span>
+                    <span className="text-[12px] text-neutral-600 dark:text-neutral-400">{result.anxietyScore}/20</span>
                   </div>
                 </div>
                 <div className="h-2.5 rounded-full bg-neutral-100 dark:bg-neutral-700 overflow-hidden">
@@ -515,8 +515,8 @@ const TestVinculoAnimal: React.FC = () => {
                   />
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="text-[10px] text-neutral-400">Baja</span>
-                  <span className="text-[10px] text-neutral-400">Alta</span>
+                  <span className="text-[10px] text-neutral-600 dark:text-neutral-400">Baja</span>
+                  <span className="text-[10px] text-neutral-600 dark:text-neutral-400">Alta</span>
                 </div>
               </div>
 
@@ -526,7 +526,7 @@ const TestVinculoAnimal: React.FC = () => {
                   <span className="text-[13px] font-medium text-neutral-700 dark:text-neutral-200">Evitación / distancia</span>
                   <div className="flex items-center gap-2">
                     <span className="text-[12px]" style={{ color: '#534AB7' }}>{avoLabel}</span>
-                    <span className="text-[12px] text-neutral-400">{result.avoidanceScore}/20</span>
+                    <span className="text-[12px] text-neutral-600 dark:text-neutral-400">{result.avoidanceScore}/20</span>
                   </div>
                 </div>
                 <div className="h-2.5 rounded-full bg-neutral-100 dark:bg-neutral-700 overflow-hidden">
@@ -536,8 +536,8 @@ const TestVinculoAnimal: React.FC = () => {
                   />
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="text-[10px] text-neutral-400">Baja</span>
-                  <span className="text-[10px] text-neutral-400">Alta</span>
+                  <span className="text-[10px] text-neutral-600 dark:text-neutral-400">Baja</span>
+                  <span className="text-[10px] text-neutral-600 dark:text-neutral-400">Alta</span>
                 </div>
               </div>
             </div>
@@ -555,7 +555,7 @@ const TestVinculoAnimal: React.FC = () => {
             <div className="flex gap-4">
               <div className="shrink-0 w-1 rounded-full" style={{ background: result.color }} />
               <div>
-                <h3 className="text-[12px] font-medium uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400">
+                <h3 className="text-[12px] font-medium uppercase tracking-widest mb-2 text-neutral-600 dark:text-neutral-400">
                   Lo que esto indica
                 </h3>
                 <p className="text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300">
@@ -570,7 +570,7 @@ const TestVinculoAnimal: React.FC = () => {
             <div className="flex gap-4">
               <div className="shrink-0 w-1 rounded-full bg-neutral-300 dark:bg-neutral-600" />
               <div>
-                <h3 className="text-[12px] font-medium uppercase tracking-widest mb-2 text-neutral-500 dark:text-neutral-400">
+                <h3 className="text-[12px] font-medium uppercase tracking-widest mb-2 text-neutral-600 dark:text-neutral-400">
                   Indicación
                 </h3>
                 <p className="text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300">
@@ -582,7 +582,7 @@ const TestVinculoAnimal: React.FC = () => {
 
           {/* Important note */}
           <div className="py-4 border-b border-neutral-200 dark:border-neutral-700">
-            <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            <p className="text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
               <span className="font-medium text-neutral-600 dark:text-neutral-300">Importante:</span>{' '}
               El patrón de tu animal no viene siempre de tu estado emocional — también puede venir de su historia previa, su raza o sus instintos. Este test es un punto de partida para observar, no un diagnóstico definitivo. Si tu animal tiene síntomas físicos, el primer paso es siempre el veterinario.
             </p>
@@ -594,7 +594,7 @@ const TestVinculoAnimal: React.FC = () => {
               <p className="font-editorial text-xl text-neutral-800 dark:text-neutral-100 mb-1">
                 Lo Que Tu Mascota Quiere Decirte
               </p>
-              <p className="text-[14px] mb-4 text-neutral-500 dark:text-neutral-400">
+              <p className="text-[14px] mb-4 text-neutral-600 dark:text-neutral-400">
                 Taller online · 2 módulos · Grabación completa disponible
               </p>
               <a
@@ -614,26 +614,26 @@ const TestVinculoAnimal: React.FC = () => {
           {/* Methodology */}
           <div className="pb-6">
             <details className="group">
-              <summary className="cursor-pointer text-[12px] font-medium uppercase tracking-widest list-none flex items-center gap-2 text-neutral-500 dark:text-neutral-400">
+              <summary className="cursor-pointer text-[12px] font-medium uppercase tracking-widest list-none flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                 <svg className="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
                 Metodología y referencias
               </summary>
               <div className="mt-3 space-y-2 pl-5">
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Modelo de apego:</span> Bowlby (1969), Ainsworth (1978). Extensión a animales domésticos: Topál et al. (1998), Vitale et al. (2019 — gatos, Current Biology).
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Escala PAQ:</span> Zilcha-Mano et al. (2011). Subescalas Ansiedad × Evitación aplicadas a la díada dueño-mascota.
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">B-LAPS:</span> Versión breve de la Lexington Attachment to Pets Scale (Johnson et al. 1992). Validada en perros, gatos y otras especies.
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Equinos:</span> Keeling et al. (2009). Horse-Human Attachment Questionnaire (HAQ, 2025).
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   Este test es una herramienta de orientación clínica, no un instrumento diagnóstico certificado. No sustituye evaluación veterinaria ni psicológica.
                 </p>
               </div>
@@ -644,7 +644,7 @@ const TestVinculoAnimal: React.FC = () => {
           <div className="text-center pb-4">
             <button
               onClick={() => { setStep(-1); setAnswers({}); setResult(null); setSpecies(null); }}
-              className="text-[13px] text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
+              className="text-[13px] text-neutral-600 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
             >
               Volver a hacer el test
             </button>
@@ -668,7 +668,7 @@ const TestVinculoAnimal: React.FC = () => {
           <div className="flex items-center justify-between mb-2">
             <button
               onClick={goBack}
-              className="flex items-center gap-1.5 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]"
+              className="flex items-center gap-1.5 text-neutral-600 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>{step === 0 ? 'Salir' : 'Anterior'}</span>
@@ -676,7 +676,7 @@ const TestVinculoAnimal: React.FC = () => {
             <span className="text-[12px] font-medium uppercase tracking-widest" style={{ color: sectionColor }}>
               {currentQuestion.sectionLabel}
             </span>
-            <span className="text-[12px] text-neutral-400 dark:text-neutral-500">{step + 1} / {totalQuestions}</span>
+            <span className="text-[12px] text-neutral-600 dark:text-neutral-500">{step + 1} / {totalQuestions}</span>
           </div>
           <div className="h-1 rounded-full bg-neutral-200 dark:bg-neutral-700 overflow-hidden">
             <div
@@ -694,7 +694,7 @@ const TestVinculoAnimal: React.FC = () => {
             {currentQuestion.text}
           </h2>
           {subtext ? (
-            <p className="text-[13px] text-neutral-500 dark:text-neutral-400 mb-6 leading-relaxed">{subtext}</p>
+            <p className="text-[13px] text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">{subtext}</p>
           ) : (
             <div className="mb-6" />
           )}
@@ -702,8 +702,8 @@ const TestVinculoAnimal: React.FC = () => {
           {/* Scale 0-4 */}
           <div>
             <div className="flex justify-between mb-3">
-              <span className="text-[12px] text-neutral-500 dark:text-neutral-400 max-w-[45%] leading-tight">{currentQuestion.scaleLabels.min}</span>
-              <span className="text-[12px] text-neutral-500 dark:text-neutral-400 max-w-[45%] text-right leading-tight">{currentQuestion.scaleLabels.max}</span>
+              <span className="text-[12px] text-neutral-600 dark:text-neutral-400 max-w-[45%] leading-tight">{currentQuestion.scaleLabels.min}</span>
+              <span className="text-[12px] text-neutral-600 dark:text-neutral-400 max-w-[45%] text-right leading-tight">{currentQuestion.scaleLabels.max}</span>
             </div>
             <div className="flex gap-2">
               {[0, 1, 2, 3, 4].map((v) => (
@@ -718,14 +718,14 @@ const TestVinculoAnimal: React.FC = () => {
             </div>
             <div className="flex justify-between mt-2">
               {['Nunca', '', 'A veces', '', 'Siempre'].map((l, i) => (
-                <span key={i} className="text-[10px] text-neutral-400 dark:text-neutral-500 flex-1 text-center">{l}</span>
+                <span key={i} className="text-[10px] text-neutral-600 dark:text-neutral-500 flex-1 text-center">{l}</span>
               ))}
             </div>
           </div>
 
           {/* Species indicator */}
           {species && (
-            <p className="text-[12px] text-neutral-400 dark:text-neutral-500 text-center mt-6">
+            <p className="text-[12px] text-neutral-600 dark:text-neutral-500 text-center mt-6">
               {speciesEmoji[species]} {speciesLabels[species]}
             </p>
           )}

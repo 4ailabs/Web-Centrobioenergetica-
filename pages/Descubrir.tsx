@@ -67,7 +67,7 @@ const AudioPlayer: React.FC<{ src: string }> = ({ src }) => {
         }}
         className="flex-1 h-1 accent-[var(--primary)] cursor-pointer"
       />
-      <span className="text-[11px] text-neutral-400 tabular-nums shrink-0">
+      <span className="text-[11px] text-neutral-600 dark:text-neutral-400 tabular-nums shrink-0">
         {fmt(progress)} / {fmt(duration)}
       </span>
     </div>
@@ -82,7 +82,7 @@ const AudioCard: React.FC<{ article: NewsArticle }> = ({ article }) => (
         <Headphones className="w-3.5 h-3.5" /> {article.category}
       </span>
       {article.audioDuration && (
-        <span className="inline-flex items-center gap-1 text-[10px] text-neutral-400 shrink-0">
+        <span className="inline-flex items-center gap-1 text-[10px] text-neutral-600 dark:text-neutral-400 shrink-0">
           <Clock3 className="w-3 h-3" /> {article.audioDuration}
         </span>
       )}
@@ -90,7 +90,7 @@ const AudioCard: React.FC<{ article: NewsArticle }> = ({ article }) => (
     <h3 className="font-editorial text-lg text-neutral-800 dark:text-neutral-100 leading-snug mt-1.5 mb-1.5">
       {article.title}
     </h3>
-    <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed text-[13px] line-clamp-2">
+    <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-[13px] line-clamp-2">
       {article.description}
     </p>
     {article.audioUrl && <AudioPlayer src={article.audioUrl} />}
@@ -131,7 +131,7 @@ const RelatedCourses: React.FC<{ ids?: number[] }> = ({ ids }) => {
               <p className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 mt-0.5 line-clamp-1 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
                 {course.title}
               </p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">{course.level} · {course.author}</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400">{course.level} · {course.author}</p>
             </div>
             <ArrowRight className="w-4 h-4 text-primary-600 shrink-0 group-hover:translate-x-0.5 transition-transform" />
           </button>
@@ -234,7 +234,7 @@ const ArticleCard: React.FC<{ article: NewsArticle; featured?: boolean }> = ({ a
           {article.category}
         </span>
         {article.readTime && (
-          <span className="inline-flex items-center gap-1 text-[10px] text-neutral-400 shrink-0">
+          <span className="inline-flex items-center gap-1 text-[10px] text-neutral-600 dark:text-neutral-400 shrink-0">
             <Clock3 className="w-3 h-3" /> {article.readTime.replace(' de lectura', '')}
           </span>
         )}
@@ -242,7 +242,7 @@ const ArticleCard: React.FC<{ article: NewsArticle; featured?: boolean }> = ({ a
       <h3 className={`font-editorial text-neutral-800 dark:text-neutral-100 leading-snug mt-1.5 mb-2 group-hover:text-primary-600 transition-colors ${featured ? 'text-xl lg:text-2xl' : 'text-lg'}`}>
         {article.title}
       </h3>
-      <p className={`text-neutral-500 dark:text-neutral-400 leading-relaxed text-[13px] ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
+      <p className={`text-neutral-600 dark:text-neutral-400 leading-relaxed text-[13px] ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
         {article.description}
       </p>
       <span className="inline-flex items-center gap-1 text-xs font-medium text-primary-700 dark:text-primary-400 mt-3 group-hover:gap-2 transition-all">
@@ -256,7 +256,7 @@ const ArticleHighlights: React.FC<{ highlights?: string[] }> = ({ highlights }) 
   if (!highlights?.length) return null;
   return (
     <aside className="my-8 border-y border-neutral-200 dark:border-neutral-700 py-6">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400 dark:text-neutral-500 mb-4">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-600 dark:text-neutral-500 mb-4">
         Claves del artículo
       </p>
       <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-3">
@@ -300,7 +300,7 @@ const Descubrir: React.FC = () => {
     if (!article) {
       return (
         <div className="w-full pt-[72px] lg:pt-0 px-6 lg:px-0 py-12">
-          <p className="text-sm text-neutral-500 mb-4">Artículo no encontrado.</p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">Artículo no encontrado.</p>
           <Link to="/descubrir" className="text-sm font-medium text-primary-700 dark:text-primary-400">
             Volver a Descubrir
           </Link>
@@ -314,7 +314,7 @@ const Descubrir: React.FC = () => {
     return (
       <div className="w-full pt-[72px] lg:pt-0 pb-16">
         <div className="px-6 lg:px-0 pt-6 pb-6">
-          <Link to="/descubrir" className="inline-flex items-center gap-2 text-neutral-400 hover:text-primary-600 transition-colors text-sm">
+          <Link to="/descubrir" className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors text-sm">
             <ArrowLeft className="w-4 h-4" /> Descubrir
           </Link>
         </div>
@@ -326,10 +326,10 @@ const Descubrir: React.FC = () => {
           <h1 className="font-editorial text-3xl lg:text-4xl text-neutral-800 dark:text-neutral-100 leading-tight mt-2 mb-3 [text-wrap:balance]">
             {article.title}
           </h1>
-          <p className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed mb-6">
+          <p className="text-[15px] text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6">
             {article.description}
           </p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-400 mb-6">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-600 dark:text-neutral-400 mb-6">
             {article.author && <span>{article.author}</span>}
             {article.readTime && (
               <span className="inline-flex items-center gap-1.5"><Clock3 className="w-3.5 h-3.5" />{article.readTime}</span>
@@ -343,7 +343,7 @@ const Descubrir: React.FC = () => {
           {article.content && <ArticleBody content={article.content} />}
           {article.contentType === 'audio' && article.audioUrl && <AudioPlayer src={article.audioUrl} />}
           <RelatedCourses ids={article.relatedCourseIds} />
-          <p className="text-xs text-neutral-400 mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700 leading-relaxed">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700 leading-relaxed">
             Contenido educativo del Instituto Centrobioenergética. No sustituye una valoración profesional ni una recomendación personalizada.
           </p>
         </article>
@@ -376,11 +376,11 @@ const Descubrir: React.FC = () => {
             <h1 className="font-editorial text-3xl lg:text-4xl text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
               Descubrir
             </h1>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-lg leading-relaxed">
               Guías breves para entender un tema, probar una práctica y tomar decisiones cotidianas con más información.
             </p>
           </div>
-          <div className="flex gap-5 text-xs text-neutral-400 dark:text-neutral-500 shrink-0">
+          <div className="flex gap-5 text-xs text-neutral-600 dark:text-neutral-500 shrink-0">
             <span><strong className="block text-lg font-editorial text-neutral-700 dark:text-neutral-200">{news.length}</strong>lecturas</span>
             <span><strong className="block text-lg font-editorial text-neutral-700 dark:text-neutral-200">{categories.length - 1}</strong>temas</span>
           </div>
@@ -461,10 +461,10 @@ const Descubrir: React.FC = () => {
             </div>
             <div className="min-w-0">
               <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100">¿Prefieres video?</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">Visita Wellvibe Media, nuestro canal de contenido abierto.</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400">Visita Wellvibe Media, nuestro canal de contenido abierto.</p>
             </div>
           </div>
-          <ArrowRight className="w-4 h-4 text-neutral-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight className="w-4 h-4 text-neutral-600 dark:text-neutral-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>
     </div>

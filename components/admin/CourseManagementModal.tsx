@@ -32,13 +32,13 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                 <div className="p-6 border-b border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
                     <div>
                         <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">Gestionar Acceso a Cursos</h2>
-                        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
                             Usuario: <span className="font-medium text-primary-600">{user.name}</span>
                         </p>
                     </div>
                     <button
                         onClick={onClose}
-                        className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors text-neutral-500"
+                        className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors text-neutral-600 dark:text-neutral-400"
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -72,7 +72,7 @@ const CourseManagementModal: React.FC<CourseManagementModalProps> = ({
                                         }`}>
                                             {course.title}
                                         </h3>
-                                        <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2">{course.description}</p>
+                                        <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2">{course.description}</p>
                                     </div>
                                 </div>
                             );

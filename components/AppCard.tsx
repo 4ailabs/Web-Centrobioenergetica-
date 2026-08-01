@@ -18,8 +18,8 @@ const AppCard: React.FC<AppCardProps> = ({ app }) => {
       </div>
       <div className="flex-1 min-w-0">
         <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-50 group-hover:text-primary-600 transition-colors">{app.name}</h3>
-        <p className="text-xs text-neutral-400 dark:text-neutral-500 mb-1">{app.category}</p>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed">{app.description}</p>
+        <p className="text-xs text-neutral-600 dark:text-neutral-500 mb-1">{app.category}</p>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">{app.description}</p>
       </div>
     </a>
   );

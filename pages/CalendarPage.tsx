@@ -72,7 +72,7 @@ const CalendarPage: React.FC = () => {
             <div className="w-full flex items-center justify-center min-h-[50vh]">
                 <div className="animate-pulse flex flex-col items-center">
                     <div className="w-8 h-8 bg-neutral-200 dark:bg-neutral-700 rounded-full mb-3"></div>
-                    <p className="text-neutral-500 dark:text-neutral-400 text-xs">Cargando agenda...</p>
+                    <p className="text-neutral-600 dark:text-neutral-400 text-xs">Cargando agenda...</p>
                 </div>
             </div>
         );
@@ -85,7 +85,7 @@ const CalendarPage: React.FC = () => {
                 <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
                     Agenda de <span className="text-primary-600">Eventos</span>
                 </h1>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
                     Talleres, cursos y sesiones programadas para los próximos meses.
                 </p>
             </div>
@@ -97,7 +97,7 @@ const CalendarPage: React.FC = () => {
                         {/* Month header */}
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
-                            <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider capitalize shrink-0">
+                            <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider capitalize shrink-0">
                                 {group.month}
                             </span>
                             <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
@@ -125,7 +125,7 @@ const CalendarPage: React.FC = () => {
                                             <div className={`text-2xl font-semibold leading-none mb-1 ${isFirst ? 'text-primary-600' : 'text-neutral-700 dark:text-neutral-200'}`}>
                                                 {dateInfo.day}
                                             </div>
-                                            <div className="text-[10px] text-neutral-400 capitalize">{dateInfo.weekday}</div>
+                                            <div className="text-[10px] text-neutral-600 dark:text-neutral-400 capitalize">{dateInfo.weekday}</div>
                                         </div>
 
                                         {/* Timeline dot + line */}
@@ -139,10 +139,10 @@ const CalendarPage: React.FC = () => {
                                             <h3 className={`font-medium leading-snug mb-1 ${route ? 'group-hover:text-primary-600 transition-colors' : ''} ${isFirst ? 'text-[15px] text-neutral-800 dark:text-neutral-100' : 'text-[14px] text-neutral-700 dark:text-neutral-200'}`}>
                                                 {event.title}
                                             </h3>
-                                            <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
+                                            <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
                                                 {event.description}
                                             </p>
-                                            <div className="flex items-center gap-4 text-[11px] text-neutral-400">
+                                            <div className="flex items-center gap-4 text-[11px] text-neutral-600 dark:text-neutral-400">
                                                 <div className="flex items-center gap-1">
                                                     <Clock className="w-3 h-3" />
                                                     <span>{dateInfo.time}</span>
