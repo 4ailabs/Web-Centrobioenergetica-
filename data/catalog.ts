@@ -1,4 +1,5 @@
 import type { Course } from '../types';
+import type { TonoBadge } from '../components/ui/Badge';
 
 // Fuente única del catálogo visible y del estado de cada curso.
 // Antes estos ids vivían duplicados (y desincronizados) en Dashboard y AllCourses.
@@ -26,11 +27,14 @@ export const ESTADO_LABEL: Record<CourseEstado, string> = {
   'grabacion': 'Grabación disponible',
 };
 
-export const ESTADO_BADGE_CLASS: Record<CourseEstado, string> = {
-  'nuevo': 'bg-primary-600 text-white',
-  'en-curso': 'bg-salvia-500 text-white',
-  'proximamente': 'bg-neutral-800 text-white dark:bg-neutral-200 dark:text-neutral-800',
-  'grabacion': 'bg-neutral-100 text-neutral-600 dark:bg-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-600',
+// El estado de un curso se pinta con <Badge>. Aquí solo se dice qué tono le
+// toca a cada uno; el aspecto del tono vive en components/ui/Badge.tsx, que es
+// el único sitio donde hay que tocarlo si cambia.
+export const ESTADO_TONO: Record<CourseEstado, TonoBadge> = {
+  'nuevo': 'marca',
+  'en-curso': 'activo',
+  'proximamente': 'proximo',
+  'grabacion': 'neutro',
 };
 
 // Un visitante explora la landing pública del curso; un alumno inscrito va

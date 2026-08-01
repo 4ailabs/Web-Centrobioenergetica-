@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react';
+import { COLOR } from '../lib/tokens';
 
 // Types
 interface Question {
@@ -139,7 +140,7 @@ function calculateProfile(answers: Record<string, number | number[]>): Profile {
 
   // 1. Calma — pre-transition, minimal symptoms
   if (totalB <= 4 && phaseScore <= 3) return {
-    name: 'Calma', color: '#7a9466', phase, severity,
+    name: 'Calma', color: COLOR.salviaOscuro, phase, severity,
     description: 'Tu cuerpo aún no ha entrado en transición hormonal activa. Los indicadores son estables. Este es el momento de conocer tu mapa — antes de que los síntomas aparezcan, no después.',
     recommendation: 'El momento preventivo tiene más impacto que cualquier intervención reactiva. Mapear ahora es ganar tiempo.',
     anchor: 'El mapa se lee mejor antes de que llegue la tormenta.',
@@ -202,7 +203,7 @@ function calculateProfile(answers: Record<string, number | number[]>): Profile {
 
   // 8. Default — Transición (moderate mixed)
   return {
-    name: 'Transición', color: '#B5604A', phase, severity,
+    name: 'Transición', color: COLOR.terracota, phase, severity,
     description: 'Tu cuerpo está en transición activa con síntomas distribuidos en varios ejes. No hay un solo sistema dominante — hay una reorganización general que necesita un mapa completo para navegar.',
     recommendation: 'La cartografía completa permite identificar cuáles mapas priorizar según tu perfil específico.',
     anchor: 'Navegar el climaterio sin mapa es moverse a ciegas.',
@@ -303,7 +304,7 @@ const TestHormonal: React.FC = () => {
   if (step === -1) return (
     <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex flex-col bg-[var(--bg-main)]">
       {/* Banda superior terracota — identidad visual */}
-      <div className="w-full h-1" style={{ background: 'linear-gradient(90deg, #B5604A, #C9A96E 50%, #7A9B7F)' }} />
+      <div className="w-full h-1" style={{ background: `linear-gradient(90deg, ${COLOR.terracota}, #C9A96E 50%, #7A9B7F)` }} />
 
       <div className="flex-1 flex items-center justify-center px-6 py-10">
         <div className="max-w-lg w-full">
@@ -315,9 +316,9 @@ const TestHormonal: React.FC = () => {
             </span>
             <h1 className="mb-3" style={{ fontFamily: "'Newsreader', Georgia, serif", fontWeight: 400, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', lineHeight: 1.1, color: 'var(--text-main, #1a1a1a)' }}>
               Cartografía Hormonal<br />
-              <em style={{ color: '#B5604A', fontStyle: 'italic' }}>Femenina™</em>
+              <em style={{ color: COLOR.terracota, fontStyle: 'italic' }}>Femenina™</em>
             </h1>
-            <div className="w-10 h-px mx-auto mb-4" style={{ background: '#B5604A' }} />
+            <div className="w-10 h-px mx-auto mb-4" style={{ background: COLOR.terracota }} />
             <p className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
               22 preguntas para identificar tu fase hormonal, la severidad de tus síntomas y tus ejes de riesgo. Al final recibirás tu perfil personalizado.
             </p>
@@ -326,9 +327,9 @@ const TestHormonal: React.FC = () => {
           {/* Secciones */}
           <div className="mb-7 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
             {[
-              { label: 'Sección A', desc: 'Tu fase reproductiva', count: '4 preguntas', color: '#B5604A' },
+              { label: 'Sección A', desc: 'Tu fase reproductiva', count: '4 preguntas', color: COLOR.terracota },
               { label: 'Sección B', desc: 'Tus síntomas actuales', count: '12 preguntas', color: '#534AB7' },
-              { label: 'Sección C', desc: 'Tu perfil de riesgo', count: '6 preguntas', color: '#7a9466' },
+              { label: 'Sección C', desc: 'Tu perfil de riesgo', count: '6 preguntas', color: COLOR.salviaOscuro },
             ].map((s, i) => (
               <div key={i} className={`flex items-center justify-between px-5 py-4 ${i < 2 ? 'border-b border-neutral-100 dark:border-neutral-700' : ''}`}>
                 <div className="flex items-center gap-3">
@@ -347,7 +348,7 @@ const TestHormonal: React.FC = () => {
           <button
             onClick={() => setStep(0)}
             className="w-full py-4 rounded-xl text-white text-[16px] font-medium transition-all hover:opacity-90 active:scale-[0.99] mb-3"
-            style={{ background: 'linear-gradient(135deg, #B5604A, #9a4f3c)' }}
+            style={{ background: `linear-gradient(135deg, ${COLOR.terracota}, ${COLOR.terracotaOscuro})` }}
           >
             Comenzar el test
           </button>
@@ -381,7 +382,7 @@ const TestHormonal: React.FC = () => {
     const maxBar = 20; // Somático: 5 ítems × 4 = 20 · Psicológico: 4 ítems × 4 = 16
     const psychMax = 16;
     const urMax = 12;
-    const riskColor = riskTotal <= 3 ? '#7a9466' : riskTotal <= 7 ? '#BA7517' : '#C25A2A';
+    const riskColor = riskTotal <= 3 ? COLOR.salviaOscuro : riskTotal <= 7 ? '#BA7517' : '#C25A2A';
     const riskLabel = riskTotal <= 3 ? 'Bajo' : riskTotal <= 7 ? 'Moderado' : 'Alto';
     const sevLabel = (v: number, max: number) => {
       const pct = v / max;
@@ -508,13 +509,13 @@ const TestHormonal: React.FC = () => {
                   {Array.from({ length: 14 }).map((_, i) => (
                     <div key={i} className="flex-1 h-2.5 rounded-sm transition-all duration-500"
                       style={{
-                        background: i < riskTotal ? (i < 4 ? '#7a9466' : i < 8 ? '#BA7517' : '#C25A2A') : 'var(--border-light, #e8e6e1)',
+                        background: i < riskTotal ? (i < 4 ? COLOR.salviaOscuro : i < 8 ? '#BA7517' : '#C25A2A') : 'var(--border-light, #e8e6e1)',
                         transitionDelay: `${i * 40}ms`,
                       }} />
                   ))}
                 </div>
                 <div className="flex justify-between mt-1.5">
-                  <span className="text-[10px]" style={{ color: '#7a9466' }}>Bajo</span>
+                  <span className="text-[10px]" style={{ color: COLOR.salviaOscuro }}>Bajo</span>
                   <span className="text-[10px]" style={{ color: '#BA7517' }}>Moderado</span>
                   <span className="text-[10px]" style={{ color: '#C25A2A' }}>Alto</span>
                 </div>
@@ -589,7 +590,7 @@ const TestHormonal: React.FC = () => {
   if (!currentQuestion) return null;
 
   const sectionProgress = currentQuestion.section === 'A' ? 'A' : currentQuestion.section === 'B' ? 'B' : 'C';
-  const sectionColors: Record<string, string> = { A: '#B5604A', B: '#534AB7', C: '#8B6F4E' };
+  const sectionColors: Record<string, string> = { A: COLOR.terracota, B: '#534AB7', C: '#8B6F4E' };
 
   return (
     <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex flex-col bg-[var(--bg-main)]">
@@ -648,7 +649,7 @@ const TestHormonal: React.FC = () => {
           {/* Scale 0-4 */}
           {currentQuestion.type === 'scale' && (() => {
             const scaleOpts = [
-              { label: 'No lo\ntengo', color: '#7a9466', bg: '#7a946612' },
+              { label: 'No lo\ntengo', color: COLOR.salviaOscuro, bg: `${COLOR.salviaOscuro}12` },
               { label: 'Leve', color: '#a0b060', bg: '#a0b06012' },
               { label: 'Moderado', color: '#BA7517', bg: '#BA751712' },
               { label: 'Severo', color: '#C25A2A', bg: '#C25A2A12' },

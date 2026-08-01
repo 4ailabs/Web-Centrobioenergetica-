@@ -7,9 +7,12 @@ import { ArrowRight, MapPin, Play } from 'lucide-react';
 import { API_BASE } from '../lib/api';
 import { handleCourseClick } from '../utils/framerIntegration';
 import { MOCK_DATA } from '../data/mockData';
-import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_BADGE_CLASS, courseHref } from '../data/catalog';
+import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO, courseHref } from '../data/catalog';
 import PromoVideo from '../components/PromoVideo';
+import Badge from '../components/ui/Badge';
+import Button from '../components/ui/Button';
 import type { Course } from '../types';
+import { COLOR } from '../lib/tokens';
 
 interface DashboardProps {
   onNavigateToCourses?: () => void;
@@ -115,18 +118,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
               Formación aplicable desde el primer día, con el Dr. Miguel Ojeda Rios.
             </p>
             <div className="flex flex-wrap gap-2.5">
-              <button
-                onClick={() => navigate('/cursos')}
-                className="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium transition-colors"
-              >
-                Explorar cursos
-              </button>
-              <button
-                onClick={() => navigate('/sobre-nosotros')}
-                className="px-5 py-2.5 rounded-xl border border-white/40 hover:border-white/70 text-white text-sm font-medium transition-colors"
-              >
-                Conocer el instituto
-              </button>
+              <Button to="/cursos">Explorar cursos</Button>
+              <Button to="/sobre-nosotros" variante="contornoClaro">Conocer el instituto</Button>
             </div>
           </div>
         </div>
@@ -172,9 +165,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             className="group w-full text-left p-5 border-t border-neutral-100 dark:border-neutral-700"
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS['proximamente']}`}>
-                {ESTADO_LABEL['proximamente']}
-              </span>
+              <Badge tono={ESTADO_TONO['proximamente']}>{ESTADO_LABEL['proximamente']}</Badge>
               <span className="text-[11px] text-neutral-400">Curso Selecto · 2 sábados</span>
             </div>
             <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
@@ -205,7 +196,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             </div>
             <div className="sm:w-1/2 p-5 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
-                <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS['en-curso']}`}>En curso</span>
+                <Badge tono={ESTADO_TONO['en-curso']}>En curso</Badge>
                 <span className="text-[11px] text-neutral-400">Curso · 4 Sábados</span>
               </div>
               <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
@@ -230,7 +221,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
           <div className="flex flex-col sm:flex-row">
             <div className="sm:w-1/2 p-5 flex flex-col justify-center order-2 sm:order-1">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Beca por invitación</span>
+                <Badge tono="marca">Beca por invitación</Badge>
                 <span className="text-[11px] text-neutral-400">4 sesiones · viernes</span>
               </div>
               <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
@@ -244,13 +235,13 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             </div>
             <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px] order-1 sm:order-2 flex items-center justify-center bg-[#362F29]">
               <svg width="72" height="72" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-                <circle cx="10" cy="8" r="3.5" stroke="#8FA87A" strokeWidth="1.4" />
-                <circle cx="34" cy="8" r="3.5" stroke="#8FA87A" strokeWidth="1.4" />
-                <circle cx="22" cy="24" r="4.2" fill="#8FA87A" opacity="0.18" stroke="#8FA87A" strokeWidth="1.4" />
-                <path d="M10 11.5 V17 H34 V11.5" stroke="#8FA87A" strokeWidth="1.2" strokeLinecap="round" />
-                <path d="M22 17 V19.8" stroke="#8FA87A" strokeWidth="1.2" strokeLinecap="round" />
-                <path d="M22 28.2 V33" stroke="#8FA87A" strokeWidth="1.2" strokeLinecap="round" />
-                <circle cx="22" cy="37.5" r="3" fill="#8FA87A" />
+                <circle cx="10" cy="8" r="3.5" stroke={COLOR.salvia} strokeWidth="1.4" />
+                <circle cx="34" cy="8" r="3.5" stroke={COLOR.salvia} strokeWidth="1.4" />
+                <circle cx="22" cy="24" r="4.2" fill={COLOR.salvia} opacity="0.18" stroke={COLOR.salvia} strokeWidth="1.4" />
+                <path d="M10 11.5 V17 H34 V11.5" stroke={COLOR.salvia} strokeWidth="1.2" strokeLinecap="round" />
+                <path d="M22 17 V19.8" stroke={COLOR.salvia} strokeWidth="1.2" strokeLinecap="round" />
+                <path d="M22 28.2 V33" stroke={COLOR.salvia} strokeWidth="1.2" strokeLinecap="round" />
+                <circle cx="22" cy="37.5" r="3" fill={COLOR.salvia} />
               </svg>
             </div>
           </div>
@@ -283,9 +274,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                 <div className="flex-1 min-w-0 pt-0.5">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
                     {meta && (
-                      <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS[meta.estado]}`}>
-                        {ESTADO_LABEL[meta.estado]}
-                      </span>
+                      <Badge tono={ESTADO_TONO[meta.estado]}>{ESTADO_LABEL[meta.estado]}</Badge>
                     )}
                     <span className="text-[11px] text-neutral-400">{course.level}</span>
                   </div>

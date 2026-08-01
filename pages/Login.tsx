@@ -6,6 +6,7 @@ import InputField from '../components/ui/InputField';
 import { Link } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
 import { whatsappLink } from '../lib/whatsapp';
+import { COLOR } from '../lib/tokens';
 
 const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const dotsRef = useRef<(SVGCircleElement | null)[]>([]);
@@ -60,18 +61,18 @@ const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
   }, [onComplete]);
 
   const dots = [
-    { cx: 0, cy: -50, fill: '#B5604A' },
-    { cx: 25, cy: -43.3, fill: '#8FA87A' },
-    { cx: 43.3, cy: -25, fill: '#B5604A' },
-    { cx: 50, cy: 0, fill: '#8FA87A' },
-    { cx: 43.3, cy: 25, fill: '#B5604A' },
-    { cx: 25, cy: 43.3, fill: '#8FA87A' },
-    { cx: 0, cy: 50, fill: '#B5604A' },
-    { cx: -25, cy: 43.3, fill: '#8FA87A' },
-    { cx: -43.3, cy: 25, fill: '#B5604A' },
-    { cx: -50, cy: 0, fill: '#8FA87A' },
-    { cx: -43.3, cy: -25, fill: '#B5604A' },
-    { cx: -25, cy: -43.3, fill: '#8FA87A' },
+    { cx: 0, cy: -50, fill: COLOR.terracota },
+    { cx: 25, cy: -43.3, fill: COLOR.salvia },
+    { cx: 43.3, cy: -25, fill: COLOR.terracota },
+    { cx: 50, cy: 0, fill: COLOR.salvia },
+    { cx: 43.3, cy: 25, fill: COLOR.terracota },
+    { cx: 25, cy: 43.3, fill: COLOR.salvia },
+    { cx: 0, cy: 50, fill: COLOR.terracota },
+    { cx: -25, cy: 43.3, fill: COLOR.salvia },
+    { cx: -43.3, cy: 25, fill: COLOR.terracota },
+    { cx: -50, cy: 0, fill: COLOR.salvia },
+    { cx: -43.3, cy: -25, fill: COLOR.terracota },
+    { cx: -25, cy: -43.3, fill: COLOR.salvia },
   ];
 
   return (
@@ -89,15 +90,15 @@ const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
               style={{ opacity: 0 }}
             />
           ))}
-          <circle ref={glowRef} cx="0" cy="0" r="5" fill="#E8A857" style={{ opacity: 0 }} />
-          <circle ref={coreRef} cx="0" cy="0" r="3" fill="#E8A857" style={{ opacity: 0 }} />
+          <circle ref={glowRef} cx="0" cy="0" r="5" fill={COLOR.ambar} style={{ opacity: 0 }} />
+          <circle ref={coreRef} cx="0" cy="0" r="3" fill={COLOR.ambar} style={{ opacity: 0 }} />
         </g>
       </svg>
       <div className="mt-5 text-center">
         <div ref={txt1Ref} className="text-[9px] tracking-[4px] font-medium text-neutral-400" style={{ opacity: 0 }}>
           INSTITUTO
         </div>
-        <div ref={txt2Ref} className="text-[13px] tracking-[1.8px] font-medium text-[#B5604A] mt-1" style={{ opacity: 0 }}>
+        <div ref={txt2Ref} className="text-[13px] tracking-[1.8px] font-medium text-primary-600 mt-1" style={{ opacity: 0 }}>
           CENTROBIOENERGETICA
         </div>
       </div>
