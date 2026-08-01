@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound, ChevronDown, Clock, UserCheck } from 'lucide-react';
-import StatsCards from '../components/admin/StatsCards';
 import UserTable from '../components/admin/UserTable';
 import GrantAccessModal from '../components/admin/GrantAccessModal';
 import CourseManagementModal from '../components/admin/CourseManagementModal';
 import UserFormModal from '../components/admin/UserFormModal';
 import { MOCK_DATA } from '../data/mockData';
+import { ACTIVE_COURSE_IDS } from '../data/catalog';
+import { generarContrasena } from '../lib/password';
 
-const USERS_PER_PAGE = 10;
+const LOTE_USUARIOS = 25;
 
 // Toast notification
 const Toast: React.FC<{ message: string; type: 'success' | 'error'; onClose: () => void }> = ({ message, type, onClose }) => {
@@ -35,18 +36,29 @@ const ResetPasswordModal: React.FC<{
     onSave: (password: string) => Promise<void>;
     onClose: () => void;
 }> = ({ user, onSave, onClose }) => {
-    const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState('');
+    // La contraseña se genera: nadie tiene que inventarla ni teclearla dos
+    // veces en un móvil. Sale legible y con el mensaje listo para enviar.
+    const [password] = useState(() => generarContrasena());
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState('');
+    const [listo, setListo] = useState(false);
+    const [copiado, setCopiado] = useState(false);
+
+    const mensaje = [
+        `Hola ${(user?.name || '').split(' ')[0] || ''}, restablecí tu contraseña.`,
+        '',
+        'Entra en institutocentrobioenergetica.com',
+        `Correo: ${user?.email}`,
+        `Contraseña: ${password}`,
+        '',
+        'Puedes cambiarla cuando entres.',
+    ].join('\n');
 
     const handleSubmit = async () => {
-        if (password.length < 8) { setError('Mínimo 8 caracteres'); return; }
-        if (password !== confirm) { setError('Las contraseñas no coinciden'); return; }
         setSaving(true);
         try {
             await onSave(password);
-            onClose();
+            setListo(true);
         } catch (e: any) {
             setError(e.message || 'Error al cambiar contraseña');
         } finally {
@@ -54,55 +66,77 @@ const ResetPasswordModal: React.FC<{
         }
     };
 
+    const copiar = async () => {
+        try {
+            await navigator.clipboard.writeText(mensaje);
+            setCopiado(true);
+            setTimeout(() => setCopiado(false), 2500);
+        } catch {
+            setError('No se pudo copiar. Selecciona el texto y cópialo a mano.');
+        }
+    };
+
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-            <div className="bg-white dark:bg-neutral-800 w-full max-w-md rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-700 p-6">
-                <div className="flex items-center gap-3 mb-5">
-                    <div className="w-9 h-9 bg-amber-100 dark:bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-600">
+        <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <div className="absolute inset-0 bg-black/40" onClick={onClose} aria-hidden="true" />
+            <div role="dialog" aria-modal="true" className="relative bg-white dark:bg-neutral-800 w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-700 p-5">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 bg-amber-100 dark:bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-600 shrink-0">
                         <KeyRound className="w-4 h-4" />
                     </div>
-                    <div>
-                        <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">Restablecer contraseña</h2>
-                        <p className="text-xs text-neutral-500">{user?.name || user?.email}</p>
+                    <div className="min-w-0">
+                        <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
+                            {listo ? 'Contraseña restablecida' : 'Restablecer contraseña'}
+                        </h2>
+                        <p className="text-xs text-neutral-500 truncate">{user?.name || user?.email}</p>
                     </div>
                 </div>
 
-                <div className="space-y-3 mb-4">
-                    <div>
-                        <label className="block text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-1">Nueva contraseña</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={e => { setPassword(e.target.value); setError(''); }}
-                            placeholder="Mínimo 8 caracteres"
-                            className="w-full px-3 py-2 text-sm bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-800 dark:text-neutral-100 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-1">Confirmar contraseña</label>
-                        <input
-                            type="password"
-                            value={confirm}
-                            onChange={e => { setConfirm(e.target.value); setError(''); }}
-                            placeholder="Repite la contraseña"
-                            className="w-full px-3 py-2 text-sm bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-800 dark:text-neutral-100 focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 outline-none"
-                        />
-                    </div>
-                    {error && <p className="text-xs text-red-500">{error}</p>}
-                </div>
-
-                <div className="flex justify-end gap-2">
-                    <button onClick={onClose} className="px-4 py-2 text-sm rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
-                        Cancelar
-                    </button>
-                    <button
-                        onClick={handleSubmit}
-                        disabled={saving}
-                        className="px-4 py-2 text-sm rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors disabled:opacity-50"
-                    >
-                        {saving ? 'Guardando...' : 'Guardar'}
-                    </button>
-                </div>
+                {!listo ? (
+                    <>
+                        <p className="text-[13px] text-neutral-600 dark:text-neutral-400 mb-3 leading-relaxed">
+                            Se asignará esta contraseña nueva:
+                        </p>
+                        <div className="px-4 py-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-700 mb-4">
+                            <span className="font-mono text-[16px] text-neutral-800 dark:text-neutral-100">{password}</span>
+                        </div>
+                        {error && <p className="text-xs text-red-500 mb-3">{error}</p>}
+                        <div className="flex gap-2">
+                            <button onClick={onClose} className="flex-1 px-4 py-3 text-sm rounded-xl border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:border-neutral-400 transition-colors min-h-[44px]">
+                                Cancelar
+                            </button>
+                            <button
+                                onClick={handleSubmit}
+                                disabled={saving}
+                                className="flex-1 px-4 py-3 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 transition-colors disabled:opacity-50 min-h-[44px]"
+                            >
+                                {saving ? 'Guardando…' : 'Restablecer'}
+                            </button>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <pre className="whitespace-pre-wrap text-[13px] leading-relaxed text-neutral-700 dark:text-neutral-300 bg-neutral-50 dark:bg-neutral-900/40 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4 font-sans mb-3">
+{mensaje}
+                        </pre>
+                        <div className="flex flex-col sm:flex-row gap-2 mb-2">
+                            <a
+                                href={`https://wa.me/?text=${encodeURIComponent(mensaje)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-salvia-500 hover:bg-salvia-600 text-white text-sm font-semibold transition-colors min-h-[44px]"
+                            >
+                                Abrir WhatsApp
+                            </a>
+                            <button onClick={copiar} className="flex-1 px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 transition-colors min-h-[44px]">
+                                {copiado ? 'Copiado' : 'Copiar mensaje'}
+                            </button>
+                        </div>
+                        <button onClick={onClose} className="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 transition-colors min-h-[44px]">
+                            Terminar
+                        </button>
+                    </>
+                )}
             </div>
         </div>
     );
@@ -135,10 +169,9 @@ const AdminDashboard: React.FC = () => {
     const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterSubscription, setFilterSubscription] = useState<'all' | 'active' | 'inactive'>('all');
     const [filterCourses, setFilterCourses] = useState<'all' | 'with' | 'without'>('all');
     const [filterCourseId, setFilterCourseId] = useState<string>('all');
-    const [currentPage, setCurrentPage] = useState(1);
+    const [visibles, setVisibles] = useState(LOTE_USUARIOS);
     const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
     const showToast = (message: string, type: 'success' | 'error' = 'success') => {
@@ -175,7 +208,7 @@ const AdminDashboard: React.FC = () => {
     useEffect(() => { fetchUsers(); }, []);
 
     // Reset page when filters change
-    useEffect(() => { setCurrentPage(1); }, [searchTerm, filterSubscription, filterCourses, filterCourseId]);
+    useEffect(() => { setVisibles(LOTE_USUARIOS); }, [searchTerm, filterCourses, filterCourseId]);
 
     // --- Aprobación de acceso ---
     // Un usuario recién registrado queda pendiente y NO puede iniciar sesión
@@ -293,10 +326,6 @@ const AdminDashboard: React.FC = () => {
         const matchesSearch =
             (user.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
             (user.email || '').toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesSubscription =
-            filterSubscription === 'all' ||
-            (filterSubscription === 'active' && user.subscriptionStatus === 'active') ||
-            (filterSubscription === 'inactive' && user.subscriptionStatus !== 'active');
         const matchesCourses =
             filterCourses === 'all' ||
             (filterCourses === 'with' && user.enrolledCourses?.length > 0) ||
@@ -304,16 +333,14 @@ const AdminDashboard: React.FC = () => {
         const matchesCourseId =
             filterCourseId === 'all' ||
             (user.enrolledCourses || []).includes(filterCourseId);
-        return matchesSearch && matchesSubscription && matchesCourses && matchesCourseId;
+        return matchesSearch && matchesCourses && matchesCourseId;
     });
 
-    const totalPages = Math.max(1, Math.ceil(filteredUsers.length / USERS_PER_PAGE));
-    const paginatedUsers = filteredUsers.slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE);
+    const usuariosMostrados = filteredUsers.slice(0, visibles);
+    const quedanPorMostrar = filteredUsers.length - usuariosMostrados.length;
 
-    const activeSubscriptions = users.filter((u) => u.subscriptionStatus === 'active').length;
     // Cuentas registradas que aún no pueden iniciar sesión
     const pendingUsers = users.filter((u) => u.approved === false);
-    const usersWithCourses = users.filter((u) => u.enrolledCourses && u.enrolledCourses.length > 0).length;
 
     const filterBtnClass = (active: boolean) =>
         `px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
@@ -335,7 +362,7 @@ const AdminDashboard: React.FC = () => {
                         <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight">
                             Panel de Administración
                         </h1>
-                        <p className="text-neutral-500 dark:text-neutral-400 text-sm font-normal">Gestión de usuarios y suscripciones</p>
+                        <p className="text-neutral-500 dark:text-neutral-400 text-sm font-normal">{users.length} personas · {MOCK_DATA.courses.filter(c => ACTIVE_COURSE_IDS.includes(c.id)).length} cursos</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -354,7 +381,6 @@ const AdminDashboard: React.FC = () => {
                 </div>
             </header>
 
-            <StatsCards totalUsers={users.length} activeSubscriptions={activeSubscriptions} usersWithCourses={usersWithCourses} />
 
             {/* Aviso de cuentas pendientes: sin aprobación no pueden iniciar sesión */}
             {pendingUsers.length > 0 && (
@@ -415,45 +441,49 @@ const AdminDashboard: React.FC = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-2 items-center">
-                    <span className="text-xs text-neutral-400 mr-1">Suscripción:</span>
-                    <button className={filterBtnClass(filterSubscription === 'all')} onClick={() => setFilterSubscription('all')}>Todas</button>
-                    <button className={filterBtnClass(filterSubscription === 'active')} onClick={() => setFilterSubscription('active')}>Activa</button>
-                    <button className={filterBtnClass(filterSubscription === 'inactive')} onClick={() => setFilterSubscription('inactive')}>Sin suscripción</button>
-
-                    <span className="text-xs text-neutral-400 ml-3 mr-1">Cursos:</span>
                     <button className={filterBtnClass(filterCourses === 'all')} onClick={() => setFilterCourses('all')}>Todos</button>
-                    <button className={filterBtnClass(filterCourses === 'with')} onClick={() => setFilterCourses('with')}>Con cursos</button>
                     <button className={filterBtnClass(filterCourses === 'without')} onClick={() => setFilterCourses('without')}>Sin cursos</button>
 
-                    <div className="relative ml-3">
+                    <div className="relative">
                         <select
                             value={filterCourseId}
                             onChange={e => setFilterCourseId(e.target.value)}
-                            className="appearance-none pl-3 pr-8 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 focus:outline-none focus:border-primary-600 transition-colors cursor-pointer"
+                            aria-label="Filtrar por curso"
+                            className="appearance-none pl-3 pr-8 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 focus:outline-none focus:border-primary-600 transition-colors cursor-pointer min-h-[34px]"
                         >
-                            <option value="all">Por curso...</option>
-                            {MOCK_DATA.courses.map(course => (
-                                <option key={course.id} value={course.id.toString()}>
-                                    {course.title.split('—')[0].trim()}
-                                </option>
-                            ))}
+                            <option value="all">Por curso…</option>
+                            {MOCK_DATA.courses
+                                .filter(c => ACTIVE_COURSE_IDS.includes(c.id))
+                                .map(course => (
+                                    <option key={course.id} value={course.id.toString()}>
+                                        {course.title.split('—')[0].trim()}
+                                    </option>
+                                ))}
                         </select>
                         <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 pointer-events-none" />
                     </div>
                 </div>
 
-                {filteredUsers.length !== users.length && (
+                {/* Al filtrar por un curso, la cabecera responde la pregunta del negocio */}
+                {filterCourseId !== 'all' && (
+                    <p className="text-[13px] text-neutral-600 dark:text-neutral-300">
+                        <strong className="font-semibold">
+                            {MOCK_DATA.courses.find(c => c.id.toString() === filterCourseId)?.title.split('—')[0].trim()}
+                        </strong>
+                        {' — '}{filteredUsers.length} {filteredUsers.length === 1 ? 'alumno inscrito' : 'alumnos inscritos'}
+                    </p>
+                )}
+                {filterCourseId === 'all' && filteredUsers.length !== users.length && (
                     <p className="text-xs text-neutral-400">
-                        Mostrando {filteredUsers.length} de {users.length} usuarios
+                        {filteredUsers.length} de {users.length} personas
                     </p>
                 )}
             </div>
 
             <UserTable
-                users={paginatedUsers}
+                users={usuariosMostrados}
                 loading={loading}
                 currentUserId={currentUser?.id}
-                onToggleSubscription={handleToggleSubscription}
                 onToggleApproval={handleToggleApproval}
                 onManageCourses={handleOpenCourseModal}
                 onEditUser={handleOpenEditUser}
@@ -461,41 +491,17 @@ const AdminDashboard: React.FC = () => {
                 onResetPassword={(user) => setResetPasswordUser(user)}
             />
 
-            {/* Pagination */}
-            {!loading && totalPages > 1 && (
-                <div className="flex items-center justify-between mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-700">
-                    <p className="text-xs text-neutral-400">
-                        Página {currentPage} de {totalPages} · {filteredUsers.length} usuarios
-                    </p>
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                            disabled={currentPage === 1}
-                            className="p-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                        >
-                            <ChevronLeft className="w-4 h-4" />
-                        </button>
-                        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                            <button
-                                key={page}
-                                onClick={() => setCurrentPage(page)}
-                                className={`w-7 h-7 rounded-lg text-xs font-medium transition-colors ${
-                                    page === currentPage
-                                        ? 'bg-primary-600 text-white'
-                                        : 'border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700'
-                                }`}
-                            >
-                                {page}
-                            </button>
-                        ))}
-                        <button
-                            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                            disabled={currentPage === totalPages}
-                            className="p-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                        >
-                            <ChevronRight className="w-4 h-4" />
-                        </button>
-                    </div>
+            {/* La búsqueda y los filtros son la forma de encontrar a alguien;
+                el lote solo evita renderizar cientos de tarjetas de golpe. */}
+            {!loading && quedanPorMostrar > 0 && (
+                <div className="mt-5 text-center">
+                    <button
+                        onClick={() => setVisibles((v) => v + LOTE_USUARIOS)}
+                        className="px-5 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-700 text-[13px] font-medium text-neutral-600 dark:text-neutral-300 hover:border-neutral-400 transition-colors min-h-[40px]"
+                    >
+                        Mostrar {Math.min(LOTE_USUARIOS, quedanPorMostrar)} más
+                        <span className="text-neutral-400"> · quedan {quedanPorMostrar}</span>
+                    </button>
                 </div>
             )}
 
