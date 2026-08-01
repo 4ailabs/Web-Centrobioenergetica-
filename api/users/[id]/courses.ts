@@ -54,6 +54,55 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(401).json({ error: auth.error });
     }
 
+    // POST - Inscribir en cursos SIN retirar los que ya tiene.
+    // Es la operación de "dar acceso": nunca puede quitarle nada al alumno.
+    if (req.method === 'POST') {
+      const { courseIds } = req.body ?? {};
+
+      if (!Array.isArray(courseIds) || courseIds.length === 0) {
+        return res.status(400).json({ error: 'Se requiere al menos un curso' });
+      }
+
+      const solicitados = courseIds
+        .map((courseId: string | number) => parseInt(String(courseId), 10))
+        .filter((courseId: number) => Number.isFinite(courseId));
+
+      const yaInscrito = await prisma.progress.findMany({
+        where: { userId: userId, courseId: { in: solicitados } },
+        select: { courseId: true },
+        distinct: ['courseId'],
+      });
+      const existentes = yaInscrito
+        .map((p) => p.courseId)
+        .filter((courseId): courseId is number => courseId !== null);
+
+      const nuevos = solicitados.filter((courseId) => !existentes.includes(courseId));
+
+      if (nuevos.length > 0) {
+        await prisma.progress.createMany({
+          data: nuevos.map((courseId) => ({
+            userId: userId,
+            courseId,
+            completed: false,
+            progress: 0,
+          })),
+          skipDuplicates: true,
+        });
+      }
+
+      const todos = await prisma.progress.findMany({
+        where: { userId: userId, courseId: { not: null } },
+        select: { courseId: true },
+        distinct: ['courseId'],
+      });
+
+      return res.json({
+        message: 'Acceso concedido',
+        añadidos: nuevos.length,
+        enrolledCourses: todos.map((p) => p.courseId?.toString()).filter(Boolean),
+      });
+    }
+
     // PUT - Actualizar cursos del usuario
     if (req.method === 'PUT') {
       const { courseIds } = req.body;

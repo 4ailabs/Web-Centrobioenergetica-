@@ -28,6 +28,7 @@ interface AuthContextType {
   adminDeleteUser: (userId: string) => Promise<void>;
   adminResetPassword: (userId: string, password: string) => Promise<void>;
   approveUser: (userId: string, approved: boolean) => Promise<void>;
+  enrollInCourses: (userId: string, courseIds: string[]) => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -237,6 +238,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  // Inscribe en cursos SIN retirar los que el alumno ya tenía.
+  const enrollInCourses = async (userId: string, courseIds: string[]) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE}/api/users/${userId}/courses`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ courseIds })
+    });
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || 'No se pudo dar acceso al curso');
+    }
+  };
+
   const adminDeleteUser = async (userId: string) => {
     const token = localStorage.getItem('token');
     const response = await fetch(`${API_BASE}/api/users/${userId}`, {
@@ -263,6 +281,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       adminDeleteUser,
       adminResetPassword,
       approveUser,
+      enrollInCourses,
       isAuthenticated: !!user
     }}>
       {children}
