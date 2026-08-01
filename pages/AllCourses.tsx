@@ -80,7 +80,7 @@ const AllCourses: React.FC = () => {
                   {first.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-neutral-400">{first.lessons} lecciones · {first.author}</span>
+                  <span className="text-xs text-neutral-400">{first.lessons > 0 ? `${first.lessons} lecciones · ` : ''}{first.author}</span>
                   <span className="flex items-center gap-1 text-xs font-medium text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity">
                     Ver curso <ArrowRight className="w-3 h-3" />
                   </span>
@@ -125,7 +125,7 @@ const AllCourses: React.FC = () => {
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
                     {course.description}
                   </p>
-                  <span className="text-xs text-neutral-400">{course.lessons} lecciones · {course.author}</span>
+                  <span className="text-xs text-neutral-400">{course.lessons > 0 ? `${course.lessons} lecciones · ` : ''}{course.author}</span>
                 </div>
               </div>
             ))}
