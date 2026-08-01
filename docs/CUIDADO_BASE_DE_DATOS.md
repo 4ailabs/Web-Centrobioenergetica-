@@ -49,9 +49,32 @@ Nunca saltes del paso 2 al 5 con `db:push`.
 
 ## Copias de seguridad
 
-La protección definitiva. Verifica en el panel de tu proveedor de base de datos (la integración de Postgres en Vercel) que estén activas las copias automáticas y la **recuperación a un punto en el tiempo** (*point-in-time recovery*). Si el plan actual no las incluye, merece la pena el coste: es la diferencia entre perder una hora y perder el negocio.
+La base es **Prisma Postgres — plan Starter** (`prisma-webcentro`), gestionada desde la integración de Vercel.
 
-Antes de cualquier operación grande (migración, limpieza, importación), haz una copia manual.
+| | Plan actual (Starter) |
+|---|---|
+| Copias automáticas | Sí, un *snapshot* diario |
+| Retención | Últimos 7 días |
+| Recuperación a un punto exacto | **No disponible** en Prisma Postgres |
+| Matiz | Solo se crea copia los días con actividad |
+
+Consecuencia práctica: ante un borrado se puede volver al estado del día anterior, pero **se pierde hasta un día de datos**. Las copias se ven y se restauran en **console.prisma.io** (no en Vercel).
+
+### Copia manual antes de cualquier operación de riesgo
+
+```bash
+npm run db:backup
+```
+
+Genera `backups/AAAA-MM-DD_HHMM.sql`. Requiere `pg_dump` instalado (`brew install postgresql@16`) y la **cadena de conexión directa** de Postgres, que se copia desde `console.prisma.io` — las URLs de Accelerate (`prisma+postgres://`) no sirven para `pg_dump`:
+
+```bash
+DATABASE_URL_DIRECTA="postgresql://…" npm run db:backup
+```
+
+La carpeta `backups/` está excluida del repositorio: esos archivos contienen datos personales de los alumnos y **nunca deben subirse a GitHub**. Guárdalos en un sitio seguro y borra los que ya no necesites.
+
+Hazlo siempre antes de: migraciones, limpiezas de datos, importaciones masivas o cualquier operación que no hayas hecho antes.
 
 ## Borrados desde la aplicación
 
