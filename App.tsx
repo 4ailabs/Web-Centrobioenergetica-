@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocat
 import { AppProvider, useAppDispatch, useUIState } from './contexts/AppContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { getUrlParams } from './utils/framerIntegration';
+import { usePageMeta } from './hooks/usePageMeta';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -61,6 +62,10 @@ const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isSearchOpen, searchQuery } = useUIState();
+
+  // Título y descripción de cada ruta. Un solo lugar en vez de repetirlo en
+  // cada página: así ninguna se queda sin ellos por olvido.
+  usePageMeta();
 
   // Navegación directa vía ?page= (usada por el embed de Framer)
   useEffect(() => {

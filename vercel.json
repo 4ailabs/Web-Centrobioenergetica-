@@ -16,6 +16,23 @@
     }
   ],
   "rewrites": [
+    { "source": "/cuatro-caminos", "destination": "/cuatro-caminos/index.html" },
+    { "source": "/regulacion-bioelectrica", "destination": "/regulacion-bioelectrica/index.html" },
+    { "source": "/rb", "destination": "/rb/index.html" },
+    { "source": "/crania", "destination": "/crania/index.html" },
+    { "source": "/resonantia", "destination": "/resonantia/index.html" },
+    { "source": "/reset-hormonal", "destination": "/reset-hormonal/index.html" },
+    { "source": "/actos-que-mueven", "destination": "/actos-que-mueven/index.html" },
+    { "source": "/taller-mascotas", "destination": "/taller-mascotas/index.html" },
+    { "source": "/bioenergetica-transgeneracional", "destination": "/bioenergetica-transgeneracional/index.html" },
+    { "source": "/cursos", "destination": "/cursos/index.html" },
+    { "source": "/descubrir", "destination": "/descubrir/index.html" },
+    { "source": "/servicios", "destination": "/servicios/index.html" },
+    { "source": "/sobre-nosotros", "destination": "/sobre-nosotros/index.html" },
+    { "source": "/calendario", "destination": "/calendario/index.html" },
+    { "source": "/aplicaciones", "destination": "/aplicaciones/index.html" },
+    { "source": "/test-hormonal", "destination": "/test-hormonal/index.html" },
+    { "source": "/test-vinculo-animal", "destination": "/test-vinculo-animal/index.html" },
     { "source": "/((?!api|assets|images|favicon).*)", "destination": "/index.html" }
   ]
 }
