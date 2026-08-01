@@ -5,6 +5,7 @@ import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import InputField from '../components/ui/InputField';
 import { Link } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
+import { whatsappLink } from '../lib/whatsapp';
 
 const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const dotsRef = useRef<(SVGCircleElement | null)[]>([]);
@@ -156,10 +157,33 @@ const Login: React.FC = () => {
               </div>
 
               {error && (
-                <div className="mb-5 p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2 text-red-700 dark:text-red-200">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-xs font-medium">{error}</span>
-                </div>
+                error.includes('aprobación') ? (
+                  /* No es un fallo del usuario: la cuenta existe y espera activación */
+                  <div className="mb-5 p-3 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-lg text-amber-800 dark:text-amber-200">
+                    <div className="flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium">Tu cuenta aún no está activada</p>
+                        <p className="text-[11px] mt-1 leading-relaxed opacity-90">
+                          Ya estás registrado. Activamos los accesos manualmente; si necesitas entrar ahora, escríbenos.
+                        </p>
+                        <a
+                          href={whatsappLink('Hola, me registré en la plataforma y necesito activar mi acceso.')}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block mt-2 text-[11px] font-semibold underline"
+                        >
+                          Escribir por WhatsApp
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-5 p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2 text-red-700 dark:text-red-200">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-xs font-medium">{error}</span>
+                  </div>
+                )
               )}
 
               <form onSubmit={handleSubmit} className="space-y-5">

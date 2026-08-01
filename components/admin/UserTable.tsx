@@ -1,21 +1,11 @@
 import React from 'react';
-import { CheckCircle, XCircle, BookOpen, Pencil, Trash2, Shield, KeyRound } from 'lucide-react';
+import { CheckCircle, XCircle, BookOpen, Pencil, Trash2, Shield, KeyRound, UserCheck, Clock } from 'lucide-react';
 import { MOCK_DATA } from '../../data/mockData';
 
-const COURSE_SHORT_NAMES: Record<string, string> = {
-  '101': 'Aminoácidos',
-  '102': 'Set Point',
-  '103': 'BV4',
-  '104': 'Mascotas',
-  '105': 'Reset Hormonal',
-  '106': 'Actos que Mueven',
-  '107': 'Resonantia',
-  '108': 'Mascotas',
-  '109': 'Crania',
-};
-
+// El nombre se deriva SIEMPRE del catálogo real. Antes existía aquí un
+// diccionario fijo de ids→nombres que quedó desfasado y mostraba el curso
+// equivocado en el panel (p. ej. el 106 aparecía como "Actos que Mueven").
 function getCourseShortName(courseId: string): string {
-  if (COURSE_SHORT_NAMES[courseId]) return COURSE_SHORT_NAMES[courseId];
   const course = MOCK_DATA.courses.find(c => c.id.toString() === courseId);
   return course ? course.title.split('—')[0].split(':')[0].trim() : `Curso ${courseId}`;
 }
@@ -25,6 +15,7 @@ interface User {
     name: string;
     email: string;
     isAdmin: boolean;
+    approved?: boolean;
     subscriptionStatus: 'active' | 'inactive';
     enrolledCourses?: string[];
 }
@@ -38,6 +29,7 @@ interface UserTableProps {
     onEditUser: (user: User) => void;
     onDeleteUser: (user: User) => void;
     onResetPassword: (user: User) => void;
+    onToggleApproval: (user: User) => void;
 }
 
 const UserTable: React.FC<UserTableProps> = ({
@@ -49,6 +41,7 @@ const UserTable: React.FC<UserTableProps> = ({
     onEditUser,
     onDeleteUser,
     onResetPassword,
+    onToggleApproval,
 }) => {
     if (loading) {
         return (
@@ -102,6 +95,13 @@ const UserTable: React.FC<UserTableProps> = ({
 
                         {/* Row 2: Status pills */}
                         <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            {/* Estado de aprobación: sin ella el usuario no puede iniciar sesión */}
+                            {user.approved === false && (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 text-[11px] font-medium">
+                                    <Clock className="w-3 h-3" /> Pendiente de aprobación
+                                </span>
+                            )}
+
                             {/* Subscription status */}
                             {user.subscriptionStatus === 'active' ? (
                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-salvia-50 dark:bg-salvia-400/10 text-salvia-600 dark:text-salvia-400 text-[11px] font-medium">
@@ -135,6 +135,15 @@ const UserTable: React.FC<UserTableProps> = ({
 
                         {/* Row 3: Action buttons with labels */}
                         <div className="flex items-center gap-2 flex-wrap border-t border-neutral-100 dark:border-neutral-700 pt-3">
+                            {user.approved === false && (
+                                <button
+                                    onClick={() => onToggleApproval(user)}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium bg-salvia-500 text-white hover:bg-salvia-600 transition-colors"
+                                >
+                                    <UserCheck className="w-3.5 h-3.5" /> Aprobar acceso
+                                </button>
+                            )}
+
                             <button
                                 onClick={() => onManageCourses(user)}
                                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-600/10 transition-colors"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound, ChevronDown } from 'lucide-react';
+import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound, ChevronDown, Clock, UserCheck } from 'lucide-react';
 import StatsCards from '../components/admin/StatsCards';
 import UserTable from '../components/admin/UserTable';
 import CourseManagementModal from '../components/admin/CourseManagementModal';
@@ -116,6 +116,7 @@ const AdminDashboard: React.FC = () => {
         adminUpdateUser,
         adminDeleteUser,
         adminResetPassword,
+        approveUser,
         user: currentUser,
     } = useAuth();
 
@@ -163,6 +164,24 @@ const AdminDashboard: React.FC = () => {
 
     // Reset page when filters change
     useEffect(() => { setCurrentPage(1); }, [searchTerm, filterSubscription, filterCourses, filterCourseId]);
+
+    // --- Aprobación de acceso ---
+    // Un usuario recién registrado queda pendiente y NO puede iniciar sesión
+    // hasta que se apruebe aquí. Solo cambia el campo `approved`.
+    const handleToggleApproval = async (user: any) => {
+        const nuevoEstado = !user.approved;
+        try {
+            await approveUser(user.id, nuevoEstado);
+            await fetchUsers();
+            showToast(
+                nuevoEstado
+                    ? `${user.name || user.email} ya puede iniciar sesión`
+                    : `Acceso revocado a ${user.name || user.email}`
+            );
+        } catch (error) {
+            showToast('Error al actualizar la aprobación', 'error');
+        }
+    };
 
     // --- Subscription Handlers ---
     const handleToggleSubscription = async (userId: string, currentStatus: string) => {
@@ -280,6 +299,8 @@ const AdminDashboard: React.FC = () => {
     const paginatedUsers = filteredUsers.slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE);
 
     const activeSubscriptions = users.filter((u) => u.subscriptionStatus === 'active').length;
+    // Cuentas registradas que aún no pueden iniciar sesión
+    const pendingUsers = users.filter((u) => u.approved === false);
     const usersWithCourses = users.filter((u) => u.enrolledCourses && u.enrolledCourses.length > 0).length;
 
     const filterBtnClass = (active: boolean) =>
@@ -314,6 +335,43 @@ const AdminDashboard: React.FC = () => {
             </header>
 
             <StatsCards totalUsers={users.length} activeSubscriptions={activeSubscriptions} usersWithCourses={usersWithCourses} />
+
+            {/* Aviso de cuentas pendientes: sin aprobación no pueden iniciar sesión */}
+            {pendingUsers.length > 0 && (
+                <div className="mb-6 rounded-xl border border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 p-4">
+                    <div className="flex items-start gap-3">
+                        <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                        <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-amber-900 dark:text-amber-200">
+                                {pendingUsers.length === 1
+                                    ? '1 persona espera aprobación para entrar'
+                                    : `${pendingUsers.length} personas esperan aprobación para entrar`}
+                            </p>
+                            <p className="text-xs text-amber-800/80 dark:text-amber-300/80 mt-0.5">
+                                Se registraron pero no pueden iniciar sesión hasta que apruebes su acceso.
+                            </p>
+                            <div className="mt-3 space-y-2">
+                                {pendingUsers.map((u) => (
+                                    <div key={u.id} className="flex items-center gap-3 flex-wrap bg-white dark:bg-neutral-800 rounded-lg px-3 py-2">
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 truncate">
+                                                {u.name || 'Sin nombre'}
+                                            </p>
+                                            <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{u.email}</p>
+                                        </div>
+                                        <button
+                                            onClick={() => handleToggleApproval(u)}
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium bg-salvia-500 text-white hover:bg-salvia-600 transition-colors shrink-0"
+                                        >
+                                            <UserCheck className="w-3.5 h-3.5" /> Aprobar acceso
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Search + Filters */}
             <div className="mb-6 space-y-3">
@@ -368,6 +426,7 @@ const AdminDashboard: React.FC = () => {
                 loading={loading}
                 currentUserId={currentUser?.id}
                 onToggleSubscription={handleToggleSubscription}
+                onToggleApproval={handleToggleApproval}
                 onManageCourses={handleOpenCourseModal}
                 onEditUser={handleOpenEditUser}
                 onDeleteUser={handleDeleteUser}

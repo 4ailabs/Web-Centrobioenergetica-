@@ -7,6 +7,7 @@ interface User {
   email: string;
   name: string;
   isAdmin: boolean;
+  approved?: boolean;
   totalXP: number;
   enrolledCourses: string[];
   registeredAt: string;
@@ -26,6 +27,7 @@ interface AuthContextType {
   adminUpdateUser: (userId: string, userData: any) => Promise<void>;
   adminDeleteUser: (userId: string) => Promise<void>;
   adminResetPassword: (userId: string, password: string) => Promise<void>;
+  approveUser: (userId: string, approved: boolean) => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -62,13 +64,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           enrolledCourses: data.user.enrolledCourses || [],
           subscriptionStatus: data.user.subscriptionStatus || 'inactive'
         });
-      } else {
+      } else if (response.status === 401 || response.status === 403) {
+        // El servidor confirma que la sesión ya no vale (token inválido,
+        // expirado o cuenta sin aprobar): solo aquí se descarta.
         localStorage.removeItem('token');
+        setUser(null);
+      } else {
+        // Error transitorio del servidor (500, 429, cold start): se conserva
+        // el token para no expulsar a un usuario con sesión válida.
         setUser(null);
       }
     } catch (error) {
+      // Fallo de red/CORS: no se borra el token; se reintentará al recargar.
       console.error('Auth verification failed', error);
-      localStorage.removeItem('token');
       setUser(null);
     } finally {
       setLoading(false);
@@ -210,6 +218,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  // Aprueba (o revoca) el acceso de un usuario registrado. Solo cambia el
+  // campo `approved`; no toca ningún otro dato de la cuenta.
+  const approveUser = async (userId: string, approved: boolean) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE}/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ approved })
+    });
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.error || 'No se pudo actualizar la aprobación');
+    }
+  };
+
   const adminDeleteUser = async (userId: string) => {
     const token = localStorage.getItem('token');
     const response = await fetch(`${API_BASE}/api/users/${userId}`, {
@@ -235,6 +261,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       adminUpdateUser,
       adminDeleteUser,
       adminResetPassword,
+      approveUser,
       isAuthenticated: !!user
     }}>
       {children}
