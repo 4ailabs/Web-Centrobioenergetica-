@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound, ChevronDown, Clock, UserCheck } from 'lucide-react';
 import StatsCards from '../components/admin/StatsCards';
 import UserTable from '../components/admin/UserTable';
+import GrantAccessModal from '../components/admin/GrantAccessModal';
 import CourseManagementModal from '../components/admin/CourseManagementModal';
 import UserFormModal from '../components/admin/UserFormModal';
 import { MOCK_DATA } from '../data/mockData';
@@ -117,8 +118,19 @@ const AdminDashboard: React.FC = () => {
         adminDeleteUser,
         adminResetPassword,
         approveUser,
+        enrollInCourses,
         user: currentUser,
     } = useAuth();
+
+    // Flujo "Dar acceso": busca o crea la persona, la inscribe y entrega el
+    // mensaje de WhatsApp listo para enviar.
+    const [isGrantOpen, setIsGrantOpen] = useState(false);
+    const [grantEmail, setGrantEmail] = useState<string | undefined>(undefined);
+
+    const abrirDarAcceso = (email?: string) => {
+        setGrantEmail(email);
+        setIsGrantOpen(true);
+    };
 
     const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -326,12 +338,20 @@ const AdminDashboard: React.FC = () => {
                         <p className="text-neutral-500 dark:text-neutral-400 text-sm font-normal">Gestión de usuarios y suscripciones</p>
                     </div>
                 </div>
-                <button
-                    onClick={handleOpenCreateUser}
-                    className="flex items-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors min-h-[44px]"
-                >
-                    <Plus className="w-5 h-5" /> Nuevo Usuario
-                </button>
+                <div className="flex items-center gap-2 flex-wrap">
+                    <button
+                        onClick={() => abrirDarAcceso()}
+                        className="flex items-center gap-2 px-5 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors min-h-[44px]"
+                    >
+                        <UserCheck className="w-5 h-5" /> Dar acceso
+                    </button>
+                    <button
+                        onClick={handleOpenCreateUser}
+                        className="flex items-center gap-2 px-4 py-3 rounded-lg font-medium border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:border-neutral-400 transition-colors min-h-[44px]"
+                    >
+                        <Plus className="w-5 h-5" /> Nuevo usuario
+                    </button>
+                </div>
             </header>
 
             <StatsCards totalUsers={users.length} activeSubscriptions={activeSubscriptions} usersWithCourses={usersWithCourses} />
@@ -359,12 +379,20 @@ const AdminDashboard: React.FC = () => {
                                             </p>
                                             <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{u.email}</p>
                                         </div>
-                                        <button
-                                            onClick={() => handleToggleApproval(u)}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium bg-salvia-500 text-white hover:bg-salvia-600 transition-colors shrink-0"
-                                        >
-                                            <UserCheck className="w-3.5 h-3.5" /> Aprobar acceso
-                                        </button>
+                                        <div className="flex items-center gap-2 shrink-0">
+                                            <button
+                                                onClick={() => handleToggleApproval(u)}
+                                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium bg-salvia-500 text-white hover:bg-salvia-600 transition-colors"
+                                            >
+                                                <UserCheck className="w-3.5 h-3.5" /> Aprobar
+                                            </button>
+                                            <button
+                                                onClick={() => abrirDarAcceso(u.email)}
+                                                className="px-3 py-1.5 rounded-lg text-[12px] font-medium border border-neutral-200 dark:border-neutral-600 text-neutral-600 dark:text-neutral-300 hover:border-neutral-400 transition-colors"
+                                            >
+                                                Dar curso
+                                            </button>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -470,6 +498,23 @@ const AdminDashboard: React.FC = () => {
                     </div>
                 </div>
             )}
+
+            <GrantAccessModal
+                isOpen={isGrantOpen}
+                onClose={() => { setIsGrantOpen(false); setGrantEmail(undefined); }}
+                usuarios={users}
+                emailInicial={grantEmail}
+                onEnroll={async (userId, courseIds) => {
+                    await enrollInCourses(userId, courseIds);
+                    await fetchUsers();
+                }}
+                onCreateUser={async (datos) => { await adminCreateUser(datos); }}
+                onRefresh={async () => {
+                    const data = await getAllUsers();
+                    setUsers(data);
+                    return data as any[];
+                }}
+            />
 
             <CourseManagementModal
                 isOpen={isCourseModalOpen}
