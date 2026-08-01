@@ -59,9 +59,11 @@ export class AuthService {
                 email,
                 password: hashedPassword,
                 name: name || null,
-                // Los nuevos registros requieren aprobación de un administrador
-                // desde el panel /admin antes de poder iniciar sesión.
-                approved: false,
+                // Acceso inmediato a la cuenta: el control real está en la
+                // asignación de cursos (sin cursos asignados no se ve ningún
+                // contenido). `approved` se conserva para poder revocar el
+                // acceso de una cuenta concreta desde el panel /admin.
+                approved: true,
             },
             select: {
                 id: true,
@@ -72,7 +74,7 @@ export class AuthService {
         });
 
         return {
-            message: 'Registro exitoso. Tu cuenta está pendiente de aprobación por un administrador.',
+            message: 'Cuenta creada. Ya puedes iniciar sesión.',
             user,
         };
     }

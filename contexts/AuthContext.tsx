@@ -118,7 +118,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       throw new Error(data.error || 'Error al registrarse');
     }
 
-    alert(data.message || 'Registro exitoso. Espera la aprobación del administrador.');
+    // El feedback lo muestra la propia pantalla de registro (no alert nativo).
+    return data;
   };
 
   const logout = () => {
