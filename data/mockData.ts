@@ -33,6 +33,19 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      // Curso Selecto del 5 y 19 de septiembre de 2026. Todavía sin módulos:
+      // la landing (/cuatro-caminos) es lo único que se muestra hasta que se
+      // imparta y haya grabación.
+      id: 110,
+      title: 'Los Cuatro Caminos — Formación en terapia con muñecos',
+      description: 'Lectura proyectiva de trayectoria vital. Una vida se repite en la dirección que tomó; esta formación la hace visible sobre una hoja, en minutos, y enseña a conducirla hasta la elección.',
+      author: 'Dr. Miguel Ojeda Rios',
+      price: 0,
+      lessons: 0,
+      level: 'Avanzado' as const,
+      imageUrl: '/images/courses/cuatro-caminos/cuatro-caminos-cover.jpg',
+    },
+    {
       id: 109,
       title: 'CRANIA — Práctica Craneofascial',
       description: 'Devuelve el flujo. Práctica craneofascial autoaplicada para liberar fascia profunda de rostro, cuello, mandíbula y cráneo con respiración integrada.',

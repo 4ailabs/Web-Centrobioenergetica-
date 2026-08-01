@@ -4,9 +4,10 @@ import type { Course } from '../types';
 // Antes estos ids vivían duplicados (y desincronizados) en Dashboard y AllCourses.
 export type CourseEstado = 'nuevo' | 'en-curso' | 'proximamente' | 'grabacion';
 
-export const ACTIVE_COURSE_IDS = [106, 109, 104, 107, 108, 102, 101, 103, 105];
+export const ACTIVE_COURSE_IDS = [110, 106, 109, 104, 107, 108, 102, 101, 103, 105];
 
 export const COURSE_META: Record<number, { estado: CourseEstado; landingPath?: string }> = {
+  110: { estado: 'proximamente', landingPath: '/cuatro-caminos' },
   106: { estado: 'en-curso', landingPath: '/regulacion-bioelectrica' },
   109: { estado: 'grabacion', landingPath: '/crania' },
   104: { estado: 'grabacion', landingPath: '/reset-hormonal' },
@@ -36,6 +37,11 @@ export const ESTADO_BADGE_CLASS: Record<CourseEstado, string> = {
 // directo a su contenido. La decisión se toma en el componente con useAuth.
 export function courseHref(course: Course, isEnrolled: boolean): string {
   const meta = COURSE_META[course.id];
+  // Un curso que aún no se imparte no tiene nada que reproducir: aunque quien
+  // pulse sea admin o esté inscrito, la landing es la única página con
+  // contenido. Sin esto, /course/:id se abre vacío.
+  const tieneVideos = (course.modules ?? []).some((m) => (m.videos?.length ?? 0) > 0);
+  if (!tieneVideos && meta?.landingPath) return meta.landingPath;
   if (isEnrolled || !meta?.landingPath) return `/course/${course.id}`;
   return meta.landingPath;
 }

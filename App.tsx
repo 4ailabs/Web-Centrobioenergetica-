@@ -33,6 +33,7 @@ const Crania = lazy(() => import('./pages/Crania'));
 const RegulacionBioelectrica = lazy(() => import('./pages/RegulacionBioelectrica'));
 const RBMetodo = lazy(() => import('./pages/RBMetodo'));
 const BioenergeticaTransgeneracional = lazy(() => import('./pages/BioenergeticaTransgeneracional'));
+const CuatroCaminos = lazy(() => import('./pages/CuatroCaminos'));
 const TestHormonal = lazy(() => import('./pages/TestHormonal'));
 const TestVinculoAnimal = lazy(() => import('./pages/TestVinculoAnimal'));
 
@@ -121,6 +122,7 @@ const AppContent: React.FC = () => {
                 <Route path="/regulacion-bioelectrica" element={<RegulacionBioelectrica />} />
                 <Route path="/rb" element={<RBMetodo />} />
                 <Route path="/bioenergetica-transgeneracional" element={<BioenergeticaTransgeneracional />} />
+                <Route path="/cuatro-caminos" element={<CuatroCaminos />} />
                 <Route path="/test-hormonal" element={<TestHormonal />} />
                 <Route path="/test-vinculo-animal" element={<TestVinculoAnimal />} />
                 <Route path="/course/:courseId" element={

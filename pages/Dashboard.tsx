@@ -8,6 +8,7 @@ import { API_BASE } from '../lib/api';
 import { handleCourseClick } from '../utils/framerIntegration';
 import { MOCK_DATA } from '../data/mockData';
 import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_BADGE_CLASS, courseHref } from '../data/catalog';
+import PromoVideo from '../components/PromoVideo';
 import type { Course } from '../types';
 
 interface DashboardProps {
@@ -22,7 +23,13 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const courses = allCourses.filter(c => ACTIVE_COURSE_IDS.includes(c.id));
+  // Los dos cursos que tienen tarjeta propia en «Ahora en el instituto» no se
+  // repiten en el catálogo de abajo: aparecerían dos veces en la misma
+  // pantalla, con la misma portada, y eso se lee como un error.
+  const DESTACADOS_ARRIBA = [110, 106];
+  const courses = allCourses.filter(
+    c => ACTIVE_COURSE_IDS.includes(c.id) && !DESTACADOS_ARRIBA.includes(c.id),
+  );
 
   const goToCourse = (course: Course) => {
     // Admin y premium tienen acceso a todo; el resto, según sus cursos asignados
@@ -147,6 +154,45 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
+      {/* Próxima formación — Los Cuatro Caminos (con promo)
+          El video es su propio botón: reproduce sin navegar. El bloque de
+          texto es el que lleva a la landing, para que pulsar play no se lleve
+          a nadie de la página. */}
+      <div className="px-6 lg:px-0 pb-5">
+        <div className="bg-white dark:bg-neutral-800 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700">
+          <PromoVideo
+            streamId="160c7c518e2a036ae5d0872f07d63f25"
+            titulo="Los Cuatro Caminos — Formación en terapia con muñecos"
+            etiqueta="Ver el taller en 90 segundos"
+            posterTime="4s"
+            rounded="rounded-none"
+          />
+          <button
+            onClick={() => navigate('/cuatro-caminos')}
+            className="group w-full text-left p-5 border-t border-neutral-100 dark:border-neutral-700"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS['proximamente']}`}>
+                {ESTADO_LABEL['proximamente']}
+              </span>
+              <span className="text-[11px] text-neutral-400">Curso Selecto · 2 sábados</span>
+            </div>
+            <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
+              Los Cuatro <span className="text-primary-600">Caminos</span>
+            </h3>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">
+              Formación en terapia con muñecos · Lectura proyectiva de trayectoria vital
+            </p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2">
+              5 y 19 de septiembre · Presencial u Online · Cupo limitado
+            </p>
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-primary-700 dark:text-primary-400 group-hover:gap-1.5 transition-all">
+              Fechas, programa e inscripción <ArrowRight className="w-3 h-3" />
+            </span>
+          </button>
+        </div>
+      </div>
+
       {/* En curso — Regulación Bioeléctrica */}
       <div className="px-6 lg:px-0 pb-5">
         <div
@@ -249,7 +295,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                   <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-1">
                     {course.description}
                   </p>
-                  <span className="text-[11px] text-neutral-400">{course.lessons} lecciones · {course.author}</span>
+                  <span className="text-[11px] text-neutral-400">{course.lessons > 0 ? `${course.lessons} lecciones · ` : ''}{course.author}</span>
                 </div>
               </div>
             );
