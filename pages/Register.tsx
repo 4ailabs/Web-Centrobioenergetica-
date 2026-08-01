@@ -53,7 +53,7 @@ const Register: React.FC = () => {
       title="Crear Cuenta"
       subtitle="Regístrate para comenzar"
       error={error}
-      success={success ? "Registro exitoso. Tu cuenta está pendiente de aprobación. Redirigiendo..." : undefined}
+      success={success ? "Cuenta creada. Te llevamos a iniciar sesión..." : undefined}
       footerText="¿Ya tienes una cuenta?"
       footerLinkText="Inicia sesión aquí"
       footerLinkTo="/login"
