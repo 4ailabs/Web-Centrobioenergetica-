@@ -37,7 +37,7 @@ const AboutUs: React.FC = () => {
       {/* Lo que hacemos */}
       <div className="px-6 lg:px-0 pb-10">
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Lo que hacemos</span>
+          <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Lo que hacemos</span>
           <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
         </div>
 
@@ -48,7 +48,7 @@ const AboutUs: React.FC = () => {
             </div>
             <div>
               <h3 className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 mb-0.5">Salud complementaria</h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Herramientas de apoyo para personas en proceso de enfermedad, en colaboración con el sistema médico y psicológico.</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">Herramientas de apoyo para personas en proceso de enfermedad, en colaboración con el sistema médico y psicológico.</p>
             </div>
           </div>
           <div className="flex items-start gap-3 p-4 rounded-xl hover:bg-white dark:hover:bg-neutral-800 transition-colors">
@@ -57,7 +57,7 @@ const AboutUs: React.FC = () => {
             </div>
             <div>
               <h3 className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 mb-0.5">Bienestar activo</h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Herramientas para quienes quieren funcionar mejor: más energía, claridad mental, mejor respuesta emocional.</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">Herramientas para quienes quieren funcionar mejor: más energía, claridad mental, mejor respuesta emocional.</p>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ const AboutUs: React.FC = () => {
       {/* Lo que nos distingue */}
       <div className="px-6 lg:px-0 pb-10 border-t border-neutral-200 dark:border-neutral-700 pt-8">
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Lo que nos distingue</span>
+          <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Lo que nos distingue</span>
           <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
         </div>
 
@@ -82,7 +82,7 @@ const AboutUs: React.FC = () => {
               <div>
                 <span className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100">{item.title}.</span>
                 {' '}
-                <span className="text-[13px] text-neutral-500 dark:text-neutral-400">{item.desc}</span>
+                <span className="text-[13px] text-neutral-600 dark:text-neutral-400">{item.desc}</span>
               </div>
             </div>
           ))}
@@ -92,7 +92,7 @@ const AboutUs: React.FC = () => {
       {/* Trayectoria */}
       <div className="px-6 lg:px-0 pb-10 border-t border-neutral-200 dark:border-neutral-700 pt-8">
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Trayectoria</span>
+          <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Trayectoria</span>
           <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
         </div>
 
@@ -105,12 +105,12 @@ const AboutUs: React.FC = () => {
           ].map((stat, i) => (
             <div key={i} className="text-center p-3">
               <div className="text-xl font-semibold text-primary-600 mb-0.5">{stat.num}</div>
-              <div className="text-[11px] text-neutral-500 dark:text-neutral-400">{stat.label}</div>
+              <div className="text-[11px] text-neutral-600 dark:text-neutral-400">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+        <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
           Pionero en la enseñanza de biomagnetismo y bioenergética en México y Latinoamérica. Instructor oficial del Diplomado de Biomagnetismo de la Universidad Autónoma Chapingo. Cursos impartidos en México, España, Estados Unidos y Europa, con alumnos en Japón, Irlanda y Costa de Marfil.
         </p>
       </div>
@@ -118,7 +118,7 @@ const AboutUs: React.FC = () => {
       {/* Promesa */}
       <div className="px-6 lg:px-0 pb-10 border-t border-neutral-200 dark:border-neutral-700 pt-8">
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Nuestra promesa</span>
+          <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Nuestra promesa</span>
           <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
         </div>
 
@@ -133,7 +133,7 @@ const AboutUs: React.FC = () => {
       {/* Director */}
       <div className="px-6 lg:px-0 pb-10 border-t border-neutral-200 dark:border-neutral-700 pt-8">
         <div className="flex items-center gap-3 mb-5">
-          <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Director</span>
+          <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Director</span>
           <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
         </div>
 
@@ -143,8 +143,8 @@ const AboutUs: React.FC = () => {
           </div>
           <div>
             <h3 className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 mb-0.5">Dr. Miguel Ojeda Rios</h3>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-2">Médico Cirujano · Miembro de la ISNN (Sociedad Internacional de Nutrigenómica y Nutrigenética)</p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-2">Médico Cirujano · Miembro de la ISNN (Sociedad Internacional de Nutrigenómica y Nutrigenética)</p>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Más de 25 años de experiencia clínica y formativa en medicina integrativa. Creador del método de Microbioenergética. Facilitador certificado de LEGO Serious Play.
             </p>
           </div>
@@ -156,21 +156,21 @@ const AboutUs: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Ubicación</span>
+              <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Ubicación</span>
               <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
             </div>
             <div className="flex items-start gap-3">
-              <MapPin className="w-4 h-4 text-neutral-400 shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-neutral-600 dark:text-neutral-400 shrink-0 mt-0.5" />
               <div>
                 <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 mb-0.5">Acapulco 36, Piso 8</p>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400">Col. Roma Norte · Ciudad de México</p>
+                <p className="text-xs text-neutral-600 dark:text-neutral-400">Col. Roma Norte · Ciudad de México</p>
               </div>
             </div>
           </div>
 
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Contacto</span>
+              <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">Contacto</span>
               <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
             </div>
             <div className="space-y-2">
@@ -186,7 +186,7 @@ const AboutUs: React.FC = () => {
                   rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-2.5 group"
                 >
-                  <span className="text-neutral-400 group-hover:text-primary-600 transition-colors">{item.icon}</span>
+                  <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-primary-600 transition-colors">{item.icon}</span>
                   <span className="text-[13px] text-neutral-600 dark:text-neutral-400 group-hover:text-primary-600 transition-colors">{item.label}</span>
                 </a>
               ))}

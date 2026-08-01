@@ -36,7 +36,7 @@ const Roseta = () => (
       <text x="104" y="137" textAnchor="end" className="fill-neutral-800 dark:fill-neutral-100" style={{ fontSize: 12.5, fontWeight: 600 }}>Sufrimiento</text>
       <text x="104" y="152" textAnchor="end" className="fill-neutral-400" style={{ fontSize: 9 }}>supervivencia · conflicto</text>
     </svg>
-    <p className="mt-4 text-center text-xs text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed">
+    <p className="mt-4 text-center text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed">
       Un muñeco cae sobre una hoja con dos ejes. Los pies quedan apuntando a un rumbo, y ese rumbo abre la sesión.
     </p>
   </div>

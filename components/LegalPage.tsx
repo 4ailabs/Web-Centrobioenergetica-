@@ -23,7 +23,7 @@ const LegalPage: React.FC<LegalPageProps> = ({ titulo, actualizado, entradilla, 
       <div className="px-6 lg:px-0 pt-6 pb-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-neutral-400 hover:text-primary-600 transition-colors text-sm"
+          className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors text-sm"
         >
           <ArrowLeft className="w-4 h-4" /> Volver
         </button>
@@ -33,7 +33,7 @@ const LegalPage: React.FC<LegalPageProps> = ({ titulo, actualizado, entradilla, 
         <h1 className="font-editorial text-2xl lg:text-3xl text-neutral-800 dark:text-neutral-100 leading-tight [text-wrap:balance]">
           {titulo}
         </h1>
-        <p className="mt-2 text-xs text-neutral-400">Última actualización: {actualizado}</p>
+        <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400">Última actualización: {actualizado}</p>
 
         {entradilla && (
           <p className="mt-5 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-300">

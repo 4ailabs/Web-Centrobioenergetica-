@@ -133,7 +133,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
           ].map((s) => (
             <div key={s.label} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl px-4 py-3 text-center">
               <p className="font-editorial text-lg sm:text-2xl text-neutral-800 dark:text-neutral-100 tabular-nums leading-tight">{s.n}</p>
-              <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{s.label}</p>
+              <p className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 mt-0.5">{s.label}</p>
             </div>
           ))}
         </div>
@@ -166,15 +166,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
           >
             <div className="flex items-center gap-2 mb-2">
               <Badge tono={ESTADO_TONO['proximamente']}>{ESTADO_LABEL['proximamente']}</Badge>
-              <span className="text-[11px] text-neutral-400">Curso Selecto · 2 sábados</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Curso Selecto · 2 sábados</span>
             </div>
             <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
               Los Cuatro <span className="text-primary-600">Caminos</span>
             </h3>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1.5">
               Formación en terapia con muñecos · Lectura proyectiva de trayectoria vital
             </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-2">
               5 y 19 de septiembre · Presencial u Online · Cupo limitado
             </p>
             <span className="inline-flex items-center gap-1 text-[11px] font-medium text-primary-700 dark:text-primary-400 group-hover:gap-1.5 transition-all">
@@ -197,16 +197,16 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             <div className="sm:w-1/2 p-5 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
                 <Badge tono={ESTADO_TONO['en-curso']}>En curso</Badge>
-                <span className="text-[11px] text-neutral-400">Curso · 4 Sábados</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Curso · 4 Sábados</span>
               </div>
               <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
                 El Cuerpo <span className="text-salvia-600 dark:text-salvia-400">Eléctrico</span>
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Tu cuerpo es un mapa eléctrico. Aprende a leerlo.</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1.5">Tu cuerpo es un mapa eléctrico. Aprende a leerlo.</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
                 Próximo módulo: 8 de agosto · Presencial u Online
               </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Dr. Miguel Ojeda Rios</span>
             </div>
           </div>
         </div>
@@ -222,16 +222,16 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             <div className="sm:w-1/2 p-5 flex flex-col justify-center order-2 sm:order-1">
               <div className="flex items-center gap-2 mb-2">
                 <Badge tono="marca">Beca por invitación</Badge>
-                <span className="text-[11px] text-neutral-400">4 sesiones · viernes</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">4 sesiones · viernes</span>
               </div>
               <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
                 Bioenergética <span className="text-primary-600">Transgeneracional</span>
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1.5">Construye el mapa de tu árbol familiar y aprende a leer en él lo que no es tuyo.</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1.5">Construye el mapa de tu árbol familiar y aprende a leer en él lo que no es tuyo.</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-2 line-clamp-1">
                 Formulario de aceptación · Cupo limitado
               </p>
-              <span className="text-[11px] text-neutral-400">Dr. Miguel Ojeda Rios</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Dr. Miguel Ojeda Rios</span>
             </div>
             <div className="sm:w-1/2 overflow-hidden aspect-[4/3] sm:aspect-auto sm:min-h-[200px] order-1 sm:order-2 flex items-center justify-center bg-[#362F29]">
               <svg width="72" height="72" viewBox="0 0 44 44" fill="none" aria-hidden="true">
@@ -276,15 +276,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                     {meta && (
                       <Badge tono={ESTADO_TONO[meta.estado]}>{ESTADO_LABEL[meta.estado]}</Badge>
                     )}
-                    <span className="text-[11px] text-neutral-400">{course.level}</span>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{course.level}</span>
                   </div>
                   <h3 className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug mb-1 group-hover:text-primary-600 transition-colors line-clamp-1">
                     {course.title}
                   </h3>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-1">
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-1">
                     {course.description}
                   </p>
-                  <span className="text-[11px] text-neutral-400">{course.lessons > 0 ? `${course.lessons} lecciones · ` : ''}{course.author}</span>
+                  <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{course.lessons > 0 ? `${course.lessons} lecciones · ` : ''}{course.author}</span>
                 </div>
               </div>
             );
@@ -305,7 +305,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
           >
             <span className="text-[10px] font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400">Test gratuito</span>
             <p className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 mt-1">Descubre tu perfil hormonal</p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 leading-relaxed">
               22 preguntas basadas en la escala MRS. Identifica tu fase, la severidad de tus síntomas y tus ejes de riesgo.
             </p>
             <span className="inline-flex items-center gap-1 text-xs font-medium text-primary-700 dark:text-primary-400 mt-3 group-hover:gap-2 transition-all">
@@ -318,7 +318,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
           >
             <span className="text-[10px] font-semibold uppercase tracking-widest text-salvia-600 dark:text-salvia-400">Test gratuito</span>
             <p className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 mt-1">Test de Vínculo Animal</p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 leading-relaxed">
               Descubre el patrón de apego entre tú y tu mascota — 3 minutos, resultados al instante.
             </p>
             <span className="inline-flex items-center gap-1 text-xs font-medium text-salvia-600 dark:text-salvia-400 mt-3 group-hover:gap-2 transition-all">
@@ -346,15 +346,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
                     <p className="font-editorial text-2xl text-primary-700 dark:text-primary-400 leading-none tabular-nums">
                       {d.toLocaleDateString('es-MX', { day: 'numeric', timeZone: 'America/Mexico_City' })}
                     </p>
-                    <p className="text-[10px] uppercase tracking-wider text-neutral-400 mt-1">
+                    <p className="text-[10px] uppercase tracking-wider text-neutral-600 dark:text-neutral-400 mt-1">
                       {d.toLocaleDateString('es-MX', { month: 'short', timeZone: 'America/Mexico_City' })}
                     </p>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug line-clamp-1">{event.title}</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 line-clamp-2 leading-relaxed">{event.description}</p>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5 line-clamp-2 leading-relaxed">{event.description}</p>
                     {event.location && (
-                      <p className="flex items-center gap-1 text-[11px] text-neutral-400 mt-1">
+                      <p className="flex items-center gap-1 text-[11px] text-neutral-600 dark:text-neutral-400 mt-1">
                         <MapPin className="w-3 h-3" /> {event.location}
                       </p>
                     )}

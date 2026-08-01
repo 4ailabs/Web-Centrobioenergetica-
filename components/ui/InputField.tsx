@@ -31,7 +31,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 {label}
             </label>
             <div className="relative group">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-400 group-focus-within:text-primary-600 transition-colors duration-200">
+                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-600 dark:text-neutral-400 group-focus-within:text-primary-600 transition-colors duration-200">
                     {icon}
                 </div>
                 <input
@@ -44,13 +44,16 @@ const InputField: React.FC<InputFieldProps> = ({
                     placeholder={placeholder}
                 />
                 {rightElement && (
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                    // El control ocupa 40×40 aunque su icono mida 20: por
+                    // debajo de eso el dedo falla. Se ancla a la derecha con
+                    // right-2 para que el icono siga cayendo donde estaba.
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center [&>button]:w-10 [&>button]:h-10 [&>button]:flex [&>button]:items-center [&>button]:justify-center">
                         {rightElement}
                     </div>
                 )}
             </div>
             {helperText && (
-                <p className="mt-1.5 text-xs font-medium text-neutral-500 px-1">
+                <p className="mt-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 px-1">
                     {helperText}
                 </p>
             )}

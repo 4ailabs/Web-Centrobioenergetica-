@@ -46,7 +46,7 @@ const AllCourses: React.FC = () => {
         <h1 className="font-editorial text-3xl lg:text-4xl text-neutral-800 dark:text-neutral-100 tracking-tight mb-2 [text-wrap:balance]">
           Nuestros <span className="text-primary-600">cursos</span>
         </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
           Formación especializada en bioenergética, nutrición y terapias integrativas.
         </p>
       </div>
@@ -72,16 +72,16 @@ const AllCourses: React.FC = () => {
               <div className="sm:w-1/2 p-6 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <EstadoBadge courseId={first.id} />
-                  <span className="text-[11px] text-neutral-400">{first.level}</span>
+                  <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{first.level}</span>
                 </div>
                 <h2 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-2 group-hover:text-primary-600 transition-colors">
                   {first.title}
                 </h2>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4 line-clamp-3">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4 line-clamp-3">
                   {first.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-neutral-400">{first.lessons > 0 ? `${first.lessons} lecciones · ` : ''}{first.author}</span>
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400">{first.lessons > 0 ? `${first.lessons} lecciones · ` : ''}{first.author}</span>
                   <span className="flex items-center gap-1 text-xs font-medium text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity">
                     Ver curso <ArrowRight className="w-3 h-3" />
                   </span>
@@ -118,15 +118,15 @@ const AllCourses: React.FC = () => {
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <EstadoBadge courseId={course.id} />
-                    <span className="text-[11px] text-neutral-400">{course.level}</span>
+                    <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{course.level}</span>
                   </div>
                   <h3 className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug mb-1.5 group-hover:text-primary-600 transition-colors">
                     {course.title}
                   </h3>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed mb-2">
                     {course.description}
                   </p>
-                  <span className="text-xs text-neutral-400">{course.lessons > 0 ? `${course.lessons} lecciones · ` : ''}{course.author}</span>
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400">{course.lessons > 0 ? `${course.lessons} lecciones · ` : ''}{course.author}</span>
                 </div>
               </div>
             ))}

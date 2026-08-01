@@ -64,7 +64,7 @@ const ClinicalServices: React.FC = () => {
         <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
           Servicios <span className="text-primary-600">Clínicos</span>
         </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
           Terapias especializadas para tu bienestar integral, combinando medicina integrativa, nutrición y sanación energética.
         </p>
       </div>
@@ -75,7 +75,7 @@ const ClinicalServices: React.FC = () => {
           <div key={group.name}>
             {/* Category header */}
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">{group.name}</span>
+              <span className="text-[11px] font-medium text-neutral-600 dark:text-neutral-500 uppercase tracking-wider">{group.name}</span>
               <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700"></div>
             </div>
 
@@ -93,7 +93,7 @@ const ClinicalServices: React.FC = () => {
                     <h3 className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                       {service.desc}
                     </p>
                   </div>
@@ -122,7 +122,7 @@ const ClinicalServices: React.FC = () => {
               </div>
               <div className="pb-4 sm:pb-0">
                 <h4 className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 mb-0.5">{step.title}</h4>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">{step.desc}</p>
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{step.desc}</p>
               </div>
             </div>
           ))}
@@ -140,10 +140,10 @@ const ClinicalServices: React.FC = () => {
                 className="w-full py-4 flex items-center justify-between text-left group"
               >
                 <span className="text-[14px] font-medium text-neutral-700 dark:text-neutral-200 group-hover:text-primary-600 transition-colors">{faq.q}</span>
-                <ChevronDown className={`w-4 h-4 text-neutral-400 shrink-0 ml-4 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 text-neutral-600 dark:text-neutral-400 shrink-0 ml-4 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
               </button>
               {openFaq === i && (
-                <p className="pb-4 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed animate-fade-in">
+                <p className="pb-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed animate-fade-in">
                   {faq.a}
                 </p>
               )}

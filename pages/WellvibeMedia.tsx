@@ -33,7 +33,7 @@ const WellvibeMedia: React.FC = () => {
                 <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 tracking-tight mb-2">
                     Wellvibe <span className="text-primary-600">Media</span>
                 </h1>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-md leading-relaxed">
                     Transmisiones, talleres y masterclasses para tu transformación personal.
                 </p>
             </div>
@@ -62,13 +62,13 @@ const WellvibeMedia: React.FC = () => {
                         <div className="sm:w-1/2 p-5 lg:p-6 flex flex-col justify-center">
                             <div className="flex items-center gap-2 mb-2">
                                 <span className="px-2 py-0.5 bg-primary-600 text-white text-[10px] font-medium rounded-full">Destacado</span>
-                                <span className="text-[11px] text-neutral-400">{featuredVideo.duration} · {featuredVideo.category}</span>
+                                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{featuredVideo.duration} · {featuredVideo.category}</span>
                             </div>
                             <h2 className="text-base font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mb-1 group-hover:text-primary-600 transition-colors">
                                 {featuredVideo.title}
                             </h2>
                             <p className="text-xs text-primary-600 mb-2">{featuredVideo.subtitle}</p>
-                            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">
+                            <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-2">
                                 {featuredVideo.description}
                             </p>
                         </div>
@@ -117,7 +117,7 @@ const WellvibeMedia: React.FC = () => {
                             <h3 className="text-[14px] font-medium text-neutral-800 dark:text-neutral-100 leading-snug mb-1 group-hover:text-primary-600 transition-colors line-clamp-2">
                                 {video.title}
                             </h3>
-                            <span className="text-[11px] text-neutral-400">{video.category}</span>
+                            <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{video.category}</span>
                         </div>
                     ))}
                 </div>

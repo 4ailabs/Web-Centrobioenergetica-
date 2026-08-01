@@ -311,7 +311,7 @@ const TestHormonal: React.FC = () => {
 
           {/* Header */}
           <div className="text-center mb-8">
-            <span className="inline-block text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 mb-4">
+            <span className="inline-block text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-600 dark:text-neutral-500 mb-4">
               Instituto Centrobioenergetica
             </span>
             <h1 className="mb-3" style={{ fontFamily: "'Newsreader', Georgia, serif", fontWeight: 400, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', lineHeight: 1.1, color: 'var(--text-main, #1a1a1a)' }}>
@@ -319,7 +319,7 @@ const TestHormonal: React.FC = () => {
               <em style={{ color: COLOR.terracota, fontStyle: 'italic' }}>Femenina™</em>
             </h1>
             <div className="w-10 h-px mx-auto mb-4" style={{ background: COLOR.terracota }} />
-            <p className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
+            <p className="text-[15px] text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md mx-auto">
               22 preguntas para identificar tu fase hormonal, la severidad de tus síntomas y tus ejes de riesgo. Al final recibirás tu perfil personalizado.
             </p>
           </div>
@@ -339,7 +339,7 @@ const TestHormonal: React.FC = () => {
                     <p className="text-[14px] text-neutral-700 dark:text-neutral-200">{s.desc}</p>
                   </div>
                 </div>
-                <span className="text-[12px] text-neutral-400">{s.count}</span>
+                <span className="text-[12px] text-neutral-600 dark:text-neutral-400">{s.count}</span>
               </div>
             ))}
           </div>
@@ -352,21 +352,21 @@ const TestHormonal: React.FC = () => {
           >
             Comenzar el test
           </button>
-          <p className="text-center text-[12px] text-neutral-400 mb-6">
+          <p className="text-center text-[12px] text-neutral-600 dark:text-neutral-400 mb-6">
             4 minutos · Privado · Procesado en tu dispositivo
           </p>
 
           {/* Base científica */}
           <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-4 border border-neutral-100 dark:border-neutral-700">
-            <p className="text-[11px] font-medium uppercase tracking-widest text-neutral-400 mb-3">Base científica</p>
+            <p className="text-[11px] font-medium uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-3">Base científica</p>
             <div className="space-y-2">
-              <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[12px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 <span className="font-medium text-neutral-600 dark:text-neutral-300">Fase reproductiva:</span> Clasificación STRAW+10 (Harlow et al. 2012).
               </p>
-              <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[12px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 <span className="font-medium text-neutral-600 dark:text-neutral-300">Severidad de síntomas:</span> Menopause Rating Scale / MRS (Heinemann et al. 2003). Validada en 10 idiomas.
               </p>
-              <p className="text-[12px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              <p className="text-[12px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 <span className="font-medium text-neutral-600 dark:text-neutral-300">Perfil de riesgo:</span> Guías NAMS e IMS.
               </p>
             </div>
@@ -402,17 +402,17 @@ const TestHormonal: React.FC = () => {
 
           {/* Navigation */}
           <div className="flex items-center justify-between mb-8">
-            <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]">
+            <button onClick={() => navigate('/reset-hormonal')} className="flex items-center gap-2 text-neutral-600 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]">
               <ArrowLeft className="w-4 h-4" /> Volver
             </button>
-            <span className="text-[11px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            <span className="text-[11px] uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
               {new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
             </span>
           </div>
 
           {/* Profile header */}
           <div className="mb-1">
-            <p className="text-[11px] uppercase tracking-[0.2em] mb-3 text-neutral-400 dark:text-neutral-500">
+            <p className="text-[11px] uppercase tracking-[0.2em] mb-3 text-neutral-600 dark:text-neutral-500">
               Cartografía Hormonal Femenina™
             </p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
@@ -437,12 +437,12 @@ const TestHormonal: React.FC = () => {
           {/* Phase + Risk row */}
           <div className="flex items-center gap-6 py-4 border-b border-neutral-200 dark:border-neutral-700 mb-6">
             <div>
-              <span className="text-[11px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500">Fase</span>
+              <span className="text-[11px] uppercase tracking-widest text-neutral-600 dark:text-neutral-500">Fase</span>
               <p className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 mt-0.5">{result.phase}</p>
             </div>
             <div className="w-px h-8 bg-neutral-200 dark:bg-neutral-700" />
             <div>
-              <span className="text-[11px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500">Riesgo estructural</span>
+              <span className="text-[11px] uppercase tracking-widest text-neutral-600 dark:text-neutral-500">Riesgo estructural</span>
               <p className="text-[15px] font-medium mt-0.5" style={{ color: riskColor }}>{riskLabel}</p>
             </div>
           </div>
@@ -456,7 +456,7 @@ const TestHormonal: React.FC = () => {
 
           {/* Mapas recomendados — visual */}
           <div className="mb-6 p-5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
-            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-4 text-neutral-400 dark:text-neutral-500">Mapas de intervención para tu perfil</h3>
+            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-4 text-neutral-600 dark:text-neutral-500">Mapas de intervención para tu perfil</h3>
             <div className="flex flex-wrap gap-2">
               {result.maps.map((mapa) => (
                 <div key={mapa} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: result.color + '10', border: `1px solid ${result.color}25` }}>
@@ -465,12 +465,12 @@ const TestHormonal: React.FC = () => {
                 </div>
               ))}
             </div>
-            <p className="text-[12px] text-neutral-400 dark:text-neutral-500 mt-3 leading-relaxed">{result.recommendation}</p>
+            <p className="text-[12px] text-neutral-600 dark:text-neutral-500 mt-3 leading-relaxed">{result.recommendation}</p>
           </div>
 
           {/* Severity Panel */}
           <div className="py-6 border-t border-b border-neutral-200 dark:border-neutral-700 mb-6">
-            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-5 text-neutral-400 dark:text-neutral-500">Severidad por eje</h3>
+            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-5 text-neutral-600 dark:text-neutral-500">Severidad por eje</h3>
             <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {[
                 { label: 'Somático', sublabel: 'Calores · sueño · dolor · fatiga', value: somatic, max: maxBar, color: '#D85A30' },
@@ -488,11 +488,11 @@ const TestHormonal: React.FC = () => {
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span className="text-[16px] sm:text-[18px] font-semibold" style={{ color: axis.color }}>{axis.value}</span>
-                        <span className="text-[9px] text-neutral-400 dark:text-neutral-500">/{axis.max}</span>
+                        <span className="text-[9px] text-neutral-600 dark:text-neutral-500">/{axis.max}</span>
                       </div>
                     </div>
                     <p className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100">{axis.label}</p>
-                    <p className="text-[11px] mt-0.5 text-neutral-400 dark:text-neutral-500 hidden sm:block">{axis.sublabel}</p>
+                    <p className="text-[11px] mt-0.5 text-neutral-600 dark:text-neutral-500 hidden sm:block">{axis.sublabel}</p>
                     <p className="text-[11px] font-medium mt-1" style={{ color: axis.color }}>{sevLabel(axis.value, axis.max)}</p>
                   </div>
                 );
@@ -502,7 +502,7 @@ const TestHormonal: React.FC = () => {
 
           {/* Risk Detail Bar */}
           <div className="mb-6">
-            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-4 text-neutral-400 dark:text-neutral-500">Riesgo estructural a futuro</h3>
+            <h3 className="text-[11px] font-medium uppercase tracking-widest mb-4 text-neutral-600 dark:text-neutral-500">Riesgo estructural a futuro</h3>
             <div className="flex items-center gap-4">
               <div className="flex-1">
                 <div className="flex gap-0.5 sm:gap-1">
@@ -522,7 +522,7 @@ const TestHormonal: React.FC = () => {
               </div>
               <div className="text-right shrink-0 w-14">
                 <span className="text-[20px] font-semibold" style={{ color: riskColor }}>{riskTotal}</span>
-                <span className="text-[11px] text-neutral-400 dark:text-neutral-500">/14</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-500">/14</span>
               </div>
             </div>
           </div>
@@ -533,7 +533,7 @@ const TestHormonal: React.FC = () => {
               <p style={{ fontFamily: "'Newsreader', Georgia, serif", fontSize: '1.2rem', color: 'var(--text-main, #1a1a1a)' }} className="mb-1">
                 El Reset Hormonal™
               </p>
-              <p className="text-[14px] mb-4 text-neutral-500 dark:text-neutral-400">
+              <p className="text-[14px] mb-4 text-neutral-600 dark:text-neutral-400">
                 Cartografía Hormonal Femenina — los cuatro mapas de Fase 1, base bioeléctrica y protocolo completo.
               </p>
               <a
@@ -551,21 +551,21 @@ const TestHormonal: React.FC = () => {
           {/* Methodology footer */}
           <div className="pb-6">
             <details className="group">
-              <summary className="cursor-pointer text-[12px] font-medium uppercase tracking-widest mb-2 list-none flex items-center gap-2 text-neutral-400 dark:text-neutral-500">
+              <summary className="cursor-pointer text-[12px] font-medium uppercase tracking-widest mb-2 list-none flex items-center gap-2 text-neutral-600 dark:text-neutral-500">
                 <svg className="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 Metodología y base científica
               </summary>
               <div className="mt-3 space-y-2 pl-5">
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Fase reproductiva:</span> STRAW+10 (Harlow et al. 2012).
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Severidad:</span> MRS (Heinemann et al. 2003). Validada en 10 idiomas.
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   <span className="font-medium text-neutral-600 dark:text-neutral-300">Riesgo:</span> Guías NAMS e IMS.
                 </p>
-                <p className="text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="text-[13px] leading-relaxed text-neutral-600 dark:text-neutral-400">
                   Procesado localmente en tu dispositivo. No sustituye evaluación médica.
                 </p>
               </div>
@@ -576,7 +576,7 @@ const TestHormonal: React.FC = () => {
           <div className="text-center pb-4">
             <button
               onClick={() => { setStep(-1); setAnswers({}); setResult(null); }}
-              className="text-[13px] text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
+              className="text-[13px] text-neutral-600 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
             >
               Volver a hacer el test
             </button>
@@ -600,7 +600,7 @@ const TestHormonal: React.FC = () => {
           <div className="flex items-center justify-between mb-2">
             <button
               onClick={step === 0 ? () => navigate(-1) : goBack}
-              className="flex items-center gap-1.5 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]"
+              className="flex items-center gap-1.5 text-neutral-600 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors text-[13px]"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>{step === 0 ? 'Salir' : 'Anterior'}</span>
@@ -608,7 +608,7 @@ const TestHormonal: React.FC = () => {
             <span className="text-[12px] font-medium uppercase tracking-widest" style={{ color: sectionColors[sectionProgress] }}>
               {currentQuestion.sectionLabel}
             </span>
-            <span className="text-[12px] text-neutral-400 dark:text-neutral-500">{step + 1} / {totalQuestions}</span>
+            <span className="text-[12px] text-neutral-600 dark:text-neutral-500">{step + 1} / {totalQuestions}</span>
           </div>
           <div className="h-1 rounded-full bg-neutral-200 dark:bg-neutral-700 overflow-hidden">
             <div
@@ -626,7 +626,7 @@ const TestHormonal: React.FC = () => {
             {currentQuestion.text}
           </h2>
           {currentQuestion.subtext && (
-            <p className="text-[14px] text-neutral-500 dark:text-neutral-400 mb-6">{currentQuestion.subtext}</p>
+            <p className="text-[14px] text-neutral-600 dark:text-neutral-400 mb-6">{currentQuestion.subtext}</p>
           )}
           {!currentQuestion.subtext && <div className="mb-6" />}
 
@@ -674,8 +674,8 @@ const TestHormonal: React.FC = () => {
                   ))}
                 </div>
                 <div className="flex justify-between mt-2 px-1">
-                  <span className="text-[11px] text-neutral-400">{currentQuestion.scaleLabels?.min}</span>
-                  <span className="text-[11px] text-neutral-400">{currentQuestion.scaleLabels?.max}</span>
+                  <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{currentQuestion.scaleLabels?.min}</span>
+                  <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{currentQuestion.scaleLabels?.max}</span>
                 </div>
               </div>
             );

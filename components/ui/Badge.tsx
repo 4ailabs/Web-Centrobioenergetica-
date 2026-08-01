@@ -20,7 +20,9 @@ export type TonoBadge =
   | 'proximo';
 
 const TONO: Record<TonoBadge, string> = {
-  activo: 'bg-salvia-500 text-white',
+  // salvia-600 y no 500: con texto blanco a 10 px, el 500 se queda en 3.36:1 y
+  // el mínimo legible es 4.5. El 600 da 4.70 y el verde apenas cambia.
+  activo: 'bg-salvia-600 text-white',
   logrado: 'bg-salvia-50 dark:bg-salvia-400/10 text-salvia-600 dark:text-salvia-400',
   atencion: 'bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400',
   marca: 'bg-primary-600 text-white',

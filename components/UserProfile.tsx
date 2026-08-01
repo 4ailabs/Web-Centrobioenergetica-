@@ -39,9 +39,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, mobile = false }) => {
                     </div>
                     <div className="flex flex-col overflow-hidden flex-1 text-left">
                         <span className="text-[13px] font-medium text-neutral-800 dark:text-neutral-100 truncate">{user.name || 'Usuario'}</span>
-                        <span className="text-[11px] text-neutral-400 dark:text-neutral-500 truncate">{user.email}</span>
+                        <span className="text-[11px] text-neutral-600 dark:text-neutral-500 truncate">{user.email}</span>
                     </div>
-                    <ChevronDown className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 shrink-0 ${showMenu ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400 transition-transform duration-200 shrink-0 ${showMenu ? 'rotate-180' : ''}`} />
                 </button>
 
                 {showMenu && (

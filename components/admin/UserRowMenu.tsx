@@ -58,7 +58,7 @@ const UserRowMenu: React.FC<UserRowMenuProps> = ({
                 aria-label="Más acciones"
                 aria-expanded={abierto}
                 aria-haspopup="menu"
-                className="w-9 h-9 flex items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:border-neutral-400 transition-colors"
+                className="w-9 h-9 flex items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:border-neutral-400 transition-colors"
             >
                 <MoreHorizontal className="w-4 h-4" />
             </button>
@@ -69,10 +69,10 @@ const UserRowMenu: React.FC<UserRowMenuProps> = ({
                     className="absolute right-0 top-11 z-20 w-56 py-1 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-lg overflow-hidden"
                 >
                     <button role="menuitem" onClick={() => ejecutar(onEditar)} className={`${item} text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700/50`}>
-                        <Pencil className="w-3.5 h-3.5 text-neutral-400" /> Editar datos
+                        <Pencil className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" /> Editar datos
                     </button>
                     <button role="menuitem" onClick={() => ejecutar(onContrasena)} className={`${item} text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700/50`}>
-                        <KeyRound className="w-3.5 h-3.5 text-neutral-400" /> Restablecer contraseña
+                        <KeyRound className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" /> Restablecer contraseña
                     </button>
 
                     {!esUnoMismo && (
@@ -94,7 +94,7 @@ const UserRowMenu: React.FC<UserRowMenuProps> = ({
                             <button role="menuitem" onClick={() => ejecutar(onEliminar)} className={`${item} text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10`}>
                                 <Trash2 className="w-3.5 h-3.5" /> Eliminar cuenta
                             </button>
-                            <p className="px-3 pt-0.5 pb-2 text-[11px] text-neutral-400 leading-snug">
+                            <p className="px-3 pt-0.5 pb-2 text-[11px] text-neutral-600 dark:text-neutral-400 leading-snug">
                                 Borra también su progreso. Para retirarle el acceso sin perder nada, usa Suspender.
                             </p>
                         </>

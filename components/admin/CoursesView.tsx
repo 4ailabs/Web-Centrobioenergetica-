@@ -43,7 +43,7 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
     }, [usuarios]);
 
     if (loading) {
-        return <div className="py-12 text-center text-sm text-neutral-500 dark:text-neutral-400">Cargando…</div>;
+        return <div className="py-12 text-center text-sm text-neutral-600 dark:text-neutral-400">Cargando…</div>;
     }
 
     // ── Detalle de un curso ──
@@ -56,7 +56,7 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
             <div>
                 <button
                     onClick={() => setAbierto(null)}
-                    className="flex items-center gap-1.5 text-[13px] text-neutral-500 hover:text-primary-600 transition-colors mb-4"
+                    className="flex items-center gap-1.5 text-[13px] text-neutral-600 dark:text-neutral-400 hover:text-primary-600 transition-colors mb-4"
                 >
                     <ArrowLeft className="w-4 h-4" /> Todos los cursos
                 </button>
@@ -66,7 +66,7 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                         <h2 className="text-[19px] font-semibold text-neutral-800 dark:text-neutral-100">
                             {nombreCorto(datos.curso.title)}
                         </h2>
-                        <p className="text-[13px] text-neutral-500 dark:text-neutral-400 mt-0.5">
+                        <p className="text-[13px] text-neutral-600 dark:text-neutral-400 mt-0.5">
                             {datos.inscritos.length} {datos.inscritos.length === 1 ? 'alumno' : 'alumnos'}
                             {datos.sinEmpezar.length > 0 && ` · ${datos.sinEmpezar.length} sin empezar`}
                         </p>
@@ -79,7 +79,7 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                 {datos.inscritos.length === 0 ? (
                     <div className="py-12 text-center border border-dashed border-neutral-200 dark:border-neutral-700 rounded-xl">
                         <p className="text-[14px] font-medium text-neutral-700 dark:text-neutral-200">Nadie inscrito todavía</p>
-                        <p className="text-[13px] text-neutral-500 dark:text-neutral-400 mt-1 mb-4">
+                        <p className="text-[13px] text-neutral-600 dark:text-neutral-400 mt-1 mb-4">
                             Cuando des acceso a alguien, aparecerá aquí.
                         </p>
                         <Button onClick={() => onInscribir(abierto)}>Inscribir al primero</Button>
@@ -107,13 +107,13 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                                                 <Badge tono="logrado" icono={<CheckCircle2 className="w-2.5 h-2.5" />}>Completado</Badge>
                                             )}
                                         </div>
-                                        <p className="text-[12.5px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">{u.email}</p>
+                                        <p className="text-[12.5px] text-neutral-600 dark:text-neutral-400 mt-0.5 truncate">{u.email}</p>
                                         {videos > 0 && !sinEmpezar && (
                                             <div className="flex items-center gap-2 mt-2">
                                                 <div className="h-1.5 w-24 rounded-full bg-neutral-100 dark:bg-neutral-700 overflow-hidden">
                                                     <div className="h-full bg-salvia-500 rounded-full" style={{ width: `${pct}%` }} />
                                                 </div>
-                                                <span className="text-[11.5px] text-neutral-500 dark:text-neutral-400 tabular-nums">
+                                                <span className="text-[11.5px] text-neutral-600 dark:text-neutral-400 tabular-nums">
                                                     {vistos} de {videos}
                                                 </span>
                                             </div>
@@ -155,14 +155,14 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                         <h3 className="text-[14.5px] font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mt-2">
                             {nombreCorto(curso.title)}
                         </h3>
-                        <p className="text-[12px] text-neutral-500 dark:text-neutral-400 mt-0.5">
+                        <p className="text-[12px] text-neutral-600 dark:text-neutral-400 mt-0.5">
                             {totalVideos(id)} {totalVideos(id) === 1 ? 'capítulo' : 'capítulos'}
                         </p>
                         <div className="flex items-baseline gap-2 mt-3 pt-3 border-t border-neutral-100 dark:border-neutral-700">
                             <span className="text-[20px] font-semibold text-neutral-800 dark:text-neutral-100 tabular-nums leading-none">
                                 {inscritos.length}
                             </span>
-                            <span className="text-[12px] text-neutral-500 dark:text-neutral-400">
+                            <span className="text-[12px] text-neutral-600 dark:text-neutral-400">
                                 {inscritos.length === 1 ? 'alumno' : 'alumnos'}
                                 {sinEmpezar.length > 0 && (
                                     <span className="text-amber-700 dark:text-amber-400"> · {sinEmpezar.length} sin empezar</span>

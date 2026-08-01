@@ -19,8 +19,8 @@ const StatsCards: React.FC<StatsCardsProps> = ({ totalUsers, activeSubscriptions
             {stats.map((stat) => (
                 <div key={stat.label} className="bg-white dark:bg-neutral-800 p-4 rounded-xl border border-neutral-200 dark:border-neutral-700">
                     <div className="flex items-center gap-2 mb-2">
-                        <stat.icon className="w-4 h-4 text-neutral-400" />
-                        <span className="text-[11px] text-neutral-500 dark:text-neutral-400">{stat.label}</span>
+                        <stat.icon className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-[11px] text-neutral-600 dark:text-neutral-400">{stat.label}</span>
                     </div>
                     <div className={`text-2xl font-semibold ${stat.color}`}>{stat.value}</div>
                 </div>
