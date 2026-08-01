@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Shield, Search, Plus, CheckCircle2, XCircle, ChevronLeft, ChevronRight, KeyRound, ChevronDown, Clock, UserCheck } from 'lucide-react';
 import UserTable from '../components/admin/UserTable';
 import GrantAccessModal from '../components/admin/GrantAccessModal';
+import CoursesView from '../components/admin/CoursesView';
 import CourseManagementModal from '../components/admin/CourseManagementModal';
 import UserFormModal from '../components/admin/UserFormModal';
 import { MOCK_DATA } from '../data/mockData';
@@ -160,9 +161,12 @@ const AdminDashboard: React.FC = () => {
     // mensaje de WhatsApp listo para enviar.
     const [isGrantOpen, setIsGrantOpen] = useState(false);
     const [grantEmail, setGrantEmail] = useState<string | undefined>(undefined);
+    const [grantCurso, setGrantCurso] = useState<string | undefined>(undefined);
+    const [seccion, setSeccion] = useState<'alumnos' | 'cursos'>('alumnos');
 
-    const abrirDarAcceso = (email?: string) => {
+    const abrirDarAcceso = (email?: string, cursoId?: string) => {
         setGrantEmail(email);
+        setGrantCurso(cursoId);
         setIsGrantOpen(true);
     };
 
@@ -381,6 +385,34 @@ const AdminDashboard: React.FC = () => {
                 </div>
             </header>
 
+            {/* Dos secciones: la persona y el curso, las dos preguntas del negocio */}
+            <div className="flex gap-1 mb-6 border-b border-neutral-200 dark:border-neutral-700">
+                {([['alumnos', 'Alumnos'], ['cursos', 'Cursos']] as const).map(([clave, etiqueta]) => (
+                    <button
+                        key={clave}
+                        onClick={() => setSeccion(clave)}
+                        aria-current={seccion === clave}
+                        className={`px-4 py-2.5 text-[13.5px] -mb-px border-b-2 transition-colors ${
+                            seccion === clave
+                                ? 'border-primary-600 text-neutral-800 dark:text-neutral-100 font-semibold'
+                                : 'border-transparent text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300'
+                        }`}
+                    >
+                        {etiqueta}
+                    </button>
+                ))}
+            </div>
+
+            {seccion === 'cursos' ? (
+                <CoursesView
+                    usuarios={users}
+                    loading={loading}
+                    onInscribir={(cursoId) => abrirDarAcceso(undefined, cursoId)}
+                />
+            ) : (
+            <>
+
+
 
             {/* Aviso de cuentas pendientes: sin aprobación no pueden iniciar sesión */}
             {pendingUsers.length > 0 && (
@@ -505,11 +537,15 @@ const AdminDashboard: React.FC = () => {
                 </div>
             )}
 
+            </>
+            )}
+
             <GrantAccessModal
                 isOpen={isGrantOpen}
-                onClose={() => { setIsGrantOpen(false); setGrantEmail(undefined); }}
+                onClose={() => { setIsGrantOpen(false); setGrantEmail(undefined); setGrantCurso(undefined); }}
                 usuarios={users}
                 emailInicial={grantEmail}
+                cursoInicial={grantCurso}
                 onEnroll={async (userId, courseIds) => {
                     await enrollInCourses(userId, courseIds);
                     await fetchUsers();
