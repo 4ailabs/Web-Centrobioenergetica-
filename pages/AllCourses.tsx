@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
 import { handleCourseClick } from '../utils/framerIntegration';
-import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_BADGE_CLASS, courseHref } from '../data/catalog';
+import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO, courseHref } from '../data/catalog';
+import Badge from '../components/ui/Badge';
 import type { Course } from '../types';
 import { ArrowRight } from 'lucide-react';
 
@@ -32,9 +33,9 @@ const AllCourses: React.FC = () => {
     const meta = COURSE_META[courseId];
     if (!meta) return null;
     return (
-      <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS[meta.estado]}`}>
+      <Badge tono={ESTADO_TONO[meta.estado]}>
         {ESTADO_LABEL[meta.estado]}
-      </span>
+      </Badge>
     );
   };
 

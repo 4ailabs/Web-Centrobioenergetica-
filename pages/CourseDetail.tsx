@@ -6,24 +6,25 @@ import type { CourseVideo } from '../types';
 import { getStreamEmbedUrl } from '../lib/cloudflare-stream';
 import { API_BASE } from '../lib/api';
 import { Play, CheckCircle2, X, Lock, AlertCircle, ArrowLeft, BookOpen, ExternalLink } from 'lucide-react';
+import { COLOR } from '../lib/tokens';
 
 const Roseton: React.FC<{ size?: number }> = ({ size = 24 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width={size} height={size}>
     <g transform="translate(80,80)">
-      <circle cx="0"     cy="-50"   r="8" fill="#B5604A"/>
-      <circle cx="25"    cy="-43.3" r="8" fill="#8FA87A"/>
-      <circle cx="43.3"  cy="-25"   r="8" fill="#B5604A"/>
-      <circle cx="50"    cy="0"     r="8" fill="#8FA87A"/>
-      <circle cx="43.3"  cy="25"    r="8" fill="#B5604A"/>
-      <circle cx="25"    cy="43.3"  r="8" fill="#8FA87A"/>
-      <circle cx="0"     cy="50"    r="8" fill="#B5604A"/>
-      <circle cx="-25"   cy="43.3"  r="8" fill="#8FA87A"/>
-      <circle cx="-43.3" cy="25"    r="8" fill="#B5604A"/>
-      <circle cx="-50"   cy="0"     r="8" fill="#8FA87A"/>
-      <circle cx="-43.3" cy="-25"   r="8" fill="#B5604A"/>
-      <circle cx="-25"   cy="-43.3" r="8" fill="#8FA87A"/>
-      <circle cx="0" cy="0" r="5" fill="#E8A857" opacity="0.5"/>
-      <circle cx="0" cy="0" r="3" fill="#E8A857"/>
+      <circle cx="0"     cy="-50"   r="8" fill={COLOR.terracota}/>
+      <circle cx="25"    cy="-43.3" r="8" fill={COLOR.salvia}/>
+      <circle cx="43.3"  cy="-25"   r="8" fill={COLOR.terracota}/>
+      <circle cx="50"    cy="0"     r="8" fill={COLOR.salvia}/>
+      <circle cx="43.3"  cy="25"    r="8" fill={COLOR.terracota}/>
+      <circle cx="25"    cy="43.3"  r="8" fill={COLOR.salvia}/>
+      <circle cx="0"     cy="50"    r="8" fill={COLOR.terracota}/>
+      <circle cx="-25"   cy="43.3"  r="8" fill={COLOR.salvia}/>
+      <circle cx="-43.3" cy="25"    r="8" fill={COLOR.terracota}/>
+      <circle cx="-50"   cy="0"     r="8" fill={COLOR.salvia}/>
+      <circle cx="-43.3" cy="-25"   r="8" fill={COLOR.terracota}/>
+      <circle cx="-25"   cy="-43.3" r="8" fill={COLOR.salvia}/>
+      <circle cx="0" cy="0" r="5" fill={COLOR.ambar} opacity="0.5"/>
+      <circle cx="0" cy="0" r="3" fill={COLOR.ambar}/>
     </g>
   </svg>
 );
@@ -418,12 +419,12 @@ const CourseDetail: React.FC = () => {
                     >
                       <div className="px-5 py-4 flex items-center justify-between gap-3">
                         <div>
-                          <span className="text-[10px] font-medium uppercase tracking-widest" style={{ color: '#9a4f3c' }}>Test gratuito</span>
+                          <span className="text-[10px] font-medium uppercase tracking-widest" style={{ color: COLOR.terracotaOscuro }}>Test gratuito</span>
                           <h3 className="text-[14px] font-medium mt-0.5" style={{ color: '#3D3B37' }}>Descubre tu perfil hormonal</h3>
                           <p className="text-[11px] mt-1 leading-relaxed" style={{ color: '#6B6963' }}>22 preguntas basadas en la escala MRS. Identifica tu fase, la severidad de tus síntomas y tus ejes de riesgo.</p>
                         </div>
                         <div className="shrink-0">
-                          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: '#9a4f3c' }}>
+                          <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: COLOR.terracotaOscuro }}>
                             <Play className="w-4 h-4 text-white fill-current ml-0.5" />
                           </div>
                         </div>

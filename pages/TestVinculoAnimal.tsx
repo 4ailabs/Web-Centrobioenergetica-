@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight } from 'lucide-react';
+import { COLOR } from '../lib/tokens';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -261,7 +262,7 @@ function calculateProfile(
     profile = {
       name: 'Vínculo Seguro',
       tagline: 'Base estable',
-      color: '#7a9466',
+      color: COLOR.salviaOscuro,
       description:
         'El campo emocional entre ustedes tiene suelo firme. Tu animal confía en ti como base segura: puede alejarse, explorar, y volver. Siente tu estado pero no lo absorbe. Tiene autonomía y conexión al mismo tiempo — y eso no es fácil de construir.',
       interpretation:
@@ -273,7 +274,7 @@ function calculateProfile(
     profile = {
       name: 'Vínculo Ansioso',
       tagline: 'Tensión de fondo',
-      color: '#B5604A',
+      color: COLOR.terracota,
       description:
         'Tu animal no tiene suficiente suelo interno para regularse sin ti. Busca proximidad de forma intensa, espeja tu estado con fidelidad, y puede mostrar síntomas cuando hay tensión sostenida en el hogar. No es "demasiado cariñoso" — es un sistema nervioso que aprendió que la estabilidad no está garantizada.',
       interpretation:
@@ -359,7 +360,7 @@ const TestVinculoAnimal: React.FC = () => {
     }, 300);
   };
 
-  const sectionColor = currentQuestion?.axis === 'ansiedad' ? '#B5604A' : '#534AB7';
+  const sectionColor = currentQuestion?.axis === 'ansiedad' ? COLOR.terracota : '#534AB7';
 
   // ── INTRO ────────────────────────────────────────────────────────────────
 
@@ -404,7 +405,7 @@ const TestVinculoAnimal: React.FC = () => {
         {/* Structure preview */}
         <div className="mb-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-5 space-y-3">
           {[
-            { label: 'Sección A', desc: 'Eje de ansiedad de vínculo', count: '5 preguntas', color: '#B5604A' },
+            { label: 'Sección A', desc: 'Eje de ansiedad de vínculo', count: '5 preguntas', color: COLOR.terracota },
             { label: 'Sección B', desc: 'Eje de conexión y exploración', count: '5 preguntas', color: '#534AB7' },
           ].map((sec) => (
             <div key={sec.label} className="flex items-center justify-between">
@@ -503,14 +504,14 @@ const TestVinculoAnimal: React.FC = () => {
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-[13px] font-medium text-neutral-700 dark:text-neutral-200">Ansiedad de vínculo</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-[12px]" style={{ color: '#B5604A' }}>{anxLabel}</span>
+                    <span className="text-[12px]" style={{ color: COLOR.terracota }}>{anxLabel}</span>
                     <span className="text-[12px] text-neutral-400">{result.anxietyScore}/20</span>
                   </div>
                 </div>
                 <div className="h-2.5 rounded-full bg-neutral-100 dark:bg-neutral-700 overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-1000 ease-out"
-                    style={{ width: `${anxPct}%`, background: '#B5604A' }}
+                    style={{ width: `${anxPct}%`, background: COLOR.terracota }}
                   />
                 </div>
                 <div className="flex justify-between mt-1">

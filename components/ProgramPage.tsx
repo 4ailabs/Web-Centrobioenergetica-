@@ -349,7 +349,7 @@ const ProgramPage: React.FC<ProgramPageProps> = ({
       )}
 
       {/* Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 lg:relative lg:mt-4 px-6 lg:px-0 pb-5 lg:pb-0 pt-3 bg-gradient-to-t from-[#F9F8F6] dark:from-[#100E12] via-[#F9F8F6]/95 dark:via-[#100E12]/95 to-transparent lg:from-transparent lg:via-transparent lg:bg-none z-30">
+      <div className="fixed bottom-0 left-0 right-0 lg:relative lg:mt-4 px-6 lg:px-0 pb-5 lg:pb-0 pt-3 bg-gradient-to-t from-neutral-50 dark:from-[#100E12] via-neutral-50/95 dark:via-[#100E12]/95 to-transparent lg:from-transparent lg:via-transparent lg:bg-none z-30">
         <a
           href={ctaHref || whatsappLink(whatsappMsg)}
           target="_blank"

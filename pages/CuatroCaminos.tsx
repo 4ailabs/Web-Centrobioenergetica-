@@ -1,10 +1,11 @@
 import React from 'react';
 import ProgramPage from '../components/ProgramPage';
 import PromoVideo from '../components/PromoVideo';
+import { COLOR } from '../lib/tokens';
 
 const PROMO_STREAM_ID = '160c7c518e2a036ae5d0872f07d63f25';
 
-const TERRACOTA = '#B5604A';
+const TERRACOTA = COLOR.terracota;
 
 /**
  * La roseta de los cuatro caminos: el modelo propio del Instituto y lo único

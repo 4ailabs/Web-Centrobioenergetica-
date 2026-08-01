@@ -2,6 +2,7 @@ import React from 'react';
 import { BookOpen, Shield, Clock, UserMinus } from 'lucide-react';
 import { MOCK_DATA } from '../../data/mockData';
 import UserRowMenu from './UserRowMenu';
+import Badge from '../ui/Badge';
 
 // El nombre se deriva SIEMPRE del catálogo real. Antes existía aquí un
 // diccionario fijo de ids→nombres que quedó desfasado y mostraba el curso
@@ -82,9 +83,7 @@ const UserTable: React.FC<UserTableProps> = ({
                                 )}
                                 {isCurrentUser && <span className="text-[10px] text-neutral-400">(tú)</span>}
                                 {suspendido && (
-                                    <span className="inline-flex items-center gap-1 text-[10px] bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full font-medium">
-                                        <UserMinus className="w-2.5 h-2.5" /> Sin acceso
-                                    </span>
+                                    <Badge tono="atencion" icono={<UserMinus className="w-2.5 h-2.5" />}>Sin acceso</Badge>
                                 )}
                             </div>
                             <p className="text-[12.5px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">{user.email}</p>

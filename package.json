@@ -7,8 +7,8 @@
     "dev": "vite",
     "dev:server": "tsx watch server/index.ts",
     "dev:all": "concurrently \"npm run dev:server\" \"npm run dev\"",
-    "build": "prisma generate && tsc --noEmit && vite build && npm run prerender:meta",
-    "vercel-build": "prisma generate && tsc --noEmit && vite build && npm run prerender:meta",
+    "build": "prisma generate && tsc --noEmit && npm run check:colores && vite build && npm run prerender:meta",
+    "vercel-build": "prisma generate && tsc --noEmit && npm run check:colores && vite build && npm run prerender:meta",
     "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate",
     "preview": "vite preview",
@@ -20,7 +20,8 @@
     "db:migrate:dev": "node scripts/guard-db.mjs && prisma migrate dev",
     "db:push:peligroso": "node scripts/guard-db.mjs && prisma db push",
     "create-admin": "tsx scripts/create-admin.ts",
-    "prerender:meta": "tsx scripts/prerender-meta.ts"
+    "prerender:meta": "tsx scripts/prerender-meta.ts",
+    "check:colores": "node scripts/check-colores.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

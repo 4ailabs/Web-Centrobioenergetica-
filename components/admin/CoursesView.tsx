@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowLeft, BookOpen, Clock, MessageCircle, UserPlus, CheckCircle2 } from 'lucide-react';
 import { MOCK_DATA } from '../../data/mockData';
-import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_BADGE_CLASS } from '../../data/catalog';
+import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO } from '../../data/catalog';
+import Badge from '../ui/Badge';
+import Button from '../ui/Button';
 
 interface Usuario {
     id: string;
@@ -69,12 +71,9 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                             {datos.sinEmpezar.length > 0 && ` · ${datos.sinEmpezar.length} sin empezar`}
                         </p>
                     </div>
-                    <button
-                        onClick={() => onInscribir(abierto)}
-                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary-600 hover:bg-primary-700 text-white text-[13px] font-semibold transition-colors min-h-[40px]"
-                    >
+                    <Button onClick={() => onInscribir(abierto)}>
                         <UserPlus className="w-4 h-4" /> Inscribir alumno
-                    </button>
+                    </Button>
                 </div>
 
                 {datos.inscritos.length === 0 ? (
@@ -83,12 +82,7 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                         <p className="text-[13px] text-neutral-500 dark:text-neutral-400 mt-1 mb-4">
                             Cuando des acceso a alguien, aparecerá aquí.
                         </p>
-                        <button
-                            onClick={() => onInscribir(abierto)}
-                            className="px-4 py-2.5 rounded-lg bg-primary-600 hover:bg-primary-700 text-white text-[13px] font-semibold transition-colors"
-                        >
-                            Inscribir al primero
-                        </button>
+                        <Button onClick={() => onInscribir(abierto)}>Inscribir al primero</Button>
                     </div>
                 ) : (
                     <div className="space-y-2.5">
@@ -107,14 +101,10 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                                                 {u.name || 'Sin nombre'}
                                             </span>
                                             {sinEmpezar && (
-                                                <span className="inline-flex items-center gap-1 text-[10px] bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full font-medium">
-                                                    <Clock className="w-2.5 h-2.5" /> Sin empezar
-                                                </span>
+                                                <Badge tono="atencion" icono={<Clock className="w-2.5 h-2.5" />}>Sin empezar</Badge>
                                             )}
                                             {videos > 0 && vistos >= videos && (
-                                                <span className="inline-flex items-center gap-1 text-[10px] bg-salvia-50 dark:bg-salvia-400/10 text-salvia-600 dark:text-salvia-400 px-2 py-0.5 rounded-full font-medium">
-                                                    <CheckCircle2 className="w-2.5 h-2.5" /> Completado
-                                                </span>
+                                                <Badge tono="logrado" icono={<CheckCircle2 className="w-2.5 h-2.5" />}>Completado</Badge>
                                             )}
                                         </div>
                                         <p className="text-[12.5px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">{u.email}</p>
@@ -160,9 +150,7 @@ const CoursesView: React.FC<CoursesViewProps> = ({ usuarios, loading, onInscribi
                         className="text-left bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4 hover:border-primary-600 transition-colors"
                     >
                         {meta && (
-                            <span className={`inline-block px-2 py-0.5 text-[10px] font-medium rounded-full ${ESTADO_BADGE_CLASS[meta.estado]}`}>
-                                {ESTADO_LABEL[meta.estado]}
-                            </span>
+                            <Badge tono={ESTADO_TONO[meta.estado]}>{ESTADO_LABEL[meta.estado]}</Badge>
                         )}
                         <h3 className="text-[14.5px] font-semibold text-neutral-800 dark:text-neutral-100 leading-snug mt-2">
                             {nombreCorto(curso.title)}

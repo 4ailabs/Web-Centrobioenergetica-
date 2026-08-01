@@ -1,12 +1,13 @@
 import React from 'react';
 import ProgramPage from '../components/ProgramPage';
+import { COLOR } from '../lib/tokens';
 
 // Paleta del hero — misma que el Folleto de Beca impreso
 const BK = '#362F29';
-const SAGE = '#8FA87A';
-const TERRA = '#B5604A';
+const SAGE = COLOR.salvia;
+const TERRA = COLOR.terracota;
 const TAN = '#E2D6C6';
-const GOLD = '#E8A857';
+const GOLD = COLOR.ambar;
 const G = "Georgia, 'Times New Roman', serif";
 
 // Símbolo — árbol genealógico esquemático (dos líneas convergentes, herencia)
