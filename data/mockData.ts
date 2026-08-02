@@ -198,9 +198,24 @@ export const MOCK_DATA = {
       imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
       modules: [
         { id: 1, title: 'El Cuerpo Eléctrico', description: '11 de julio · 10:00 – 18:00 h', order: 1, videos: [
-          { id: 1, title: 'Capítulo 1', description: 'Módulo 1 — El Cuerpo Eléctrico.', duration: '', order: 1, cloudflareStreamId: '32a4d7ec68c9fd2a23e7d80728e76da2' },
-          { id: 5, title: 'Capítulo 2', description: 'Módulo 1 — El Cuerpo Eléctrico.', duration: '', order: 2, cloudflareStreamId: '4c08589240dca30ec59c74daa8d03844' },
-          { id: 6, title: 'Capítulo 3', description: 'Módulo 1 — El Cuerpo Eléctrico.', duration: '', order: 3, cloudflareStreamId: '15af37421329831b45eabf739439f950' },
+          // La estructura canónica de la formación vive en cursos-timeline,
+          // en 00_Sistema_de_Produccion/00_Estructura_Maestra_Formacion.md:
+          // Módulo → Clases → Lecciones. El Módulo 1 son 15 lecciones en 4
+          // clases (C1:4, C2:3, C3:4, C4:4).
+          //
+          // La clase en vivo del 11 de julio se grabó en tres partes —dos por
+          // la mañana y una después de la comida—, y cada parte cubre clases
+          // completas: C1, C2, y C3+C4.
+          //
+          // El título se queda en «Capítulo N», que es la convención del resto
+          // del catálogo. Lo que hay dentro se cuenta en la descripción, que
+          // aparece bajo el reproductor.
+          //
+          // Si algún día se publica el curso grabado en estudio, cada lección
+          // tendrá su propio video y esta lista pasa de 3 a 15 entradas.
+          { id: 1, title: 'Capítulo 1', description: 'Clase 1 · Mañana · 4 lecciones. Qué es la Regulación Bioeléctrica y qué no es · El linaje del método: Becker, Broeringmeyer, Goiz · La matriz extracelular · El Vmem y la jerarquía.', duration: '', order: 1, cloudflareStreamId: '32a4d7ec68c9fd2a23e7d80728e76da2' },
+          { id: 5, title: 'Capítulo 2', description: 'Clase 2 · Mañana · 3 lecciones. El campo magnético y el tejido · El imán · El sustrato continuo.', duration: '', order: 2, cloudflareStreamId: '4c08589240dca30ec59c74daa8d03844' },
+          { id: 6, title: 'Capítulo 3', description: 'Clases 3 y 4 · Tarde · 8 lecciones. El cuerpo agente y TAME · Persuadibilidad, el ojo y los cuatro niveles · El macrófago y por qué regular no es curar · Mantenimiento y el punto trauma · El rastreo · Acidosis temporal y latente · El nodo de lesión y el ciclo por zonas · Rejilla combinada y cierre.', duration: '', order: 3, cloudflareStreamId: '15af37421329831b45eabf739439f950' },
         ] },
         { id: 2, title: 'La lectura del cuerpo', description: '25 de julio · 10:00 – 18:00 h', order: 2, videos: [{ id: 2, title: 'Módulo 2 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
         { id: 3, title: 'Los ejes de regulación', description: '8 de agosto · 10:00 – 18:00 h', order: 3, videos: [{ id: 3, title: 'Módulo 3 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
