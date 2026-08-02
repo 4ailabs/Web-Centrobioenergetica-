@@ -306,6 +306,15 @@ const CourseDetail: React.FC = () => {
                   </button>
                 </div>
               </div>
+
+              {/* Qué cubre este capítulo. El campo ya existía en los datos pero
+                  no se pintaba en ningún sitio: quien abría un video no tenía
+                  forma de saber qué iba a ver. */}
+              {activeVideo.description && (
+                <p className="pt-2.5 text-[12.5px] leading-relaxed text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                  {activeVideo.description}
+                </p>
+              )}
             </div>
           ) : (
             /* COURSE BANNER */
