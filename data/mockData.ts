@@ -217,7 +217,16 @@ export const MOCK_DATA = {
           { id: 5, title: 'Capítulo 2', description: 'Clase 2 · Mañana · 3 lecciones. El campo magnético y el tejido · El imán · El sustrato continuo.', duration: '', order: 2, cloudflareStreamId: '4c08589240dca30ec59c74daa8d03844' },
           { id: 6, title: 'Capítulo 3', description: 'Clases 3 y 4 · Tarde · 8 lecciones. El cuerpo agente y TAME · Persuadibilidad, el ojo y los cuatro niveles · El macrófago y por qué regular no es curar · Mantenimiento y el punto trauma · El rastreo · Acidosis temporal y latente · El nodo de lesión y el ciclo por zonas · Rejilla combinada y cierre.', duration: '', order: 3, cloudflareStreamId: '15af37421329831b45eabf739439f950' },
         ] },
-        { id: 2, title: 'La lectura del cuerpo', description: '25 de julio · 10:00 – 18:00 h', order: 2, videos: [{ id: 2, title: 'Módulo 2 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
+        { id: 2, title: 'La lectura del cuerpo', description: '25 de julio · 10:00 – 18:00 h', order: 2, videos: [
+          // A diferencia del Módulo 1, aquí no hay una transcripción
+          // Mañana/Tarde que confirme qué tramo del día cubre este video: el
+          // registro de la clase en vivo (cursos-timeline, Modulo_2/
+          // Clases_Impartidas) documenta pistas de AUDIO usadas para
+          // reconstruir texto, no una partición verificada de los videos
+          // subidos a Cloudflare. Por eso la descripción se deja vacía en
+          // lugar de adivinar el contenido.
+          { id: 2, title: 'Capítulo 1', description: '', duration: '', order: 1, cloudflareStreamId: 'daaa8edf3f034c5354651f192f092ee9' },
+        ] },
         { id: 3, title: 'Los ejes de regulación', description: '8 de agosto · 10:00 – 18:00 h', order: 3, videos: [{ id: 3, title: 'Módulo 3 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
         { id: 4, title: 'La sesión completa', description: '22 de agosto · 10:00 – 18:00 h', order: 4, videos: [{ id: 4, title: 'Módulo 4 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
       ],
