@@ -193,7 +193,7 @@ export const MOCK_DATA = {
       description: 'Tu cuerpo es un mapa eléctrico. Aprende a leerlo. Formación profesional en evaluación y regulación del estado bioeléctrico del cuerpo humano con campos magnéticos estáticos.',
       author: 'Dr. Miguel Ojeda Rios',
       price: 0,
-      lessons: 7,
+      lessons: 8,
       level: 'Intermedio' as const,
       imageUrl: '/images/courses/regulacion-bioelectrica/propuesta_1_fondo_mapa_becker.webp',
       modules: [
@@ -227,6 +227,7 @@ export const MOCK_DATA = {
           // lugar de adivinar el contenido.
           { id: 2, title: 'Capítulo 1', description: '', duration: '', order: 1, cloudflareStreamId: 'daaa8edf3f034c5354651f192f092ee9' },
           { id: 7, title: 'Capítulo 2', description: '', duration: '', order: 2, cloudflareStreamId: 'cc85f0171ae2dbe6cc781f7f996592d8' },
+          { id: 8, title: 'Capítulo 3', description: '', duration: '', order: 3, cloudflareStreamId: '63818bcf28ca5456b45e468be1d6ee60' },
         ] },
         { id: 3, title: 'Los ejes de regulación', description: '8 de agosto · 10:00 – 18:00 h', order: 3, videos: [{ id: 3, title: 'Módulo 3 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
         { id: 4, title: 'La sesión completa', description: '22 de agosto · 10:00 – 18:00 h', order: 4, videos: [{ id: 4, title: 'Módulo 4 — RB', description: 'Jornada completa.', duration: '8:00:00', order: 1 }] },
