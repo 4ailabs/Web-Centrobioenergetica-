@@ -302,7 +302,7 @@ const TestHormonal: React.FC = () => {
 
   // INTRO
   if (step === -1) return (
-    <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex flex-col bg-[var(--bg-main)]">
+    <div className="w-full pt-[72px] lg:pt-0 min-h-full flex flex-col bg-[var(--bg-main)]">
       {/* Banda superior terracota — identidad visual */}
       <div className="w-full h-1" style={{ background: `linear-gradient(90deg, ${COLOR.terracota}, #C9A96E 50%, #7A9B7F)` }} />
 
@@ -593,7 +593,7 @@ const TestHormonal: React.FC = () => {
   const sectionColors: Record<string, string> = { A: COLOR.terracota, B: '#534AB7', C: '#8B6F4E' };
 
   return (
-    <div className="w-full pt-[72px] lg:pt-0 min-h-screen flex flex-col bg-[var(--bg-main)]">
+    <div className="w-full pt-[72px] lg:pt-0 min-h-full flex flex-col bg-[var(--bg-main)]">
       {/* Progress */}
       <div className="px-6 pt-4">
         <div className="max-w-lg mx-auto">
