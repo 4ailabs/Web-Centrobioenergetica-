@@ -2,6 +2,28 @@
 
 ## Decisiones vigentes
 
+### 2026-08-15 — Biblioteca y Formación salen de la serie numerada
+
+**Decisión:** `05` y `06` pierden el folio, su filete de cabecera baja de `2px` en `RB/Ink Accessible` a `1px` en `Línea sutil`, y no llevan columna de margen. La serie numerada queda en `01`–`04`.
+
+**Razón:** la cadena del argumento definida en `12-MODELO §3` va de `01` a `04`. Biblioteca y Formación son aparato institucional, no eslabones. Mientras llevaran folio y filete grueso, la página pedía que sus titulares afirmaran algo —y de ahí salió `Publicaciones propias, con sus fuentes a la vista`, una frase de folleto que hubo que retirar el mismo día. Un tercer revisor externo señaló además que las dos secciones abrían composición a dos columnas sin usar la derecha, y que faltaba transición entre el documento explicativo y la parte institucional. Sacarlas de la serie resuelve las tres cosas y devuelve al filete de `2px` su único significado.
+
+**Alternativas consideradas:** mantenerlas numeradas y darles aparato real en el margen —los últimos títulos de la Biblioteca, y duración y modalidad en Formación—, descartada porque el aparato habría sido de relleno y ninguna de las dos tiene nota que aportar al argumento.
+
+### 2026-08-15 — El verde solo marca lo accionable y el dato
+
+**Decisión:** `RB/Accent Accessible` queda reservado a enlaces, llamadas de nota y dato destacado en figura. Los rótulos de aparato pasan a `RB/Muted Accessible`. Las llamadas `¹ ²` pasan a verde con peso 600. El correo del colofón pasa a verde.
+
+**Razón:** el verde marcaba a la vez enlaces, rótulos, estados y datos, de modo que no se podía saber qué era pulsable. Mientras tanto las llamadas de nota —único puente entre el cuerpo y el margen— iban en tinta normal y eran invisibles, y el correo, que es lo único accionable para un clínico o un periodista, iba en tinta plana.
+
+**Consecuencias:** la causa era una sola: el preset `RB/Label` llevaba el token de acento. Se corrigió ahí. **Los presets son de proyecto, no de página**, así que el cambio alcanza a las demás páginas RB que usen `RB/Label`; si en alguna el rótulo verde era intencionado, hay que declarar la excepción en esa página. Las llamadas exigieron partir el `TextRun` del párrafo: `setText` no admite formato parcial y `getHTML` no está expuesto en la sesión del agente.
+
+### 2026-08-15 — Los pies de figura salen de la monoespaciada
+
+**Decisión:** el pie va en Inter 400 a `13px`, interlineado `1.5`, en `RB/Muted Accessible`, con medida máxima de `440px`. Solo el prefijo `Fig. N —` conserva Space Mono 700 a `10px`. El pie va siempre debajo de la figura.
+
+**Razón:** iban enteros en Space Mono a `10px` —monoespaciada, en gris, a cuerpo mínimo y con medida mayor que la del propio texto—, y en móvil se leían como textura y no como contenido consultable. Space Mono queda donde trabaja: cifras, folios y etiquetas numéricas. El pie de la `Fig. 3` estaba encima de la figura, único caso de la página.
+
 ### 2026-08-15 — Medida única y retícula invariante en la página pilar
 
 **Decisión:** las seis secciones componen a `544px` de mancha. El canal entre lectura y margen pasa de `84px` a `124px`, el filete de margen se sitúa en `x760` y se dibuja siempre, con su altura fijada por la columna de lectura. El ritmo vertical se cierra en la escala `16 / 24 / 32 / 48 / 64 / 96`.
