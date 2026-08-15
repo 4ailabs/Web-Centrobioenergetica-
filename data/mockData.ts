@@ -497,6 +497,14 @@ export const MOCK_DATA = {
               order: 1,
               cloudflareStreamId: '87b01df14e6c3ebcdf9418fbbde5ee21',
             },
+            {
+              id: 6,
+              title: 'Capítulo 2',
+              description: '',
+              duration: '',
+              order: 2,
+              cloudflareStreamId: '50d6dfc85266493e1d717204d8f23da1',
+            },
           ],
         },
         {
