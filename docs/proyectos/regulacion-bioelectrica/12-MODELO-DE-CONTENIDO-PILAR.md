@@ -184,7 +184,11 @@ La cuenta cierra: `668 + 348 = 1016`, que es exactamente el ancho de contenido e
 | Rótulo y folio | `12px` |
 | Pie de figura | Inter 400 a `13px`, prefijo en Space Mono 700 a `10px` |
 
-**El nivel de enunciado se usa dos veces en toda la página, no más.** Existe porque entre `30px` y `72px` no había nada: después del frontispicio, la página no superaba los `30px` en 3.900px de scroll, y esa falta de rango dinámico —no la ausencia de ilustración— es la causa principal de que se leyera plana.
+**El nivel de enunciado se usa una sola vez en toda la página**, en la `02`, y carga el eslabón 4 de la cadena: *«El método regula la referencia, que es lo que devuelve al tejido a su rango.»* Existe porque entre `30px` y `72px` no había nada: después del frontispicio, la página no superaba los `30px` en 3.900px de scroll, y esa falta de rango dinámico —no la ausencia de ilustración— es la causa principal de que se leyera plana.
+
+La auditoría autorizaba dos usos. Se probó un segundo en la `04` con el eslabón 8, y hubo que retirarlo: el techo de dos no es una cuota, y un segundo bloque de énfasis le resta peso al primero. Además la frase que se escribió para llenarlo —«El cuerpo se lee entero antes de aplicar el primer imán»— era antítesis encubierta con floritura, y repetía el párrafo que tenía debajo.
+
+**Regla que sale de ahí, y que vale para toda la portada: si una frase se puede recitar, sobra.**
 
 **El cuerpo pasó de `15px` a `17px`.** La versión anterior de este documento argumentaba que «17px es medida de landing; 15px es medida de lectura». Eso vale en papel: a 96 dpi, `15px` es más pequeño que cualquier libro, y además la combinación de letra pequeña con línea larga daba 76 caracteres. A `17px` en la caja de `544px` quedan 68, dentro del óptimo de Bringhurst.
 
