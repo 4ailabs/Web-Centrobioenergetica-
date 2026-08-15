@@ -171,7 +171,22 @@ La cuenta cierra: `668 + 348 = 1016`, que es exactamente el ancho de contenido e
 
 **Ritmo vertical.** Escala cerrada de `16 / 24 / 32 / 48 / 64 / 96`. Ningún hueco puede tener otro valor. Antes de cada filete de sección, `96px` constantes. Tras la cabecera, `48px`. Antes de figura, `48px`. Entre párrafos, `20px`.
 
-**Tipografía del cuerpo.** Título de sección en Inter 500 a `30px`, interlineado `1.22em`, tracking `-0.02em`. Texto en Inter 400 a `15px`, interlineado `1.62em`. El cuerpo a 17px con interlineado 1.6 es medida de landing; 15px con 1.62 es medida de lectura.
+**Escala tipográfica.** `72 / 44 / 30 / 20 / 17 / 15 / 12 / 10`.
+
+| Nivel | Valor |
+|---|---|
+| Nombre del método | Inter 300 a `72px`, interlineado `1.02em` |
+| **Enunciado** | Inter 400 a `44px`, interlineado `1.15em`, tracking `-0.02em`, `RB/Ink Titular`, a ancho de retícula completa (`1016px`) |
+| Título de sección | Inter 500 a `30px`, interlineado `1.22em`, tracking `-0.02em` |
+| Definición del frontispicio | Inter 400 a `20px`, interlineado `1.5em` |
+| Cuerpo | Inter 400 a `17px`, interlineado `1.6em` |
+| Nota al margen | Inter 400 a `15px`, interlineado `1.55em` |
+| Rótulo y folio | `12px` |
+| Pie de figura | Inter 400 a `13px`, prefijo en Space Mono 700 a `10px` |
+
+**El nivel de enunciado se usa dos veces en toda la página, no más.** Existe porque entre `30px` y `72px` no había nada: después del frontispicio, la página no superaba los `30px` en 3.900px de scroll, y esa falta de rango dinámico —no la ausencia de ilustración— es la causa principal de que se leyera plana.
+
+**El cuerpo pasó de `15px` a `17px`.** La versión anterior de este documento argumentaba que «17px es medida de landing; 15px es medida de lectura». Eso vale en papel: a 96 dpi, `15px` es más pequeño que cualquier libro, y además la combinación de letra pequeña con línea larga daba 76 caracteres. A `17px` en la caja de `544px` quedan 68, dentro del óptimo de Bringhurst.
 
 **Figuras numeradas.** Los bloques de datos llevan pie: `Fig. 1 — Intensidad del campo magnético, en militeslas`, en Space Mono 700 a `10px`. Ese pie convierte una infografía en referencia.
 
