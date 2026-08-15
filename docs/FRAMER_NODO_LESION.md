@@ -24,7 +24,7 @@ Los únicos textos que pueden retirarse son duplicados puramente editoriales, po
 La fuente editorial principal es:
 
 ```text
-/Users/miguel/Centrobioenergetica-Instituto/
+/Users/miguelojedarios/cursos-timeline/
   03_Programas/Cursos_Selectos/El_Cuerpo_Electrico_RB/
   Referencia/Punto_Trauma/Manual/Manual_Imprimible_RB.html
 ```
@@ -34,6 +34,8 @@ Las reglas de marca e ilustración se encuentran en:
 ```text
 .../El_Cuerpo_Electrico_RB/Marca_Visual/
 ```
+
+La arquitectura general, la gobernanza y la separación entre contenido público y profesional se documentan en [proyectos/regulacion-bioelectrica/README.md](proyectos/regulacion-bioelectrica/README.md). En caso de conflicto sobre acceso o publicación, prevalece esa documentación de proyecto.
 
 Antes de modificar contenido, comparar el texto de Framer con la fuente bloque por bloque. El repositorio web no reemplaza al manual como fuente clínica.
 

@@ -49,3 +49,6 @@ dist/
 # Copias de seguridad de la base de datos (contienen datos personales)
 backups/
 *.sql
+
+# Configuración local de Claude Code
+.claude/settings.local.json
