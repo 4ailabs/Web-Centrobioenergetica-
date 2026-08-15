@@ -490,11 +490,12 @@ export const MOCK_DATA = {
           order: 2,
           videos: [
             {
-              id: 2,
-              title: 'Módulo 2 — Bioenergética V4',
-              description: 'Jornada completa. 10:00 – 18:00 h.',
-              duration: '8:00:00',
+              id: 5,
+              title: 'Capítulo 1',
+              description: '',
+              duration: '',
               order: 1,
+              cloudflareStreamId: '87b01df14e6c3ebcdf9418fbbde5ee21',
             },
           ],
         },
