@@ -2,6 +2,40 @@
 
 ## Decisiones vigentes
 
+### 2026-08-15 — El modelo de la portada se extiende a las subpáginas RB
+
+**Decisión:** `/articulos`, `/principios` y `/metodo` adoptan la gramática de documento: Inter en toda la página, sin tarjetas, sin bandas de color a ancho completo, listas separadas por filete de `1px`, secciones por filete de `2px`, y medida de `1016px`.
+
+**Razón:** las tres estaban en estados distintos y ninguna en el modelo. `/articulos` y `/principios` iban en **Playfair** con las publicaciones en tarjetas de esquina redondeada, y usaban los tokens de color retirados el 15 de agosto —`Tinta` `#282927` y `Texto secundario`—. `/metodo` ya estaba en Inter y con folios, pero conservaba bandas de color y tarjetas, que son las dos cosas que `12-MODELO §5bis` retira por nombre.
+
+**Consecuencias:** el hallazgo de fondo es que el proyecto ya tenía una familia de presets `RB/` completa —Title, Heading, Subheading, Lead, Body, Small, Label, Nav— **que no se estaba usando en ninguna parte**: la portada estila cada nodo en directo y las subpáginas heredaban presets de Playfair de una versión anterior. En lugar de estilar nodo a nodo, los presets `RB/` se alinearon a la escala del modelo y se asignaron. **El modelo queda así portable**: las páginas restantes se migran asignando preset, no reescribiendo atributos. Nota operativa: los presets son de proyecto, no de página.
+
+### 2026-08-15 — Una sola barra de navegación para todo RB
+
+**Decisión:** las seis páginas RB usan el componente `Navegación RB` de la portada, en flujo (`relative`, `maxWidth 1200`), con la variante que corresponde a cada breakpoint.
+
+**Razón:** no era un problema estético. Las subpáginas tenían una cabecera propia con **dos** enlaces, Método y Biblioteca. **`/principios` no aparecía en ninguna barra del sitio**: la ruta existía, tenía seis registros y solo se llegaba escribiendo la URL. `/nodo-de-lesion` no tenía barra en absoluto, de modo que se entraba al manual sin forma de volver. Y ninguna tenía cajón móvil.
+
+**Consecuencias:** lo que se cambie en el componente se propaga a las seis páginas. Queda pendiente ahí la píldora `FORMACIÓN`, que contradice la gramática del documento y solo es editable desde el editor de componentes.
+
+### 2026-08-15 — Tres páginas competían por el mismo titular
+
+**Decisión:** `/articulos` pasa a titularse **Biblioteca RB**, `/principios` a **Principios del método** y `/metodo` a **Estructura del método**.
+
+**Razón:** las tres se titulaban «Qué es la Regulación Bioeléctrica», que es la pregunta que responde la portada. Cuatro páginas del mismo sitio compitiendo por la misma consulta.
+
+### 2026-08-15 — El campo Fuentes publicaba rutas del repositorio
+
+**Decisión:** las seis rutas de archivo del campo `Fuentes` de `RB · Publicaciones` se sustituyen por la referencia legible de cada lección. El campo `Revisor Académico` se vacía.
+
+**Razón:** los artículos imprimían en público cadenas como `Curso_Vigente/Modulo_1/Curso_Video/Clases_Didacticas/Clase_1_El_Cuerpo_Electrico/Leccion_1.1_Que_es_la_RB.md`. No es una referencia: es la estructura interna del repositorio académico expuesta a cualquier lector. `Revisor Académico` decía «Pendiente» y se imprimía en la cabecera del artículo como si fuera un dato; el estado editorial ya declara Borrador.
+
+### 2026-08-15 — Las plantillas CMS no son editables por API
+
+**Constatación, no decisión.** Las páginas `:slug` no se pueden escribir desde la sesión del agente: `pagePath` rechaza la ruta con `:slug`, `navigateTo` está prohibido en modo `api`, `session new` no admite abrir una página concreta, `setAttributes` devuelve éxito sin aplicar nada y `addComponentInstance` falla con «Parent node not found» sobre un breakpoint existente. El árbol se lee entero; no se escribe.
+
+**Trabajo pendiente en el editor de Framer**, ya diagnosticado: borrar los tres breakpoints sobrantes de `/articulos/:slug`; sustituir la cabecera vieja por el componente; retirar el aviso «no sustituye valoración, diagnóstico ni tratamiento profesional», que al vivir en la plantilla se repite en todas las publicaciones; quitar la tarjeta del panel de estado; título a `RB/Title` en vez de Playfair; enlace de vuelta a `RB/Accent Accessible` en vez de terracota; medida a `1016`; y añadir `Última Revisión`, que la portada promete y la plantilla no muestra. `/principios/:slug` además pide Categoría, Nivel y Tiempo de lectura, campos que su colección no tiene: hay que reconstruirla contra los siete reales.
+
 ### 2026-08-15 — La sección 04 se parte en dos columnas
 
 **Decisión:** la columna de lectura de `04` se divide. La primera lleva el título y el párrafo del instrumento; entre las dos va el enunciado con la definición de nodo; la segunda lleva el dipolo y el procedimiento.
