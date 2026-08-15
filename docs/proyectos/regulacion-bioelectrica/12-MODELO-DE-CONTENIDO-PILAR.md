@@ -156,14 +156,20 @@ Ese lenguaje pertenece a otro género. Una página académica que usa la retóri
 
 **Cabecera de sección.** Filete de `2px` en `RB/Ink Accessible` arriba, filete de `1px` en `Línea sutil` abajo, con `14px` de padding vertical. Dentro: folio en Space Mono 700 a `12px`, y rótulo en Inter 600 a `11px`, versalitas, tracking `0.14em`. Sin título corriente a la derecha: repetía el nombre del método.
 
-**Cuerpo.** Stack horizontal con dos columnas y `44px` de padding superior:
+**Cuerpo.** Stack horizontal con dos columnas y `48px` de padding superior:
 
-| | |
-|---|---|
-| Columna de lectura | `1fr`, `maxWidth 600px`, padding derecho `56px` |
-| Margen | `260px`, padding izquierdo `28px`, `borderLeft` de `1px` en `Línea sutil` |
+| | Escritorio (1200) | Tablet (810) | Móvil (390) |
+|---|---|---|---|
+| Columna de lectura | `1fr`, `maxWidth 668px`, padding derecho `124px`, `borderRight` de `1px` en `Línea sutil` | `1fr`, padding derecho `64px`, mismo filete | `1fr`, sin padding lateral, **sin filete** |
+| Margen | `348px`, padding `4px 48px 0 32px`, sin borde | `240px`, padding izquierdo `24px` | bloque a `1fr`, `borderTop` de `1px`, padding superior `24px` |
 
-**El margen es opcional.** Recoge aparato — una cifra, una fuente, una definición lateral. Cuando no hay aparato que aportar, la columna de lectura ocupa `maxWidth 640px` y la sección prescinde del margen. No se rellena por simetría.
+La cuenta cierra: `668 + 348 = 1016`, que es exactamente el ancho de contenido entre los márgenes de `92px`. La mancha de lectura queda en `544px` — de `x92` a `x636` — y el filete de margen en `x760`.
+
+**El margen es opcional; la retícula no.** El margen recoge aparato —una cifra, una fuente, una definición lateral— y cuando no hay aparato que aportar se queda vacío. Pero **el filete se dibuja siempre, en las seis secciones**, y su altura la fija la columna de lectura, nunca el largo de la nota. Una retícula que aparece y desaparece según el contenido no es una retícula.
+
+**Medida única.** Las seis secciones componen a `544px`. No existe una medida alternativa para las secciones sin margen: la versión anterior de esta especificación autorizaba `maxWidth 640px` en ese caso, y el resultado fue que la sección 02 —la más densa de la página, y la que lleva la tesis— quedó componiendo a 89 caracteres por línea mientras el resto iba a 76. **Esa cláusula queda derogada.**
+
+**Ritmo vertical.** Escala cerrada de `16 / 24 / 32 / 48 / 64 / 96`. Ningún hueco puede tener otro valor. Antes de cada filete de sección, `96px` constantes. Tras la cabecera, `48px`. Antes de figura, `48px`. Entre párrafos, `20px`.
 
 **Tipografía del cuerpo.** Título de sección en Inter 500 a `30px`, interlineado `1.22em`, tracking `-0.02em`. Texto en Inter 400 a `15px`, interlineado `1.62em`. El cuerpo a 17px con interlineado 1.6 es medida de landing; 15px con 1.62 es medida de lectura.
 

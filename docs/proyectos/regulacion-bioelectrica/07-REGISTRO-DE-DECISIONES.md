@@ -2,6 +2,36 @@
 
 ## Decisiones vigentes
 
+### 2026-08-15 — Medida única y retícula invariante en la página pilar
+
+**Decisión:** las seis secciones componen a `544px` de mancha. El canal entre lectura y margen pasa de `84px` a `124px`, el filete de margen se sitúa en `x760` y se dibuja siempre, con su altura fijada por la columna de lectura. El ritmo vertical se cierra en la escala `16 / 24 / 32 / 48 / 64 / 96`.
+
+**Razón:** dos auditorías externas independientes —una de dirección de arte editorial científica, otra de comprensión y divulgación— señalaron la misma sección por caminos distintos. La `02` componía a `640px` y `89` caracteres por línea, contra `76` en el resto, por aplicación de la cláusula que autorizaba `maxWidth 640px` a las secciones sin margen. Es la sección más densa de la página y la que lleva la tesis del método: estaba puesta en la peor medida disponible. La cuenta nueva cierra en `668 + 348 = 1016`, que corrige de paso un descentrado de `164px` que la página arrastraba sin decisión.
+
+**Alternativas consideradas:** dibujar el filete solo donde hay nota, descartada porque una retícula que aparece y desaparece con el contenido no es una retícula. Rellenar los márgenes vacíos por simetría, descartada por el propio modelo: el aparato no se inventa.
+
+**Consecuencias:** queda derogada la cláusula de `maxWidth 640px` de `12-MODELO §5bis`. Los valores de escritorio se filtraron a los breakpoints menores al aplicarlos y hubo que declarar override propio en tablet —canal de `64px`, margen de `240px` sobre `714` útiles— y en móvil, donde el margen vuelve a ser bloque con filete superior y no existe filete vertical. El filete siempre dibujado deja al descubierto que `02`, `05` y `06` no tienen aparato que aportar; eso es un hueco de contenido, no de retícula, y queda abierto.
+
+**Responsable:** dirección del proyecto.
+
+### 2026-08-15 — Corregir la Fig. 2 y las áreas táctiles
+
+**Decisión:** las celdas de la Fig. 2 llevan contorno de `2px` en `RB/Ink Accessible`, la isla lo lleva en `RB/Accent Accessible`, y los enlaces pasan de `1px` a `2px`. Los enlaces de bloque adoptan `minHeight 24px`. Los dos textos del pie pasan de `fit-content` a `100%`.
+
+**Razón:** las celdas iban en `Salvia suave` sobre `Niebla`, que da `1,23:1`. WCAG 2.2 SC 1.4.11 pide `3:1` para gráficos informativos, pero antes de eso el problema es que no se veían: la isla —el concepto entero de la sección `03`— era del color del papel. Los enlaces medían `20px` de alto contra el mínimo de `24×24` de SC 2.5.8. El `fit-content` del pie impedía el salto de línea y la segunda línea se salía del viewport a `390px`.
+
+**Consecuencias:** la isla se lee ahora por sus enlaces ausentes, no por ser más pálida, que era la lectura equivocada. En `TextNode` el atributo es `minHeight`: `padding` no existe en ese tipo de nodo.
+
+### 2026-08-15 — Retirar «sostener» y cerrar el contrato de vocabulario
+
+**Decisión:** el verbo `sostener` sale de la portada, y `punto de calibración` se sustituye por `voltaje de referencia`. Los titulares de `04` y `05` pasan de rótulo a enunciado.
+
+**Razón:** `sostener` aparecía cuatro veces con tres significados —durar, mantener y defender— y en la `02` no describía ninguna operación física: la definición real venía después de los dos puntos. El término preciso es `defender`, que es además el que la fisiología usa para una variable regulada. `punto de calibración` era un tercer nombre para lo que el §6 de `12-MODELO` manda llamar `referencia` de forma consistente en toda la página.
+
+**Consecuencias:** `Con qué se trabaja, y en qué orden` era el único titular de la página que no afirmaba nada, y encabezaba la sección que el lector busca. Pasa a `El imán cambia el voltaje de las células que alcanza`. `Ideas, fuentes y actualidad` —tres sustantivos sin verbo— pasa a `Publicaciones propias, con sus fuentes a la vista`.
+
+**Responsable:** dirección del proyecto.
+
 ### 2026-08-15 — Alinear la tipografía web con el manual B5
 
 **Decisión:** retirar Newsreader de la propiedad RB y gobernar todo el texto con Inter, una sola familia. `RB/Title` pasa a Inter 400 y `RB/Heading` a Inter 500. Georgia permanece exclusivamente dentro de los logotipos.
