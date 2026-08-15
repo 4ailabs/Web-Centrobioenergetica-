@@ -2,6 +2,26 @@
 
 ## Decisiones vigentes
 
+### 2026-08-15 — La sección 04 se parte en dos columnas
+
+**Decisión:** la columna de lectura de `04` se divide. La primera lleva el título y el párrafo del instrumento; entre las dos va el enunciado con la definición de nodo; la segunda lleva el dipolo y el procedimiento.
+
+**Razón:** los tres párrafos vivían en una sola columna, de modo que un bloque a ancho de retícula solo podía colocarse detrás de los tres. La definición de nodo habría aterrizado después del párrafo del procedimiento, y el lector se habría encontrado «Cada tejido tiene su rango» antes de saber qué es un nodo — el defecto de términos definidos tarde que la auditoría de comprensión ya había señalado.
+
+**Consecuencias:** de paso se cierran dos huecos de esa misma auditoría. El segundo momento nunca se llamaba **aplicación**, aunque el término existe en el vocabulario del método, y **perfil bioeléctrico** aparecía como resultado sin decir qué contiene.
+
+**Trampas de la API, anotadas para no repetirlas:** los `FrameNode` creados por DSL nacen **sin layout y con los hijos en `absolute`**, así que hay que declarar `layout: "stack"` explícitamente o el bloque se sale de la página. `SET` sobre el texto de un `TextRun` que no tiene atributos propios **no prende**: hay que usar `setText` en el nodo. Y `visible: false` en escritorio **cascada** hacia tablet y móvil: cada breakpoint necesita su declaración.
+
+### 2026-08-15 — La Fig. 3 pasa a eje logarítmico, y solo en escritorio
+
+**Decisión:** en escritorio, la tabla de intensidades se sustituye por un eje logarítmico de `1016px` con seis décadas, de `0,01` a `10 000` militeslas. Las dos bandas propias del método —ventana de respuesta tisular y imanes clínicos— van en `RB/Accent Accessible`; las tres de referencia, en `RB/Muted Accessible`. En tablet y móvil se conserva la tabla.
+
+**Razón:** son cinco magnitudes que cubren cinco órdenes, y en una lista el lector tiene que hacer la aritmética de cabeza. En eje logarítmico el argumento se ve solo: la ventana tisular queda por debajo de lo que el imán entrega en superficie, y a dos décadas de una resonancia.
+
+**Alternativas consideradas:** llevar el eje a los tres breakpoints, descartada por dos motivos. Las posiciones son absolutas y están calculadas sobre `1016px`, de modo que en los `714px` útiles de tablet se saldrían del marco. Y un revisor externo señaló que **la tabla en móvil está especialmente bien resuelta**: sustituirla en todas partes habría tirado un acierto para arreglar otro sitio.
+
+**Desviación deliberada de la auditoría:** la propuesta original pedía las bandas de referencia en `Salvia suave`. Sobre `Papel` eso da `1,4:1` — exactamente el defecto de invisibilidad que se acababa de corregir en la Fig. 2. Van en `Muted Accessible`, que da `5,45:1` y conserva la jerarquía.
+
 ### 2026-08-15 — Biblioteca y Formación salen de la serie numerada
 
 **Decisión:** `05` y `06` pierden el folio, su filete de cabecera baja de `2px` en `RB/Ink Accessible` a `1px` en `Línea sutil`, y no llevan columna de margen. La serie numerada queda en `01`–`04`.
