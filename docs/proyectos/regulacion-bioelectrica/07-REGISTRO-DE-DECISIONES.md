@@ -2,6 +2,60 @@
 
 ## Decisiones vigentes
 
+### 2026-08-15 — El artículo se compone como pieza de lectura, no como página de composición
+
+**Decisión:** columna única centrada, sin aparato lateral, cuerpo a `20px / 32px` sobre una mancha de `620px` —unos 62 caracteres—, título de artículo a `44px`, título de sección a `27px`. El material final va al pie de la columna: referencias primero, firma después.
+
+**Razón:** se replicó tres veces la retícula de la portada —columna de lectura más margen con filete— sobre una pieza que no la admite. Un margen de aparato se gana su sitio solo cuando el contenido puede **anclarse a un punto del flujo**, como las sidenotes de Tufte o las figuras al margen de Distill. En Framer el cuerpo es un único bloque de texto enriquecido: nunca podrá anclarse nada, de modo que el filete corría 2.900px junto a una columna vacía.
+
+**Evidencia, esta vez consultada y no recordada:** de seis publicaciones profesionales revisadas en su HTML y su CSS —eLife, PLOS Biology, Distill, Works in Progress, Our World in Data y Tufte CSS— **cinco usan columna única sin aparato lateral**, con las figuras dentro del flujo y el material final al pie. La única que usa margen es Tufte, y lo hace con `float: right` anclado a su punto del texto.
+
+**Regla de tipo de página que sale de ahí:** las páginas de composición —portada e índices— alinean su contenido en `x92`, porque tienen bloques que ocupan los `1016` de ancho. **Las piezas de lectura se centran**, porque una sola columna no tiene con qué alinearse y el eje izquierdo solo produce un vacío a la derecha.
+
+**Rango de títulos:** `72` la portada del método · `56` las páginas de sección · `44` la pieza. Antes las cuatro llevaban `72`, que es el tamaño del nombre del método, y por eso el título del artículo no guardaba relación con su propio texto.
+
+**Nota sobre proporción:** cuando una columna se ve apretada, se escala el tipo, no la línea. Inter tiene una altura de x de `0,546 em` frente a `0,484` de Georgia: entrega más masa negra por línea, así que alargar la medida empeora la legibilidad en vez de mejorarla.
+
+### 2026-08-15 — Qué admite el campo de texto enriquecido, comprobado
+
+**Constatación verificada con una prueba directa**, no inferida. Se inyectaron diez construcciones en el campo `Contenido` de `RB · Publicaciones` y se leyó el resultado guardado.
+
+**Sobrevive:** `p` · `h3` · `strong` · `em` · `img` · `blockquote` · `ul`/`li` · `table` (envuelta en `figure`).
+
+**Se descarta:** **todos los atributos `style` en línea** —`conservaStyle: false`—, y con ellos `float` y los márgenes negativos. También se aplanan a texto plano `<sup>` y `<a href="#ancla">`.
+
+**Consecuencias.** No hay notas al margen, porque dependen de `float`. No hay llamadas de nota. No hay anclas internas, de modo que tampoco cabe un índice que salte a las secciones. Y `table` solo sobrevive en su forma más simple: con `tbody` o con etiquetas anidadas dentro de las celdas, Framer descarta la tabla entera.
+
+**Regla operativa:** el texto enriquecido sirve para texto. **Todo lo que tenga estructura visual —tablas, escalas, diagramas— se autora como SVG**, se sube con `framer.uploadImage` y se coloca en línea con `<img>`. Es la única vía que da control sobre filetes, alineación y paleta.
+
+### 2026-08-15 — Las figuras SVG deben responder al modo oscuro
+
+**Decisión:** ningún SVG lleva fondo opaco ni colores en duro. Fondo transparente, colores por variable CSS y una consulta `@media (prefers-color-scheme: dark)` **dentro del propio archivo**.
+
+**Razón:** un `<img>` no hereda el CSS de la página, así que la única forma de que una figura respete el tema es que traiga su propia consulta. Las dos primeras figuras se subieron con `fill="#F8F7F2"` y pintaban una caja clara sobre página oscura.
+
+**Valores:** tinta `#3A3833` / `#F4F1EA` · apagado `#66655F` / `#C9C5BC` · línea `#D7D7CF` / blanco al 22% · acento `#08745F` / `#8EDBCB`. El alfa de la línea en oscuro sube del 8% que declara el token al 22%: al 8% los filetes de una tabla son invisibles, que es el mismo defecto de contraste corregido por la mañana en la Fig. 2 de la portada.
+
+### 2026-08-15 — El pie es mobiliario del sitio y va en todas las rutas
+
+**Decisión:** las seis rutas RB llevan el mismo pie —contacto y línea de identidad—, igual que llevan la misma barra.
+
+**Razón:** solo la portada tenía pie. `/articulos`, `/principios`, `/metodo`, el manual y las plantillas terminaban de golpe con su último bloque de contenido.
+
+**Distinción que ordena el criterio, y que costó cuatro iteraciones aprender:** **el mobiliario del sitio —barra y pie— debe ser idéntico en todas las rutas**, porque es identidad. **La retícula de lectura no**, porque cada género tiene la suya. Se estuvo copiando lo que no correspondía y rechazando copiar lo que sí.
+
+### 2026-08-15 — El primer artículo pasa de esqueleto a pieza
+
+**Decisión:** «Qué significa que el cuerpo sea bioeléctrico» pasa de `713` a `1.626` palabras, con once secciones, dos figuras, una cita destacada y catorce referencias.
+
+**Razón:** los tres artículos eran esqueletos de 160 a 198 palabras etiquetados como «5 min» y «6 min» —un error de factor cinco que el lector detecta al instante—. Y el primero repetía la portada: su contenido era el de la sección `01`.
+
+**Qué aporta ahora que la portada no tiene:** la densidad de carga fija medida en tejidos humanos, el potencial de Donnan y el pH local que puede diferir del de la sangre, la normokaliemia con deficiencia tisular, y la cascada calcio → magnesio → potasio. Material de la Lección 1.3, que no se había leído.
+
+**Y una sección que ninguna página del sitio ofrecía:** *Tres niveles de evidencia*. Distingue las cuantificaciones publicadas, la cascada del mesénquima —coherente con esa biofísica pero con menos respaldo controlado— y los métodos derivados de la bioelectrónica de Vincent, que **no han sido validados por ensayos clínicos**, dicho con esas palabras. Es lo que un clínico busca, y sustituye al descargo genérico.
+
+**Corrección de fondo:** el texto no contestaba su propio título. Ahora abre respondiendo qué significa, despliega las tres consecuencias que se siguen, y cierra volviendo a la pregunta.
+
 ### 2026-08-15 — El modelo de la portada se extiende a las subpáginas RB
 
 **Decisión:** `/articulos`, `/principios` y `/metodo` adoptan la gramática de documento: Inter en toda la página, sin tarjetas, sin bandas de color a ancho completo, listas separadas por filete de `1px`, secciones por filete de `2px`, y medida de `1016px`.
@@ -30,9 +84,9 @@
 
 **Razón:** los artículos imprimían en público cadenas como `Curso_Vigente/Modulo_1/Curso_Video/Clases_Didacticas/Clase_1_El_Cuerpo_Electrico/Leccion_1.1_Que_es_la_RB.md`. No es una referencia: es la estructura interna del repositorio académico expuesta a cualquier lector. `Revisor Académico` decía «Pendiente» y se imprimía en la cabecera del artículo como si fuera un dato; el estado editorial ya declara Borrador.
 
-### 2026-08-15 — Las plantillas CMS no son editables por API
+### 2026-08-15 — CORREGIDA · Las plantillas CMS sí son editables por API
 
-**Constatación, no decisión.** Las páginas `:slug` no se pueden escribir desde la sesión del agente: `pagePath` rechaza la ruta con `:slug`, `navigateTo` está prohibido en modo `api`, `session new` no admite abrir una página concreta, `setAttributes` devuelve éxito sin aplicar nada y `addComponentInstance` falla con «Parent node not found» sobre un breakpoint existente. El árbol se lee entero; no se escribe.
+**Esta entrada era falsa y se corrige.** Las páginas `:slug` **sí** se editan: hay que dirigirse a ellas con la **ruta padre** (`/regulacion-bioelectrica/articulos`), no con la ruta que contiene `:slug`. La pista estaba a la vista —las capturas de la plantilla ya funcionaban así— y no la vi. Lo que sigue describe el diagnóstico equivocado del que se partió: `pagePath` rechaza la ruta con `:slug`, `navigateTo` está prohibido en modo `api`, `session new` no admite abrir una página concreta, `setAttributes` devuelve éxito sin aplicar nada y `addComponentInstance` falla con «Parent node not found» sobre un breakpoint existente. El árbol se lee entero; no se escribe.
 
 **Trabajo pendiente en el editor de Framer**, ya diagnosticado: borrar los tres breakpoints sobrantes de `/articulos/:slug`; sustituir la cabecera vieja por el componente; retirar el aviso «no sustituye valoración, diagnóstico ni tratamiento profesional», que al vivir en la plantilla se repite en todas las publicaciones; quitar la tarjeta del panel de estado; título a `RB/Title` en vez de Playfair; enlace de vuelta a `RB/Accent Accessible` en vez de terracota; medida a `1016`; y añadir `Última Revisión`, que la portada promete y la plantilla no muestra. `/principios/:slug` además pide Categoría, Nivel y Tiempo de lectura, campos que su colección no tiene: hay que reconstruirla contra los siete reales.
 
