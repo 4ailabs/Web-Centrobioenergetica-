@@ -162,3 +162,57 @@ Reparte el contenido con la portada institucional: **aquí el programa y su tema
 - portal de alumnos existente;
 - publicación de una versión divulgativa separada;
 - mantener el manual sin enlaces públicos hasta contar con control de acceso.
+
+---
+
+## Cómo escribir en Framer sin fallar en silencio
+
+Cuatro cosas de la API del agente costaron una sesión entera de trabajo perdido. Todas producen
+fallos silenciosos: la llamada no lanza excepción, devuelve algo con buena pinta y no aplica nada.
+
+**`applyChanges` devuelve el informe de errores, y hay que leerlo.** La documentación es explícita:
+«Commands that fail (including syntax errors) are reported in the result's `errors` without blocking
+the remaining commands». El lote no se aborta —cada comando falla por su cuenta— y el retorno trae
+`{ message, errors, linter }`. El `linter` además avisa de solapamientos y separaciones negativas
+entre hermanos de un stack. Descartar ese valor de retorno es descartar el único aviso que hay.
+
+```js
+const r = await framer.agent.applyChanges(dsl, { pagePath })
+if (r?.errors && Object.keys(r.errors).length) throw new Error(JSON.stringify(r.errors))
+```
+
+**`setAttributes` ignora en silencio lo que no reconoce.** Devuelve el nodo igual, con propiedad
+inventada o sin ella. No sirve como comprobación. En concreto **no** aplica `elementId`,
+`scrollTargetEnabled`, `textTransform` ni `link`: esos van por DSL.
+
+**El enlace es `link.href=`, no `link=`.** Un `link="#ancla"` se ignora sin avisar. Por eso las cinco
+entradas del sumario del frontispicio estuvieron sin enlazar desde que se crearon. La forma correcta
+usa la ruta completa:
+
+```
+SET <id> link.href="/regulacion-bioelectrica#clinica" link.smoothScroll="true";
+```
+
+**Las dos superficies ven cosas distintas.** `elementId` y `link` no existen en los objetos de la API
+de plugin (`framer.getNodesWithType`), que devuelven `null`; se leen en `attributes` de la API del
+agente (`framer.agent.getNodesOfTypes`). Verificar por la superficie equivocada da falsos negativos.
+Y `pagePath` **no acota las lecturas**, solo `applyChanges`: una lectura con `pagePath` devuelve el
+proyecto entero.
+
+La sintaxis completa del DSL está en `framer.agent.getSystemPrompt()`. Conviene volcarla a un archivo
+y buscar en ella antes de inventar un nombre de atributo.
+
+### Regla de verificación
+
+Contar vueltas de un bucle no es verificar. Se comprueba releyendo el estado desde cero y comparando
+con lo esperado; para una imagen, descargando el archivo servido y mirando su contenido. Dos veces en
+esta sesión se dio por aplicado algo que no lo estaba —las tres figuras de la portada y los enlaces
+del sumario— porque el informe contaba iteraciones.
+
+### Pendiente · el optimizador de SVG rompe el modo oscuro
+
+Al subir un SVG, Framer saca la regla `:root{}` con la paleta clara y la escribe como atributo
+`style=` en el elemento `<svg>`, dejando el bloque `@media (prefers-color-scheme: dark)` dentro de
+`<style>`. Un atributo gana a una hoja de estilos, así que **el modo oscuro no se aplica en ninguna
+figura del sitio**. Marcar las declaraciones oscuras con `!important` tampoco sobrevive al
+optimizador. Sin resolver.
