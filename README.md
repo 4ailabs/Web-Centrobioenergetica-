@@ -18,3 +18,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1BI4Z6PEfff9b1nQjg6RDWS
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Documentación de proyectos
+
+- [Regulación Bioeléctrica — sitio público en Framer](docs/proyectos/regulacion-bioelectrica/README.md)
