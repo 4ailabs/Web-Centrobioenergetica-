@@ -360,6 +360,40 @@
 
 **Consecuencia:** existen seis borradores iniciales y páginas de índice y detalle con `noIndex`. La aprobación pública depende de revisión académica.
 
+### 2026-08-16 — Paleta categórica en las figuras, no en la página
+
+**Decisión:** ampliar la paleta de las figuras a cinco tonos —verde, vino, añil, ocre y ciruela—, cada uno con su par para modo oscuro. El color codifica siempre una variable declarada; ninguna figura recibe un tono por adorno. La página conserva papel, tinta y un solo acento: nav, titulares, cuerpo y filetes no cambian.
+
+**Clave de significado**, común a todas las figuras del sitio:
+
+| Tono | Claro | Oscuro | Qué codifica |
+|---|---|---|---|
+| Verde | `#08745F` | `#8EDBCB` | comprobado · resuelto · rango propio · lo que el método busca |
+| Vino | `#9A3C60` | `#E091AC` | estado alterado · activación · la serie que decae |
+| Añil | `#3A5A94` | `#9DB4E0` | estado normal de referencia · frenado |
+| Ocre | `#8F5A1E` | `#E0AE72` | observado clínicamente · tiempo intermedio |
+| Ciruela | `#6A4C93` | `#B9A3DC` | hipótesis |
+
+Los cinco pasan AA sobre papel `#F8F7F2` y sobre `rgb(26,24,28)`; el más justo es el verde, a 5,33. Cada tono lleva además un tinte al 9–13 % para el recurso de mancha que agrupa familias. Donde el color distingue categorías se conserva una codificación redundante —trazo continuo o punteado, círculo lleno, medio o punteado— para quien no discrimina tono.
+
+**Razón:** las figuras eran gris más un verde y no sostenían ninguna lectura por sí solas. La referencia de `worksinprogress.co` no pone color en el cromo de la página sino dentro de los gráficos, y siempre ligado a una variable: una serie, un percentil, una familia. Ese es el motivo por el que se ven vivas sin volverse decorativas.
+
+**Alternativas consideradas:** teñir el titular o la navegación, que fue lo que se preguntó primero. Se descartó porque el verde tiene tres usos declarados —enlaces, llamadas de nota y dato destacado en figura— y una masa de acento mayor que todas ellas juntas devalúa el resto.
+
+**Consecuencia:** doce figuras repintadas —tres de la portada y nueve de artículo—, con la ventana de respuesta tisular convertida de barra en región para que se vea que contiene al método, tanto en la portada como en la figura de atenuación. Tres figuras comparten el lenguaje de estatuto, lo que lo convierte en lenguaje y no en decoración.
+
+### 2026-08-16 — Ninguna figura del sitio tiene modo oscuro, y no es culpa del archivo
+
+**Hallazgo:** al subir un SVG, el optimizador de Framer extrae la regla `:root{}` con la paleta clara y la reescribe como atributo `style=` sobre el elemento `<svg>`, dejando el bloque `@media (prefers-color-scheme: dark)` dentro de `<style>`. Como una declaración en atributo gana a una hoja de estilos, **el modo oscuro no se aplica en ninguna de las doce figuras**, y no se aplicaba tampoco antes de esta sesión.
+
+**Corrección de un registro anterior:** este mismo día se anotó que el fallo afectaba solo a las dos figuras del artículo 01 y que quedaba resuelto moviendo la paleta al bloque `<style>`. Las dos cosas eran falsas. El archivo de origen ya la llevaba ahí; es el optimizador quien la saca, y lo hace con todas.
+
+**Intento descartado:** marcar las declaraciones oscuras con `!important`, que en la cascada gana a un atributo normal. El optimizador tampoco lo conserva.
+
+**Estado:** sin resolver. Las vías por explorar son definir la paleta clara dentro de su propia `@media (prefers-color-scheme: light)` para que no quede ninguna regla suelta que hoistear, usar un selector `svg{}` en lugar de `:root{}`, o servir las figuras como archivo enlazado en vez de subirlas al optimizador.
+
+**Consecuencia inmediata:** el trabajo de color queda correcto en claro y sin efecto en oscuro. La comprobación del generador que exige bloque `@media` se conserva, pero no basta: hay que verificar sobre el archivo **servido**, no sobre el de origen.
+
 ## Decisiones pendientes
 
 | Asunto | Opciones | Requisito para decidir |
