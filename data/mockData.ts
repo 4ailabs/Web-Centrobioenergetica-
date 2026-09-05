@@ -33,6 +33,22 @@ export interface SearchResults {
 export const MOCK_DATA = {
   courses: [
     {
+      // No es un curso: es la llave del tablero 3D que vive en
+      // caminos.institutocentrobioenergetica.com. Se concede y se retira desde
+      // el mismo modal que cualquier curso, pero va aparte del 110 a propósito:
+      // un antiguo alumno puede tener el tablero sin los videos, y al revés.
+      // Queda fuera de ACTIVE_COURSE_IDS para no salir en el catálogo, y dentro
+      // de ACCESOS_ASIGNABLES_IDS, que es lo que ve el administrador.
+      id: 111,
+      title: 'Tablero Los Cuatro Caminos — Acceso',
+      description: 'Llave del tablero 3D. No abre los videos del curso.',
+      author: 'Dr. Miguel Ojeda Rios',
+      price: 0,
+      lessons: 0,
+      level: 'Avanzado' as const,
+      imageUrl: '/images/courses/cuatro-caminos/cuatro-caminos-cover.jpg',
+    },
+    {
       // Curso Selecto del 5 y 19 de septiembre de 2026. Todavía sin módulos:
       // la landing (/cuatro-caminos) es lo único que se muestra hasta que se
       // imparta y haya grabación.

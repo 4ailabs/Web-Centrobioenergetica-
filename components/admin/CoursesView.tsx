@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowLeft, BookOpen, Clock, MessageCircle, UserPlus, CheckCircle2 } from 'lucide-react';
 import { MOCK_DATA } from '../../data/mockData';
-import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO } from '../../data/catalog';
+import { ACCESOS_ASIGNABLES_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO } from '../../data/catalog';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 
@@ -19,7 +19,7 @@ interface CoursesViewProps {
     onInscribir: (cursoId: string) => void;
 }
 
-const cursos = MOCK_DATA.courses.filter((c) => ACTIVE_COURSE_IDS.includes(c.id));
+const cursos = MOCK_DATA.courses.filter((c) => ACCESOS_ASIGNABLES_IDS.includes(c.id));
 
 function nombreCorto(titulo: string) {
     return titulo.split('—')[0].split(':')[0].trim();

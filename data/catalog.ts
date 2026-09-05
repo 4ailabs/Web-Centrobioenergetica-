@@ -7,6 +7,16 @@ export type CourseEstado = 'nuevo' | 'en-curso' | 'proximamente' | 'grabacion';
 
 export const ACTIVE_COURSE_IDS = [110, 106, 109, 104, 107, 108, 102, 101, 103, 105];
 
+// Llave del tablero 3D, no un curso. Se administra con la misma maquinaria de
+// inscripción, pero separada del 110: el tablero y los videos del taller se
+// conceden por su cuenta cada uno.
+export const ID_TABLERO = 111;
+
+// Lo que el administrador puede conceder no coincide con lo que el alumno ve en
+// el catálogo. Si el tablero entrara en ACTIVE_COURSE_IDS aparecería listado
+// como un curso más a la venta.
+export const ACCESOS_ASIGNABLES_IDS = [...ACTIVE_COURSE_IDS, ID_TABLERO];
+
 export const COURSE_META: Record<number, { estado: CourseEstado; landingPath?: string }> = {
   110: { estado: 'proximamente', landingPath: '/cuatro-caminos' },
   106: { estado: 'en-curso', landingPath: '/regulacion-bioelectrica' },
