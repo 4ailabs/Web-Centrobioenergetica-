@@ -139,37 +139,51 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
         </div>
       </div>
 
-      {/* ── TU TABLERO ──
-          Una herramienta a la que se vuelve, no algo que se descubre una vez:
-          por eso va arriba y no en los atajos del pie. Solo la ve quien tiene
-          concedido el acceso. */}
+      {/* ── TUS HERRAMIENTAS ──
+          Una herramienta a la que se vuelve en cada sesion, no algo que se
+          descubre una vez: por eso va arriba y no entre los atajos del pie.
+          Solo la ve quien tiene concedido el acceso. */}
       {tieneAccesoAlTablero(Boolean(user?.isAdmin), user?.enrolledCourses) && (
-        <div className="px-6 lg:px-0 pt-6 pb-2">
-          <div className="flex items-center gap-3 mb-4">
-            <h2 className="font-editorial text-xl lg:text-2xl text-neutral-800 dark:text-neutral-100">Tu tablero</h2>
-            <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
-          </div>
-          <button
-            onClick={() => window.open(URL_TABLERO, '_blank', 'noopener')}
-            className="w-full text-left p-5 rounded-xl bg-salvia-50 dark:bg-salvia-400/10 border border-salvia-200 dark:border-salvia-400/30 hover:bg-salvia-100 dark:hover:bg-salvia-400/20 transition-colors group"
-          >
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-white dark:bg-neutral-800 border border-salvia-200 dark:border-salvia-400/30 flex items-center justify-center text-salvia-600 dark:text-salvia-400 shrink-0">
-                <Compass className="w-5 h-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-salvia-600 dark:text-salvia-400">Herramienta de trabajo</span>
-                <p className="text-[15px] font-medium text-neutral-800 dark:text-neutral-100 mt-1">Los Cuatro Caminos</p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 leading-relaxed">
-                  Hoja a escala real para colocar figuras, caminos y relaciones. Guarda y carga escenas; sirve igual en la sesion clinica que en la clase.
-                </p>
-                <span className="inline-flex items-center gap-1 text-xs font-medium text-salvia-600 dark:text-salvia-400 mt-3 group-hover:gap-2 transition-all">
-                  Abrir el tablero <ArrowRight className="w-3 h-3" />
-                </span>
-              </div>
+        <>
+          <div className="px-6 lg:px-0 pt-6 pb-2">
+            <div className="flex items-center gap-3 mb-4">
+              <h2 className="font-editorial text-xl lg:text-2xl text-neutral-800 dark:text-neutral-100">Tus herramientas</h2>
+              <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
             </div>
-          </button>
-        </div>
+          </div>
+          <div className="px-6 lg:px-0 pb-5">
+            <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors">
+              <button
+                onClick={() => window.open(URL_TABLERO, '_blank', 'noopener')}
+                className="group w-full text-left p-5"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-salvia-50 dark:bg-salvia-400/10 text-salvia-600 dark:text-salvia-400 flex items-center justify-center shrink-0">
+                    <Compass className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge tono="logrado">Tu acceso</Badge>
+                      <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Tablero 3D · en el navegador</span>
+                    </div>
+                    <h3 className="font-editorial text-lg lg:text-xl text-neutral-800 dark:text-neutral-100 leading-snug mb-0.5">
+                      El <span className="text-salvia-600 dark:text-salvia-400">Tablero</span>
+                    </h3>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1.5">
+                      Hoja a escala real para colocar figuras, caminos y relaciones
+                    </p>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-2">
+                      Guarda y carga escenas · Sirve igual en la sesion clinica que en la clase
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-medium text-salvia-600 dark:text-salvia-400 group-hover:gap-1.5 transition-all">
+                      Abrir el tablero <ArrowRight className="w-3 h-3" />
+                    </span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </>
       )}
 
       {/* ── AHORA EN EL INSTITUTO ── */}
