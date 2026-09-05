@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import InputField from '../components/ui/InputField';
@@ -106,6 +106,26 @@ const LogoAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
   );
 };
 
+// El tablero de Los Cuatro Caminos, en otro subdominio, rebota aquí con un
+// ?next= para que al entrar se vuelva sola a donde el alumno quería ir.
+//
+// Solo se admiten destinos del propio dominio: aceptar cualquier URL
+// convertiría el login en un redirector abierto, y un enlace preparado
+// llevaría al alumno recién identificado a un sitio ajeno.
+const DOMINIO = 'institutocentrobioenergetica.com';
+
+function destinoSeguro(destino: string | null): string | null {
+  if (!destino) return null;
+  try {
+    const url = new URL(destino, window.location.origin);
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+    const propio = url.hostname === DOMINIO || url.hostname.endsWith(`.${DOMINIO}`);
+    return propio ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -115,6 +135,7 @@ const Login: React.FC = () => {
   const [animDone, setAnimDone] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,7 +144,11 @@ const Login: React.FC = () => {
 
     try {
       await login(email, password);
-      navigate('/');
+      const destino = destinoSeguro(searchParams.get('next'));
+      // Otro subdominio queda fuera del enrutador: hace falta una navegación
+      // completa para que el navegador mande la cookie recién emitida.
+      if (destino) window.location.href = destino;
+      else navigate('/');
     } catch (err: any) {
       setError(err.message || 'Error al iniciar sesión');
     } finally {
