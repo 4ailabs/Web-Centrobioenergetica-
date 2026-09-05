@@ -17,6 +17,16 @@ export const ID_TABLERO = 111;
 // como un curso más a la venta.
 export const ACCESOS_ASIGNABLES_IDS = [...ACTIVE_COURSE_IDS, ID_TABLERO];
 
+export const URL_TABLERO = 'https://caminos.institutocentrobioenergetica.com';
+
+// La misma regla que aplica api/acceso-tablero.ts en el servidor. Se repite
+// aquí solo para decidir si se enseña el enlace: quien no lo tenga no ve una
+// puerta que le daría en las narices. Si las dos reglas se separan, lo peor que
+// pasa es un enlace de más o de menos — la que manda es la del servidor.
+export function tieneAccesoAlTablero(esAdmin: boolean, cursos: string[] | undefined): boolean {
+  return esAdmin || Boolean(cursos?.includes(String(ID_TABLERO)));
+}
+
 export const COURSE_META: Record<number, { estado: CourseEstado; landingPath?: string }> = {
   110: { estado: 'proximamente', landingPath: '/cuatro-caminos' },
   106: { estado: 'en-curso', landingPath: '/regulacion-bioelectrica' },

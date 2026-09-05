@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useCourses } from '../contexts/AppContext';
 import { useAuth } from '../contexts/AuthContext';
 import { AboutUsIcon, AppsIcon, CoursesIcon } from '../components/Icons';
-import { ArrowRight, MapPin, Play } from 'lucide-react';
+import { ArrowRight, Compass, MapPin, Play } from 'lucide-react';
 import { API_BASE } from '../lib/api';
 import { handleCourseClick } from '../utils/framerIntegration';
 import { MOCK_DATA } from '../data/mockData';
-import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO, courseHref } from '../data/catalog';
+import { ACTIVE_COURSE_IDS, COURSE_META, ESTADO_LABEL, ESTADO_TONO, courseHref, URL_TABLERO, tieneAccesoAlTablero } from '../data/catalog';
 import PromoVideo from '../components/PromoVideo';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
@@ -374,6 +374,11 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigateToAbout, onNavigateToAp
             { icon: AboutUsIcon, title: 'Nosotros', action: onNavigateToAbout },
             { icon: AppsIcon, title: 'Apps', action: onNavigateToApps },
             { icon: CoursesIcon, title: 'Todos los cursos', action: () => navigate('/cursos') },
+            // Solo para quien tiene el acceso: al resto no se le ensena una
+            // puerta que le daria en las narices.
+            ...(tieneAccesoAlTablero(Boolean(user?.isAdmin), user?.enrolledCourses)
+              ? [{ icon: Compass, title: 'El tablero', action: () => window.open(URL_TABLERO, '_blank', 'noopener') }]
+              : []),
           ].map((item) => (
             <div
               key={item.title}
