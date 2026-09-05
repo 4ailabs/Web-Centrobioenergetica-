@@ -19,7 +19,7 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   getAllUsers: () => Promise<User[]>;
   updateUserSubscription: (userId: string, status: 'active' | 'inactive') => Promise<void>;
   updateUserCourses: (userId: string, courseIds: string[]) => Promise<void>;
@@ -123,7 +123,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return data;
   };
 
-  const logout = () => {
+  const logout = async () => {
+    // La cookie de sesión es HttpOnly y la comparte el tablero de Los Cuatro
+    // Caminos, en otro subdominio: solo el servidor puede retirarla. Si la red
+    // falla se cierra igualmente la sesión local, que es lo que ve el usuario.
+    try {
+      await fetch(`${API_BASE}/api/logout`, { method: 'POST', credentials: 'include' });
+    } catch {
+      // Sin conexión no hay nada que hacer aquí; la cookie caducará sola.
+    }
     localStorage.removeItem('token');
     setUser(null);
     navigate('/login');

@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { authService } from '../server/services/auth.service.js';
 import { applyCors } from '../lib/cors.js';
 import { isRateLimited, recordFailure, clearFailures, getClientIp } from '../lib/rate-limit.js';
+import { emitirSesion } from '../lib/sesion.js';
 
 // Ventanas de rate limiting. El límite por email es el que frena la fuerza
 // bruta; el de IP es holgado a propósito para no bloquear a un grupo que
@@ -41,6 +42,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Entrada correcta: se limpian los contadores para que un usuario que
     // acierta nunca arrastre bloqueos previos.
     clearFailures(ipKey, emailKey);
+    // Además del JSON, la sesión sale como cookie del dominio padre: es lo que
+    // deja entrar al tablero de Los Cuatro Caminos, que está en otro subdominio.
+    emitirSesion(req, res, result.token);
     return res.json(result);
   } catch (error: any) {
     console.error('Error logging in:', error);
