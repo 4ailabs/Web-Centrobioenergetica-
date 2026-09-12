@@ -247,6 +247,7 @@ export const MOCK_DATA = {
         ] },
         { id: 3, title: 'Los ejes de regulación', description: '8 de agosto · 10:00 – 18:00 h', order: 3, videos: [
           { id: 9, title: 'Capítulo 1', description: '', duration: '', order: 1, cloudflareStreamId: 'fc43bb8892cd07aa35a9877063232934' },
+          { id: 12, title: 'Capítulo 2', description: '', duration: '', order: 2, cloudflareStreamId: '320732ac4db113419c82397d5d6f645b' },
         ] },
         { id: 4, title: 'La sesión completa', description: '22 de agosto · 10:00 – 18:00 h', order: 4, videos: [
           { id: 10, title: 'Capítulo 1', description: '', duration: '', order: 1, cloudflareStreamId: '12da61e0348fbf27b30744d1d525d637' },
