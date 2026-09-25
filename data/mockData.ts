@@ -254,6 +254,7 @@ export const MOCK_DATA = {
         { id: 4, title: 'La sesión completa', description: '22 de agosto · 10:00 – 18:00 h', order: 4, videos: [
           { id: 10, title: 'Capítulo 1', description: '', duration: '', order: 1, cloudflareStreamId: '12da61e0348fbf27b30744d1d525d637' },
           { id: 11, title: 'Capítulo 2', description: '', duration: '', order: 2, cloudflareStreamId: '311e491f06a50274571954e00956d7a2' },
+          { id: 15, title: 'Capítulo 3', description: '', duration: '', order: 3, cloudflareStreamId: '6f4bf9003b95d665e0f161627d796fa0' },
         ] },
       ],
     },
