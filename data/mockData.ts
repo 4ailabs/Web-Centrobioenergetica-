@@ -83,7 +83,6 @@ export const MOCK_DATA = {
               description: '',
               order: 1,
               cloudflareStreamId: '69af23fe54956c60a32daa431ac56c6b',
-              aspectRatio: '1280 / 1080',
             },
             {
               id: 2,
