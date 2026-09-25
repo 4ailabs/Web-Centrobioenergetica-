@@ -253,7 +253,10 @@ const CourseDetail: React.FC = () => {
           {activeVideo ? (
             /* VIDEO PLAYER */
             <div>
-              <div className="rounded-xl overflow-hidden bg-black aspect-video relative shadow-lg">
+              <div
+                className="rounded-xl overflow-hidden bg-black aspect-video relative shadow-lg"
+                style={activeVideo.aspectRatio ? { aspectRatio: activeVideo.aspectRatio, maxHeight: 'calc(100dvh - 10rem)' } : undefined}
+              >
                 {activeVideo.cloudflareStreamId ? (
                   streamSrc ? (
                     <iframe

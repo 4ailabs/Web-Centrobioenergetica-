@@ -7,6 +7,7 @@ export interface CourseVideo {
   description?: string;
   vimeoId?: string;
   cloudflareStreamId?: string; // UID de Cloudflare Stream
+  aspectRatio?: string; // Solo si el video no es 16:9, p. ej. '1280 / 1080'; sin él el reproductor deja barras negras
   duration?: string;
   order: number;
 }
