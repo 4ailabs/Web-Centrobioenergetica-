@@ -49,9 +49,6 @@ export const MOCK_DATA = {
       imageUrl: '/images/courses/cuatro-caminos/cuatro-caminos-cover.jpg',
     },
     {
-      // Curso Selecto del 5 y 19 de septiembre de 2026. Todavía sin módulos:
-      // la landing (/cuatro-caminos) es lo único que se muestra hasta que se
-      // imparta y haya grabación.
       id: 110,
       title: 'Los Cuatro Caminos — Formación en terapia con muñecos',
       description: 'Lectura proyectiva de trayectoria vital. Una vida se repite en la dirección que tomó; esta formación la hace visible sobre una hoja, en minutos, y enseña a conducirla hasta la elección.',
@@ -60,6 +57,12 @@ export const MOCK_DATA = {
       lessons: 0,
       level: 'Avanzado' as const,
       imageUrl: '/images/courses/cuatro-caminos/cuatro-caminos-cover.jpg',
+      modules: [
+        { id: 1, title: 'La dirección y de dónde viene', description: '5 de septiembre · 10:00 – 18:00 h', order: 1, videos: [
+          { id: 1, title: 'Capítulo 1', description: '', duration: '', order: 1, cloudflareStreamId: '79af4e3ec774b3d101401c37b824db95' },
+          { id: 2, title: 'Capítulo 2', description: '', duration: '', order: 2, cloudflareStreamId: '1523b7fc01af5799b6609cc0e6d8ad03' },
+        ] },
+      ],
     },
     {
       id: 109,
