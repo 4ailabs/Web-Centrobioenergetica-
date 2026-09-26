@@ -28,7 +28,7 @@ export function tieneAccesoAlTablero(esAdmin: boolean, cursos: string[] | undefi
 }
 
 export const COURSE_META: Record<number, { estado: CourseEstado; landingPath?: string }> = {
-  110: { estado: 'en-curso', landingPath: '/cuatro-caminos' },
+  110: { estado: 'grabacion', landingPath: '/cuatro-caminos' },
   106: { estado: 'en-curso', landingPath: '/regulacion-bioelectrica' },
   109: { estado: 'grabacion', landingPath: '/crania' },
   104: { estado: 'grabacion', landingPath: '/reset-hormonal' },
